@@ -1,0 +1,79 @@
+.start .field input {
+	line-height: 60px;
+}
+
+input[type=text] {
+	line-height:40px;
+}
+
+input[type=radio] {
+	float: left;
+	margin: 10px 0 0 0px;
+
+}
+
+input-wrap label {
+	margin: 0;
+	float: none;
+}
+
+input[type="radio"] + label:before, 
+input[type="checkbox"] + label:before,
+.callback input[type="radio"] + label:before, 
+.callback input[type="checkbox"] + label:before { 
+	background-image: none;
+	width: 10px;
+	height: 10px;
+}
+
+.callback input[type="radio"] + label:before, 
+.callback input[type="checkbox"] + label:before { 
+	background-image: none;
+	width: 10px;
+	height: 5px;
+}
+
+.tabular .input-wrap {
+	width: 290px;
+	padding-right: 20px;
+}
+
+.tabular .input-wrap input { 
+	margin: 0 0 0 80px;
+}
+
+
+.callback label{
+	margin: -10px 0 0;
+}
+
+.field.select-right {
+	
+}
+
+.field.select-right .styled {
+	left: 650px
+}
+
+.spend .text p.title {
+	width: 100%;
+}
+
+.survey .field .weight .styled {
+	width: 115px;
+	float: left;
+}
+
+legend {
+	color: #fff;
+}
+
+.watch .second,
+.watch .hour,
+.watch .minute {
+	display: none;
+}
+
+.drinks-guide .drink-type.drinks-six {
+	padding-right: 0;
+}

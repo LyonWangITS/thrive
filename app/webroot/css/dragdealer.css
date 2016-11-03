@@ -1,0 +1,145 @@
+/**
+ * Dragdealer JS v0.9.5
+ * http://code.ovidiu.ch/dragdealer-js
+ *
+ * Copyright (c) 2010, Ovidiu Chereches
+ * MIT License
+ * http://legal.ovidiu.ch/licenses/MIT
+ */
+
+.dragdealer {
+	position: relative;
+	height: 24px;
+	background: #f2f2f2;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-top: 1px solid #d8d8d8;
+	width: 92%;
+	margin: 0 auto 50px
+}
+
+#drinking-hours-slider.dragdealer {
+	width: 75%;
+	margin: 0 0 0 35px;
+}
+
+.dragdealer .handle {
+	position: absolute;
+	cursor: pointer;
+}
+.dragdealer .red-bar {
+	width: 100px;
+	height: 24px;
+	text-align: center;
+	background: url(../images/formelements.png);
+	text-indent: -9999px;
+	background-position: -192px 0;
+	width: 38px;
+	height: 24px;
+	z-index: 100;
+}
+.dragdealer .disabled {
+	background: #6b9786;
+}
+
+.dragdealer .selected-area {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 24px;
+	background: #6b9786;
+	/*width: 25%;*/
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+}
+
+.dragdealer .tooltip {
+	background-color: #67c3a0;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-bottom: 2px solid #59a88a;
+	position: absolute;
+	/*width: auto;*/
+	width: 74px;
+	padding: 5px 10px;
+	z-index: 10;
+	top: 35px;
+	text-align: center;
+	text-transform: none;
+	color: #fff;
+	font-weight: 700;
+	line-height: 19px;
+	font-size: 14px;
+	margin: 0;
+}
+#age-slider .tooltip {
+	width: 40px;
+}
+#typical-day-slider .tooltip,
+#standard-drinks-slider .tooltip,
+#drinking-hours-slider {
+	width: 76px;
+}
+
+.dragdealer .tooltip:after {
+	bottom: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.dragdealer .tooltip:after {
+	border-color: rgba(103, 195, 160, 0);
+	border-bottom-color: #67c3a0;
+	border-width: 7px;
+	left: 50%;
+	margin-left: -7px;
+}
+
+.slider-value {
+	font-size: 20px;
+	font-weight: 600;
+	position: absolute;
+	top: 0;
+	width: 34px;
+	text-align: center;
+}
+
+.left-value {
+	left: -35px;
+}
+
+.right-value {
+	right: -35px;
+}
+
+#standard-drinks-slider .right-value,
+#drinking-hours-slider .right-value,
+#typical-day-slider .right-value  {
+	right: -40px;
+} 
+
+@media only screen and (max-width: 767px) {
+
+		.dragdealer {
+			margin: 70px auto 0;
+		}
+    	
+    	.dragdealer .tooltip {
+    		top: -45px;
+    	}
+    	
+    	.dragdealer .tooltip:after {
+	    	top: 100%;
+	    	bottom: auto;
+			border-top-color: #67c3a0;
+			border-bottom: none;
+    	}
+    	
+}

@@ -1,0 +1,1304 @@
+/*
+* Skeleton V1.2
+* Copyright 2011, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 6/20/2012
+*/
+
+
+/* Table of Contents
+==================================================
+    #Base 960 Grid
+    #Tablet (Portrait)
+    #Mobile (Portrait)
+    #Mobile (Landscape)
+    #Clearing */
+
+
+
+/* #Base 960 Grid
+================================================== */
+
+    .container                                  { position: relative; width: 960px; margin: 0 auto; padding: 0; }
+    .container .column,
+    .container .columns                         { float: left; display: inline; margin-left: 10px; margin-right: 10px; }
+    .row                                        { margin-bottom: 20px; }
+
+    /* Nested Column Classes */
+    .column.alpha, .columns.alpha               { margin-left: 0; }
+    .column.omega, .columns.omega               { margin-right: 0; }
+
+    /* Base Grid */
+    .container .one.column,
+    .container .one.columns                     { width: 40px;  }
+    .container .two.columns                     { width: 100px; }
+    .container .three.columns                   { width: 160px; }
+    .container .four.columns                    { width: 220px; }
+    .container .five.columns                    { width: 280px; }
+    .container .six.columns                     { width: 340px; }
+    .container .seven.columns                   { width: 400px; }
+    .container .eight.columns                   { width: 460px; }
+    .container .nine.columns                    { width: 520px; }
+    .container .ten.columns                     { width: 580px; }
+    .container .eleven.columns                  { width: 640px; }
+    .container .twelve.columns                  { width: 700px; }
+    .container .thirteen.columns                { width: 760px; }
+    .container .fourteen.columns                { width: 820px; }
+    .container .fifteen.columns                 { width: 880px; }
+    .container .sixteen.columns                 { width: 940px; }
+
+    .container .one-third.column                { width: 300px; }
+    .container .two-thirds.column               { width: 620px; }
+
+    /* Offsets */
+    .container .offset-by-one                   { padding-left: 60px;  }
+    .container .offset-by-two                   { padding-left: 120px; }
+    .container .offset-by-three                 { padding-left: 180px; }
+    .container .offset-by-four                  { padding-left: 240px; }
+    .container .offset-by-five                  { padding-left: 300px; }
+    .container .offset-by-six                   { padding-left: 360px; }
+    .container .offset-by-seven                 { padding-left: 420px; }
+    .container .offset-by-eight                 { padding-left: 480px; }
+    .container .offset-by-nine                  { padding-left: 540px; }
+    .container .offset-by-ten                   { padding-left: 600px; }
+    .container .offset-by-eleven                { padding-left: 660px; }
+    .container .offset-by-twelve                { padding-left: 720px; }
+    .container .offset-by-thirteen              { padding-left: 780px; }
+    .container .offset-by-fourteen              { padding-left: 840px; }
+    .container .offset-by-fifteen               { padding-left: 900px; }
+
+
+
+
+
+
+@media only screen and (max-width: 960px) {
+	
+	.dg-wrap {
+		min-height: 430px;
+	}
+	
+	.survey .field {
+		position: relative;
+		width: auto;
+		text-align: left;
+		padding: 40px 30px 40px;
+		border-bottom: 1px solid #f1f2f2;
+	}
+	
+	.survey .field.gender {
+		padding-bottom: 0;
+	}
+	
+	.gender-wrap {
+		position: relative;
+		display: block;
+		margin-top: 100px;
+		left: 0;
+	}
+	
+	.gender .styled {
+		right: 30px;
+		top: -60px;
+	}
+	
+	i.female {
+		left: 0;
+	}
+	
+	.gender .input-wrap.female {
+		left: 11%;
+		top: -70px;
+	}
+	
+	i.male {
+		left: 29%;
+	}
+	
+	.gender .input-wrap.male {
+		left: 40%;
+		top: -70px;
+	}
+	
+	/* staff student */
+	
+	.survey .field.staff-student p {
+		max-width: none;
+	}
+	
+	.staff-student-wrap {
+		position: relative;
+		display: block;
+		margin-top: 70px;
+		left: 0;
+	}
+	
+	.drinks-guide .drink-type {
+		width: 20%;
+		margin: 0 0 20px;
+		float: none;
+		padding: 0 3%;
+		background-image: none;
+	}
+	
+	.field .labels {
+		position: absolute;
+		right: 17px;
+	}
+	
+	.tabular-intro .image {
+		right: 20px;
+	}
+	
+	.learn-more .clip {
+		width: 40%;
+	}
+}
+
+
+
+
+
+
+/* #Tablet (Portrait)
+================================================== */
+
+    /* Note: Design for a width of 768px */
+
+    @media only screen and (min-width: 768px) and (max-width: 959px) {
+        .container                                  { width: 768px; }
+        .container .column,
+        .container .columns                         { margin-left: 10px; margin-right: 10px;  }
+        .column.alpha, .columns.alpha               { margin-left: 0; margin-right: 10px; }
+        .column.omega, .columns.omega               { margin-right: 0; margin-left: 10px; }
+        .alpha.omega                                { margin-left: 0; margin-right: 0; }
+
+        .container .one.column,
+        .container .one.columns                     { width: 28px; }
+        .container .two.columns                     { width: 76px; }
+        .container .three.columns                   { width: 124px; }
+        .container .four.columns                    { width: 172px; }
+        .container .five.columns                    { width: 220px; }
+        .container .six.columns                     { width: 268px; }
+        .container .seven.columns                   { width: 316px; }
+        .container .eight.columns                   { width: 364px; }
+        .container .nine.columns                    { width: 412px; }
+        .container .ten.columns                     { width: 460px; }
+        .container .eleven.columns                  { width: 508px; }
+        .container .twelve.columns                  { width: 556px; }
+        .container .thirteen.columns                { width: 604px; }
+        .container .fourteen.columns                { width: 652px; }
+        .container .fifteen.columns                 { width: 700px; }
+        .container .sixteen.columns                 { width: 748px; }
+
+        .container .one-third.column                { width: 236px; }
+        .container .two-thirds.column               { width: 492px; }
+
+        /* Offsets */
+        .container .offset-by-one                   { padding-left: 48px; }
+        .container .offset-by-two                   { padding-left: 96px; }
+        .container .offset-by-three                 { padding-left: 144px; }
+        .container .offset-by-four                  { padding-left: 192px; }
+        .container .offset-by-five                  { padding-left: 240px; }
+        .container .offset-by-six                   { padding-left: 288px; }
+        .container .offset-by-seven                 { padding-left: 336px; }
+        .container .offset-by-eight                 { padding-left: 384px; }
+        .container .offset-by-nine                  { padding-left: 432px; }
+        .container .offset-by-ten                   { padding-left: 480px; }
+        .container .offset-by-eleven                { padding-left: 528px; }
+        .container .offset-by-twelve                { padding-left: 576px; }
+        .container .offset-by-thirteen              { padding-left: 624px; }
+        .container .offset-by-fourteen              { padding-left: 672px; }
+        .container .offset-by-fifteen               { padding-left: 720px; }
+    
+        .wrap {
+	        padding: 0 20px;
+        }
+        
+        /* start screen */
+        
+        .start {
+	        padding-top: 40px;
+        }
+        
+        /* survey screens */
+        
+        .survey {
+	        padding: 40px 10px;
+        }
+        
+        .donut {
+	        width: 300px;
+	        height: 300px;
+	        min-height: 0;
+        }
+        
+        .donut .text {
+			left: 14%;
+			top: 38%;
+			
+		}
+		
+		.compare-wrap .bar-set {
+			padding-bottom: 30px;
+		}
+		
+		.bar-set .label {
+			width: 100%;
+			float: none;
+			margin-bottom: 10px;
+			margin-right: 0;
+		}
+		
+		.bar-wrap {
+			width: 100%;
+			float: none;
+			
+		}
+		
+		.bac .metre {
+			display: block;
+			position: relative;
+			right: auto;
+			width: 100%;
+			height: 187px;
+			top: auto;
+			margin: 0 auto;
+		}
+		
+		/* Animation setup */
+		.bac .metre {
+			display: none;
+		}
+		
+		.bac .metre .face {
+			width: 100%;
+			height: 100%;
+		}
+		
+		.bac .metre .hand {
+			bottom: 0;
+		}
+		
+		.bac .text {
+			width: 100%;
+			max-width: none;
+		}
+		
+		.callback .field { 
+			border: 0;
+			padding: 0;
+		}
+		
+		.callback .phone {
+			display: none;
+		}
+		
+		.callback fieldset.right {
+			width: 358px;
+			background: url(../images/callback-bg.png) 20px 0 no-repeat;
+		}
+    }
+    
+
+
+/*  #Mobile (Portrait)
+================================================== */
+
+    /* Note: Design for a width of 320px */
+
+    @media only screen and (max-width: 767px) {
+	
+		.dg-wrap {
+			min-height: 0;
+		}
+	
+        .container { width: 300px; }
+        .container .columns,
+        .container .column { margin: 0; }
+
+        .container .one.column,
+        .container .one.columns,
+        .container .two.columns,
+        .container .three.columns,
+        .container .four.columns,
+        .container .five.columns,
+        .container .six.columns,
+        .container .seven.columns,
+        .container .eight.columns,
+        .container .nine.columns,
+        .container .ten.columns,
+        .container .eleven.columns,
+        .container .twelve.columns,
+        .container .thirteen.columns,
+        .container .fourteen.columns,
+        .container .fifteen.columns,
+        .container .sixteen.columns,
+        .container .one-third.column,
+        .container .two-thirds.column  { width: 300px; }
+
+        /* Offsets */
+        .container .offset-by-one,
+        .container .offset-by-two,
+        .container .offset-by-three,
+        .container .offset-by-four,
+        .container .offset-by-five,
+        .container .offset-by-six,
+        .container .offset-by-seven,
+        .container .offset-by-eight,
+        .container .offset-by-nine,
+        .container .offset-by-ten,
+        .container .offset-by-eleven,
+        .container .offset-by-twelve,
+        .container .offset-by-thirteen,
+        .container .offset-by-fourteen,
+        .container .offset-by-fifteen { padding-left: 0; }
+
+        .wrap {
+	        padding: 0 20px;
+        }
+        
+        #container {
+	        margin: 0 auto -130px;
+        }
+        
+        .mob-lnd-prt {
+			display: block;
+		}
+		
+		.hide-mob-lnd-prt {
+			display: none;
+		}
+		
+		.survey .logo {
+			width: 218px;
+			height: 52px;
+			margin: 0 auto 25px;
+		}
+        
+        /* start screen */
+        
+        .start {
+	        padding-top: 40px;
+        }
+        
+        .start .logo {
+			margin: 0 auto 45px;
+		}
+		
+		.start form {
+			margin: 20px 0 40px;
+		}
+
+        .start .field {
+	        width: 100%;
+	        display: block;
+	        position: relative;
+	        margin: 0 0 10px;
+	        height: 60px;
+        }
+        
+        .start .field label {
+			position: relative;
+			left: auto;
+			top: 18px;
+			margin: 0 auto;
+			z-index: 2;
+		}
+        
+        .start .field input {
+	        text-align: center;
+        }
+        
+        .start button {
+	        width: 100%;
+	        top: auto;
+	        position: relative;
+	        text-align: center;
+        }
+        
+        .start button:hover .icn {
+        	margin-left: 10px;
+        }
+        
+        .push {
+	        height: 130px;
+        }
+        
+        footer {
+	        min-height: 80px;
+	        padding: 22px 0 28px;
+	        text-align: center;
+        }
+        
+        footer p.confidential {
+	        position: relative;
+	        margin: 0 auto 20px;
+	        left: auto;
+	        top: auto;
+	        text-align: center;
+        }
+        
+        footer .curtin {
+	        position: relative;
+	        margin: 0 auto;
+	        right: auto;
+	        top: auto;
+        }
+        
+        footer .footer-logo {
+	        position: relative;
+	        margin: 0 auto 0 !important;
+	        top: auto;
+	        right: auto;
+        }
+        
+        /* survey screens */
+        
+        .intro {
+	        margin-bottom: 30px;
+	        padding: 24px 20px 24px;
+        }
+        
+        	.intro br {
+	        	display: none;
+        	}
+        
+        .survey {
+	        padding: 25px 10px;
+        }
+        
+        .survey p.title {
+	        display: none;
+        }
+        
+        .survey .content {
+       		margin-bottom: 30px;
+       	}
+        
+        /* progress */
+        
+        .progress {
+	        height: 105px;
+        }
+        
+        .progress .hi {
+			left: 4%;
+		}
+		
+		.progress .s-one {
+			left: 18%;
+		}
+		
+		.progress .s-one {
+			left: 18%;
+		}
+		
+		.progress .s-two {
+			left: 36%;
+		}
+		
+		.progress .s-three {
+			left: 53%;
+		}
+		
+		.progress.step-one .s-one {
+			left: 18%;
+		}
+		
+		.progress.step-two .s-two {
+			left: 34.5%;
+		}
+		
+		.progress.step-three .s-three {
+			left: 52%;
+		}
+		
+		.progress.step-four .s-four {
+			left: 70%;
+		}
+		
+		.progress.step-five .s-five {
+			left: 87.6%;
+		}
+		        
+    	.progress .hi .icn {
+			background-position: -385px -193px;
+			width: 23px;
+			height: 20px;
+			top: 42px;
+		}
+	
+		.progress .s-one .icn {
+			background-position: -447px -192px;
+			width: 35px;
+			height: 23px;
+			top: 38px;
+		}
+		
+			.progress.step-one .s-one .icn {
+				background-position: -444px -251px;
+				width: 48px;
+				height: 35px;
+				top: 34px;
+			}
+		
+		.progress .s-two .icn {
+			background-position: -576px -191px;
+			width: 26px;
+			height: 28px;
+			top: 38px;
+		}
+		
+			.progress.step-two .s-two .icn {
+				background-position: -571px -251px;
+				width: 39px;
+				height: 39px;
+				top: 34px;
+			}
+		
+		.progress .s-three .icn {
+			background-position: -640px -192px;
+			width: 27px;
+			height: 24px;
+			top: 38px;
+		}
+		
+			.progress.step-three .s-three .icn {
+				background-position: -635px -251px;
+				width: 39px;
+				height: 36px;
+				top: 34px;
+			}
+		
+		.progress .s-four .icn {
+			background-position: -705px -191px;
+			width: 32px;
+			height: 24px;
+			top: 38px;
+		}
+		
+			.progress.step-four .s-four .icn {
+				background-position: -699px -251px;
+				width: 45px;
+				height: 37px;
+				top: 34px;
+			}
+		
+		.progress .s-five .icn {
+			background-position: -832px -192px;
+			width: 23px;
+			height: 27px;
+			top: 38px;
+		}
+			.progress.step-five .s-five .icn {
+				background-position: -827px -250px;
+				width: 35px;
+				height: 40px;
+				top: 32px;
+			}
+		
+		.progress .icn.arrow {
+			display: none;
+		}
+        
+        .step span {
+	        display: none;
+        }
+        
+        
+        /* make the future steps transparent */
+        
+        .progress.step-one .s-two .icn,
+        .progress.step-one .s-three .icn,
+        .progress.step-one .s-four .icn,
+        .progress.step-one .s-five .icn {
+	        opacity: 0.6;
+        }
+        
+        .progress.step-two .s-three .icn,
+        .progress.step-two .s-four .icn,
+        .progress.step-two .s-five .icn {
+	        opacity: 0.6;
+        }
+        
+        .progress.step-three .s-four .icn,
+        .progress.step-three .s-five .icn {
+	        opacity: 0.6;
+        }
+        
+        .progress.step-four .s-five .icn {
+	        opacity: 0.6;
+        }
+        
+        
+        /* form elements */
+        
+        .survey .field {
+	        border-top: 1px solid #f1f2f2;
+	        border-bottom: 0;
+	        padding: 40px 18px 40px;
+        }
+        
+        div.styled select {
+	        font-size: 14px;
+        }
+        
+        .survey .field.slider {
+			padding: 40px 18px 60px;
+		}
+		
+		.slider-value { 
+			font-size: 14px !important;
+			width: 25px !important;
+		}
+		
+		.left-value {
+			left: -30px !important;
+		}
+		
+		.right-value {
+			right: -30px !important;
+		}
+		
+		#standard-drinks-slider .right-value,
+		#drinking-hours-slider .right-value,
+		#typical-day-slider .right-value  {
+			right: -30px !important;
+		}
+        
+        .survey .field p {
+			color: #454545;
+			font-size: 16px;
+			line-height: 22px;
+			display: block;
+			font-family: 'ProximaNova-Bold';
+			font-weight: normal;
+			margin: 0 0 20px;
+		}
+		
+		.survey .input-wrap {
+			position: relative;
+			left: auto !important;
+			top: auto !important;
+			float: left;
+			display: inline-block;
+			margin: 0 0 0 0;
+		}
+				
+		.survey .field .styled {
+			position: relative;
+			left: auto;
+			right: auto;
+			top: auto;
+			clear: both;
+			display: block;
+		}
+		
+		.survey .field label {
+			font-size: 15px;
+			color: #6f6e6e;
+		}
+
+		.field i.number {
+			left: 16px;
+			top: -16px;
+		}
+		
+		i.female,
+		i.male,
+		i.staff-card,
+		i.student-card,
+		.drinks-last-year .calendar {
+			display: none;
+		}
+		
+		.survey .field.gender {
+			padding-bottom: 40px;
+		}
+		
+		.gender-wrap {
+			position: relative;
+			display: block;
+			margin-top: 0;
+			left: 0;
+		}
+		
+		.gender .input-wrap {
+			position: relative;
+		}
+		
+		.gender .input-wrap.female {
+			left: auto;
+			margin: 0 10px 20px 0;
+			float: left;
+		}
+		
+		.gender .input-wrap.male {
+			left: auto;
+			float: left;
+			margin: 0 0 20px 0;
+		}
+		
+		.gender.radio-set .input-wrap label {
+			margin-right: 10px;
+		}
+		
+		.gender .styled {
+			width: 100%;
+			display: block;
+		}
+		
+		.survey .field.staff-student p {
+			display: block;
+			float: none;
+		}
+		
+		.staff-student-wrap {
+			position: relative;
+			display: block;
+			margin-top: 0;
+			left: 0;
+		}
+		
+		.drinks-last-year p {
+			width: 100%;
+		}
+		
+		.field.select-right.attracted-to .styled {
+			top: auto;
+		}
+
+		/* STEP TWO */
+		
+		.field.select-right p,
+		.field.select-below p {
+			width: auto;
+			max-width: none;
+		}
+		
+		.field.select-right .styled,
+		.field.select-right.drink-often .styled,
+		.field.select-right.injured .styled {
+			max-width: none;
+			position: relative;
+			right: auto;
+			top: auto;
+		}
+		
+		.field.select-below .styled {
+			max-width: none !important;
+			margin-top: 0;
+		}
+		
+		.next-day {
+			background-image: none;
+		}
+		
+		.six-more .image {
+			display: block;
+			position: relative;
+			right: auto;
+			top: auto;
+			width: 206px;
+			height: 100px;
+			margin: 30px auto 0;
+		}
+		
+			.v-one {
+				width: 27px;
+				height: 30px;
+			}
+	
+			.v-two {
+				width: 27px;
+				height: 66px;
+			}
+			
+			.v-three {
+				width: 20px;
+				height: 23px;
+			}
+			
+			.v-four {
+				width: 32px;
+				height: 63px;
+			}
+			
+			.v-five {
+				width: 37px;
+				height: 40px;
+			}
+			
+			.v-six {
+				width: 30px;
+				height: 73px;
+			}
+			
+			.v-seven {
+				width: 35px;
+				height: 95px;
+			}
+			
+			.v-eight {
+				width: 27px;
+				height: 31px;
+			}
+			
+			.v-nine {
+				width: 22px;
+				height: 24px;
+			}
+		
+		.injured .image {
+			display: block;
+			position: relative;
+			right: auto;
+			top: auto;
+			width: 157px;
+			height: 72px;
+			margin: 30px auto 0;
+		}
+		
+			.first-aid-img.fa-one {
+				width: 107px;
+				height: 72px;
+			}
+			
+			.first-aid-img.fa-two {
+				width: 31px;
+				height: 30px;
+				bottom: -4px;
+			}
+			
+			.first-aid-img.fa-three {
+				width: 12px;
+				height: 25px;
+			}
+		
+
+		.survey .field.tabular-intro p {
+			margin: 0;
+			width: 100%;
+		}
+		
+		.field .labels {
+			display: none;
+		}
+
+		.field.tabular p {
+			max-width: none;
+			width: 100%;
+		}
+		
+		.tabular label {
+			display: block;
+		}
+	
+		.tabular label span {
+			display: inline-block;
+		}
+		
+		.tabular .input-wrap {
+			right: auto;
+		}
+		
+		.tabular .input-wrap label {
+			margin: 0 10px 0 0;
+		}
+		
+		.tabular-intro .image {
+			display: none;
+		}
+		
+		.survey .field.tabular-intro {
+			padding: 40px 18px 40px;
+		}
+		
+		/*step three */
+		
+		.radio-set-right .input-wrap {
+			right: auto;
+		}
+		
+		.radio-set-right .input-wrap label {
+			margin-left: 0;
+		}
+		
+		.survey .field.slider.hours p {
+			margin-bottom: 70px;
+		}
+		
+		/* reuslts */
+		
+		.results p.title {
+			display: block;
+		}
+		
+		.watch {
+			display: none;
+		}
+		
+		.survey .field .height p.or {
+			clear: both;
+			margin: 0px 47px 0 0;
+		}
+		
+		.height #height-cm {
+			margin-bottom: 10px;
+		}
+		
+		.survey .field .weight .styled {
+			position: relative;
+			width: 90px;
+			clear: none;
+		}
+		
+		.donut {
+			height: 270px;
+			width: 270px;
+			min-height: 0;
+			margin: 0 auto;
+			float: none;
+		}
+		
+		.donut .text {
+			left: 20%;
+			top: 36%;
+			width: 150px;
+		}
+		
+		.donut .text p {
+			font-size: 18px;
+		}
+			
+		.score-text {
+			max-width: none;
+			width: auto;
+			position: relative;
+			right: auto;
+			top: auto;
+			margin-top: 40px;
+		}
+		
+		.score-range .range {
+			width: 42%;
+			margin: 0 8px 30px;
+		}
+		
+		.score-range .range.harmful {
+			clear: both;
+		}
+		
+		.score-range .range strong {
+			font-size: 25px;
+		}
+		
+		.score-range .range p {
+			padding: 0 10px;
+			font-size: 16px;
+		}
+		
+		.compare p.title {
+			font-size: 30px;
+			text-align: center;
+		}
+		
+		.compare-wrap .bar-set {
+			padding-bottom: 30px;
+		}
+		
+		.bar-set .label {
+			width: 100%;
+			float: none;
+			margin-bottom: 10px;
+			margin-right: 0;
+		}
+		
+		.bar-wrap {
+			width: 100%;
+			float: none;
+			
+		}
+		
+		
+		.bac .text {
+			width: 100%;
+			max-width: none;
+		}
+		
+		.bac p.title {
+			display: block;
+		}
+		
+		.bac .metre {
+			display: block;
+			position: relative;
+			right: auto;
+			width: 100%;
+			height: 187px;
+			top: auto;
+		}
+		
+		.bac .metre .face {
+			width: 100%;
+			height: 100%;
+		}
+		
+		.bac .metre .hand {
+			bottom: 10px;
+		}
+		
+		.did-you-know p.title {
+			display: block;
+		}
+		
+		.spend .text p.title {
+			display: block;
+		}
+		
+		.cash {
+			position: relative;
+			left: auto;
+			max-width: 280px;
+			width: auto;
+			height: 250px;
+			top: auto;
+		}
+		
+		.learn-more p.title.lg {
+			font-size: 26px;
+		}
+		
+		.learn-more .clip {
+			width: 90%;
+			padding: 30px 5%;
+			margin: 0 0 20px;
+		}
+		
+		.learn-more .chat .text {
+			margin-left: 0;
+		}
+		
+		.learn-more .chat i {
+			float: none;
+			margin: 0 0 10px;
+		}
+		
+		.learn-more .clip.chat {
+			text-align: center;
+		}
+		
+		.contact-group h3 {
+			text-align: center;
+		}
+		
+		.contact-group li .icn {
+			margin-right: 5px;
+		}
+		
+		.contact-group li strong {
+			width: auto;
+			float: none;
+		}
+		
+		.contact-group li span {
+			max-width: none;
+			width: 100%;
+			margin-top: 15px;
+		}
+
+		.height,
+		.weight {
+			margin-top: 20px;
+			margin-right: 0;
+			float: none;
+			width: 100%;
+		}
+		
+		input#height-feet {
+			margin: 0 10px 0 0;
+		}
+		input#height-inches {
+			margin: 0;
+		}
+		
+		/* callback form */
+		
+		.callback .field { 
+			border: 0;
+			padding: 0;
+		}
+		
+		.callback .additional-info {
+			width: 92%;
+		}
+		
+		.callback fieldset,
+		.callback fieldset.right {
+			width: 100%;
+			float: none;
+			padding: 0;
+			background-image: none;
+			margin-bottom: 20px;
+		}
+		
+		.callback .field { 
+			border: 0;
+		}
+		
+		.callback .field p {
+			margin: 20px 0 10px;
+		}
+		
+		.callback .time-call .input-wrap {
+			width: 43%;
+		}
+		
+		.callback .time-call .input-wrap.right {
+			margin-right: 0;
+		}
+			
+		.spend .text {
+			position: relative;
+			max-width: 100%;
+			width: auto;
+			text-align: left;
+			float: none;
+		}
+		
+		.callback .phone {
+			display: none;
+		}
+		
+		.callback .field.submit {
+			text-align: left;
+		}
+		
+		#drinking-hours-slider.dragdealer {
+			margin: 0 auto !important;
+		}
+		
+		.drinks-guide {
+			overflow-y: visible !important;
+			padding-top: 0;
+		}
+		
+		.drinks-guide .drink-type {
+			width: 100%;
+			margin: 0 auto 20px;
+			z-index: 4000 !important;
+		}
+		
+		.drinks-guide .drink-type .tooltip {
+			width: 150px;
+			z-index: 100;
+			
+		}
+		
+		.drinks-guide .drink-type .tooltip p {
+			width: 150px;
+		}
+		
+		.dragdealer {
+			width: 80% !important;
+		}
+		
+		.height {
+			margin-top: 20px;
+		}
+		
+		.survey .drinks-guide p.title {
+			display: block;
+			margin-top: 0;
+		}
+		
+		/* Animation setup */
+		.bac .metre {
+			display: none;
+		}
+		
+		.thanks-box {
+			background-color: #fff; 
+			color: #555; 
+			padding: 40px 5% 20px; 
+			width: 90%; 
+			margin: 0 auto; 
+			-webkit-box-shadow:  0px 0px 15px 1px rgba(0, 0, 0, 0.5); 
+			box-shadow:  0px 0px 15px 1px rgba(0, 0, 0, 0.5);
+		}
+
+		.acc-content section {
+			padding: 30px 20px;
+		}
+}
+
+
+/* #Mobile (Landscape)
+================================================== */
+
+    /* Note: Design for a width of 480px */
+
+    @media only screen and (min-width: 480px) and (max-width: 767px) {
+        .container { width: 420px; }
+        .container .columns,
+        .container .column { margin: 0; }
+
+        .container .one.column,
+        .container .one.columns,
+        .container .two.columns,
+        .container .three.columns,
+        .container .four.columns,
+        .container .five.columns,
+        .container .six.columns,
+        .container .seven.columns,
+        .container .eight.columns,
+        .container .nine.columns,
+        .container .ten.columns,
+        .container .eleven.columns,
+        .container .twelve.columns,
+        .container .thirteen.columns,
+        .container .fourteen.columns,
+        .container .fifteen.columns,
+        .container .sixteen.columns,
+        .container .one-third.column,
+        .container .two-thirds.column { width: 420px; }
+    }
+
+
+/* #Clearing
+================================================== */
+
+    /* Self Clearing Goodness */
+    .container:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
+
+    /* Use clearfix class on parent to clear nested columns,
+    or wrap each row of columns in a <div class="row"> */
+    .clearfix:before,
+    .clearfix:after,
+    .row:before,
+    .row:after {
+      content: '\0020';
+      display: block;
+      overflow: hidden;
+      visibility: hidden;
+      width: 0;
+      height: 0; }
+    .row:after,
+    .clearfix:after {
+      clear: both; }
+    .row,
+    .clearfix {
+      zoom: 1; }
+
+    /* You can also use a <br class="clear" /> to clear columns */
+    .clear {
+      clear: both;
+      display: block;
+      overflow: hidden;
+      visibility: hidden;
+      width: 0;
+      height: 0;
+    }

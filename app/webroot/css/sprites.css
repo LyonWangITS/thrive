@@ -1,0 +1,72 @@
+.white-arrow {
+	background-position: 0px 0;
+	width: 23px;
+	height: 24px;
+}
+
+.lock {
+	background-position: -128px 0;
+	width: 23px;
+	height: 23px;
+}
+
+.curtin {
+	background-position: 0 -64px;
+	width: 207px;
+	height: 34px;
+}
+
+
+.student-card {
+	background-position: 0 -703px;
+	width: 117px;
+	height: 72px;
+}
+
+.staff-card {
+	background-position: 0 -835px;
+	width: 119px;
+	height: 82px;
+}
+
+.green-phone {
+	background-position: -128px -704px;
+	width: 22px;
+	height: 15px;
+}
+
+.green-phone-sm {
+	background-position: -192px -704px;
+	width: 19px;
+	height: 12px;
+}
+
+.green-pins {
+	background-position: -128px -769px;
+	width: 19px;
+	height: 19px;
+}
+
+.green-globe {
+	background-position: -128px -833px;
+	width: 19px;
+	height: 17px;
+}
+
+.green-clock {
+	background-position: -128px -897px;
+	width: 19px;
+	height: 17px;
+}
+
+.green-additional {
+	background-position: -192px -897px;
+	width: 19px;
+	height: 14px;
+}
+
+.green-fees {
+	background-position: -193px -833px;
+	width: 19px;
+	height: 11px;
+}
