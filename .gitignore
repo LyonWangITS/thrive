@@ -1,0 +1,10 @@
+/schema/passwords
+private/
+app/Plugin/
+app/Vendor/
+.vagrant
+app/webroot/coverage
+*.zip
+vagrant/git-status
+staging.env
+prod.env
