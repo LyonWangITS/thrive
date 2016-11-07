@@ -8,3 +8,4 @@ app/webroot/coverage
 vagrant/git-status
 staging.env
 prod.env
+app/tmp/
