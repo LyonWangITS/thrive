@@ -158,7 +158,7 @@ SQL
 function update_cake_connection_settings() {
     log "Executing: update_cake_connection_settings()"
 
-    REQUIRED_PARAMETER_COUNT=4
+    REQUIRED_PARAMETER_COUNT=5
     if [ $# != $REQUIRED_PARAMETER_COUNT ]; then
         echo "${FUNCNAME[0]} Rewrites the CakePHP database.php for this app."
         echo "${FUNCNAME[0]} requires these $REQUIRED_PARAMETER_COUNT parameters in this order:"
@@ -166,12 +166,14 @@ function update_cake_connection_settings() {
         echo "DATABASE_USER        Database user who will have access to DATABASE_NAME"
         echo "DATABASE_PASSWORD    Password of DATABASE_USER"
         echo "DATABASE_HOST        The host from which DATABASE_USER is authorized to access DATABASE_NAME"
+        echo "DATABASE_NAME        The name of the database the app uses"
         return 1
     else
         DEPLOY_DIR=$1
         DATABASE_USER=$2
         DATABASE_PASSWORD=$3
         DATABASE_HOST=$4
+        DATABASE_NAME=$5
     fi
 
     # edit cake database config file
@@ -180,7 +182,7 @@ function update_cake_connection_settings() {
     sed -e "s/'host'.*=>.*/'host' => '$DATABASE_HOST',/;" -i $CAKE_DB_CONFIG_FILE
     sed -e "s/'login'.*=>.*/'login' => '$DATABASE_USER',/;" -i $CAKE_DB_CONFIG_FILE
     sed -e "s/'password'.*=>.*/'password' => '$DATABASE_PASSWORD',/;" -i $CAKE_DB_CONFIG_FILE
-    #sed -e "s/'database'.*=>.*/'database' => '$DATABASE_NAME',/;" -i $CAKE_DB_CONFIG_FILE
+    sed -e "s/'database'.*=>.*/'database' => '$DATABASE_NAME',/;" -i $CAKE_DB_CONFIG_FILE
 }
 
 function write_dot_mysql_dot_cnf() {
@@ -357,7 +359,7 @@ function reset_db {
     . /vagrant/.env
     create_database $DB $DB_APP_USER $DB_APP_PASSWORD $DB_HOST $DB_PASS
     create_database $DB_TEST $DB_APP_USER $DB_APP_PASSWORD $DB_HOST $DB_PASS
-    update_cake_connection_settings $PATH_TO_APP_IN_GUEST_FILESYSTEM $DB_APP_USER $DB_APP_PASSWORD $DB_HOST
+    update_cake_connection_settings $PATH_TO_APP_IN_GUEST_FILESYSTEM $DB_APP_USER $DB_APP_PASSWORD $DB_HOST $DB
     populate_db $DB $DB_USER $DB_PASS $PATH_TO_APP_IN_GUEST_FILESYSTEM $DB_EPOCH_VERSION
     upgrade_acl $PATH_TO_APP_IN_GUEST_FILESYSTEM $DB_EPOCH_VERSION
 }

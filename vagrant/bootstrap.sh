@@ -38,7 +38,7 @@ install_prereqs $MYSQL_REPO $DB_PASS $MYSQLCONF
 # create the empty databases and update the cake configuration
 create_database $DB $DB_APP_USER $DB_APP_PASSWORD $DB_HOST $DB_PASS
 create_database $DB_TEST $DB_APP_USER $DB_APP_PASSWORD $DB_HOST $DB_PASS
-update_cake_connection_settings $PATH_TO_APP_IN_GUEST_FILESYSTEM $DB_APP_USER $DB_APP_PASSWORD $DB_HOST
+update_cake_connection_settings $PATH_TO_APP_IN_GUEST_FILESYSTEM $DB_APP_USER $DB_APP_PASSWORD $DB_HOST $DB
 
 # make a config file for the mysql clients
 write_dot_mysql_dot_cnf $DB $DB_APP_USER $DB_APP_PASSWORD $DB_PASS
