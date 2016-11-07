@@ -1,8 +1,8 @@
-<?
+<?php
 /*
 	Survey Page Switchboard
 */
-	
+
 	require_once 'app/config.php';
 	require_once 'app/helpers.php';
 	require_once 'app/db.php';
@@ -29,15 +29,15 @@
 
 	$the_survey = new Survey();
 	$target_stage = 0;
-	
+
 	$param_token = ifne( $_REQUEST, 't' );
 	$existing_token = '';
-	
+
 	$_REQUEST = batch_decode( $_REQUEST );
 	$_POST = batch_trim( $_POST );
-	
+
 	//===============================================================
-	
+
 	if ( $param_token != '' ){
 		if ( Survey::tokenExists( $param_token ) ){
 			$existing_token = $param_token;
@@ -47,46 +47,46 @@
 			//exit
 		}
 	}
-	
+
 	/*
 		Do we need to process some posted data?
 	*/
 	doProcess( $the_survey, $existing_token );
-	
+
 	/*
 		Figure out Resume position
 		- bear in mind that unless the survey is completed they can still go back to any of the previous stages but 0
 	*/
-	
+
 	if ( $existing_token == '' ){
-		
+
 		$target_stage = 0;
-		
+
 	} else {
-		
+
 		$last_stage = $the_survey->lastCompletedStage();
-		
+
 		if ( in_array( $last_stage, array( 0, 1, 2, 3, 4 ) ) ) {
-			
-			
+
+
 			if ( ( $last_stage == 1 ) && !$the_survey->drankAlcoholInLast12Mths() ){
-				
+
 				$target_stage = 'thanks';
-				
+
 			} else {
-				
+
 				$target_stage = $last_stage + 1;
-				
+
 			}
-			
+
 		} else {
-			
+
 			$target_stage = 0;
-			
+
 		}
-		
+
 	}
-	
+
 	/*
 		Render screen
 	*/
@@ -98,9 +98,9 @@
 		'target_stage' => $target_stage,
 		'token' => $existing_token
 	);
-	
+
 	if ( $target_stage == 5 ) {
-		
+
 		$audit_score = $the_survey->calculateAuditScore();
 		$the_survey->save( array(
 			'audit_score' => $audit_score,
@@ -120,5 +120,5 @@
 	}
 
 	renderStage( $target_stage, $page_vars );
-	
+
 	//--The End--

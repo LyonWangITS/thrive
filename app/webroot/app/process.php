@@ -1,53 +1,53 @@
-<?
+<?php
 /*
 	Process any incoming data
-	
+
 	GLOBALS:
 	$the_survey
 	$existing_token
 */
 function doProcess( $the_survey, $existing_token ){
-	
+
 	$form_errors = array();
-	
+
 	if ( !empty( $_POST ) ){
 
 		$survey_stage = ifne( $_POST, 'survey-stage', 0 );
-		
+
 		//Validation rules
 		// 0 : name - notempty
 		if ( $survey_stage == 0 ){
 			$form_errors = array(
 				'participant_name' => validateField( ifne( $_POST, 'participant_name' ), 'notempty', 'Name cannot be empty' )
 			);
-			
+
 			if ( formIsValid( $form_errors ) ){
 
 				//Create it
 				$partner = Partner::getCurrentPartner();
 				$is_test = ( !empty( $_POST['is_test'] ) );
 				$new_token = Survey::create( $partner->data['id'], $_POST[ 'participant_name' ], $is_test );
-				
+
 				do_redirect( 'survey.php?t=' . urlencode( $new_token ) );
 				//exit
 			}
-			
+
 		}
-		
-		
+
+
 		/*
-			
+
 			'01_gender',
 			'01_age',
 			'01_type_of_study',
 			'01_hours_per_week',
 			'01_alcohol_last_12mths'
-			
+
 		*/
 		if ( $survey_stage == 1 ){
-			
+
 			$gender = ifne( $_POST, 'gender-mf', ifne( $_POST, 'gender-more' ) );
-			
+
 			/*
 			$form_errors = array(
 				'gender' => validateField( $gender, 'in-set', 'Gender is unrecognized', array('female','male','transgender-ftm','transgender-mtf','genderqueer','androgynous','intersex') ),
@@ -57,14 +57,14 @@ function doProcess( $the_survey, $existing_token ){
 				'alcohol_last_12mths' => validateField( ifne( $_POST, 'alcohol_last_12mths' ), 'in-set', 'Please select a value', array( 'yes', 'no') )
 			);
 			*/
-			
+
 			$form_errors = array(
 				'gender' => validateField( $gender, 'in-set', 'Gender is unrecognized', array('female','male','transgender-ftm','transgender-mtf','genderqueer','androgynous','intersex') ),
 				'age' => validateField( ifne( $_POST, 'age' ), ( $_POST[ 'age' ] > 17 ), 'You must be over 17 to take part in this survey' ),
 				'staff_student' => validateField( ifne( $_POST, 'staff_student' ), 'in-set', 'Please select a value', array( 'staff', 'student' ) ),
 				'alcohol_last_12mths' => validateField( ifne( $_POST, 'alcohol_last_12mths' ), 'in-set', 'Please select a value', array( 'yes', 'no') ),
 			);
-			
+
 			if ( $_POST['staff_student']  == 'student' ){
 
 				$form_errors[] = validateField( ifne( $_POST, 'hours_per_week' ), 'in-set', 'Please select a value', array( 'gt-10', 'lt-10' ) );
@@ -90,7 +90,7 @@ function doProcess( $the_survey, $existing_token ){
 			}
 
 			if ( formIsValid( $form_errors ) ) {
-				
+
 				$data = array(
 					'01_gender' => $gender,
 					'01_age' => $_POST[ 'age' ],
@@ -105,17 +105,17 @@ function doProcess( $the_survey, $existing_token ){
 				if ( $data[ '01_alcohol_last_12mths' ] == 0 ){
 					$data[ 'completed' ] = get_gmt();
 				}
-				
+
 				$the_survey->save( $data );
-				
+
 				do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
 				//exit
 			} else {
 				//echo print_r($form_errors);
 			}
-			
+
 		} else if ( $survey_stage == 2 ){
-			
+
 			$form_errors = array(
 				'how_often_drink_alcohol' => validateField( ifne( $_POST, 'how_often_drink_alcohol' ), 'in-set', 'Please select a value', array( 'never','lt-1pm','1pm','1p2w','1pw','2-3pw','4pw' ) ),
 				'how_many_on_typical_day' => validateField( ifne( $_POST, 'how_many_on_typical_day' ), 'notempty', 'Please enter a value' ),
@@ -128,9 +128,9 @@ function doProcess( $the_survey, $existing_token ){
 				'been_injured_or_injured_someone' => validateField( ifne( $_POST, 'been_injured_or_injured_someone' ), 'in-set', 'Please select a value', array( 'no','yes-nly','yes-ly' ) ),
 				'others_concerned_about_my_drinking' => validateField( ifne( $_POST, 'others_concerned_about_my_drinking' ), 'in-set', 'Please select a value', array( 'no','yes-nly','yes-ly' ) )
 			);
-			
+
 			if ( formIsValid( $form_errors ) ) {
-				
+
 				$the_survey->save(array(
 					'02_how_often_drink_alcohol' => $_POST[ 'how_often_drink_alcohol' ],
 					'02_how_many_on_typical_day' => $_POST[ 'how_many_on_typical_day' ],
@@ -143,30 +143,30 @@ function doProcess( $the_survey, $existing_token ){
 					'02_been_injured_or_injured_someone' => $_POST[ 'been_injured_or_injured_someone' ],
 					'02_others_concerned_about_my_drinking' => $_POST[ 'others_concerned_about_my_drinking' ]
 				));
-				
+
 				do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
 				//exit
 			} else {
 				//echo print_r($form_errors);
 			}
-			
+
 		} else if ( $survey_stage == 3 ){
-			
+
 			$consumed_alcohol_message = validateField( ifne( $_POST, 'past_4wk_consumed_alcohol' ), 'in-set', 'Please select a value', array( 'yes', 'no') );
 			if ( $consumed_alcohol_message == '' ){
-				
+
 				if ( $_POST[ 'past_4wk_consumed_alcohol' ] == 'yes' ){
-					
+
 					//Manual validation of height/weight fields
 					$body_height_cm = ifne( $_POST, 'body_height-cm' );
-					
+
 					$body_height_feet = ifne( $_POST, 'body_height-feet' );
 					$body_height_inches = ifne( $_POST, 'body_height-inches', '' );
 					$body_height_inches = ( $body_height_inches == '' ? 0 : $body_height_inches );
-					
+
 					$body_height_message = '';
 					$body_weight_message = '';
-					
+
 					if ( $body_height_cm == '' ){
 						if ( ( $body_height_feet == '' ) ){
 							$body_height_message = 'Please enter a weight in cm or feet/inches';
@@ -175,7 +175,7 @@ function doProcess( $the_survey, $existing_token ){
 							$body_height_cm = ( $body_height_feet * 30.48 ) + ( $body_height_inches * 2.54 );
 						}
 					}
-					
+
 					//Validate everything
 					$form_errors = array(
 						'past_4wk_consumed_alcohol' => $consumed_alcohol_message,
@@ -184,9 +184,9 @@ function doProcess( $the_survey, $existing_token ){
 						'body_height_cm' => $body_height_message,
 						'body_weight_kg' => validateField( ifne( $_POST, 'body_weight-number' ), 'notempty', 'Please enter your weight' )
 					);
-					
+
 					if ( formIsValid( $form_errors ) ) {
-						
+
 						$the_survey->save(array(
 							'03_past_4wk_consumed_alcohol' => ( $_POST[ 'past_4wk_consumed_alcohol' ] == 'yes' ? 1 : 0 ),
 							'03_past_4wk_largest_number_single_occasion' => $_POST[ 'past_4wk_largest_number_single_occasion' ],
@@ -197,16 +197,16 @@ function doProcess( $the_survey, $existing_token ){
 
 						do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
 						//exit
-						
+
 					} else {
-						
+
 						//echo print_r( $form_errors );
-						
+
 					}
-					
-					
+
+
 				} else {
-					
+
 					//Nothing else to validate
 					$the_survey->save(array(
 						'03_past_4wk_consumed_alcohol' => ( $_POST[ 'past_4wk_consumed_alcohol' ] == 'yes' ? 1 : 0 )
@@ -214,18 +214,18 @@ function doProcess( $the_survey, $existing_token ){
 
 					do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
 					//exit
-					
+
 				}
-				
+
 			} else {
-				
+
 				//echo print_r($form_errors);
-				
+
 			}
-			
-			
+
+
 		} else if ( $survey_stage == 4 ) {
-			
+
 			/*
 			$form_errors = array(
 				'been_insulted_humiliated' => validateField( ifne( $_POST, 'been_insulted_humiliated' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
@@ -240,9 +240,9 @@ function doProcess( $the_survey, $existing_token ){
 				'victim_of_another_crime_on_campus' => validateField( ifne( $_POST, 'victim_of_another_crime_on_campus' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
 				'victim_of_another_crime_off_campus' => validateField( ifne( $_POST, 'victim_of_another_crime_off_campus' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) )
 			);
-			
+
 			if ( formIsValid( $form_errors ) ){
-				
+
 				$the_survey->save(array(
 					'04_been_insulted_humiliated' => $_POST[ 'been_insulted_humiliated' ],
 					'04_serious_argument_quarrel' => $_POST[ 'serious_argument_quarrel' ],
@@ -260,13 +260,13 @@ function doProcess( $the_survey, $existing_token ){
 
 				do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
 				//exit
-				
+
 			} else {
-				
+
 				echo print_r( $form_errors );
-				
+
 			}*/
-			
+
 			//All fields optional
 			$the_survey->save(array(
 				'04_hangover' => ifne( $_POST, 'hangover', null ),
@@ -291,11 +291,11 @@ function doProcess( $the_survey, $existing_token ){
 
 			do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
 			//exit
-			
+
 		}
-			
-		
-		
+
+
+
 	} // endif isset $POST
 
 } //end do_process()

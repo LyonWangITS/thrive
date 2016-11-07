@@ -1,6 +1,6 @@
-<? include_once( 'commons/header.php' ) ?>
+<?php include_once( 'commons/header.php' ) ?>
 
-<?
+<?php
 	$the_audit_score = ifne( $page_meta, 'audit_score' );
 ?>
 
@@ -11,60 +11,60 @@
 <div class="bgimage internal"></div>
 
 <section id="container">
-	
+
 	<div class="survey wrap results">
-	
+
 		<div class="logo">
 			<a href="./" title="THRIVE Student Health Online">
 				<img src="<?php echo BASE_URL; ?>images/logo.png" class="hide-mob-lnd-prt" alt="THRIVE Alcohol Survey" />
 				<img src="<?php echo BASE_URL; ?>images/logo-mobile.png" class="mob-lnd-prt" alt="THRIVE Alcohol Survey" />
 			</a>
 		</div>
-		
+
 		<p class="title"><strong>Alcohol Survey</strong></p>
-			
+
 		<div class="content last">
-		
+
 			<section class="progress step-five">
-			
+
 				<div class="line"></div>
-				
+
 				<div class="line current-pos"></div>
-				
+
 				<div class="step hi"><i class="icn"></i></div>
-				
+
 				<div class="step s-one"><i class="icn"></i></div>
-				
+
 				<div class="step s-two"><i class="icn s2"></i></div>
-				
+
 				<div class="step s-three"><i class="icn s3"></i></div>
-				
+
 				<div class="step s-four"><i class="icn s4"></i></div>
-				
+
 				<div class="step s-five"><i class="icn s5"></i><span>Results</span><i class="icn arrow"></i></div>
-			
+
 			</section><!-- progress -->
-			
+
 			<section class="intro">
-			
-				<h1>Thanks for completing the survey, <?= h( ifne( $page_meta, 'participant_name' ) ) ?>.</h1>
-				
+
+				<h1>Thanks for completing the survey, <?php= h( ifne( $page_meta, 'participant_name' ) ) ?>.</h1>
+
 				<p>Here you will find some feedback based on the answers you have<br />provided as well as some other information on staying safe whilst drinking <br />which you may find useful.</p>
 
 				<!-- This is just a placeholder, can do something more attractive with it. -->
 				<p><a href="download-feedback.php?t=<?php echo h( $page_vars['token'] ); ?>&x=.pdf" target="_blank" class="btn pdf"><i class="icn pdf"></i>Download as PDF</a></p>
 
 			</section><!-- intro -->
-			
+
 			<section class="summary">
-			
+
 				<p>Some of the questions you answered regarding your drinking come from the Alcohol Use Disorders Identification Test, a questionnaire developed by the World Health Organisation to determine whether a person's drinking might be becoming problematic. Your answers to these questions provivided the following result.</p>
-			
+
 			</section>
-			
+
 			<section class="score clearfix">
-				
-				<?
+
+				<?php
 					$audit_range = '';
 					$donut_class = '';
 					if ( ( $the_audit_score >= 0 ) && ( $the_audit_score <= 7 ) ) {
@@ -75,7 +75,7 @@
 						$audit_range = '8-15';
 						$donut_class = 'hazardous';
 						$audit_result_label = 'Hazardous Drinking';
-					} else if ( ( $the_audit_score >= 16 ) && ( $the_audit_score <= 19 ) ) {	
+					} else if ( ( $the_audit_score >= 16 ) && ( $the_audit_score <= 19 ) ) {
 						$audit_range = '16-19';
 						$donut_class = 'harmful';
 						$audit_result_label = 'Harmful Drinking';
@@ -83,125 +83,125 @@
 						$audit_range = '20-40';
 						$donut_class = 'dependence';
 						$audit_result_label = 'Alcohol Dependence';
-					}	
-				
+					}
+
 				?>
-			
-				<div class="donut <?= $donut_class ?>">
-				
+
+				<div class="donut <?php= $donut_class ?>">
+
 					<div class="slice top-left"></div>
 					<div class="slice top-right"></div>
 					<div class="slice bottom-left"></div>
 					<div class="slice bottom-right"></div>
-					
+
 					<div class="text">
-						<p><strong><?= $audit_range ?></strong> <?= $audit_result_label ?></p>
+						<p><strong><?php= $audit_range ?></strong> <?php= $audit_result_label ?></p>
 					</div>
-					
+
 				</div>
-				
-				<div class="score-text <?= $donut_class ?>">
-					
-					<h2>Your audit score is <strong><?= $the_audit_score ?></strong></h2>
-					
+
+				<div class="score-text <?php= $donut_class ?>">
+
+					<h2>Your audit score is <strong><?php= $the_audit_score ?></strong></h2>
+
 					<div class="description">
-					
-						<p class="range">You fall into the <strong><?= $audit_range ?> <?= $audit_result_label ?> Range</strong></p>
-						
-						<? 
+
+						<p class="range">You fall into the <strong><?php= $audit_range ?> <?php= $audit_result_label ?> Range</strong></p>
+
+						<?php
 							if ( ( $the_audit_score >= 0 ) && ( $the_audit_score <= 7 ) ) {
 								//0-7 Moderate Drinking
 						?>
 							<p>Low risk of alcohol related harm</p>
-						<?
+						<?php
 							} else if ( ( $the_audit_score >= 8 ) && ( $the_audit_score <= 15 ) ) {
 								//8-15 Hazardous drinking
 						?>
 							<p>High risk of experiencing alcohol related harm and some people in this range may already be experiencing significant harm.</p>
-						<?
+						<?php
 							} else if ( ( $the_audit_score >= 16 ) && ( $the_audit_score <= 19 ) ) {
 								//16-19 Harmful drinking
 						?>
 							<p>A person scoring in this range will already be experiencing significant alcohol related harm.</p>
-						<?
+						<?php
 							} else if ( ( $the_audit_score >= 20 ) ) {
 								//2-40 Alcohol dependence
 						?>
 							<p>A person scoring in this range may be alcohol dependent and advised to have a clinical assessment of their drinking.</p>
-						<? 
-							} 
+						<?php
+							}
 						?>
-						
+
 						<p>
 							The main way to reduce your risk level (and AUDIT score) is to reduce the number of drinks you consume per occasion.
 						</p>
-					
+
 					</div>
-					
+
 				</div>
-			
+
 			</section>
-			
+
 			<section class="score-range clearfix">
-				
-				<div class="range moderate<?= ( ( $the_audit_score >= 0 ) && ( $the_audit_score <= 7 ) ) ? ' active' : '' ?>">
-					
+
+				<div class="range moderate<?php= ( ( $the_audit_score >= 0 ) && ( $the_audit_score <= 7 ) ) ? ' active' : '' ?>">
+
 					<span class="icn dot"></span>
-					
+
 					<div class="text">
-					
+
 						<strong>0-7</strong>
-						
+
 						<p>Moderate Drinking</p>
-						
+
 					</div>
-					
+
 				</div><!-- moderate -->
-				
-				<div class="range hazardous<?= ( ( $the_audit_score >= 8 ) && ( $the_audit_score <= 15 ) ) ? ' active' : '' ?>">
-					
+
+				<div class="range hazardous<?php= ( ( $the_audit_score >= 8 ) && ( $the_audit_score <= 15 ) ) ? ' active' : '' ?>">
+
 					<span class="icn dot"></span>
-					
+
 					<div class="text">
-					
+
 						<strong>8-15</strong>
-						
+
 						<p>Hazardous Drinking</p>
-						
+
 					</div>
-					
+
 				</div><!-- moderate -->
-				
-				<div class="range harmful<?= ( ( $the_audit_score >= 16 ) && ( $the_audit_score <= 19 ) ) ? ' active' : '' ?>">
-					
+
+				<div class="range harmful<?php= ( ( $the_audit_score >= 16 ) && ( $the_audit_score <= 19 ) ) ? ' active' : '' ?>">
+
 					<span class="icn dot"></span>
-					
+
 					<div class="text">
-					
+
 						<strong>16-19</strong>
-						
+
 						<p>Harmful Drinking</p>
-						
+
 					</div>
-					
+
 				</div><!-- moderate -->
-				
-				<div class="range dependence<?= ( ( $the_audit_score >= 20 ) ) ? ' active' : '' ?>">
-					
+
+				<div class="range dependence<?php= ( ( $the_audit_score >= 20 ) ) ? ' active' : '' ?>">
+
 					<span class="icn dot"></span>
-					
+
 					<div class="text">
-					
+
 						<strong>20-40</strong>
-						
+
 						<p>Alcohol Dependence</p>
-						
+
 					</div>
-					
+
 				</div><!-- moderate -->
-			
+
 			</section>
-			
+
 			<?php
 
 			include_once( 'commons/compare.php' );
@@ -419,71 +419,71 @@
 
 			?>
 
-		</div><!-- content -->	
-			
+		</div><!-- content -->
+
 		<section class="facts accordian">
 			<div class="heading">
 				<p>Facts</p>
 				<i class="icn down-arrow"></i>
 			</div>
 			<div class="acc-content">
-				
+
 				<section>
-				
+
 					<p>Drinking alcohol can be part of an enjoyable night out, but drinking safely will ensure you have good memories. Safe drinking guidelines have been developed to help you protect your health - both physically and socially. Everyone is faced with some risk when consuming alcohol but thinking before you drink can lead to an enjoyable and safe experience.</p>
-					
+
 					<h3>Standard Drinks</h3>
 					<p>Alcohol comes in all different types, colours and containers. Regardless of this, a standard drink is about 10 grams or 12.5mL of pure alcohol. Alcohol labels are displayed on the bottle to tell you how many standard drinks it contains. Remember one bottle/can/glass doesn't always equal one standard drink.</p>
-					
+
 					<ul>
 						<li>Men and women shouldn't drink more than 2 standard drinks on any day to avoid long-term harm from alcohol related injury or disease. Remembering to have regular alcohol-free days.</li>
 						<li>Men and women should drink no more than 4 standard drinks on any single drinking occasion to reduce alcohol related injury.</li>
 					</ul>
-				
+
 				</section>
-				
+
 				<section>
-				
+
 					<h3>Alcohol and your body</h3>
-					
+
 					<p>People come in all different shapes and sizes, so depending on your gender, age, weight and other factors; you may be affected by alcohol more than others. Get to know your body in relation to the standard drink guidelines.</p>
-					
+
 					<p><strong>How does alcohol affect your body?</strong></p>
-					
+
 					<p><span>Skin:</span> Alcohol can dehydrate your skin. Drinking alcohol can deprive you skin of vital vitamins and nutrients and excessive alcohol can make your face look bloated and puffy.</p>
 
 					<p><span>Heart:</span> Long term and heavy alcohol consumption can increase your risk of high blood pressure, weakening of the heart muscle heart failure and heart disease.</p>
 
 					<p><span>Pancreas:</span> Continuous and excessive drinking can cause pancreatitis which is when the pancreas blood vessels, cells and tissue become damaged and can prevent proper digestion.</p>
-					
+
 					<p><span>Bowel:</span> Alcohol can cause bowel irritation and can trigger symptoms of irritable bowel syndrome. There are also links between alcohol consumption and bowel cancer.</p>
-					
+
 					<p><span>Bladder:</span> Alcohol is diuretic and can lead to dehydration, so remember to drink water. </p>
 
 					<p><span>Immune System:</span> Drinking too much can weaken your immune system making you more susceptible to disease and illness.</p>
-					
+
 					<p><span>Brain:</span> Alcohol is a depressant and interferes with the brains communication pathways, making it hard for you to think clearly and move with coordination. The immediate effects of alcohol can include slurred speech, blurred vision, changes in mood, loss of balance and clumsiness. Excessive alcohol misuse may cause alcohol related brain impairment such as memory loss, and adversely affect mental health. The effects are greater with increasing amounts of alcohol consumed. More serious effects can be unconsciousness, alcohol poisoning, coma or death.</p>
-					 
+
 					<p><span>Stomach:</span> Alcohol is absorbed directly into the bloodstream through the stomach and the small intestine. Short term effects of consuming alcohol can lead to nausea, vomiting, and diarrhoea. Food in the stomach can slow down the rate of absorption but it does not prevent drunkenness. Long term heavy drinking has been associated with increased risk of stomach cancer.</p>
-					
+
 					<p><span>Liver:</span> Regular drinking may result in Steatosis or fatty liver which can negatively affect your liver function. Continued heavy and excessive drinking may result in the liver becoming inflamed causing alcohol hepatitis, permanent liver scarring (cirrhosis), and liver cancer.</p>
-					
+
 					<p><span>Kidneys:</span> Alcohol is a diuretic, meaning that it acts on the kidneys to make you urinate more often. Drinking too much means your kidneys have to work harder to remove toxins from your blood.</p>
-					
+
 					<p><span>Breast:</span> Long term alcohol consumption can increase a women’s risk of breast cancer.</p>
-					
+
 					<p><span>Male reproductive system:</span> Drinking alcohol decreases sex drive and performance. Alcohol reduces testosterone levels and heavy consumption may lead to a reduction in sperm production. </p>
-					
+
 					<p><span>Female reproductive system:</span> Drinking heavy or excessive amounts of alcohol affects a woman's menstrual cycle and ovulation making it difficult to conceive. </p>
-					
+
 					<p><span>Women and pregnancy:</span> It is recommended that you avoid alcohol altogether when you are pregnant.</p>
-					
-				</section>	
-				
+
+				</section>
+
 				<section>
-				
+
 					<h3>Alcohol and the Law - Driving Under the Influence (DUI)</h3>
-					
+
 					<p>Alcohol can impair your judgement, which can lead to doing something you wouldn't when sober. Across Australia it is an offence to drive with a BAC limit over 0.05% and if you are a novice driver a zero BAC applies. Penalties apply for breaking the law and differ between state.</p>
 
 					<ul>
@@ -497,10 +497,10 @@
 					</ul>
 
 					<p>These facts have been adapted from Australian Drug Foundation and the Drug and Alcohol Office.</p>
-				
+
 				</section>
 
-				
+
 			</div>
 		</section>
 		<section class="tips accordian">
@@ -509,40 +509,40 @@
 				<i class="icn down-arrow"></i>
 			</div>
 			<div class="acc-content">
-				
+
 				<section>
-				
+
 					<h3>Look after yourself and your friends</h3>
-					
+
 					<ul>
-					
+
 						<li><strong>Look out for your friends</strong> - Don’t leave your mates on their own. Make it easy for them to look after you by sticking with them or letting them know where you’re going.</li>
 						<li><strong>Be yourself</strong> - If you don't feel like another drink or want to drink at your own pace speak up, real friends should respect that.
-						<li><strong>Plan your way home</strong> – Before you go out discuss with your friends who is going to be the designated driver. If no-one wants to drive make sure you have enough money to get a taxi home. Remember drinking and driving doesn’t mix, not for you and not for your friends. Make sure your driver knows that it is not OK to drink if they have been designated to get everyone home. 
-						<li><strong>Charge your phone</strong> – before you go out just in case you get separated from your friends or you need to call someone for help. 
+						<li><strong>Plan your way home</strong> – Before you go out discuss with your friends who is going to be the designated driver. If no-one wants to drive make sure you have enough money to get a taxi home. Remember drinking and driving doesn’t mix, not for you and not for your friends. Make sure your driver knows that it is not OK to drink if they have been designated to get everyone home.
+						<li><strong>Charge your phone</strong> – before you go out just in case you get separated from your friends or you need to call someone for help.
 						<li><strong>Trust your instincts</strong> – if you don’t feel safe you probably aren’t.</li>
 						<li><strong>Say no to violence</strong> – report violence or threats of violence to police.</li>
 						<li><strong>Drink spiking</strong> – watch your drinks. Drink spiking happens - to girls and guys. To protect yourself, only accept drinks from people you don't know if they are unopened cans or bottles. Never leave your drink unattended and keep a thumb over the top of your bottle, if you are unsure if your drink has been spiked, leave it.</li>
 						<li><strong>No means no</strong> – it’s OK to say no to sex and pressuring someone else into having sex is sexual assault and illegal. If there's any possibility that you may end up in bed with someone - carry a condom with you.</li>
-					
+
 					</ul>
-				
+
 				</section>
-				
+
 				<section>
-				
+
 					<h3>How many have you had?</h3>
-					
+
 					<p>Do you know what a <a href="http://alcohol.gov.au/internet/alcohol/publishing.nsf/Content/standard" target="_blank" title="Standard Drink information">standard drink</a> is? It's a measurement of alcohol and it isn't always the same as a bottle/can/glass. Most drinks are more than a single 'standard drink' so you could be consuming more than you think. Safe drinking guidelines are based on this measurement so it pays to know what they are. Set a limit at the start of the night and stick to it. Avoid topping up your drink so you can actually keep track.</p>
-				
+
 				</section>
-				
+
 				<section>
-				
+
 					<h3>Think before drinking</h3>
-					
+
 					<ul>
-					
+
 						<li><strong>Eat and drink water</strong> - if you drink alcohol make sure you eat beforehand, and drink water between alcoholic drinks. Spacing your drinks with water or soft drinks will keep you hydrated and in control. </li>
 						<li><strong>Stay on the right side of the law </strong>- giving your friends who are under 18 alcohol is illegal. Penalties may apply. </li>
 					</ul>
@@ -553,13 +553,13 @@
 					<ul>
 						<li><strong>Learn basic first aid </strong> –  if a friend is drunk or sick, stay with them. If they want to lie down, put them on their side in case they vomit.</li>
 						<li><strong>Call triple zero (000)</strong> – if someone passes out or looks like they’re in trouble. Paramedics don’t need to involve the police.</li>
-					
+
 					</ul>
-					
+
 					<p>These tips were adapted from the <a href="http://theothertalk.org.au/safe-partying-tips-for-schoolies" target="_blank" title="Australian Drug Foundation">Australian Drug Foundation</a>, the <a href="http://www.alcohol.gov.au/internet/alcohol/publishing.nsf/Content/C6738D5F231CC231CA25767200820337/$File/young.pdf" target="_blank" title="Department of Health and Aging">Department of Health and Aging</a> and the <a href="http://www.alcohol.gov.au/internet/alcohol/publishing.nsf/Content/guide-young" target="_blank" title="Department of Health">Department of Health</a>.</p>
-				
-				</section>				
-				
+
+				</section>
+
 			</div>
 		</section>
 		<?php
@@ -617,9 +617,9 @@
 		?>
 
 	</div><!-- survey wrap -->
-	
+
 	<div class="push"></div>
-	
+
 </section><!-- container -->
 
-<? include_once( 'commons/footer.php' ) ?>
+<?php  include_once( 'commons/footer.php' ) ?>
