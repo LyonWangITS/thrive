@@ -7,13 +7,13 @@
 // Database
 define('DBHOST', 'localhost');
 define('DBUSER', 'root');
-define('DBPASS', 'root');
-define('DBNAME', 'thrive');
+define('DBPASS', '123');
+define('DBNAME', 'app_database');
 
 //
 // Email
-define( 'EMAIL_ADMIN', 'kristen.hunt@curtin.edu.au' ); // Receives emails about new partners, etc
-define( 'EMAIL_GENERAL', 'no-reply@thrivehealth.org.au' ); // From address on automated emails to partners. E.g. password reset
+define( 'EMAIL_ADMIN', 'pbc@ufl.edu' ); // Receives emails about new partners, etc
+define( 'EMAIL_GENERAL', 'pbc@ufl.edu' ); // From address on automated emails to partners. E.g. password reset
 define( 'EMAIL_FROM_NAME', 'THRIVE Health' );
 
 /* The slug for Polytechnic West. Used to control the display of the $500 prize on the summary page. */
@@ -26,7 +26,7 @@ define('BASE_URL', '/');
 /* Misc */
 define( 'SURVEY_TOKEN_LENGTH', 32 );
 define( 'LU_PARTNER_STATE_APPROVED', 2 );
-define('CALLBACK_FORM_EMAIL_ADDRESS', 'chris@humaan.com.au'); // As this is for the ADIS form (only relevant for Western Australia), you can probably ignore it.
+define('CALLBACK_FORM_EMAIL_ADDRESS', 'pbc@ufl.edu'); // As this is for the ADIS form (only relevant for Western Australia), you can probably ignore it.
 define('SUPPRESS_WARNINGS', false );
 define( 'HOST', $_SERVER['HTTP_HOST'] );
 

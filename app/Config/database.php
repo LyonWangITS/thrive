@@ -64,10 +64,10 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => DBHOST,
-		'login' => DBUSER,
-		'password' => DBPASS,
-		'database' => DBNAME,
+		'host' => 'localhost',
+		'login' => 'admin',
+		'password' => 'password',
+		'database' => 'app_database',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
