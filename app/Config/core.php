@@ -18,6 +18,9 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
+//setLocale(LC_ALL, 'deu');
+//Configure::write('Config.language', 'deu');
+
 /**
  * CakePHP Debug Level:
  *
@@ -68,6 +71,8 @@
  * - `renderer` - string - The class responsible for rendering uncaught exceptions. If you choose a custom class you
  *   should place the file for that class in app/Lib/Error. This class needs to implement a render method.
  * - `log` - boolean - Should Exceptions be logged?
+ * - `extraFatalErrorMemory` - integer - Increases memory limit at shutdown so fatal errors are logged. Specify
+ *   amount in megabytes or use 0 to disable (default: 4 MB)
  * - `skipLog` - array - list of exceptions to skip for logging. Exceptions that
  *   extend one of the listed exceptions will also be skipped for logging.
  *   Example: `'skipLog' => array('NotFoundException', 'UnauthorizedException')`
@@ -111,9 +116,16 @@
  * for any URL generation inside the application, set the following
  * configuration variable to the http(s) address to your domain. This
  * will override the automatic detection of full base URL and can be
- * useful when generating links from the CLI (e.g. sending emails)
+ * useful when generating links from the CLI (e.g. sending emails).
+ * If the application runs in a subfolder, you should also set App.base.
  */
 	//Configure::write('App.fullBaseUrl', 'http://example.com');
+
+/**
+ * The base directory the app resides in. Should be used if the
+ * application runs in a subfolder and App.fullBaseUrl is set.
+ */
+	//Configure::write('App.base', '/my_app');
 
 /**
  * Web path to the public images directory under webroot.
@@ -147,13 +159,11 @@
  * Enables:
  *	`admin_index()` and `/admin/controller/index`
  *	`manager_index()` and `/manager/controller/index`
- *
  */
 	//Configure::write('Routing.prefixes', array('admin'));
 
 /**
  * Turn off all caching application-wide.
- *
  */
 	//Configure::write('Cache.disable', true);
 
@@ -164,7 +174,6 @@
  * public $cacheAction inside your controllers to define caching settings.
  * You can either set it controller-wide by setting public $cacheAction = true,
  * or in each action using $this->cacheAction = true.
- *
  */
 	//Configure::write('Cache.check', true);
 
@@ -199,6 +208,8 @@
  *    to the ini array.
  * - `Session.autoRegenerate` - Enabling this setting, turns on automatic renewal of sessions, and
  *    sessionids that change frequently. See CakeSession::$requestCountdown.
+ * - `Session.cacheLimiter` - Configure the cache control headers used for the session cookie.
+ *   See http://php.net/session_cache_limiter for accepted values.
  * - `Session.ini` - An associative array of additional ini values to set.
  *
  * The built in defaults are:
@@ -213,7 +224,6 @@
  *
  * To use database sessions, run the app/Config/Schema/sessions.php schema using
  * the cake shell command: cake schema create Sessions
- *
  */
 	Configure::write('Session', array(
 		'defaults' => 'php'
@@ -275,10 +285,9 @@
  * then the value of `Config.timezone` will be used. This feature allows you to set users' timezone just
  * once instead of passing it each time in function calls.
  */
-	//Configure::write('Config.timezone', 'Europe/Paris')
+	//Configure::write('Config.timezone', 'Europe/Paris');
 
 /**
- *
  * Cache Engine Configuration
  * Default settings provided below
  *
@@ -315,18 +324,20 @@
  *		'password' => 'password', //plaintext password (xcache.admin.pass)
  *	));
  *
- * Memcache (http://www.danga.com/memcached/)
+ * Memcached (http://www.danga.com/memcached/)
+ *
+ * Uses the memcached extension. See http://php.net/memcached
  *
  * 	 Cache::config('default', array(
- *		'engine' => 'Memcache', //[required]
+ *		'engine' => 'Memcached', //[required]
  *		'duration' => 3600, //[optional]
  *		'probability' => 100, //[optional]
  * 		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional]  prefix every cache file with this string
  * 		'servers' => array(
  * 			'127.0.0.1:11211' // localhost, default port 11211
  * 		), //[optional]
- * 		'persistent' => true, // [optional] set this to false for non-persistent connections
- * 		'compress' => false, // [optional] compress data in Memcache (slower, but uses less memory)
+ * 		'persistent' => 'my_connection', // [optional] The name of the persistent connection.
+ * 		'compress' => false, // [optional] compress data in Memcached (slower, but uses less memory)
  *	));
  *
  *  Wincache (http://php.net/wincache)

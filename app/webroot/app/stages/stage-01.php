@@ -44,13 +44,13 @@
 
 				<h1>All about you</h1>
 
-				<p>Thanks, <?php= h( ifne( $page_meta, 'participant_name' ) ) ?>. First of all we'd like to know a little bit more about you...</p>
+				<p>Thanks, <?php echo h( ifne( $page_meta, 'participant_name' ) ); ?>. First of all we'd like to know a little bit more about you...</p>
 
 			</section><!-- intro -->
 
 			<section class="questions">
 
-				<form class="stage-form" method="post" action="survey.php?t=<?= h( urlencode( ifne( $page_meta, 'token' ) ) ) ?>">
+				<form class="stage-form" method="post" action="survey.php?t=<?php echo h( urlencode( ifne( $page_meta, 'token' ) ) ); ?>">
 
 					<input type="hidden" name="survey-stage" value="1" />
 
