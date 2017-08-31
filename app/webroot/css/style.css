@@ -1255,11 +1255,14 @@ i.male {
 
 /* STEP TWO */
 
-
 .field.select-right p,
 .field.select-below p {
 	width: auto;
 	max-width: 54%;
+}
+
+.field.radios-left p {
+    max-width: 70%;
 }
 
 .field.select-right .styled {
@@ -1267,6 +1270,10 @@ i.male {
 	position: absolute;
 	right: 70px;
 	top: 50px;
+}
+
+.field.select-left .styled {
+    max-width: 50%;
 }
 
 .field.select-below .styled {

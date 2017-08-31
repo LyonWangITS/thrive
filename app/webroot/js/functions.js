@@ -238,12 +238,12 @@ function stage_form_complete( form_stage ){
 		form_fields_checked = {
 			'gender' 				: { skip : true, valid : false },
 			'age'					: { skip : false, type: 'select', valid : false },
-			'staff_student' 		: { skip : false, type : 'radio', valid : false },
-			'hours_per_week' 		: { skip : false, type : 'radio', valid : false },
-			'year_level'			: { skip : false, type : 'select', valid : false },
-			'on_campus' 			: { skip : false, type : 'radio', valid : false },
-			'where_from'			: { skip : false, type : 'select', valid : false },
-			'alcohol_last_12mths'	: { skip : false, type : 'radio', valid : false }
+			'race'					: { skip : false, type : 'select', valid : false },
+			'ethnicity'				: { skip : false, type : 'select', valid : false },
+			'race'					: { skip : false, type : 'select', valid : false },
+			'where' 				: { skip : false, type : 'select', valid : false },
+			'parents'				: { skip : false, type : 'radio', valid : false },
+			'history' 				: { skip : false, type : 'select', valid : false }
 		};
 
 		//Gender = m/f or value from dropdown
@@ -251,44 +251,6 @@ function stage_form_complete( form_stage ){
 		var gender_select = $('select[name=gender-more]');
 		if ( ( ( gender_radio.length > 0 ) && ( gender_radio.val() != '' ) ) || ( gender_select.val() != '' ) ){
 			form_fields_checked['gender'].valid = true;
-		}
-
-		// Conditional validation around staff/student question and hours per week.
-		// Check if question is in form or just hidden input
-		if ( $('.stage-form input[name=staff_student][type=hidden]').length == 1 ) {
-
-			//No staff/student question, not required.
-			form_fields_checked[ 'staff_student' ].valid = true;
-		}
-
-		// Demographic questions only required if student.
-		if ( $('.stage-form input[name=staff_student]:checked').val() == 'staff' ){
-
-			form_fields_checked[ 'hours_per_week' ].valid = true;
-			form_fields_checked[ 'year_level' ].valid = true;
-			form_fields_checked[ 'on_campus' ].valid = true;
-			form_fields_checked[ 'where_from' ].valid = true;
-		}
-
-		// Additional demographic questions. Partners can toggle these on/off, so only
-		// required if they're included
-
-		// Year level question
-		if ( $('select[name="year_level"]' ).length == 0 ) {
-
-			form_fields_checked[ 'year_level' ].valid = true;
-		}
-
-		// Accommodation question
-		if ( $('input[name="on_campus"]' ).length == 0 ) {
-
-			form_fields_checked[ 'on_campus' ].valid = true;
-		}
-
-		// From question
-		if ( $('select[name="where_from"]' ).length == 0 ) {
-
-			form_fields_checked[ 'where_from' ].valid = true;
 		}
 
 	} else if ( form_stage == 2 ){
