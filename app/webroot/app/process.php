@@ -60,51 +60,25 @@ function doProcess( $the_survey, $existing_token ){
 
 			$form_errors = array(
 				'gender' => validateField( $gender, 'in-set', 'Gender is unrecognized', array('female','male','transgender-ftm','transgender-mtf','genderqueer','androgynous','intersex') ),
-				'age' => validateField( ifne( $_POST, 'age' ), ( $_POST[ 'age' ] > 17 ), 'You must be over 17 to take part in this survey' ),
-				'staff_student' => validateField( ifne( $_POST, 'staff_student' ), 'in-set', 'Please select a value', array( 'staff', 'student' ) ),
-				'alcohol_last_12mths' => validateField( ifne( $_POST, 'alcohol_last_12mths' ), 'in-set', 'Please select a value', array( 'yes', 'no') ),
+				'age' => validateField( ifne( $_POST, 'age' ), 'in-set', 'Please select a value', array( 18,19,20,21,22,23,24 ) ),
+				'race' => validateField( ifne( $_POST, 'race' ), 'in-set', 'Please select a value', array( 'native-american','asian','hawaiian','black','white','mixed-race','other','skip' ) ),
+				'ethnicity' => validateField( ifne( $_POST, 'ethnicity' ), 'in-set', 'Please select a value', array( 'hispanic-latino','not-hispanic-latino','skip' ) ),
+				'where' => validateField( ifne( $_POST, 'where' ), 'in-set', 'Please select a value', array( 'dorm','with-parents','with-roommates' ) ),
+				'parents' => validateField( ifne( $_POST, 'parents' ), 'in-set', 'Please select a value', array( 'yes','no' ) ),
+				'history' => validateField( ifne( $_POST, 'history' ), 'in-set', 'Please select a value', array( 'uf-only','transfered' ) ),
 			);
-
-			if ( $_POST['staff_student']  == 'student' ){
-
-				$form_errors[] = validateField( ifne( $_POST, 'hours_per_week' ), 'in-set', 'Please select a value', array( 'gt-10', 'lt-10' ) );
-			}
-
-			// Optional demographic questions
-			// These only apply for students
-			if ( $_POST['staff_student']  == 'student' ) {
-
-				$partner = Partner::getCurrentPartner();
-				if (!empty($partner->data['is_year_level_question_enabled'])) {
-
-					$form_errors[] = validateField(ifne($_POST, 'year_level'), 'in-set', 'Please select a value', array('1st-year', '2nd-year', '3rd-year', '4th-year', 'postgraduate', 'not-applicable'));
-				}
-				if (!empty($partner->data['is_on_campus_question_enabled'])) {
-
-					$form_errors[] = validateField(ifne($_POST, 'on_campus'), 'in-set', 'Please select a value', array('yes', 'no'));
-				}
-				if (!empty($partner->data['is_from_question_enabled'])) {
-
-					$form_errors[] = validateField(ifne($_POST, 'where_from'), 'in-set', 'Please select a value', array('perth-metro', 'regional-wa', 'other-state', 'international'));
-				}
-			}
 
 			if ( formIsValid( $form_errors ) ) {
 
 				$data = array(
 					'01_gender' => $gender,
 					'01_age' => $_POST[ 'age' ],
-					'01_staff_student' => $_POST[ 'staff_student' ],
-					'01_hours_per_week' => ( isset( $_POST[ 'hours_per_week' ] ) ) ? $_POST[ 'hours_per_week' ] : null,
-					'01_year_level' => ( isset( $_POST[ 'year_level' ] ) ) ? $_POST[ 'year_level' ] : null,
-					'01_on_campus' => ( isset( $_POST[ 'on_campus' ] ) ) ? ( $_POST[ 'on_campus' ] == 'yes' ? 1 : 0 ) : null,
-					'01_where_from' => ( isset( $_POST[ 'where_from' ] ) ) ? $_POST[ 'where_from' ] : null,
-					'01_alcohol_last_12mths' => ( $_POST[ 'alcohol_last_12mths' ] == 'yes' ? 1 : 0 ),
+					'01_race' => $_POST[ 'race' ],
+					'01_ethnicity' => $_POST[ 'ethnicity' ],
+					'01_where' => $_POST[ 'where' ],
+					'01_parents' => ( isset( $_POST[ 'parents' ] ) ) ? ( $_POST[ 'parents' ] == 'yes' ? 1 : 0 ) : null,
+					'01_history' => $_POST[ 'history' ],
 				);
-
-				if ( $data[ '01_alcohol_last_12mths' ] == 0 ){
-					$data[ 'completed' ] = get_gmt();
-				}
 
 				$the_survey->save( $data );
 

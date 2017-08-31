@@ -86,14 +86,14 @@
                                 <div class="select styled">
                                     <select name="race" id="race">
                                         <option value="">Please select</option>
-                                        <option value="American Indian or Alaskan Native"> American Indian or Alaskan Native</option>
-                                        <option value="Asian">Asian</option>
-                                        <option value="Native Hawaiian or Other Pacific Islander">Native Hawaiian or Other Pacific Islander</option>
-                                        <option value="Black or African American">Black or African American</option>
-                                        <option value="White/Caucasian">White/Caucasian</option>
-                                        <option value="Mixed Race">Mixed Race</option>
-                                        <option value="Other">Other</option>
-                                        <option value="I Choose Not to Answer">I Choose Not to Answer</option>
+                                        <option value="native-american"> American Indian or Alaskan Native</option>
+                                        <option value="asian">Asian</option>
+                                        <option value="hawaiian">Native Hawaiian or Other Pacific Islander</option>
+                                        <option value="black">Black or African American</option>
+                                        <option value="white">White/Caucasian</option>
+                                        <option value="mixed-race">Mixed Race</option>
+                                        <option value="other">Other</option>
+                                        <option value="skip">I Choose Not to Answer</option>
                                     </select>
                                 </div>
                             </div>
@@ -104,9 +104,9 @@
                                 <div class="select styled">
                                     <select name="ethnicity" id="ethnicity">
                                         <option value="">Please select</option>
-                                        <option value="Hispanic or Latino(a)">Hispanic or Latino(a)</option>
-                                        <option value="Not Hispanic or Latino(a)">Not Hispanic or Latino(a)</option>
-                                        <option value="I Choose Not to Answer">I Choose Not to Answer</option>
+                                        <option value="hispanic-latino">Hispanic or Latino(a)</option>
+                                        <option value="not-hispanic-latino">Not Hispanic or Latino(a)</option>
+                                        <option value="skip">I Choose Not to Answer</option>
                                     </select>
                                 </div>
                             </div>
@@ -118,8 +118,8 @@
                                     <select name="where" id="where">
                                         <option value="">Please select</option>
                                         <option value="dorm">Dorm</option>
-                                        <option value="Apartment or house with parents or other relatives">Apartment or house with parents or other relatives</option>
-                                        <option value="Apartment or house with friends or roommates">Apartment or house with friends or roommates</option>
+                                        <option value="with-parents">Apartment or house with parents or other relatives</option>
+                                        <option value="with-roommates">Apartment or house with friends or roommates</option>
                                     </select>
                                 </div>
                                 <i class="icn accom"></i>
@@ -143,8 +143,8 @@
                                 <div class="select styled">
                                     <select name="history" id="history">
                                         <option value="">Please select</option>
-                                        <option value="I have attended only Albertus">I have attended only UF</option>
-                                        <option value="I transferred from another college/university">I transferred from another college/university</option>
+                                        <option value="uf-only">I have attended only UF</option>
+                                        <option value="transfered">I transferred from another college/university</option>
                                     </select>
                                 </div>
                             </div><!-- field -->
