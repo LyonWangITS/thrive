@@ -218,6 +218,19 @@ input[type="radio"] + label:before { background-position: 0 0;} input[type="radi
 
 .researcher [type="checkbox"] + label:before { background-position: -832px -384px;} .researcher input[type="checkbox"]:checked + label:before { background-position: -832px -448px;}
 
+.authors {
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 60px;
+}
+
+.authors ol li {
+    list-style: decimal;
+    line-height: 16px;
+    list-style-position: inside;
+    margin-bottom: 0;
+}
+
 
 .ie8 label:before { display:none !important; content:none !important; /*this removes the fake content*/ }
 .ie8 input[type="checkbox"], 
