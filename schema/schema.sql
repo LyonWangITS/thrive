@@ -43,6 +43,7 @@ CREATE TABLE `entries` (
   `01_age` int(11) DEFAULT NULL,
   `01_gender` enum('female','male','transgender-ftm','transgender-mtf','genderqueer','androgynous','intersex') DEFAULT NULL,
   `01_race` enum('native-american','asian','hawaiian','black','white','mixed-race','other','skip') DEFAULT NULL,
+  `01_alcohol_last_12mths` int(1) unsigned DEFAULT NULL,
   `01_ethnicity` enum('hispanic-latino','not-hispanic-latino','skip') DEFAULT NULL,
   `01_where` enum('dorm','with-parents','with-roommates') DEFAULT NULL,
   `01_parents` int(1) unsigned DEFAULT NULL,

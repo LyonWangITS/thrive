@@ -258,6 +258,7 @@ function stage_form_complete( form_stage ){
 		form_fields_checked = {
 			'gender' 				: { skip : true, valid : false },
 			'age'					: { skip : false, type: 'select', valid : false },
+			'alcohol_last_12mths'	: { skip : false, type : 'radio', valid : false },
 			'race'					: { skip : false, type : 'select', valid : false },
 			'ethnicity'				: { skip : false, type : 'select', valid : false },
 			'race'					: { skip : false, type : 'select', valid : false },

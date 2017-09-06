@@ -68,7 +68,16 @@
 
 		if ( in_array( $last_stage, array( 0, 1, 2, 3, 4 ) ) ) {
 
-			$target_stage = $last_stage + 1;
+
+			if ( ( $last_stage == 1 ) && !$the_survey->drankAlcoholInLast12Mths() ){
+
+				$target_stage = 'thanks';
+
+			} else {
+
+				$target_stage = $last_stage + 1;
+
+			}
 
 		} else {
 

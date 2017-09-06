@@ -59,6 +59,7 @@ function doProcess( $the_survey, $existing_token ){
 			*/
 
 			$form_errors = array(
+				'alcohol_last_12mths' => validateField( ifne( $_POST, 'alcohol_last_12mths' ), 'in-set', 'Please select a value', array( 'yes', 'no') ),
 				'gender' => validateField( $gender, 'in-set', 'Gender is unrecognized', array('female','male','transgender-ftm','transgender-mtf','genderqueer','androgynous','intersex') ),
 				'age' => validateField( ifne( $_POST, 'age' ), 'in-set', 'Please select a value', array( 18,19,20,21,22,23,24 ) ),
 				'race' => validateField( ifne( $_POST, 'race' ), 'in-set', 'Please select a value', array( 'native-american','asian','hawaiian','black','white','mixed-race','other','skip' ) ),
@@ -73,12 +74,17 @@ function doProcess( $the_survey, $existing_token ){
 				$data = array(
 					'01_gender' => $gender,
 					'01_age' => $_POST[ 'age' ],
+					'01_alcohol_last_12mths' => ( $_POST[ 'alcohol_last_12mths' ] == 'yes' ? 1 : 0 ),
 					'01_race' => $_POST[ 'race' ],
 					'01_ethnicity' => $_POST[ 'ethnicity' ],
 					'01_where' => $_POST[ 'where' ],
 					'01_parents' => ( isset( $_POST[ 'parents' ] ) ) ? ( $_POST[ 'parents' ] == 'yes' ? 1 : 0 ) : null,
 					'01_history' => $_POST[ 'history' ],
 				);
+
+				if ( $data[ '01_alcohol_last_12mths' ] == 0 ){
+					$data[ 'completed' ] = get_gmt();
+				}
 
 				$the_survey->save( $data );
 

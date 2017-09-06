@@ -187,6 +187,7 @@
 				$stage_1_keys = array(
 					'01_gender',
 					'01_age',
+					'01_alcohol_last_12mths',
 					'01_race',
 					'01_ethnicity',
 					'01_where',
@@ -202,7 +203,7 @@
 				}
 
 
-				if ( $stage_1_passed ){
+				if ( $stage_1_passed && ( ifne( $this->data, '01_alcohol_last_12mths' ) ) ){
 
 					// 2 : Past & Present Drinking
 					$stage_2_keys = array(
@@ -319,6 +320,13 @@
 
 			return $last_stage;
 
+		}
+
+		/*
+			Helper to quickly determine whether alcohol drank in last 12 mths
+		*/
+		public function drankAlcoholInLast12Mths(){
+			return ifne( $this->data, '01_alcohol_last_12mths' );
 		}
 
 
