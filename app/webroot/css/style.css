@@ -3246,3 +3246,17 @@ button[disabled=disabled]{
 .slider-wrapper {
 	visibility: hidden;
 }
+
+.tabular.tabular-slider .input-wrap {
+	width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+	.tabular.tabular-slider .input-wrap {
+		width: 65%;
+	}
+
+	.tabular .slider {
+		top: 15px;
+	}
+}

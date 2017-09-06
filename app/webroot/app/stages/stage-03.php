@@ -45,6 +45,7 @@
 				<h1>Recent Drinking</h1>
 
 				<p>Now we'd like to ask you about your drinking in the last four weeks only.<br /> We understand that this might be difficult to remember exactly so<br />for these questions please give your best estimate.</p>
+				<p>Please use the definitions of Standard Drinks below as a guide.</p>
 
 			</section><!-- intro -->
 
@@ -77,9 +78,81 @@
 
 						<div id="more-fields-wrapper">
 
+							<div class="field tabular-intro clearfix">
+								<i class="icn number">02</i>
+
+								<p>Indicate below how many times you drank any alcohol on each day of the week <strong>during the past 4 weeks</strong>.</p>
+								<p>For example, if you never drank on any Tuesday, you would select "None" for Tuesdays. If you drank on every Thursday in the past 4 weeks, you would select "4" for Thursday.</p>
+
+								<div class="image vessels">
+									<img src="<?php echo BASE_URL; ?>images/vessels.png" alt="Drinking Vessel" />
+								</div>
+
+								<div class="labels">
+									<span>None</span>
+									<span>1</span>
+									<span>2</span>
+									<span>3</span>
+									<span>4</span>
+								</div>
+
+							</div><!-- field -->
+
+							<?php $weekdays = array(
+								'mon' => 'Monday',
+								'tue' => 'Tuesday',
+								'wed' => 'Wednesday',
+								'thu' => 'Thursday',
+								'fri' => 'Friday',
+								'sat' => 'Saturday',
+								'sun' => 'Sunday',
+							); ?>
+
+							<?php foreach ($weekdays as $day => $label): ?>
+
+								<div class="field radio-set tabular clearfix">
+									<p><?php echo $label; ?></p>
+
+									<div class="input-wrap">
+										<?php foreach (range(0, 4) as $i): ?>
+											<?php $name = 'past_4wk_drinks_' . $day; ?>
+											<input type="radio" name="<?php echo $name; ?>" id="<?php echo $name . '_' . $i; ?>" value="<?php echo $i; ?>" />
+											<label for="<?php echo $name . '_' . $i; ?>"><span><?php echo $i; ?></span></label>
+										<?php endforeach; ?>
+									</div>
+								</div><!-- field -->
+							<?php endforeach; ?>
+
 							<div class="field slider clearfix">
 
-								<i class="icn number">02</i>
+								<i class="icn number">03</i>
+
+								<p>Thinking about only the days you consumed alcohol <strong>during the past 4 weeks</strong>, please enter the average number of <strong>standard drinks</strong> you consumed on each of those days.</p>
+								<p>For example, when you drink on Fridays, if you usually have about 10 drinks, you would select "10" for Friday.</p>
+
+							</div><!-- field -->
+
+							<?php foreach ($weekdays as $day => $label): ?>
+								<div class="field tabular tabular-slider clearfix">
+									<p><?php echo $label; ?></p>
+									<div class="input-wrap">
+										<div class="slider-wrapper">
+											<div id="standard-drinks-slider_<?php echo $day; ?>" class="slider dragdealer">
+												<div class="red-bar handle">drag me</div>
+												<div class="selected-area"></div>
+												<div class="tooltip">0 drinks</div>
+												<div class="left-value slider-value">0</div>
+												<div class="right-value slider-value">25+</div>
+											</div>
+											<input type="hidden" name="past_4wk_std_drinks_<?php echo $day; ?>" value="0" />
+										</div>
+									</div>
+								</div><!-- field -->
+							<?php endforeach; ?>
+
+							<div class="field slider clearfix">
+
+								<i class="icn number">04</i>
 
 								<p>In the last four weeks what is the largest number of standard drinks you have consumed on a single occasion?</p>
 
@@ -99,7 +172,7 @@
 
 							<div class="field slider hours clearfix">
 
-								<i class="icn number">03</i>
+								<i class="icn number">05</i>
 
 								<p>Over how many hours did you drink this amount (to the nearest hour)?</p>
 
@@ -129,7 +202,7 @@
 
 							<div class="field clearfix">
 
-								<i class="icn number">04</i>
+								<i class="icn number">06</i>
 
 								<p>In order for us to calculate your Blood Alcohol Concentration please give your best estimate of your height and weight:</p>
 

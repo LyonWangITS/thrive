@@ -159,16 +159,49 @@ function doProcess( $the_survey, $existing_token ){
 						'body_weight_kg' => validateField( ifne( $_POST, 'body_weight-number' ), 'notempty', 'Please enter your weight' )
 					);
 
-					if ( formIsValid( $form_errors ) ) {
+					$weekdays = array(
+						'mon',
+						'tue',
+						'wed',
+						'thu',
+						'fri',
+						'sat',
+						'sun',
+					);
 
-						$the_survey->save(array(
+					foreach ($weekdays as $day) {
+						$fields = array(
+							'past_4wk_drinks_' . $day,
+							'past_4wk_std_drinks_' . $day,
+						);
+
+						foreach ($fields as $field) {
+							$form_errors[$field] = validateField( ifne( $_POST, $field ), 'notempty', 'Please enter a value' );
+						}
+					}
+
+					if ( formIsValid( $form_errors ) ) {
+						$values = array(
 							'03_past_4wk_consumed_alcohol' => ( $_POST[ 'past_4wk_consumed_alcohol' ] == 'yes' ? 1 : 0 ),
 							'03_past_4wk_largest_number_single_occasion' => $_POST[ 'past_4wk_largest_number_single_occasion' ],
 							'03_past_4wk_hours_amount_drank' => $_POST[ 'past_4wk_hours_amount_drank' ],
 							'03_body_height_cm' => $body_height_cm,
 							'03_body_weight_kg' => $_POST[ 'body_weight-number'] * ( ifne( $_POST, 'body_weight-unit', 'kg' ) == 'lbs' ? 0.453592 : 1 )
-						));
+						);
 
+						foreach ($weekdays as $day) {
+							$fields = array(
+								'past_4wk_drinks_' . $day,
+								'past_4wk_std_drinks_' . $day,
+							);
+
+							foreach ($fields as $field) {
+								$values['03_' . $field] = $_POST[$field];
+							}
+						}
+
+
+						$the_survey->save($values);
 						do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
 						//exit
 

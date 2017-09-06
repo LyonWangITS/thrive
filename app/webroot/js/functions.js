@@ -132,6 +132,20 @@ function init_stage_form( form_stage ){
 				$('#more-fields-wrapper').slideDown( 400, function(){
 					
 					$('.slider-wrapper').css( 'visibility', 'hidden' );
+					var weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+					$.each(weekdays, function(i, value) {
+						buildSlider({
+							id		: 'standard-drinks-slider_' + value,
+							from	: 0,
+							to		: 25,
+							to_label: '25+',
+							field	: $('.stage-form input[name=past_4wk_std_drinks_' + value + ']'),
+							unit	: {
+								singular 	: 'drink',
+								plural		: 'drinks'
+							}
+						});
+					});
 					
 					// last four weeks, drinks consumed on a single occasion
 					buildSlider({
@@ -180,6 +194,12 @@ function init_stage_form( form_stage ){
 					$('input[name=body_height-inches]').val('');
 					$('input[name=body_weight-number]').val('');
 					$('select[name=body_weight-unit]').val('kg');
+
+					var weekdays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+					$.each(weekdays, function(i, day) {
+						$('input[name="past_4wk_drinks_' + day + '"]').val('');
+						$('input[name="past_4wk_std_drinks_' + day + '"]').val('');
+					});
 					
 				});
 				
@@ -280,6 +300,12 @@ function stage_form_complete( form_stage ){
 			'body_weight-number'						: { skip : true, accepts : 'number', valid : false },
 			'body_weight-unit'							: { type : 'select', skip : true, valid : false }
 		};
+
+		var weekdays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+		$.each(weekdays, function(i, day) {
+			form_fields_checked['past_4wk_drinks_' + day] = { type: 'radio', skip : true, valid : false };
+			form_fields_checked['past_4wk_std_drinks_' + day] = {  skip : true, valid : false };
+		});
 		
 		var consumed_alcohol_field = $('input[name=past_4wk_consumed_alcohol]:checked');
 		
@@ -297,6 +323,11 @@ function stage_form_complete( form_stage ){
 				}
 				
 			} else {
+
+				$.each(weekdays, function(i, day) {
+					form_fields_checked['past_4wk_drinks_' + day].skip = false;
+					form_fields_checked['past_4wk_std_drinks_' + day].skip = false;
+				});
 				
 				//Need validation, unskip some
 				form_fields_checked[ 'past_4wk_largest_number_single_occasion' ].skip = false;
