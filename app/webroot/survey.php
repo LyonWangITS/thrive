@@ -96,8 +96,10 @@
 		'keywords' => '',
 		'participant_name' => ifne( $the_survey->data, '00_participant_name' ),
 		'target_stage' => $target_stage,
-		'token' => $existing_token
+		'token' => $existing_token,
 	);
+
+	$page_vars += get_stage_vars($target_stage, $page_vars);
 
 	if ( $target_stage == 5 ) {
 

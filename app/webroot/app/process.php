@@ -13,6 +13,7 @@ function doProcess( $the_survey, $existing_token ){
 	if ( !empty( $_POST ) ){
 
 		$survey_stage = ifne( $_POST, 'survey-stage', 0 );
+		$stage_vars = get_stage_vars($survey_stage);
 
 		//Validation rules
 		// 0 : name - notempty
@@ -165,25 +166,12 @@ function doProcess( $the_survey, $existing_token ){
 						'body_weight_kg' => validateField( ifne( $_POST, 'body_weight-number' ), 'notempty', 'Please enter your weight' )
 					);
 
-					$weekdays = array(
-						'mon',
-						'tue',
-						'wed',
-						'thu',
-						'fri',
-						'sat',
-						'sun',
-					);
+					$weekdays = get_weekdays();
+					$weekdays = array_keys($weekdays);
 
 					foreach ($weekdays as $day) {
-						$fields = array(
-							'past_4wk_drinks_' . $day,
-							'past_4wk_std_drinks_' . $day,
-						);
-
-						foreach ($fields as $field) {
-							$form_errors[$field] = validateField( ifne( $_POST, $field ), 'notempty', 'Please enter a value' );
-						}
+						$form_errors['past_4wk_drinks_' . $day] = validateField(ifne($_POST, 'past_4wk_drinks_' . $day), 'in-set', 'Please select a value', array_keys($stage_vars['tabular']['columns']));
+						$form_errors['past_4wk_std_drinks_' . $day] = validateField(ifne($_POST, 'past_4wk_std_drinks_' . $day ), 'notempty', 'Please enter a value');
 					}
 
 					if ( formIsValid( $form_errors ) ) {

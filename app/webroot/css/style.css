@@ -1625,8 +1625,7 @@ i.male {
 	margin: 0 10px 0 0;
 }
 
-input#height-feet,
-input#height-inches {
+input#height-cm {
 	margin: 15px 10px 0 0;
 }
 
@@ -1697,6 +1696,11 @@ input#height-inches {
 	width: auto;
 }
 
+.tabular-intro.cols-6 .labels span {
+    width: 72px;
+    margin: 0;
+}
+
 .tabular label span {
 	display: none;
 }
@@ -1709,6 +1713,10 @@ input#height-inches {
 
 .tabular .input-wrap label {
 	margin: 0 0 0 43px;
+}
+
+.tabular.cols-6 .input-wrap label {
+	margin: 0 0 0 25px;
 }
 
 

@@ -132,7 +132,7 @@ function init_stage_form( form_stage ){
 				$('#more-fields-wrapper').slideDown( 400, function(){
 					
 					$('.slider-wrapper').css( 'visibility', 'hidden' );
-					var weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+					var weekdays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 					$.each(weekdays, function(i, value) {
 						buildSlider({
 							id		: 'standard-drinks-slider_' + value,
@@ -193,12 +193,12 @@ function init_stage_form( form_stage ){
 					$('input[name=body_height-feet]').val('');
 					$('input[name=body_height-inches]').val('');
 					$('input[name=body_weight-number]').val('');
-					$('select[name=body_weight-unit]').val('kg');
+					$('select[name=body_weight-unit]').val('lbs');
 
 					var weekdays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 					$.each(weekdays, function(i, day) {
-						$('input[name="past_4wk_drinks_' + day + '"]').val('');
-						$('input[name="past_4wk_std_drinks_' + day + '"]').val('');
+						$('input[name="past_4wk_drinks_' + day + '"]').removeProp('checked');
+						$('input[name="past_4wk_std_drinks_' + day + '"]').val('0');
 					});
 					
 				});
