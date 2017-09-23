@@ -29,7 +29,7 @@
 					<fieldset title="Please fill in the fields below">
 						<legend><?php echo $page_vars['legend']; ?></legend>
 
-						<?php if (!empty($page_vars['tabular'])): ?>
+						<?php if (!empty($page_vars['include_tabular']) && !empty($page_vars['tabular'])): ?>
 							<?php include 'tabular.php'; ?>
 						<?php endif; ?>
 

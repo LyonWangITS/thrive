@@ -43,7 +43,7 @@ $(document).ready(function(){
 	
 	initStepThree();
 	
-	initStepFive();	
+	initStepSix();
 	
 	modalBox();
 	
@@ -226,17 +226,15 @@ function init_stage_form( form_stage ){
 	
 	
 	//Render form status
-	if ( form_stage != 4 ){
-		$('input, select').each(function(){
-			$(this).bind('change', function(){
-				stage_form_complete( form_stage );
-			});
-		});
-
-		$('input').bind('keyup', function(){
+	$('input, select').each(function(){
+		$(this).bind('change', function(){
 			stage_form_complete( form_stage );
 		});
-	}
+	});
+
+	$('input').bind('keyup', function(){
+		stage_form_complete( form_stage );
+	});
 	
 }
 
@@ -353,9 +351,56 @@ function stage_form_complete( form_stage ){
 			
 		}
 		
-	} else if ( form_stage == 4 ){
-		
-		//All fields optional 
+	} else if ( form_stage == 4 ) {
+		var fields = [
+			'difficult_to_limit',
+			'start_drinking_after_deciding_not_to',
+			'end_up_drinking_more',
+			'cut_down_drinking',
+			'drink_when_causing_problems',
+			'stop_drinking_after_two_drinks',
+			'stop_drinking_after_drunk',
+			'irresistible_urge_continue_drinking',
+			'difficult_to_resist_drinking',
+			'able_to_slow_drinking'
+		];
+
+		$.each(fields, function(i, field) {
+			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
+		});
+
+	} else if ( form_stage == 5 ) {
+
+		var fields = [
+			'embarassing_things',
+			'hangover',
+			'sick',
+			'end_up_drinking_without_planning',
+			'take_foolish_risks',
+			'pass_out',
+			'need_larger_amounts_to_feel_effect',
+			'impulsive_things',
+			'memory_loss',
+			'drive_unsafely',
+			'miss_work_or_class',
+			'regretted_sexual_situations',
+			'difficult_to_limit',
+			'become_rude',
+			'wake_up_unexpected_place',
+			'feel_bad',
+			'lack_of_energy',
+			'suffered_work_quality',
+			'spend_too_much_time_drinking',
+			'neglect_obligations',
+			'relationship_problems',
+			'overweight',
+			'harmed_physical_appearance',
+			'need_drink_before_breakfast'
+		];
+
+		$.each(fields, function(i, field) {
+			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
+		});
 	}
 	
 	
@@ -707,9 +752,9 @@ var start_audit_score,
 	start_audit_bac,
 	start_audit_spend = false;
 
-function initStepFive() {
+function initStepSix() {
 	
-	if (!$('.progress').hasClass('step-five')) {
+	if (!$('.progress').hasClass('step-six')) {
 
 		return;
 	}

@@ -66,7 +66,7 @@
 
 		$last_stage = $the_survey->lastCompletedStage();
 
-		if ( in_array( $last_stage, array( 0, 1, 2, 3, 4 ) ) ) {
+		if ( in_array( $last_stage, array( 0, 1, 2, 3, 4, 5 ) ) ) {
 
 
 			if ( ( $last_stage == 1 ) && !$the_survey->drankAlcoholInLast12Mths() ){
@@ -101,7 +101,7 @@
 
 	$page_vars += get_stage_vars($target_stage, $page_vars);
 
-	if ( $target_stage == 5 ) {
+	if ( $target_stage == 6 ) {
 
 		$audit_score = $the_survey->calculateAuditScore();
 		$the_survey->save( array(

@@ -269,8 +269,23 @@
 						}
 					}
 
-					// 4 : Alcohol related problems
-					$stage_4_passed = ifne( $this->data, 'completed' );
+					$page_vars = get_stage_vars(4);
+					$stage_4_passed = true;
+					foreach (array_keys($page_vars['tabular']['rows']) as $field) {
+						if ( ifne( $this->data, '04_' . $field, null ) === null ) {
+							$stage_4_passed = false;
+							break;
+						}
+					}
+
+					$page_vars = get_stage_vars(5);
+					$stage_5_passed = true;
+					foreach (array_keys($page_vars['tabular']['rows']) as $field) {
+						if ( ifne( $this->data, '05_' . $field, null ) === null ) {
+							$stage_5_passed = false;
+							break;
+						}
+					}
 
 				} else {
 
@@ -278,44 +293,36 @@
 					$stage_2_passed = false;
 					$stage_3_passed = false;
 					$stage_4_passed = false;
+					$stage_5_passed = false;
 
 				}
 
 
 
 				//Calculate
-				if ( $stage_1_passed ){
-
-					if ( $stage_2_passed ){
-
-						if ( $stage_3_passed ){
-
-							if ( $stage_4_passed ){
-
-								$last_stage = 4;
-
+				if ( $stage_1_passed ) {
+					if ( $stage_2_passed ) {
+						if ( $stage_3_passed ) {
+							if ( $stage_4_passed ) {
+								if ( $stage_5_passed ) {
+									$last_stage = 5;
+								}
+								else {
+									$last_stage = 4;
+								}
 							} else {
-
 								$last_stage = 3;
-
 							}
 
 						} else {
-
 							$last_stage = 2;
-
 						}
-
 					} else {
-
 						$last_stage = 1;
-
 					}
-
 				} else {
 					$last_stage = 0;
 				}
-
 			}
 
 			return $last_stage;

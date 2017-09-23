@@ -107,7 +107,7 @@ function doProcess( $the_survey, $existing_token ){
 				'past_year_how_often_remorseful' => validateField( ifne( $_POST, 'past_year_how_often_remorseful' ), 'in-set', 'Please select a value', array( 'never','lt-1pm','1pm','1pw','1pd' ) ),
 				'past_year_how_often_unable_to_remember' => validateField( ifne( $_POST, 'past_year_how_often_unable_to_remember' ), 'in-set', 'Please select a value', array( 'never','lt-1pm','1pm','1pw','1pd' ) ),
 				'been_injured_or_injured_someone' => validateField( ifne( $_POST, 'been_injured_or_injured_someone' ), 'in-set', 'Please select a value', array( 'no','yes-nly','yes-ly' ) ),
-				'others_concerned_about_my_drinking' => validateField( ifne( $_POST, 'others_concerned_about_my_drinking' ), 'in-set', 'Please select a value', array( 'no','yes-nly','yes-ly' ) )
+				'others_concerned_about_my_drinking' => validateField( ifne( $_POST, 'others_concerned_about_my_drinking' ), 'in-set', 'Please select a value', array( 'no','yes-nly','yes-ly' ) ),
 			);
 
 			if ( formIsValid( $form_errors ) ) {
@@ -225,73 +225,23 @@ function doProcess( $the_survey, $existing_token ){
 			}
 
 
-		} else if ( $survey_stage == 4 ) {
+		} else if ( $survey_stage == 4 || $survey_stage == 5 ) {
 
-			/*
-			$form_errors = array(
-				'been_insulted_humiliated' => validateField( ifne( $_POST, 'been_insulted_humiliated' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'serious_argument_quarrel' => validateField( ifne( $_POST, 'serious_argument_quarrel' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'assaulted' => validateField( ifne( $_POST, 'assaulted' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'property_damaged' => validateField( ifne( $_POST, 'property_damaged' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'babysit_another_student' => validateField( ifne( $_POST, 'babysit_another_student' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'found_vomit' => validateField( ifne( $_POST, 'found_vomit' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'study_sleep_interrupted' => validateField( ifne( $_POST, 'study_sleep_interrupted' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'unwanted_sexual_advance' => validateField( ifne( $_POST, 'unwanted_sexual_advance' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'victim_of_sexual_assault' => validateField( ifne( $_POST, 'victim_of_sexual_assault' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'victim_of_another_crime_on_campus' => validateField( ifne( $_POST, 'victim_of_another_crime_on_campus' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'victim_of_another_crime_off_campus' => validateField( ifne( $_POST, 'victim_of_another_crime_off_campus' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) )
-			);
+			$values = array();
+			$form_errors = array();
 
-			if ( formIsValid( $form_errors ) ){
+			foreach (array_keys($stage_vars['tabular']['rows']) as $field) {
+				$form_errors[$field] = validateField(ifne($_POST, $field ), 'notempty', 'Please enter a value');
+				$values['0' . $survey_stage . '_' . $field] = ifne( $_POST, $field, null );
+			}
 
-				$the_survey->save(array(
-					'04_been_insulted_humiliated' => $_POST[ 'been_insulted_humiliated' ],
-					'04_serious_argument_quarrel' => $_POST[ 'serious_argument_quarrel' ],
-					'04_assaulted' => $_POST[ 'assaulted' ],
-					'04_property_damaged' => $_POST[ 'property_damaged' ],
-					'04_babysit_another_student' => $_POST[ 'babysit_another_student' ],
-					'04_found_vomit' => $_POST[ 'found_vomit' ],
-					'04_study_sleep_interrupted' => $_POST[ 'study_sleep_interrupted' ],
-					'04_unwanted_sexual_advance' => $_POST[ 'unwanted_sexual_advance' ],
-					'04_victim_of_sexual_assault' => $_POST[ 'victim_of_sexual_assault' ],
-					'04_victim_of_another_crime_on_campus' => $_POST[ 'victim_of_another_crime_on_campus' ],
-					'04_victim_of_another_crime_off_campus' => $_POST[ 'victim_of_another_crime_off_campus' ],
-					'completed' => date('Y-m-d H:i:s')
-				));
+			if ( formIsValid( $form_errors ) ) {
+				$values['completed'] = get_gmt();
+				$the_survey->save($values);
 
 				do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
-				//exit
 
-			} else {
-
-				echo print_r( $form_errors );
-
-			}*/
-
-			//All fields optional
-			$the_survey->save(array(
-				'04_hangover' => ifne( $_POST, 'hangover', null ),
-				'04_emotional_outburst' => ifne( $_POST, 'emotional_outburst', null ),
-				'04_vomiting' => ifne( $_POST, 'vomiting', null ),
-				'04_heated_argument' => ifne( $_POST, 'heated_argument', null ),
-				'04_physically_aggressive' => ifne( $_POST, 'physically_aggressive', null ),
-				'04_blackouts' => ifne( $_POST, 'blackouts', null ),
-				'04_inability_to_pay_bills' => ifne( $_POST, 'inability_to_pay_bills', null ),
-				'04_unprotected_sex' => ifne( $_POST, 'unprotected_sex', null ),
-				'04_sexual_situation_not_happy_about' => ifne( $_POST, 'sexual_situation_not_happy_about', null ),
-				'04_sexual_encounter_later_regretted' => ifne( $_POST, 'sexual_encounter_later_regretted', null ),
-				'04_injury_requiring_medical_attention' => ifne( $_POST, 'injury_requiring_medical_attention', null ),
-				'04_drove_car_unsafely' => ifne( $_POST, 'drove_car_unsafely', null ),
-				'04_passenger_of_unsafe_driver' => ifne( $_POST, 'passenger_of_unsafe_driver', null ),
-				'04_stole_property' => ifne( $_POST, 'stole_property', null ),
-				'04_committed_vandalism' => ifne( $_POST, 'committed_vandalism', null ),
-				'04_removed_or_banned_from_pub_club' => ifne( $_POST, 'removed_or_banned_from_pub_club', null ),
-				'04_arrested' => ifne( $_POST, 'arrested', null ),
-				'completed' => get_gmt()
-			));
-
-			do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
-			//exit
+			}
 
 		}
 
@@ -300,7 +250,3 @@ function doProcess( $the_survey, $existing_token ){
 	} // endif isset $POST
 
 } //end do_process()
-
-
-
-
