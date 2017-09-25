@@ -1,5 +1,7 @@
 <?php
 
+require_once '../webroot/app/stages_config.php';
+
 /**
 *	Reporting section.
 */
@@ -349,11 +351,6 @@ class ReportsController extends AppController {
 			'Name',
 			'Gender',
 			'Age',
-			'Staff/Student',
-			'Full/part time',
-			'Level/Class standing',
-			'On-campus accommodation',
-			'Where from',
 			'Consumed alcohol last 12 months',
 			'How often drink alcohol',
 			'How many Standard Drinks on typical day',
@@ -371,10 +368,26 @@ class ReportsController extends AppController {
 			'Body height (cm)',
 			'Body weight (kg)',
 		);
-		foreach ( $this->harm_fields as $field => $name ) {
 
-			$headers[] = $name;
+		$days = get_weekdays();
+		foreach ($days as $label) {
+			$headers[] = 'Drink times (past 4 weeks) - ' . $label;
 		}
+
+		foreach ($days as $label) {
+			$headers[] = 'Standard drinks (past 4 weeks) - ' . $label;
+		}
+
+		foreach (range(4, 7) as $step) {
+			$stage = get_stage_vars($step);
+			foreach ($stage['tabular']['rows'] as $label) {
+				$headers[] = $label;
+			}
+		}
+
+		$headers[] = 'Tobacco - Use description';
+		$headers[] = 'Tobacco - Frequency';
+		$headers[] = 'Tobacco - time to init';
 		$headers[] = 'Audit score';
 		$headers[] = 'Feedback - How important is it to you that you reduce your drinking? 1 (Not at all important) - 10 (Very important)';
 		$headers[] = 'Feedback - How confident are you that you can reduce your drinking? 1 (Not at all confident) - 10 (Very confident)';
@@ -383,6 +396,7 @@ class ReportsController extends AppController {
 
 		fputcsv( $fp, $headers );
 
+		$days = array_keys($days);
 		foreach ( $data as $entry ) {
 
 			$row = array(
@@ -391,11 +405,11 @@ class ReportsController extends AppController {
 				$entry['Entry']['00_participant_name'],
 				( !empty( $entry['Entry']['01_gender'] ) ) ? $this->genders[$entry['Entry']['01_gender']] : '',
 				$entry['Entry']['01_age'],
-				ucfirst( $entry['Entry']['01_staff_student'] ),
-				str_replace( array( 'lt-10', 'gt-10' ), array( 'Part time', 'Full time' ), $entry['Entry']['01_hours_per_week'] ),
-				str_replace( array( '1st-year', '2nd-year', '3rd-year', '4th-year', 'postgraduate', 'not-applicable' ), array( '1st Year', '2nd Year', '3rd Year', '4th Year', 'Postgraduate', 'Not Applicable' ), $entry['Entry']['01_year_level'] ),
-				( $entry['Entry']['01_on_campus'] == null ) ? '' : ( ( $entry['Entry']['01_on_campus'] == 1 ) ? 'Yes' : 'No' ),
-				str_replace( array( 'perth-metro', 'regional-wa', 'other-state', 'international' ), array( 'Perth (Metropolitan) student', 'Regional (Western Australian) student', 'Other Australian state student', 'International student' ), $entry['Entry']['01_where_from'] ),
+				//str_replace(array('native-american', 'asian', 'hawaiian', 'black', 'white', 'mixed-race', 'other', 'skip'), array(), $entry['Entry']['01_race']),
+				//str_replace(array('hispanic-latino','not-hispanic-latino','skip'), array(), $entry['Entry']['01_ethnicity']),
+				//str_replace(array('dorm', 'with-parents', 'with-roommates'), array(), $entry['Entry']['01_where']),
+				//( !empty( $entry['Entry']['01_parents'] ) ) ? 'Yes' : 'No',
+				//str_replace(array('uf-only', 'transfered'), array(), $entry['Entry']['01_history']),
 				( !empty( $entry['Entry']['01_alcohol_last_12mths'] ) ) ? 'Yes' : 'No',
 				( !empty( $entry['Entry']['02_how_often_drink_alcohol'] ) ) ? $this->how_often_drink[$entry['Entry']['02_how_often_drink_alcohol']] : '',
 				$entry['Entry']['02_how_many_on_typical_day'],
@@ -408,15 +422,41 @@ class ReportsController extends AppController {
 				( !empty( $entry['Entry']['02_been_injured_or_injured_someone'] ) ) ? $this->have_you_ever[$entry['Entry']['02_been_injured_or_injured_someone']] : '',
 				( !empty( $entry['Entry']['02_others_concerned_about_my_drinking'] ) ) ? $this->have_you_ever[$entry['Entry']['02_others_concerned_about_my_drinking']] : '',
 				( !empty( $entry['Entry']['03_past_4wk_consumed_alcohol'] ) ) ? 'Yes' : 'No',
+
 				$entry['Entry']['03_past_4wk_largest_number_single_occasion'],
 				$entry['Entry']['03_past_4wk_hours_amount_drank'],
 				$entry['Entry']['03_body_height_cm'],
 				$entry['Entry']['03_body_weight_kg'],
 			);
-			foreach ( $this->harm_fields as $field => $name ) {
 
-				$row[] = ucfirst( $entry['Entry'][$field] );
+			foreach (array('', 'std_') as $prefix) {
+				foreach ($days as $day) {
+					$field = '03_past_4wk_' . $prefix . 'drinks_' . $day;
+					$row[] = empty($entry['Entry'][$field]) ? '0' : $entry['Entry'][$field];
+				}
 			}
+
+			foreach (range(4, 7) as $step) {
+				$stage = get_stage_vars($step);
+				$prefix = '0' . $step . '_';
+
+				foreach (array_keys($stage['tabular']['rows']) as $field) {
+					$field = $prefix . $field;
+					$row[] = is_null($entry['Entry'][$field]) ? '' : str_replace(array_keys($stage['tabular']['columns']), $stage['tabular']['columns'], $entry['Entry'][$field]);
+				}
+			}
+
+
+			$row[] = str_replace(array('never', 'used_to_smoke_regularly', 'occasionally', 'regularly'), array(
+				'Never smoked cigarettes at all, or never smoked them regularly',
+				'Do not smoke now but used to smoke regularly (once or more per day)',
+				'Occasionally smoke (on average, less than one per day)',
+				'Currently smoke cigarettes regularly (more than one per day)',
+			), $entry['Entry']['08_tobacco_use']);
+
+
+			$row[] = $entry['Entry']['08_tobacco_frequency'];
+			$row[] = str_replace(array('0', '5', '30', '60', '61'), array('I do not smoke on a daily basis',  'Within 5 minutes', '5-30 minutes', '31-60 minutes', 'More than 60 minutes'), $entry['Entry']['08_tobacco_init']);
 			$row[] = $entry['Entry']['audit_score'];
 			$row[] = $entry['Entry']['rating_important_reduce_drinking'];
 			$row[] = $entry['Entry']['rating_confident_reduce_drinking'];

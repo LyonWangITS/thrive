@@ -1,5 +1,17 @@
 <?php
 
+function get_weekdays() {
+	return array(
+		'sun' => 'Sunday',
+		'mon' => 'Monday',
+		'tue' => 'Tuesday',
+		'wed' => 'Wednesday',
+		'thu' => 'Thursday',
+		'fri' => 'Friday',
+		'sat' => 'Saturday',
+	);
+}
+
 function get_stages() {
 	return array(
 		array('name' => 'hi', 'title' => ''),

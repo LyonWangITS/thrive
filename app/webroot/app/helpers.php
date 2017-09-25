@@ -126,15 +126,3 @@ function do_redirect( $url ){
 	exit();
 	
 }
-
-function get_weekdays() {
-	return array(
-		'sun' => 'Sunday',
-		'mon' => 'Monday',
-		'tue' => 'Tuesday',
-		'wed' => 'Wednesday',
-		'thu' => 'Thursday',
-		'fri' => 'Friday',
-		'sat' => 'Saturday',
-	);
-}
