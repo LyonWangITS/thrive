@@ -7,11 +7,11 @@
 
 <section id="container">
 
-	<div class="survey wrap">
+	<div class="survey wrap<?php echo empty($page_vars['classes']) ? '' : ' ' . $page_vars['classes']; ?>">
 
 		<?php include_once 'stage_header.php'; ?>
 
-		<div class="content">
+		<div class="content<?php echo empty($page_vars['last_step']) ? '' : ' last'; ?>">
 
 			<?php include_once 'progress_bar.php'; ?>
 			<?php include_once 'intro.php'; ?>
@@ -38,7 +38,9 @@
 							<?php include_once $path; ?>
 						<?php endif; ?>
 
-						<?php include_once 'submit.php'; ?>
+						<?php if (empty($page_vars['last_step'])): ?>
+							<?php include_once 'submit.php'; ?>
+						<?php endif; ?>
 
 					</fieldset>
 

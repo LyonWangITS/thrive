@@ -43,7 +43,7 @@ $(document).ready(function(){
 	
 	initStepThree();
 	
-	initStepSix();
+	initStepNine();
 	
 	modalBox();
 	
@@ -401,6 +401,42 @@ function stage_form_complete( form_stage ){
 		$.each(fields, function(i, field) {
 			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
 		});
+	} else if ( form_stage == 6 ) {
+
+		var fields = [
+			'count_drinks',
+			'set_number_drinks',
+			'eat_before',
+			'space_drinks_out',
+			'alternate_drinks',
+			'drink_for_quality',
+			'avoid_drinking_games',
+			'have_a_reliable_driver',
+			'preplan_transportation',
+			'dst_protection',
+			'watch_out_for_each_other',
+		];
+
+		$.each(fields, function(i, field) {
+			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
+		});
+	} else if ( form_stage == 7 ) {
+
+		var fields = [
+			'cut_down_drinking',
+			'stop_drinking',
+		];
+
+		$.each(fields, function(i, field) {
+			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
+		});
+	} else if ( form_stage == 8 ) {
+
+		var fields = ['tobacco_use', 'tobacco_frequency', 'tobacco_init'];
+
+		$.each(fields, function(i, field) {
+			form_fields_checked[field] = { skip : false, type : 'select', valid : false };
+		});
 	}
 	
 	
@@ -752,9 +788,9 @@ var start_audit_score,
 	start_audit_bac,
 	start_audit_spend = false;
 
-function initStepSix() {
+function initStepNine() {
 	
-	if (!$('.progress').hasClass('step-six')) {
+	if (!$('.progress').hasClass('step-nine')) {
 
 		return;
 	}

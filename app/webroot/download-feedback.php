@@ -139,11 +139,12 @@ function add_audit_score_graph( FPDF $pdf, Survey $survey ) {
 }
 
 function add_comparisons( FPDF $pdf, Survey $survey ) {
+	$avg = $survey->calculateAverageConsumption();
 
 	// Check if section required
 	$consumption = $survey->calculateConsumption();
-	$show_per_occasion = $consumption['typical_day'] > 4;
-	$show_per_week = $consumption['per_week'] > 6;
+	$show_per_occasion = $consumption['typical_day'] > $avg['occasion'];
+	$show_per_week = $consumption['per_week'] > $avg['week'];
 	if ( !$show_per_occasion && !$show_per_week ) {
 
 		return;
@@ -180,7 +181,7 @@ function add_comparisons( FPDF $pdf, Survey $survey ) {
 
 		// Bars
 		draw_graph_bar( $pdf, $bar_y, '<font color="#b2b2b2">YOU HAVE</font> <font color="#f27678">' . $consumption['typical_day'] . ' STANDARD DRINKS</font> <font color="#b2b2b2">ON A TYPICAL OCCASION</font>', $consumption['typical_day'], 100, 'red' );
-		draw_graph_bar( $pdf, $bar_y + 10, '<font color="#b2b2b2">AVERAGE HAS 4.0 STANDARD DRINKS ON A TYPICAL OCCASION</font>', 4.0, ( 4 / $consumption['typical_day'] * 100 ), 'gray' );
+		draw_graph_bar( $pdf, $bar_y + 10, '<font color="#b2b2b2">AVERAGE HAS ' . $avg['occasion'] . ' STANDARD DRINKS ON A TYPICAL OCCASION</font>', $avg['occasion'], ( $avg['occasion'] / $consumption['typical_day'] * 100 ), 'gray' );
 		$pdf->SetY( $pdf->GetY() + 10 );
 	}
 
@@ -210,7 +211,7 @@ function add_comparisons( FPDF $pdf, Survey $survey ) {
 
 		// Bars
 		draw_graph_bar( $pdf, $bar_y, '<font color="#b2b2b2">YOU HAVE</font> <font color="#f27678">' . $consumption['per_week'] . ' STANDARD DRINKS</font> <font color="#b2b2b2">PER WEEK</font>', $consumption['per_week'], 100, 'red' );
-		draw_graph_bar( $pdf, $bar_y + 10, '<font color="#b2b2b2">AVERAGE HAS 6.0 STANDARD DRINKS PER WEEK</font>', 6.0, ( 6 / $consumption['per_week'] * 100 ), 'gray' );
+		draw_graph_bar( $pdf, $bar_y + 10, '<font color="#b2b2b2">AVERAGE ' . $avg['week'] . ' STANDARD DRINKS PER WEEK</font>', $avg['week'], ( $avg['week'] / $consumption['per_week'] * 100 ), 'gray' );
 		$pdf->SetY( $pdf->GetY() + 10 );
 	}
 

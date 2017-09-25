@@ -1642,7 +1642,7 @@ input#height-cm {
 /* STEP FOUR */
 
 .survey .field.tabular-intro p {
-	margin: 0 0 40px;
+	margin: 0 0 45px;
 	width: 65%;
 }
 
@@ -1700,6 +1700,14 @@ input#height-cm {
     width: 72px;
     margin: 0;
 }
+.tabular-intro.cols-7 .labels span {
+    width: 68px;
+    margin: 0;
+}
+.tabular-intro.cols-8 .labels span {
+    width: 63px;
+    margin: 0;
+}
 
 .tabular label span {
 	display: none;
@@ -1717,6 +1725,15 @@ input#height-cm {
 
 .tabular.cols-6 .input-wrap label {
 	margin: 0 0 0 25px;
+}
+.tabular.cols-7 .input-wrap label {
+	margin: 0 0 0 20px;
+}
+.tabular.cols-8 .input-wrap label {
+	margin: 0 0 0 15px;
+}
+.field.tabular.cols-8 p {
+	max-width: 32%;
 }
 
 

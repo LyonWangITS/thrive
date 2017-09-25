@@ -225,7 +225,7 @@ function doProcess( $the_survey, $existing_token ){
 			}
 
 
-		} else if ( $survey_stage == 4 || $survey_stage == 5 ) {
+		} else if ( in_array($survey_stage, range(4, 7)) ) {
 
 			$values = array();
 			$form_errors = array();
@@ -243,6 +243,19 @@ function doProcess( $the_survey, $existing_token ){
 
 			}
 
+		}
+
+		else if ( $survey_stage == 8 ) {
+			$form_errors = array();
+			if ( formIsValid( $form_errors ) ) {
+				$the_survey->save(array(
+					'08_tobacco_use' => ifne( $_POST, 'tobacco_use', null ),
+					'08_tobacco_frequency' => ifne( $_POST, 'tobacco_frequency', null ),
+					'08_tobacco_init' => ifne( $_POST, 'tobacco_init', null ),
+				));
+
+				do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
+			}
 		}
 
 

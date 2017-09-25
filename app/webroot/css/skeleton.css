@@ -889,14 +889,14 @@
 		}
 
 		.field.tabular p {
-			max-width: none;
+			max-width: none !important;
 			width: 100%;
 		}
 		
 		.tabular label {
 			display: block;
 		}
-	
+
 		.tabular label span {
 			display: inline-block;
 		}
@@ -908,11 +908,18 @@
 		.tabular .input-wrap label {
 			margin: 0 10px 0 0;
 		}
+
+		.tabular.cols-6 .input-wrap label,
+		.tabular.cols-7 .input-wrap label,
+		.tabular.cols-8 .input-wrap label {
+			margin: 0;
+			width: 100%;
+		}
 		
 		.tabular-intro .image {
 			display: none;
 		}
-		
+
 		.survey .field.tabular-intro {
 			padding: 40px 18px 40px;
 		}

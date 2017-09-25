@@ -1,5 +1,5 @@
 
-<form class="callback" method="post" action="callback.php?t=<?= urlencode( ifne( $page_meta, 'token' ) ) ?>">
+<form class="callback" method="post" action="callback.php?t=<?php echo urlencode( ifne( $page_meta, 'token' ) ) ?>">
 	
 	<input type="hidden" name="submit" value="callback" />
 

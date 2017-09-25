@@ -226,10 +226,13 @@
 						}
 					}
 
+					$stage_3_passed = true;
+					$stage_4_passed = true;
+					$stage_5_passed = true;
 
 					// 3 : In the last four weeks
 					// only the first key is required,
-					if ( ifne( $this->data, '03_past_4wk_consumed_alcohol' ) == 'yes' ) {
+					if ( ifne( $this->data, '03_past_4wk_consumed_alcohol' ) == 1 ) {
 
 						$stage_3_keys = array(
 							'03_past_4wk_consumed_alcohol',
@@ -250,8 +253,24 @@
 						);
 
 						foreach ($weekdays as $day) {
-							$stage_3_keys[] = 'past_4wk_drinks_' . $day;
-							$stage_3_keys[] = 'past_4wk_std_drinks_' . $day;
+							$stage_3_keys[] = '03_past_4wk_drinks_' . $day;
+							$stage_3_keys[] = '03_past_4wk_std_drinks_' . $day;
+						}
+
+						$page_vars = get_stage_vars(4);
+						foreach (array_keys($page_vars['tabular']['rows']) as $field) {
+							if ( ifne( $this->data, '04_' . $field, null ) === null ) {
+								$stage_4_passed = false;
+								break;
+							}
+						}
+
+						$page_vars = get_stage_vars(5);
+						foreach (array_keys($page_vars['tabular']['rows']) as $field) {
+							if ( ifne( $this->data, '05_' . $field, null ) === null ) {
+								$stage_5_passed = false;
+								break;
+							}
 						}
 
 					} else {
@@ -261,28 +280,41 @@
 						);
 
 					}
-					$stage_3_passed = true;
 					foreach( $stage_3_keys as $key ){
-						if ( ifne( $this->data, $key, null ) === null ){
+						if ( ifne( $this->data, $key, null ) === null ) {
 							$stage_3_passed = false;
 							break;
 						}
 					}
 
-					$page_vars = get_stage_vars(4);
-					$stage_4_passed = true;
+					$stage_6_passed = true;
+					$page_vars = get_stage_vars(6);
 					foreach (array_keys($page_vars['tabular']['rows']) as $field) {
-						if ( ifne( $this->data, '04_' . $field, null ) === null ) {
-							$stage_4_passed = false;
+						if ( ifne( $this->data, '06_' . $field, null ) === null ) {
+							$stage_6_passed = false;
 							break;
 						}
 					}
 
-					$page_vars = get_stage_vars(5);
-					$stage_5_passed = true;
+					$stage_7_passed = true;
+					$page_vars = get_stage_vars(7);
 					foreach (array_keys($page_vars['tabular']['rows']) as $field) {
-						if ( ifne( $this->data, '05_' . $field, null ) === null ) {
-							$stage_5_passed = false;
+						if ( ifne( $this->data, '07_' . $field, null ) === null ) {
+							$stage_7_passed = false;
+							break;
+						}
+					}
+
+					$stage_8_keys = array(
+						'08_tobacco_use',
+						'08_tobacco_frequency',
+						'08_tobacco_init',
+					);
+
+					$stage_8_passed = true;
+					foreach( $stage_8_keys as $key ){
+						if ( ifne( $this->data, $key, null ) === null ) {
+							$stage_8_passed = false;
 							break;
 						}
 					}
@@ -294,10 +326,9 @@
 					$stage_3_passed = false;
 					$stage_4_passed = false;
 					$stage_5_passed = false;
+					$stage_6_passed = false;
 
 				}
-
-
 
 				//Calculate
 				if ( $stage_1_passed ) {
@@ -305,15 +336,25 @@
 						if ( $stage_3_passed ) {
 							if ( $stage_4_passed ) {
 								if ( $stage_5_passed ) {
-									$last_stage = 5;
-								}
-								else {
+									if ( $stage_6_passed ) {
+										if ( $stage_7_passed ) {
+											if ( $stage_8_passed ) {
+												$last_stage = 8;
+											} else {
+												$last_stage = 7;
+											}
+										} else {
+											$last_stage = 6;
+										}
+									} else {
+										$last_stage = 5;
+									}
+								} else {
 									$last_stage = 4;
 								}
 							} else {
 								$last_stage = 3;
 							}
-
 						} else {
 							$last_stage = 2;
 						}
@@ -539,8 +580,7 @@
 			(3) = .02 * 1 = .02
 			*/
 
-
-			return $bac;
+			return $bac < 0.01 ? 0.01 : $bac;
 		}
 
 
@@ -593,6 +633,37 @@
 			);
 
 
+		}
+
+
+		public function calculateAverageConsumption() {
+			$avg = array(
+				'per_occasion' => 4,
+				'per_week' => 6,
+			);
+
+			if ($this->data['01_gender'] == 'male') {
+				if ($this->data['01_age'] > 20) {
+					$avg['occasion'] = 4.22;
+					$avg['week'] = 8.16;
+				}
+				else {
+					$avg['occasion'] = 3.84;
+					$avg['week'] = 5.91;
+				}
+			}
+			elseif ($the_survey->data['01_gender'] == 'female') {
+				if ($the_survey->data['01_age'] > 20) {
+					$avg['occasion'] = 2.93;
+					$avg['week'] = 4.42;
+				}
+				else {
+					$avg['occasion'] = 2.95;
+					$avg['week'] = 3.62;
+				}
+			}
+
+			return $avg;
 		}
 
 
