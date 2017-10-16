@@ -14,16 +14,16 @@ function get_weekdays() {
 
 function get_stages() {
 	return array(
-		array('name' => 'hi', 'title' => ''),
-		array('name' => 's-one', 'number_in_letters' => 'one', 'title' => 'All about you'),
-		array('name' => 's-two', 'number_in_letters' => 'two', 'icon_class' => 's2', 'title' => 'Past and Present Drinking'),
-		array('name' => 's-three', 'number_in_letters' => 'three', 'icon_class' => 's3', 'title' => 'In the last four weeks'),
-		array('name' => 's-four', 'number_in_letters' => 'four', 'icon_class' => 's4', 'title' => 'Effects of Drinking (1/2)'),
-		array('name' => 's-five', 'number_in_letters' => 'five', 'icon_class' => 's4', 'title' => 'Effects of Drinking (2/2)'),
-		array('name' => 's-six', 'number_in_letters' => 'six', 'icon-class' => 's6', 'title' => 'Precautions on Drinking'),
-		array('name' => 's-seven', 'number_in_letters' => 'seven', 'icon-class' => 's7', 'title' => 'What would you like to do?'),
-		array('name' => 's-eight', 'number_in_letters' => 'eight', 'icon-class' => 's8', 'title' => 'Current Smoking'),
-		array('name' => 's-nine', 'number_in_letters' => 'nine', 'icon-class' => 's9', 'title' => 'Results'),
+		array('group' => 'zero', 'step' => 'zero', 'title' => ''),
+		array('group' => 'one', 'step' => 'one', 'title' => 'All about you'),
+		array('group' => 'two', 'step' => 'two', 'title' => 'Past and Present Drinking'),
+		array('group' => 'three', 'step' => 'three', 'title' => 'In the last four weeks'),
+		array('group' => 'three', 'step' => 'four', 'title' => 'Effects of Drinking (1/2)'),
+		array('group' => 'three', 'step' => 'five', 'title' => 'Effects of Drinking (2/2)'),
+		array('group' => 'three', 'step' => 'six', 'title' => 'Precautions on Drinking'),
+		array('group' => 'four', 'step' => 'seven', 'title' => 'What would you like to do?'),
+		array('group' => 'four', 'step' => 'eight', 'title' => 'Current Smoking'),
+		array('group' => 'five', 'step' => 'nine', 'title' => 'Results'),
 	);
 }
 
