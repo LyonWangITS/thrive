@@ -84,7 +84,6 @@
 				<ul>
 					<li class="<?php if ( strpos( $this->here, '/reports/view/demographics' ) !== false ) {echo 'active';} ?>"><a href="/reports/view/demographics"><i class="icn demographics"></i> Demographics</a></li>
 					<li class="<?php if ( strpos( $this->here, '/reports/view/consumption' ) !== false ) {echo 'active';} ?>"><a href="/reports/view/consumption"><i class="icn consumption"></i> Alcohol consumption</a></li>
-					<li class="<?php if ( strpos( $this->here, '/reports/view/related_harm' ) !== false ) {echo 'active';} ?>"><a href="/reports/view/related_harm"><i class="icn harm"></i> Alcohol-related harm</a></li>
 					<li class="<?php if ( strpos( $this->here, '/reports/view/feedback' ) !== false ) {echo 'active';} ?>"><a href="/reports/view/feedback"><i class="icn feedback"></i> Participant feedback</a></li>
 					<li class="<?php if ( strpos( $this->here, '/reports/export' ) !== false ) {echo 'active';} ?>"><a href="/reports/export"><i class="icn export"></i> Export data</a></li>
 				</ul>

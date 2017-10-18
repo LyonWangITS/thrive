@@ -848,7 +848,12 @@ function initFeedbackSlider(id) {
 			saveFeedbackScore(this.wrapper.id, value);
 		}
 	});
-	slider.setStep(parseInt($('input[name="' + field + '"]' ).val()) + 1);
+
+	var $field = $('input[name="' + field + '"]' );
+	if ($field.length > 0) {
+		slider.setStep(parseInt($field.val()) + 1);
+	}
+
 	$('#' + id).siblings('ul.score').find('li').bind('click', function() {
 
 		var value = parseInt($(this).text());
