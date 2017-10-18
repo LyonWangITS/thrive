@@ -9,7 +9,7 @@
 	require_once 'app/Survey.class.php';
 
 	if ( empty( $_POST ) ){
-		do_redirect( 'survey.php');
+		do_survey_redirect('', $version);
 		exit;
 	}
 
@@ -31,11 +31,11 @@
 				$existing_token = $param_token;
 				$the_survey->loadFrom( 'token', $existing_token );
 			} else {
-				do_redirect( 'survey.php' );
+				do_survey_redirect('', $version);
 				//exit
 			}
 		} else {
-			do_redirect( 'survey.php' );
+			do_survey_redirect('', $version);
 		}
 		
 		$status = 'nok';
@@ -94,7 +94,7 @@
 		
 		
 	} else {
-		do_redirect( 'survey.php' );
+		do_survey_redirect('', $version);
 		exit;
 	}
 

@@ -117,7 +117,24 @@ function formIsValid( $form_errors ){
 	
 }
 
+function do_survey_redirect( $token = '', $version = '' ) {
+	$url = 'survey.php';
+	$args = array();
 
+	if ($token) {
+		$args['t'] = $token;
+	}
+
+	if ($version) {
+		$args['v'] = $version;
+	}
+
+	if (!empty($args)) {
+		$url .= '?' . http_build_query($args);
+	}
+
+	do_redirect($url);
+}
 
 
 function do_redirect( $url ){
