@@ -5,16 +5,16 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 /*---------------------------------------------- GLOBAL SETTINGS */
 
-@font-face {font-family: 'ProximaNova-Light';src: url('/webfonts/28C725_11_0.eot');src: url('/webfonts/28C725_11_0.eot?#iefix') format('embedded-opentype'),url('/webfonts/28C725_11_0.woff') format('woff'),url('/webfonts/28C725_11_0.ttf') format('truetype');}
+@font-face {font-family: 'ProximaNova-Light';src: url('../webfonts/28C725_11_0.eot');src: url('../webfonts/28C725_11_0.eot?#iefix') format('embedded-opentype'),url('../webfonts/28C725_11_0.woff') format('woff'),url('../webfonts/28C725_11_0.ttf') format('truetype');}
  
   
-@font-face {font-family: 'ProximaNova-Semibold';src: url('/webfonts/28C725_12_0.eot');src: url('/webfonts/28C725_12_0.eot?#iefix') format('embedded-opentype'),url('/webfonts/28C725_12_0.woff') format('woff'),url('/webfonts/28C725_12_0.ttf') format('truetype');}
+@font-face {font-family: 'ProximaNova-Semibold';src: url('../webfonts/28C725_12_0.eot');src: url('../webfonts/28C725_12_0.eot?#iefix') format('embedded-opentype'),url('../webfonts/28C725_12_0.woff') format('woff'),url('../webfonts/28C725_12_0.ttf') format('truetype');}
  
   
-@font-face {font-family: 'ProximaNova-Regular';src: url('/webfonts/28C725_13_0.eot');src: url('/webfonts/28C725_13_0.eot?#iefix') format('embedded-opentype'),url('/webfonts/28C725_13_0.woff') format('woff'),url('/webfonts/28C725_13_0.ttf') format('truetype');}
+@font-face {font-family: 'ProximaNova-Regular';src: url('../webfonts/28C725_13_0.eot');src: url('../webfonts/28C725_13_0.eot?#iefix') format('embedded-opentype'),url('../webfonts/28C725_13_0.woff') format('woff'),url('../webfonts/28C725_13_0.ttf') format('truetype');}
  
   
-@font-face {font-family: 'ProximaNova-Bold';src: url('/webfonts/28C725_14_0.eot');src: url('/webfonts/28C725_14_0.eot?#iefix') format('embedded-opentype'),url('/webfonts/28C725_14_0.woff') format('woff'),url('/webfonts/28C725_14_0.ttf') format('truetype');}
+@font-face {font-family: 'ProximaNova-Bold';src: url('../webfonts/28C725_14_0.eot');src: url('../webfonts/28C725_14_0.eot?#iefix') format('embedded-opentype'),url('../webfonts/28C725_14_0.woff') format('woff'),url('../webfonts/28C725_14_0.ttf') format('truetype');}
  
 
 html, body{ height: 100%; }
@@ -175,7 +175,7 @@ input[type="checkbox"] + label:before {
     top:0.25em;  /* we're moving it slightly down for alignment purposes */
     left:-2px; /* we're moving it slightly to the left */
     width:20px; height:20px; /* the width and height of the fake elements */
-    background-image:url(/images/admin-sprites.png); /* the background image sprite */
+    background-image:url('../images/admin-sprites.png'); /* the background image sprite */
     margin-right: 5px;
 }
 
@@ -1558,7 +1558,7 @@ a.ui-state-highlight.ui-state-hover {
 
 .icn {
 	display: inline-block;	
-	background-image: url('/images/admin-sprites.png');
+	background-image: url('../images/admin-sprites.png');
 	background-repeat: no-repeat;
 	vertical-align: text-top;
 	text-indent: -99999em;
@@ -1569,7 +1569,7 @@ a.ui-state-highlight.ui-state-hover {
 only screen and (min-device-pixel-ratio: 2) {
     .icn {
 		/* Reference the @2x Sprite */
-		background-image: url('/images/admin-sprites2x.png');
+		background-image: url('../images/admin-sprites2x.png');
 		/* Translate the @2x sprite's dimensions back to 1x */
 		background-size: 960px 960px; 
     }

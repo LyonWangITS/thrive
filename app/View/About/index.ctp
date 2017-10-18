@@ -6,11 +6,11 @@ $this->set( 'title_for_layout', 'About THRIVE Alcohol Survey' );
 
 	<header class="clearfix">
 	
-		<a class="logo" href="/" title="Thrive. Your health online.">
+		<a class="logo" href="<?php echo $this->webroot; ?>" title="Thrive. Your health online.">
 			<img src="images/admin-logo.png" alt="Thrive. Your Health Online" />
 		</a>
 		
-		<a class="btn d-purple bold" href="/admin/login/">Login</a>
+		<a class="btn d-purple bold" href="<?php echo $this->webroot; ?>admin/login/">Login</a>
 		
 	</header>
 	
@@ -20,7 +20,7 @@ $this->set( 'title_for_layout', 'About THRIVE Alcohol Survey' );
 
 			<h1>About</h1>
 			
-			<p>If you are a researcher, health service provider or manager/executive and would like to offer THRIVE for your students and/or staff for free, please see the <a href="/admin/register">registration page</a>.</p>
+			<p>If you are a researcher, health service provider or manager/executive and would like to offer THRIVE for your students and/or staff for free, please see the <a href="<?php echo $this->webroot; ?>admin/register">registration page</a>.</p>
 		
 		</div>
 		
@@ -30,7 +30,7 @@ $this->set( 'title_for_layout', 'About THRIVE Alcohol Survey' );
 			
 			<div class="text">
 			
-				<a class="btn green-btn lg" href="/admin/register">Start registration</a>
+				<a class="btn green-btn lg" href="<?php echo $this->webroot; ?>admin/register">Start registration</a>
 				
 			</div>
 			

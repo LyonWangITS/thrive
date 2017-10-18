@@ -18,8 +18,8 @@ $this->Html->meta( 'keywords', '', array( 'inline' => false ) );
 
 
 <p class="breadcrumb display-right">
-	<a href="/admin">Dashboard</a> /
-	<a href="/reports">Reports</a> /
+	<a href="<?php echo $this->webroot; ?>admin">Dashboard</a> /
+	<a href="<?php echo $this->webroot; ?>reports">Reports</a> /
 	<?php
 	if ( empty( $report_name ) ) {
 
@@ -121,16 +121,16 @@ $this->Html->meta( 'keywords', '', array( 'inline' => false ) );
 		?>
 
 		<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="/js/jqplot/excanvas.js"></script><![endif]-->
-		<script language="javascript" type="text/javascript" src="/js/jqplot/jquery.jqplot.js"></script>
+		<script language="javascript" type="text/javascript" src="<?php echo $this->webroot; ?>js/jqplot/jquery.jqplot.js"></script>
 
 		<!-- Additional plugins go here -->
-	    <script class="include" language="javascript" type="text/javascript" src="/js/jqplot/plugins/jqplot.barRenderer.min.js"></script>
-	    <script class="include" language="javascript" type="text/javascript" src="/js/jqplot/plugins/jqplot.canvasAxisLabelRenderer.min.js"></script>
-	    <script class="include" language="javascript" type="text/javascript" src="/js/jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
-	    <script class="include" language="javascript" type="text/javascript" src="/js/jqplot/plugins/jqplot.canvasTextRenderer.min.js"></script>
-	    <script class="include" language="javascript" type="text/javascript" src="/js/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
-	    <script class="include" language="javascript" type="text/javascript" src="/js/jqplot/plugins/jqplot.enhancedLegendRenderer.min.js"></script>
-	    <script class="include" language="javascript" type="text/javascript" src="/js/jqplot/plugins/jqplot.pointLabels.min.js"></script>
+	    <script class="include" language="javascript" type="text/javascript" src="<?php echo $this->webroot; ?>js/jqplot/plugins/jqplot.barRenderer.min.js"></script>
+	    <script class="include" language="javascript" type="text/javascript" src="<?php echo $this->webroot; ?>js/jqplot/plugins/jqplot.canvasAxisLabelRenderer.min.js"></script>
+	    <script class="include" language="javascript" type="text/javascript" src="<?php echo $this->webroot; ?>js/jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
+	    <script class="include" language="javascript" type="text/javascript" src="<?php echo $this->webroot; ?>js/jqplot/plugins/jqplot.canvasTextRenderer.min.js"></script>
+	    <script class="include" language="javascript" type="text/javascript" src="<?php echo $this->webroot; ?>js/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+	    <script class="include" language="javascript" type="text/javascript" src="<?php echo $this->webroot; ?>js/jqplot/plugins/jqplot.enhancedLegendRenderer.min.js"></script>
+	    <script class="include" language="javascript" type="text/javascript" src="<?php echo $this->webroot; ?>js/jqplot/plugins/jqplot.pointLabels.min.js"></script>
 		<!-- End additional plugins -->
 
 	<h1 id="graph_title">Loading...</h1>

@@ -137,7 +137,7 @@ if ( empty( $partner ) ) {
 else if ( empty( $current_user['Account']['is_admin'] ) ) {
 
 	echo '<h3>Change password</h3>';
-	echo '<p>You can <a href="/admin/change_password">change your password here</a>.</p>';
+	echo '<p>You can <a href="' . $this->webroot . 'admin/change_password">change your password here</a>.</p>';
 }
 
 echo '</div>';
@@ -186,7 +186,7 @@ echo '<a id="add-service" href="#"><i class="icn plus"></i> Add service</a>';
 // For new partners and not admin
 if ( empty( $partner ) && empty( $current_user['Account']['is_admin'] ) ) {
 	echo '<div class="terms">';
-	echo $this->Form->input( 'Account.read_terms', array( 'type' => 'checkbox', 'label' => 'I agree to the THRIVE <a href="/about/terms" target="_blank">Terms of Use</a>. <span class="required">*</span>' ) ); 
+	echo $this->Form->input( 'Account.read_terms', array( 'type' => 'checkbox', 'label' => 'I agree to the THRIVE <a href="' . $this->webroot . 'about/terms" target="_blank">Terms of Use</a>. <span class="required">*</span>' ) );
 	echo '</div>';
 }
 echo '</div>';

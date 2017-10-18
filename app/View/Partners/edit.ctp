@@ -9,8 +9,8 @@ if ( empty( $partner ) ) {
 	?>
 	
 	<p class="breadcrumb">
-		<a href="/portal">Dashboard</a> /
-		<a href="/partners/view">Partners</a> /
+		<a href="<?php echo $this->webroot; ?>portal">Dashboard</a> /
+		<a href="<?php echo $this->webroot; ?>partners/view">Partners</a> /
 		<strong>Add partner</strong>
 	</p>
 	<div id="content" class="reg-form">
@@ -22,8 +22,8 @@ else {
 	$this->set( 'title_for_layout', htmlentities( "Edit partner '{$partner['Partner']['name']}'" ) );
 	?>
 	<p class="breadcrumb">
-		<a href="/portal">Dashboard</a> /
-		<a href="/partners/view">Partners</a> /
+		<a href="<?php echo $this->webroot; ?>portal">Dashboard</a> /
+		<a href="<?php echo $this->webroot; ?>partners/view">Partners</a> /
 		<strong><?php p( $partner['Partner']['name'] ); ?></strong>
 	</p>
 	<div id="content" class="reg-form">
@@ -43,7 +43,7 @@ if ( isset( $this->request->query['return'] ) ) {
 }
 else {
 	?>
-	<a class="btn d-purple sm" href="/partners/view">Back</a>
+	<a class="btn d-purple sm" href="<?php echo $this->webroot; ?>partners/view">Back</a>
 <?php
 }
 ?>

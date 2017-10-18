@@ -21,7 +21,7 @@ define('POLYTECHNIC_WEST_SLUG', 'polytechnicwest' );
 
 /* Prefixed to the path of any assets (CSS, JS, images) embedded in pages. Only need to change it
 	from / if the application isn't being installed in the www root. */
-define('BASE_URL', '/');
+define('BASE_URL', '/web_app/');
 
 /* Misc */
 define( 'SURVEY_TOKEN_LENGTH', 32 );

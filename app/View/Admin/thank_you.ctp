@@ -5,7 +5,7 @@ $this->Html->meta( 'keywords', 'Alcohol Survey, University, Tertiary, Polytechni
 ?>
 
 <p class="breadcrumb">
-	<a href="/admin/login">Login</a> /
+	<a href="<?php echo $this->webroot; ?>admin/login">Login</a> /
 	<strong>Register</strong>
 </p>
 
