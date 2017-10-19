@@ -235,6 +235,10 @@ function add_bac_estimate( FPDF $pdf, Survey $survey ) {
 	}
 	$bac = $survey->calculateBAC();
 
+	if ( $bac <= 0 ) {
+		return;
+	}
+
 	// Ensure required height is available
 	$block_height = 134;
 	ensure_fixed_height_available( $pdf, $block_height );
