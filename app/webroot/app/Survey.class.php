@@ -580,7 +580,11 @@
 			(3) = .02 * 1 = .02
 			*/
 
-			return $bac < 0.01 ? 0.01 : $bac;
+			if ($bac < 0) {
+				return 0;
+			}
+
+			return $bac;
 		}
 
 

@@ -6,7 +6,7 @@
 	$the_survey
 	$existing_token
 */
-function doProcess( $the_survey, $existing_token ){
+function doProcess( $the_survey, $existing_token, $version ){
 
 	$form_errors = array();
 
@@ -29,7 +29,7 @@ function doProcess( $the_survey, $existing_token ){
 				$is_test = ( !empty( $_POST['is_test'] ) );
 				$new_token = Survey::create( $partner->data['id'], $_POST[ 'participant_name' ], $is_test );
 
-				do_redirect( 'survey.php?t=' . urlencode( $new_token ) );
+				do_survey_redirect($new_token, $version);
 				//exit
 			}
 
@@ -89,7 +89,7 @@ function doProcess( $the_survey, $existing_token ){
 
 				$the_survey->save( $data );
 
-				do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
+				do_survey_redirect($existing_token, $version);
 				//exit
 			} else {
 				//echo print_r($form_errors);
@@ -125,7 +125,7 @@ function doProcess( $the_survey, $existing_token ){
 					'02_others_concerned_about_my_drinking' => $_POST[ 'others_concerned_about_my_drinking' ]
 				));
 
-				do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
+				do_survey_redirect($existing_token, $version);
 				//exit
 			} else {
 				//echo print_r($form_errors);
@@ -196,7 +196,7 @@ function doProcess( $the_survey, $existing_token ){
 
 
 						$the_survey->save($values);
-						do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
+						do_survey_redirect($existing_token, $version);
 						//exit
 
 					} else {
@@ -213,7 +213,7 @@ function doProcess( $the_survey, $existing_token ){
 						'03_past_4wk_consumed_alcohol' => ( $_POST[ 'past_4wk_consumed_alcohol' ] == 'yes' ? 1 : 0 )
 					));
 
-					do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
+					do_survey_redirect($existing_token, $version);
 					//exit
 
 				}
@@ -239,8 +239,7 @@ function doProcess( $the_survey, $existing_token ){
 				$values['completed'] = get_gmt();
 				$the_survey->save($values);
 
-				do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
-
+				do_survey_redirect($existing_token, $version);
 			}
 
 		}
@@ -254,7 +253,7 @@ function doProcess( $the_survey, $existing_token ){
 					'08_tobacco_init' => ifne( $_POST, 'tobacco_init', null ),
 				));
 
-				do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
+				do_survey_redirect($existing_token, $version);
 			}
 		}
 

@@ -33,6 +33,7 @@
 
 	$param_token = ifne( $_REQUEST, 't' );
 	$existing_token = '';
+	$version = empty($_GET['v']) ? '1' : $_GET['v'];
 
 	$_REQUEST = batch_decode( $_REQUEST );
 	$_POST = batch_trim( $_POST );
@@ -44,7 +45,7 @@
 			$existing_token = $param_token;
 			$the_survey->loadFrom( 'token', $existing_token );
 		} else {
-			do_redirect( 'survey.php' );
+			do_survey_redirect('', $version);
 			//exit
 		}
 	}
@@ -52,7 +53,7 @@
 	/*
 		Do we need to process some posted data?
 	*/
-	doProcess( $the_survey, $existing_token );
+	doProcess( $the_survey, $existing_token, $version);
 
 	/*
 		Figure out Resume position
@@ -98,6 +99,7 @@
 		'participant_name' => ifne( $the_survey->data, '00_participant_name' ),
 		'target_stage' => $target_stage,
 		'token' => $existing_token,
+		'version' => $version,
 	);
 
 	if ( $target_stage == 9 ) {
