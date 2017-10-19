@@ -1,4 +1,4 @@
-<?php include_once( 'commons/header.php' ) ?>
+<?php include_once('commons/header.php'); ?>
 
 <body>
 <div class="overlay"></div>
@@ -15,26 +15,16 @@
 			</a>
 		</div>
 
-		<h1>Welcome to the Alcohol Survey</h1>
-		<p>This survey will ask questions about your alcohol use and provide you personalised feedback on your drinking. It will take approximately 5 to 10 minute to complete.</p>
-
-		<?php
-		/*
-		if ( !empty( $partner->data['welcome_text'] ) ) {
-
-			echo $partner->data['welcome_text'];
-		}
-		*/
-		?>
-
-		<p>In order for us to personalise this survey for you, please enter a name in the box below.</p>
+		<h1>Welcome</h1>
+		<p>This survey will ask questions about your alcohol and tobacco use and provide you personalized feedback on your drinking. It will take approximately 10 minute to complete.</p>
+		<p>The survey is conducted by University of Florida to explore the use of alcohol by college students. Administrators at University of Florida will not be made aware of your responses. Your participation helps us to evaluate the use of Internet-based methods of health promotion and data collection.</p>
+		<p>In order for us to personalize this survey for you, please enter a name in the box below.<br>Please do not enter your last name.</p>
 
 		<form method="post" class="stage-form">
 
 			<input type="hidden" name="survey-stage" value="0" />
 
 			<p>(It doesn't have to be your real name!)</p>
-
 			<fieldset title="Please fill in these fields">
 				<legend>Please enter your name to continue</legend>
 
@@ -57,10 +47,22 @@
 
 		</form>
 
+		<div class="authors">
+			<p>The THRIVE program was developed by: Dr Kypros Kypri 1,2, Mr Jonathan Hallett 3,4,5, Professor Peter Howat 3,4,5, Associate Professor Alexandra McManus 5, Professor Bruce Maycock 3,4,5</em></p>
+			<ol>
+				<li>School of Medicine and Public Health, University of Newcastle, Australia</li>
+				<li>Injury Prevention Research Unit, University of Otago, New Zealand</li>
+				<li>Western Australian Centre for Health Promotion Research, Curtin University, Perth, Australia</li>
+				<li>Centre for Behavioural Research in Cancer Control, Curtin University, Australia</li>
+				<li>Curtin Health Innovation Research Institute, Curtin University, Perth, Australia</li>
+			</ol>
+			<p>THRIVE was based on an e-SBI program developed by Dr Kypros Kypri and colleagues at the Injury Prevention Research Unit, University of Otago, and Professor John Saunders of the University of Queensland.</p>
+		</div>
+
 	</div><!-- start -->
 
 	<div class="push"></div>
 
 </section><!-- container -->
 
-<?php  include_once( 'commons/footer.php' ) ?>
+<?php include_once('commons/footer.php'); ?>

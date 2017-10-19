@@ -126,10 +126,3 @@ function do_redirect( $url ){
 	exit();
 	
 }
-
-
-
-
-
-
-

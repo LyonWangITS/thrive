@@ -4,7 +4,7 @@
 	?>
 	<div class="text">
 
-		<p class="title">Your estimated Blood Alcohol Content (BAC) for your heaviest drinking occasion is <strong><span><?php= number_format( $bac, 2 ) ?></span>%</strong></p>
+		<p class="title">Your estimated Blood Alcohol Content (BAC) for your heaviest drinking occasion is <strong><span><?php echo number_format( $bac, 2 ) ?></span>%</strong></p>
 
 		<?php
 			// 0.0->0.02 doesn't show any memo

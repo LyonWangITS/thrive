@@ -6,7 +6,7 @@ $this->set( 'header_element', 'account' );
 ?>
 
 <p class="breadcrumb">
-	<a href="/admin/login">Login</a> /
+	<a href="<?php echo $this->webroot; ?>admin/login">Login</a> /
 	<strong>Log out</strong>
 </p>
 
@@ -17,7 +17,7 @@ $this->set( 'header_element', 'account' );
     
    <div class="content-padding admin">
 	   
-	   <a class="btn d-purple" href="/admin/login">Return to Login</a>
+	   <a class="btn d-purple" href="<?php echo $this->webroot; ?>admin/login">Return to Login</a>
 	
    </div>
 

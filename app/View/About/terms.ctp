@@ -4,7 +4,7 @@ $this->set( 'title_for_layout', "Terms of Use" );
 ?>
 
 <p class="breadcrumb">
-	<a href="/about">About</a> /
+	<a href="<?php echo $this->webroot; ?>about">About</a> /
 	<strong>THRIVE Terms of Use</strong>
 </p>
 

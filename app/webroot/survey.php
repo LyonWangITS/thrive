@@ -5,6 +5,7 @@
 
 	require_once 'app/config.php';
 	require_once 'app/helpers.php';
+	require_once 'app/stages_config.php';
 	require_once 'app/db.php';
 	require_once 'app/Partner.class.php';
 	require_once 'app/Survey.class.php';
@@ -66,7 +67,7 @@
 
 		$last_stage = $the_survey->lastCompletedStage();
 
-		if ( in_array( $last_stage, array( 0, 1, 2, 3, 4 ) ) ) {
+		if ( in_array( $last_stage, array( 0, 1, 2, 3, 4, 5, 6, 7, 8 ) ) ) {
 
 
 			if ( ( $last_stage == 1 ) && !$the_survey->drankAlcoholInLast12Mths() ){
@@ -96,10 +97,10 @@
 		'keywords' => '',
 		'participant_name' => ifne( $the_survey->data, '00_participant_name' ),
 		'target_stage' => $target_stage,
-		'token' => $existing_token
+		'token' => $existing_token,
 	);
 
-	if ( $target_stage == 5 ) {
+	if ( $target_stage == 9 ) {
 
 		$audit_score = $the_survey->calculateAuditScore();
 		$the_survey->save( array(
@@ -117,7 +118,13 @@
 		$page_vars[ 'rating_confident_reduce_drinking' ] = $the_survey->data[ 'rating_confident_reduce_drinking' ];
 		$page_vars[ 'rating_important_talk_professional' ] = $the_survey->data[ 'rating_important_talk_professional' ];
 		$page_vars[ 'rating_ready_talk_professional' ] = $the_survey->data[ 'rating_ready_talk_professional' ];
+
+		$avg = $the_survey->calculateAverageConsumption();
+		$page_vars[ 'average_per_occasion' ] = $avg['occasion'];
+		$page_vars[ 'average_per_week' ] = $avg['week'];
 	}
+
+	$page_vars += get_stage_vars($target_stage, $page_vars);
 
 	renderStage( $target_stage, $page_vars );
 

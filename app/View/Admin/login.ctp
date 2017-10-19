@@ -24,8 +24,8 @@ $this->Html->meta( 'keywords', 'Alcohol Survey, University, Tertiary, Polytechni
 		?>
 		
 		<div class="link-wrap">
-			<p class="left"><a href="/admin/forgot_password">Forgotten password?</a></p>
-			<p class="right"><a href="/admin/register">Register your institution</a></p>
+			<p class="left"><a href="<?php echo $this->webroot; ?>admin/forgot_password">Forgotten password?</a></p>
+			<p class="right"><a href="<?php echo $this->webroot; ?>admin/register">Register your institution</a></p>
 		</div>
 	
 	</div>

@@ -5,7 +5,7 @@ $this->Html->meta( 'keywords', 'Alcohol Survey, University, Tertiary, Polytechni
 ?>
 
 <p class="breadcrumb">
-	<a href="/admin/login">Login</a> /
+	<a href="<?php echo $this->webroot; ?>admin/login">Login</a> /
 	<strong>Forgot Password</strong>
 </p>
 
@@ -30,7 +30,7 @@ $this->Html->meta( 'keywords', 'Alcohol Survey, University, Tertiary, Polytechni
 		?>
 		
 		<div class="link-wrap">
-			<p><a href="/admin/login">Return to Login</a></p>
+			<p><a href="<?php echo $this->webroot; ?>admin/login">Return to Login</a></p>
 		</div>
 		
 	</div>

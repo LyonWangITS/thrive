@@ -12,7 +12,7 @@
 			<i class="icn info"></i>
 			
 			<div class="tooltip">
-				<p>0.8 of a standard drink is equivalent to one light beer (375ml)</p>
+				<p>0.8 of a standard drink is equivalent to one light beer (12 oz)</p>
 			</div>
 		
 		</div>
@@ -25,7 +25,7 @@
 			<i class="icn info"></i>
 			
 			<div class="tooltip">
-				<p>One standard drink is equivalent to one spirit shot (30ml), one nip of port/sherry (60ml) or one full strength beer (middy)</p>
+				<p>One standard drink is equivalent to one spirit shot (1 oz), one nip of port/sherry (2 oz) or one full strength beer (middy)</p>
 			</div>
 		
 		</div>
@@ -38,7 +38,7 @@
 			<i class="icn info"></i>
 		
 			<div class="tooltip">
-				<p>1.5 standard drinks is equivalent to one full strength beer (375ml)</p>
+				<p>1.5 standard drinks is equivalent to one full strength beer (12 oz)</p>
 			</div>
 		
 		</div>
@@ -51,7 +51,7 @@
 			<i class="icn info"></i>
 			
 			<div class="tooltip">
-				<p>1.5 standard drinks is equivalent to one pre-mixed drink (375ml), one glass of champagne (170ml) or one glass of wine (150ml)</p>
+				<p>1.5 standard drinks is equivalent to one pre-mixed drink (12 oz), one glass of champagne (5.7 oz) or one glass of wine (5 oz)</p>
 			</div>
 		
 		</div>
@@ -64,7 +64,7 @@
 			<i class="icn info"></i>
 			
 			<div class="tooltip">
-				<p>One bottle of wine (750ml) is equivalent to 7.5 standard drinks</p>
+				<p>One bottle of wine (25.4 oz) is equivalent to 7.5 standard drinks</p>
 			</div>
 		
 		</div>
@@ -77,7 +77,7 @@
 			<i class="icn info"></i>
 			
 			<div class="tooltip">
-				<p>One bottle of spirits (700ml) is equivalent to 22 standard drinks</p>
+				<p>One bottle of spirits (23.7 oz) is equivalent to 22 standard drinks</p>
 			</div>
 		
 		</div>

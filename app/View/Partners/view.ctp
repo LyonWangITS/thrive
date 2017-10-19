@@ -5,7 +5,7 @@ $this->Html->meta( 'keywords', '', array( 'inline' => false ) );
 ?>
 
 <p class="breadcrumb">
-	<a href="/admin">Dashboard</a> /
+	<a href="<?php echo $this->webroot; ?>admin">Dashboard</a> /
 	<strong>Partners</strong>
 </p>
 
@@ -15,7 +15,7 @@ $this->Html->meta( 'keywords', '', array( 'inline' => false ) );
 
 <div class="content-padding admin">
 	
-	<a class="add-partner btn sm d-purple" href="/partners/add"><i class="icn plus"></i> Add partner</a>
+	<a class="add-partner btn sm d-purple" href="<?php echo $this->webroot; ?>partners/add"><i class="icn plus"></i> Add partner</a>
 	
 	<?php
 	echo $this->Form->create( false, array('type' => 'get') );
@@ -47,7 +47,7 @@ $this->Html->meta( 'keywords', '', array( 'inline' => false ) );
 			?>
 			<tr class="<?php echo $zebra; ?>">
 				<td>
-					<a href="/partners/edit/<?php p( $result['Partner']['id'] ); ?><?php echo $return_url; ?>"><?php p( $result['Partner']['name'] ); ?></a>
+					<a href="<?php echo $this->webroot; ?>partners/edit/<?php p( $result['Partner']['id'] ); ?><?php echo $return_url; ?>"><?php p( $result['Partner']['name'] ); ?></a>
 					<?php
 					if ( !empty( $result['PendingChange']['id'] ) ) {
 	
@@ -56,10 +56,10 @@ $this->Html->meta( 'keywords', '', array( 'inline' => false ) );
 					?>
 	
 				</td>
-				<td><a href="/<?php p( $result['Partner']['slug'] ); ?>/survey.php"><?php p( $result['Partner']['slug'] ); ?></a></td>
+				<td><a href="<?php echo $this->webroot; p(  $result['Partner']['slug'] ); ?>/survey.php"><?php p( $result['Partner']['slug'] ); ?></a></td>
 				<td><a href="mailto:<?php p( $result['Account']['email'] ); ?>"><?php p( $result['Account']['name'] ); ?></a></td>
 				<td><?php p( $result['LuPartnerState']['name'] ); ?></td>
-				<td class="button"><a class="btn d-purple sm" href="/partners/delete/<?php p( $result['Partner']['id'] ); ?><?php echo $return_url; ?>"><i class="icn trash"></i> Delete</a></td>
+				<td class="button"><a class="btn d-purple sm" href="<?php echo $this->webroot; ?>partners/delete/<?php p( $result['Partner']['id'] ); ?><?php echo $return_url; ?>"><i class="icn trash"></i> Delete</a></td>
 			</tr>
 			<?php
 			$zebra = ( $zebra == '' ) ? 'zebra' : '';

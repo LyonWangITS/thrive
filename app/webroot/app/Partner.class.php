@@ -111,7 +111,8 @@ class Partner {
 		//
 		// Get the partner slug (the first directory in the URL)
 		$partner_slug = explode( '/', ltrim( $_SERVER['REQUEST_URI'], '/' ) );
-		$partner_slug = array_shift( $partner_slug );
+		array_pop($partner_slug);
+		$partner_slug = array_pop( $partner_slug );
 
 		//
 		// Fetch partner

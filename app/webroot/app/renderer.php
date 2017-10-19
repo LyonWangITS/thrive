@@ -6,22 +6,19 @@
 
 */
 function renderStage( $target_stage, $page_vars ){
-
 	$page_meta = $page_vars;
 
 	// White-label
 	$partner = Partner::getCurrentPartner();
 
-	if ( $target_stage === 'thanks' ){
-
-		include_once( 'stages/stage-thanks.php' );
-
-	} else {
-
-		include_once( 'stages/stage-0' . $target_stage . '.php' );
-
+	if ($target_stage === 'thanks'){
+		include_once 'stages/stage-thanks.php';
 	}
-
-
+	elseif ($target_stage === 0) {
+		include_once 'stages/stage-00.php';
+	}
+	else {
+		include_once 'stages/commons/stage.php';
+	}
 }
 

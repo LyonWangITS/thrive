@@ -15,7 +15,7 @@
 	</div>
 	
 	<div class="text">
-		<p class="title">Depending on where you buy your drinks, you have spent between <strong>$<?= $expenses_from ?> and $<?= $expenses_to ?></strong> on alcohol in the last year</p>
+		<p class="title">Depending on where you buy your drinks, you have spent between <strong>$<?php echo $expenses_from ?> and $<?php echo $expenses_to ?></strong> on alcohol in the last year</p>
 			
 	</div>
 	

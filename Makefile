@@ -12,7 +12,7 @@ VM_MAKEFILE_PATH=/vagrant
 APP_CONSTANTS_FILE := app/Config/constants.php
 
 LAST_TAG              := $(shell git tag | sort  -t. -k 1,1n -k 2,2n -k 3,3n | tail -1)
-CODE_VERSION          := $(shell grep APP_VERSION ${APP_CONSTANTS_FILE} | cut -d "'" -f 4)
+# CODE_VERSION          := $(shell grep APP_VERSION ${APP_CONSTANTS_FILE} | cut -d "'" -f 4)
 DEPLOYED_VERSION_DEV  := $(shell curl -sk ${APP_URL_DEV} | grep Version | grep -oE '[0-9.]{1,2}[0-9.]{1,2}[0-9a-z.]{1,4}')
 DEPLOYED_VERSION_PROD := $(shell curl -sk ${APP_URL_PROD} | grep Version | grep -oE '[0-9.]{1,2}[0-9.]{1,2}[0-9a-z.]{1,4}')
 

@@ -4,7 +4,7 @@ $this->Html->meta( 'description', 'Thrive - Your Health Online. Alcohol Survey',
 $this->Html->meta( 'keywords', 'Alcohol Survey, University, Tertiary, Polytechnic.', array( 'inline' => false ) );
 ?>
 <p class="breadcrumb">
-	<a href="/portal">Dashboard</a> /
+	<a href="<?php echo $this->webroot; ?>portal">Dashboard</a> /
 	<strong>My account</strong>
 </p>
 

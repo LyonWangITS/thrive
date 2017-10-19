@@ -31,14 +31,14 @@ else {
 	if ( $current_user['Partner']['lu_partner_state_id'] == LU_PARTNER_STATE_UNAPPROVED ) {
 		?>
 		<p>Your organisation has not yet been approved. Once approved, the URL for accessing your organisation's survey will be:<br />
-			<a href="/<?php p( $current_user['Partner']['slug'] ); ?>">http://<?php echo HOST; ?>/<?php p( $current_user['Partner']['slug'] ); ?></a>
+			<a href="<?php echo $this->webroot; ?><?php p( $current_user['Partner']['slug'] ); ?>">http://<?php echo HOST; ?>/<?php p( $current_user['Partner']['slug'] ); ?></a>
 		</p>
 		<?php
 	}
 	else if ( $current_user['Partner']['lu_partner_state_id'] == LU_PARTNER_STATE_APPROVED ) {
 		?>
 		<p>The URL for accessing your organisation's survey is:<br />
-			<a href="/<?php p( $current_user['Partner']['slug'] ); ?>">http://<?php echo HOST; ?>/<?php p( $current_user['Partner']['slug'] ); ?></a>
+			<a href="<?php echo $this->webroot; ?><?php p( $current_user['Partner']['slug'] ); ?>">http://<?php echo HOST; ?>/<?php p( $current_user['Partner']['slug'] ); ?></a>
 		</p>
 		<?php
 	}

@@ -13,6 +13,7 @@ function doProcess( $the_survey, $existing_token ){
 	if ( !empty( $_POST ) ){
 
 		$survey_stage = ifne( $_POST, 'survey-stage', 0 );
+		$stage_vars = get_stage_vars($survey_stage);
 
 		//Validation rules
 		// 0 : name - notempty
@@ -59,47 +60,27 @@ function doProcess( $the_survey, $existing_token ){
 			*/
 
 			$form_errors = array(
-				'gender' => validateField( $gender, 'in-set', 'Gender is unrecognized', array('female','male','transgender-ftm','transgender-mtf','genderqueer','androgynous','intersex') ),
-				'age' => validateField( ifne( $_POST, 'age' ), ( $_POST[ 'age' ] > 17 ), 'You must be over 17 to take part in this survey' ),
-				'staff_student' => validateField( ifne( $_POST, 'staff_student' ), 'in-set', 'Please select a value', array( 'staff', 'student' ) ),
 				'alcohol_last_12mths' => validateField( ifne( $_POST, 'alcohol_last_12mths' ), 'in-set', 'Please select a value', array( 'yes', 'no') ),
+				'gender' => validateField( $gender, 'in-set', 'Gender is unrecognized', array('female','male','transgender-ftm','transgender-mtf','genderqueer','androgynous','intersex') ),
+				'age' => validateField( ifne( $_POST, 'age' ), 'in-set', 'Please select a value', array( 18,19,20,21,22,23,24 ) ),
+				'race' => validateField( ifne( $_POST, 'race' ), 'in-set', 'Please select a value', array( 'native-american','asian','hawaiian','black','white','mixed-race','other','skip' ) ),
+				'ethnicity' => validateField( ifne( $_POST, 'ethnicity' ), 'in-set', 'Please select a value', array( 'hispanic-latino','not-hispanic-latino','skip' ) ),
+				'where' => validateField( ifne( $_POST, 'where' ), 'in-set', 'Please select a value', array( 'dorm','with-parents','with-roommates' ) ),
+				'parents' => validateField( ifne( $_POST, 'parents' ), 'in-set', 'Please select a value', array( 'yes','no' ) ),
+				'history' => validateField( ifne( $_POST, 'history' ), 'in-set', 'Please select a value', array( 'uf-only','transfered' ) ),
 			);
-
-			if ( $_POST['staff_student']  == 'student' ){
-
-				$form_errors[] = validateField( ifne( $_POST, 'hours_per_week' ), 'in-set', 'Please select a value', array( 'gt-10', 'lt-10' ) );
-			}
-
-			// Optional demographic questions
-			// These only apply for students
-			if ( $_POST['staff_student']  == 'student' ) {
-
-				$partner = Partner::getCurrentPartner();
-				if (!empty($partner->data['is_year_level_question_enabled'])) {
-
-					$form_errors[] = validateField(ifne($_POST, 'year_level'), 'in-set', 'Please select a value', array('1st-year', '2nd-year', '3rd-year', '4th-year', 'postgraduate', 'not-applicable'));
-				}
-				if (!empty($partner->data['is_on_campus_question_enabled'])) {
-
-					$form_errors[] = validateField(ifne($_POST, 'on_campus'), 'in-set', 'Please select a value', array('yes', 'no'));
-				}
-				if (!empty($partner->data['is_from_question_enabled'])) {
-
-					$form_errors[] = validateField(ifne($_POST, 'where_from'), 'in-set', 'Please select a value', array('perth-metro', 'regional-wa', 'other-state', 'international'));
-				}
-			}
 
 			if ( formIsValid( $form_errors ) ) {
 
 				$data = array(
 					'01_gender' => $gender,
 					'01_age' => $_POST[ 'age' ],
-					'01_staff_student' => $_POST[ 'staff_student' ],
-					'01_hours_per_week' => ( isset( $_POST[ 'hours_per_week' ] ) ) ? $_POST[ 'hours_per_week' ] : null,
-					'01_year_level' => ( isset( $_POST[ 'year_level' ] ) ) ? $_POST[ 'year_level' ] : null,
-					'01_on_campus' => ( isset( $_POST[ 'on_campus' ] ) ) ? ( $_POST[ 'on_campus' ] == 'yes' ? 1 : 0 ) : null,
-					'01_where_from' => ( isset( $_POST[ 'where_from' ] ) ) ? $_POST[ 'where_from' ] : null,
 					'01_alcohol_last_12mths' => ( $_POST[ 'alcohol_last_12mths' ] == 'yes' ? 1 : 0 ),
+					'01_race' => $_POST[ 'race' ],
+					'01_ethnicity' => $_POST[ 'ethnicity' ],
+					'01_where' => $_POST[ 'where' ],
+					'01_parents' => ( isset( $_POST[ 'parents' ] ) ) ? ( $_POST[ 'parents' ] == 'yes' ? 1 : 0 ) : null,
+					'01_history' => $_POST[ 'history' ],
 				);
 
 				if ( $data[ '01_alcohol_last_12mths' ] == 0 ){
@@ -126,7 +107,7 @@ function doProcess( $the_survey, $existing_token ){
 				'past_year_how_often_remorseful' => validateField( ifne( $_POST, 'past_year_how_often_remorseful' ), 'in-set', 'Please select a value', array( 'never','lt-1pm','1pm','1pw','1pd' ) ),
 				'past_year_how_often_unable_to_remember' => validateField( ifne( $_POST, 'past_year_how_often_unable_to_remember' ), 'in-set', 'Please select a value', array( 'never','lt-1pm','1pm','1pw','1pd' ) ),
 				'been_injured_or_injured_someone' => validateField( ifne( $_POST, 'been_injured_or_injured_someone' ), 'in-set', 'Please select a value', array( 'no','yes-nly','yes-ly' ) ),
-				'others_concerned_about_my_drinking' => validateField( ifne( $_POST, 'others_concerned_about_my_drinking' ), 'in-set', 'Please select a value', array( 'no','yes-nly','yes-ly' ) )
+				'others_concerned_about_my_drinking' => validateField( ifne( $_POST, 'others_concerned_about_my_drinking' ), 'in-set', 'Please select a value', array( 'no','yes-nly','yes-ly' ) ),
 			);
 
 			if ( formIsValid( $form_errors ) ) {
@@ -185,16 +166,36 @@ function doProcess( $the_survey, $existing_token ){
 						'body_weight_kg' => validateField( ifne( $_POST, 'body_weight-number' ), 'notempty', 'Please enter your weight' )
 					);
 
-					if ( formIsValid( $form_errors ) ) {
+					$weekdays = get_weekdays();
+					$weekdays = array_keys($weekdays);
 
-						$the_survey->save(array(
+					foreach ($weekdays as $day) {
+						$form_errors['past_4wk_drinks_' . $day] = validateField(ifne($_POST, 'past_4wk_drinks_' . $day), 'in-set', 'Please select a value', array_keys($stage_vars['tabular']['columns']));
+						$form_errors['past_4wk_std_drinks_' . $day] = validateField(ifne($_POST, 'past_4wk_std_drinks_' . $day ), 'notempty', 'Please enter a value');
+					}
+
+					if ( formIsValid( $form_errors ) ) {
+						$values = array(
 							'03_past_4wk_consumed_alcohol' => ( $_POST[ 'past_4wk_consumed_alcohol' ] == 'yes' ? 1 : 0 ),
 							'03_past_4wk_largest_number_single_occasion' => $_POST[ 'past_4wk_largest_number_single_occasion' ],
 							'03_past_4wk_hours_amount_drank' => $_POST[ 'past_4wk_hours_amount_drank' ],
 							'03_body_height_cm' => $body_height_cm,
 							'03_body_weight_kg' => $_POST[ 'body_weight-number'] * ( ifne( $_POST, 'body_weight-unit', 'kg' ) == 'lbs' ? 0.453592 : 1 )
-						));
+						);
 
+						foreach ($weekdays as $day) {
+							$fields = array(
+								'past_4wk_drinks_' . $day,
+								'past_4wk_std_drinks_' . $day,
+							);
+
+							foreach ($fields as $field) {
+								$values['03_' . $field] = $_POST[$field];
+							}
+						}
+
+
+						$the_survey->save($values);
 						do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
 						//exit
 
@@ -224,74 +225,37 @@ function doProcess( $the_survey, $existing_token ){
 			}
 
 
-		} else if ( $survey_stage == 4 ) {
+		} else if ( in_array($survey_stage, range(4, 7)) ) {
 
-			/*
-			$form_errors = array(
-				'been_insulted_humiliated' => validateField( ifne( $_POST, 'been_insulted_humiliated' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'serious_argument_quarrel' => validateField( ifne( $_POST, 'serious_argument_quarrel' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'assaulted' => validateField( ifne( $_POST, 'assaulted' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'property_damaged' => validateField( ifne( $_POST, 'property_damaged' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'babysit_another_student' => validateField( ifne( $_POST, 'babysit_another_student' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'found_vomit' => validateField( ifne( $_POST, 'found_vomit' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'study_sleep_interrupted' => validateField( ifne( $_POST, 'study_sleep_interrupted' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'unwanted_sexual_advance' => validateField( ifne( $_POST, 'unwanted_sexual_advance' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'victim_of_sexual_assault' => validateField( ifne( $_POST, 'victim_of_sexual_assault' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'victim_of_another_crime_on_campus' => validateField( ifne( $_POST, 'victim_of_another_crime_on_campus' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) ),
-				'victim_of_another_crime_off_campus' => validateField( ifne( $_POST, 'victim_of_another_crime_off_campus' ), 'in-set', 'Please select a value', array( 'no','yes','skip' ) )
-			);
+			$values = array();
+			$form_errors = array();
 
-			if ( formIsValid( $form_errors ) ){
+			foreach (array_keys($stage_vars['tabular']['rows']) as $field) {
+				$form_errors[$field] = validateField(ifne($_POST, $field ), 'notempty', 'Please enter a value');
+				$values['0' . $survey_stage . '_' . $field] = ifne( $_POST, $field, null );
+			}
 
+			if ( formIsValid( $form_errors ) ) {
+				$values['completed'] = get_gmt();
+				$the_survey->save($values);
+
+				do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
+
+			}
+
+		}
+
+		else if ( $survey_stage == 8 ) {
+			$form_errors = array();
+			if ( formIsValid( $form_errors ) ) {
 				$the_survey->save(array(
-					'04_been_insulted_humiliated' => $_POST[ 'been_insulted_humiliated' ],
-					'04_serious_argument_quarrel' => $_POST[ 'serious_argument_quarrel' ],
-					'04_assaulted' => $_POST[ 'assaulted' ],
-					'04_property_damaged' => $_POST[ 'property_damaged' ],
-					'04_babysit_another_student' => $_POST[ 'babysit_another_student' ],
-					'04_found_vomit' => $_POST[ 'found_vomit' ],
-					'04_study_sleep_interrupted' => $_POST[ 'study_sleep_interrupted' ],
-					'04_unwanted_sexual_advance' => $_POST[ 'unwanted_sexual_advance' ],
-					'04_victim_of_sexual_assault' => $_POST[ 'victim_of_sexual_assault' ],
-					'04_victim_of_another_crime_on_campus' => $_POST[ 'victim_of_another_crime_on_campus' ],
-					'04_victim_of_another_crime_off_campus' => $_POST[ 'victim_of_another_crime_off_campus' ],
-					'completed' => date('Y-m-d H:i:s')
+					'08_tobacco_use' => ifne( $_POST, 'tobacco_use', null ),
+					'08_tobacco_frequency' => ifne( $_POST, 'tobacco_frequency', null ),
+					'08_tobacco_init' => ifne( $_POST, 'tobacco_init', null ),
 				));
 
 				do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
-				//exit
-
-			} else {
-
-				echo print_r( $form_errors );
-
-			}*/
-
-			//All fields optional
-			$the_survey->save(array(
-				'04_hangover' => ifne( $_POST, 'hangover', null ),
-				'04_emotional_outburst' => ifne( $_POST, 'emotional_outburst', null ),
-				'04_vomiting' => ifne( $_POST, 'vomiting', null ),
-				'04_heated_argument' => ifne( $_POST, 'heated_argument', null ),
-				'04_physically_aggressive' => ifne( $_POST, 'physically_aggressive', null ),
-				'04_blackouts' => ifne( $_POST, 'blackouts', null ),
-				'04_inability_to_pay_bills' => ifne( $_POST, 'inability_to_pay_bills', null ),
-				'04_unprotected_sex' => ifne( $_POST, 'unprotected_sex', null ),
-				'04_sexual_situation_not_happy_about' => ifne( $_POST, 'sexual_situation_not_happy_about', null ),
-				'04_sexual_encounter_later_regretted' => ifne( $_POST, 'sexual_encounter_later_regretted', null ),
-				'04_injury_requiring_medical_attention' => ifne( $_POST, 'injury_requiring_medical_attention', null ),
-				'04_drove_car_unsafely' => ifne( $_POST, 'drove_car_unsafely', null ),
-				'04_passenger_of_unsafe_driver' => ifne( $_POST, 'passenger_of_unsafe_driver', null ),
-				'04_stole_property' => ifne( $_POST, 'stole_property', null ),
-				'04_committed_vandalism' => ifne( $_POST, 'committed_vandalism', null ),
-				'04_removed_or_banned_from_pub_club' => ifne( $_POST, 'removed_or_banned_from_pub_club', null ),
-				'04_arrested' => ifne( $_POST, 'arrested', null ),
-				'completed' => get_gmt()
-			));
-
-			do_redirect( 'survey.php?t=' . urlencode( $existing_token ) );
-			//exit
-
+			}
 		}
 
 
@@ -299,7 +263,3 @@ function doProcess( $the_survey, $existing_token ){
 	} // endif isset $POST
 
 } //end do_process()
-
-
-
-

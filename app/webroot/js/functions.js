@@ -43,7 +43,7 @@ $(document).ready(function(){
 	
 	initStepThree();
 	
-	initStepFive();	
+	initStepNine();
 	
 	modalBox();
 	
@@ -132,6 +132,20 @@ function init_stage_form( form_stage ){
 				$('#more-fields-wrapper').slideDown( 400, function(){
 					
 					$('.slider-wrapper').css( 'visibility', 'hidden' );
+					var weekdays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+					$.each(weekdays, function(i, value) {
+						buildSlider({
+							id		: 'standard-drinks-slider_' + value,
+							from	: 0,
+							to		: 25,
+							to_label: '25+',
+							field	: $('.stage-form input[name=past_4wk_std_drinks_' + value + ']'),
+							unit	: {
+								singular 	: 'drink',
+								plural		: 'drinks'
+							}
+						});
+					});
 					
 					// last four weeks, drinks consumed on a single occasion
 					buildSlider({
@@ -179,7 +193,13 @@ function init_stage_form( form_stage ){
 					$('input[name=body_height-feet]').val('');
 					$('input[name=body_height-inches]').val('');
 					$('input[name=body_weight-number]').val('');
-					$('select[name=body_weight-unit]').val('kg');
+					$('select[name=body_weight-unit]').val('lbs');
+
+					var weekdays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+					$.each(weekdays, function(i, day) {
+						$('input[name="past_4wk_drinks_' + day + '"]').removeProp('checked');
+						$('input[name="past_4wk_std_drinks_' + day + '"]').val('0');
+					});
 					
 				});
 				
@@ -206,17 +226,15 @@ function init_stage_form( form_stage ){
 	
 	
 	//Render form status
-	if ( form_stage != 4 ){
-		$('input, select').each(function(){
-			$(this).bind('change', function(){
-				stage_form_complete( form_stage );
-			});
-		});
-
-		$('input').bind('keyup', function(){
+	$('input, select').each(function(){
+		$(this).bind('change', function(){
 			stage_form_complete( form_stage );
 		});
-	}
+	});
+
+	$('input').bind('keyup', function(){
+		stage_form_complete( form_stage );
+	});
 	
 }
 
@@ -238,12 +256,13 @@ function stage_form_complete( form_stage ){
 		form_fields_checked = {
 			'gender' 				: { skip : true, valid : false },
 			'age'					: { skip : false, type: 'select', valid : false },
-			'staff_student' 		: { skip : false, type : 'radio', valid : false },
-			'hours_per_week' 		: { skip : false, type : 'radio', valid : false },
-			'year_level'			: { skip : false, type : 'select', valid : false },
-			'on_campus' 			: { skip : false, type : 'radio', valid : false },
-			'where_from'			: { skip : false, type : 'select', valid : false },
-			'alcohol_last_12mths'	: { skip : false, type : 'radio', valid : false }
+			'alcohol_last_12mths'	: { skip : false, type : 'radio', valid : false },
+			'race'					: { skip : false, type : 'select', valid : false },
+			'ethnicity'				: { skip : false, type : 'select', valid : false },
+			'race'					: { skip : false, type : 'select', valid : false },
+			'where' 				: { skip : false, type : 'select', valid : false },
+			'parents'				: { skip : false, type : 'radio', valid : false },
+			'history' 				: { skip : false, type : 'select', valid : false }
 		};
 
 		//Gender = m/f or value from dropdown
@@ -251,44 +270,6 @@ function stage_form_complete( form_stage ){
 		var gender_select = $('select[name=gender-more]');
 		if ( ( ( gender_radio.length > 0 ) && ( gender_radio.val() != '' ) ) || ( gender_select.val() != '' ) ){
 			form_fields_checked['gender'].valid = true;
-		}
-
-		// Conditional validation around staff/student question and hours per week.
-		// Check if question is in form or just hidden input
-		if ( $('.stage-form input[name=staff_student][type=hidden]').length == 1 ) {
-
-			//No staff/student question, not required.
-			form_fields_checked[ 'staff_student' ].valid = true;
-		}
-
-		// Demographic questions only required if student.
-		if ( $('.stage-form input[name=staff_student]:checked').val() == 'staff' ){
-
-			form_fields_checked[ 'hours_per_week' ].valid = true;
-			form_fields_checked[ 'year_level' ].valid = true;
-			form_fields_checked[ 'on_campus' ].valid = true;
-			form_fields_checked[ 'where_from' ].valid = true;
-		}
-
-		// Additional demographic questions. Partners can toggle these on/off, so only
-		// required if they're included
-
-		// Year level question
-		if ( $('select[name="year_level"]' ).length == 0 ) {
-
-			form_fields_checked[ 'year_level' ].valid = true;
-		}
-
-		// Accommodation question
-		if ( $('input[name="on_campus"]' ).length == 0 ) {
-
-			form_fields_checked[ 'on_campus' ].valid = true;
-		}
-
-		// From question
-		if ( $('select[name="where_from"]' ).length == 0 ) {
-
-			form_fields_checked[ 'where_from' ].valid = true;
 		}
 
 	} else if ( form_stage == 2 ){
@@ -318,6 +299,12 @@ function stage_form_complete( form_stage ){
 			'body_weight-number'						: { skip : true, accepts : 'number', valid : false },
 			'body_weight-unit'							: { type : 'select', skip : true, valid : false }
 		};
+
+		var weekdays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+		$.each(weekdays, function(i, day) {
+			form_fields_checked['past_4wk_drinks_' + day] = { type: 'radio', skip : true, valid : false };
+			form_fields_checked['past_4wk_std_drinks_' + day] = {  skip : true, valid : false };
+		});
 		
 		var consumed_alcohol_field = $('input[name=past_4wk_consumed_alcohol]:checked');
 		
@@ -335,6 +322,11 @@ function stage_form_complete( form_stage ){
 				}
 				
 			} else {
+
+				$.each(weekdays, function(i, day) {
+					form_fields_checked['past_4wk_drinks_' + day].skip = false;
+					form_fields_checked['past_4wk_std_drinks_' + day].skip = false;
+				});
 				
 				//Need validation, unskip some
 				form_fields_checked[ 'past_4wk_largest_number_single_occasion' ].skip = false;
@@ -359,9 +351,92 @@ function stage_form_complete( form_stage ){
 			
 		}
 		
-	} else if ( form_stage == 4 ){
-		
-		//All fields optional 
+	} else if ( form_stage == 4 ) {
+		var fields = [
+			'difficult_to_limit',
+			'start_drinking_after_deciding_not_to',
+			'end_up_drinking_more',
+			'cut_down_drinking',
+			'drink_when_causing_problems',
+			'stop_drinking_after_two_drinks',
+			'stop_drinking_after_drunk',
+			'irresistible_urge_continue_drinking',
+			'difficult_to_resist_drinking',
+			'able_to_slow_drinking'
+		];
+
+		$.each(fields, function(i, field) {
+			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
+		});
+
+	} else if ( form_stage == 5 ) {
+
+		var fields = [
+			'embarassing_things',
+			'hangover',
+			'sick',
+			'end_up_drinking_without_planning',
+			'take_foolish_risks',
+			'pass_out',
+			'need_larger_amounts_to_feel_effect',
+			'impulsive_things',
+			'memory_loss',
+			'drive_unsafely',
+			'miss_work_or_class',
+			'regretted_sexual_situations',
+			'difficult_to_limit',
+			'become_rude',
+			'wake_up_unexpected_place',
+			'feel_bad',
+			'lack_of_energy',
+			'suffered_work_quality',
+			'spend_too_much_time_drinking',
+			'neglect_obligations',
+			'relationship_problems',
+			'overweight',
+			'harmed_physical_appearance',
+			'need_drink_before_breakfast'
+		];
+
+		$.each(fields, function(i, field) {
+			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
+		});
+	} else if ( form_stage == 6 ) {
+
+		var fields = [
+			'count_drinks',
+			'set_number_drinks',
+			'eat_before',
+			'space_drinks_out',
+			'alternate_drinks',
+			'drink_for_quality',
+			'avoid_drinking_games',
+			'have_a_reliable_driver',
+			'preplan_transportation',
+			'dst_protection',
+			'watch_out_for_each_other',
+		];
+
+		$.each(fields, function(i, field) {
+			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
+		});
+	} else if ( form_stage == 7 ) {
+
+		var fields = [
+			'cut_down_drinking',
+			'stop_drinking',
+		];
+
+		$.each(fields, function(i, field) {
+			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
+		});
+	} else if ( form_stage == 8 ) {
+
+		var fields = ['tobacco_use', 'tobacco_frequency', 'tobacco_init'];
+
+		$.each(fields, function(i, field) {
+			form_fields_checked[field] = { skip : false, type : 'select', valid : false };
+		});
 	}
 	
 	
@@ -713,9 +788,9 @@ var start_audit_score,
 	start_audit_bac,
 	start_audit_spend = false;
 
-function initStepFive() {
+function initStepNine() {
 	
-	if (!$('.progress').hasClass('step-five')) {
+	if (!$('.progress').hasClass('step-nine')) {
 
 		return;
 	}

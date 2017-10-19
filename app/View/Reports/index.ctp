@@ -4,7 +4,7 @@ $this->Html->meta( 'description', '', array( 'inline' => false ) );
 $this->Html->meta( 'keywords', '', array( 'inline' => false ) );
 ?>
 <p class="breadcrumb display-right">
-	<a href="/admin">Dashboard</a> /
+	<a href="<?php echo $this->webroot; ?>admin">Dashboard</a> /
 	<strong>Reports</strong>
 </p>
 

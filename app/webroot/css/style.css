@@ -218,6 +218,19 @@ input[type="radio"] + label:before { background-position: 0 0;} input[type="radi
 
 .researcher [type="checkbox"] + label:before { background-position: -832px -384px;} .researcher input[type="checkbox"]:checked + label:before { background-position: -832px -448px;}
 
+.authors {
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 60px;
+}
+
+.authors ol li {
+    list-style: decimal;
+    line-height: 16px;
+    list-style-position: inside;
+    margin-bottom: 0;
+}
+
 
 .ie8 label:before { display:none !important; content:none !important; /*this removes the fake content*/ }
 .ie8 input[type="checkbox"], 
@@ -563,19 +576,19 @@ fieldset legend { display: none; }
 
 	/* Current position line */
 	
-	.step-one .current-pos {
+	.group-one .current-pos {
 		width: 20%;
 	}
 	
-	.step-two .current-pos {
+	.group-two .current-pos {
 		width: 39%;
 	}
 	
-	.step-three .current-pos {
+	.group-three .current-pos {
 		width: 55%;
 	}
 	
-	.step-four .current-pos {
+	.group-four .current-pos {
 		width: 70%;
 	}
 	
@@ -589,7 +602,7 @@ fieldset legend { display: none; }
 	z-index: 2;
 }
 
-	.progress .hi {
+	.progress .s-zero {
 		left: 4.5%;
 	}
 
@@ -618,7 +631,7 @@ fieldset legend { display: none; }
 	position: absolute;
 }
 
-	.progress .hi .icn {
+	.progress .s-zero .icn {
 		background-position: -385px 0;
 		width: 45px;
 		height: 39px;
@@ -632,7 +645,7 @@ fieldset legend { display: none; }
 		top: 29px;
 	}
 	
-	.progress.step-one .s-one .icn {
+	.progress.group-one .s-one .icn {
 		background-position: -445px -61px;
 		width: 80px;
 		height: 55px;
@@ -646,7 +659,7 @@ fieldset legend { display: none; }
 		top: 29px;
 	}
 	
-	.progress.step-two .s-two .icn {
+	.progress.group-two .s-two .icn {
 		background-position: -573px -61px;
 		width: 62px;
 		height: 64px;
@@ -660,7 +673,7 @@ fieldset legend { display: none; }
 		top: 28px;
 	}
 	
-	.progress.step-three .s-three .icn {
+	.progress.group-three .s-three .icn {
 		background-position: -637px -61px;
 		width: 63px;
 		height: 58px;
@@ -674,7 +687,7 @@ fieldset legend { display: none; }
 		top: 29px;
 	}
 	
-	.progress.step-four .s-four .icn {
+	.progress.group-four .s-four .icn {
 		background-position: -702px -62px;
 		width: 73px;
 		height: 58px;
@@ -688,7 +701,7 @@ fieldset legend { display: none; }
 		top: 29px;
 	}
 	
-	.progress.step-five .s-five .icn {
+	.progress.group-five .s-five .icn {
 		background-position: -829px -62px;
 		width: 55px;
 		height: 64px;
@@ -705,25 +718,25 @@ fieldset legend { display: none; }
 		bottom: -1px !important;
 	}
 	
-	.progress.step-one .icn.arrow {
+	.progress.group-one .icn.arrow {
 		background-position: -448px -576px !important;
 		margin: 0 0 0 27px !important;
 		bottom: -7px !important;
 	}
 	
-	.progress.step-two .icn.arrow {
+	.progress.group-two .icn.arrow {
 		background-position: -512px -576px !important;
 	}
 	
-	.progress.step-three .icn.arrow {
+	.progress.group-three .icn.arrow {
 		background-position: -577px -576px !important;
 	}
 	
-	.progress.step-four .icn.arrow {
+	.progress.group-four .icn.arrow {
 		background-position: -640px -576px !important;
 	}
 
-	.progress.step-five .icn.arrow {
+	.progress.group-five .icn.arrow {
 		background-position: -705px -576px !important;
 		margin: 0 0 0 16px !important;
 	}
@@ -737,24 +750,24 @@ fieldset legend { display: none; }
 	display: inline-block;
 }
 
-.step-one span {
+.group-one span {
 	margin: 84px auto 0;
 }
 
-.step-two span {
+.group-two span {
 	margin: 90px 0 0 -50px;
 }
 
-.step-three span {
+.group-three span {
 	margin: 90px 0 0 -35px;
 }
 
-.step-four span {
+.group-four span {
 	/*margin: 90px 0 0 -50px;*/
 	margin: 90px 0 0 -22px;
 }
 
-.step-five span {
+.group-five span {
 	margin: 90px 0 0 0;
 }
 		
@@ -1242,11 +1255,14 @@ i.male {
 
 /* STEP TWO */
 
-
 .field.select-right p,
 .field.select-below p {
 	width: auto;
 	max-width: 54%;
+}
+
+.field.radios-left p {
+    max-width: 70%;
 }
 
 .field.select-right .styled {
@@ -1254,6 +1270,10 @@ i.male {
 	position: absolute;
 	right: 70px;
 	top: 50px;
+}
+
+.field.select-left .styled {
+    max-width: 50%;
 }
 
 .field.select-below .styled {
@@ -1605,8 +1625,7 @@ i.male {
 	margin: 0 10px 0 0;
 }
 
-input#height-feet,
-input#height-inches {
+input#height-cm {
 	margin: 15px 10px 0 0;
 }
 
@@ -1623,7 +1642,7 @@ input#height-inches {
 /* STEP FOUR */
 
 .survey .field.tabular-intro p {
-	margin: 0 0 40px;
+	margin: 0 0 45px;
 	width: 65%;
 }
 
@@ -1677,6 +1696,19 @@ input#height-inches {
 	width: auto;
 }
 
+.tabular-intro.cols-6 .labels span {
+    width: 72px;
+    margin: 0;
+}
+.tabular-intro.cols-7 .labels span {
+    width: 68px;
+    margin: 0;
+}
+.tabular-intro.cols-8 .labels span {
+    width: 63px;
+    margin: 0;
+}
+
 .tabular label span {
 	display: none;
 }
@@ -1689,6 +1721,19 @@ input#height-inches {
 
 .tabular .input-wrap label {
 	margin: 0 0 0 43px;
+}
+
+.tabular.cols-6 .input-wrap label {
+	margin: 0 0 0 25px;
+}
+.tabular.cols-7 .input-wrap label {
+	margin: 0 0 0 20px;
+}
+.tabular.cols-8 .input-wrap label {
+	margin: 0 0 0 15px;
+}
+.field.tabular.cols-8 p {
+	max-width: 32%;
 }
 
 
@@ -3225,4 +3270,18 @@ button[disabled=disabled]{
 }
 .slider-wrapper {
 	visibility: hidden;
+}
+
+.tabular.tabular-slider .input-wrap {
+	width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+	.tabular.tabular-slider .input-wrap {
+		width: 65%;
+	}
+
+	.tabular .slider {
+		top: 15px;
+	}
 }

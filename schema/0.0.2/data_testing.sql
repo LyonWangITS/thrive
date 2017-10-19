@@ -16,7 +16,7 @@ INSERT INTO `accounts` VALUES (2,'John Smith',1,'demo@example.com',NULL,'fda1172
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `entries` DISABLE KEYS */;
-INSERT INTO `entries` VALUES (1,1,'2017-06-14 13:42:03','2017-06-14 13:45:45','Q0lf6slDZOGaPHYhSHc7P9wBlNA21a3I',0,'Philip',22,'male','hawaiian',1,'not-hispanic-latino','dorm',0,'uf-only','1pw',1,'never','lt-1pm','lt-1pm','lt-1pm','lt-1pm','lt-1pm','yes-nly','yes-nly',1,1,2,3,4,3,2,1,10,11,12,13,14,15,16,1,1,180.34,78.0178,'no','no','no','no','no','no','no','no','no','no','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never',5,5,'never',5,5,11,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `entries` VALUES (1,1,'2017-06-14 13:42:03','2017-06-14 13:45:45','Q0lf6slDZOGaPHYhSHc7P9wBlNA21a3I',0,'Philip',NULL,'student','lt-10',53,'androgynous',NULL,'postgraduate',0,'perth-metro',1,'1pw',1,'never','lt-1pm','lt-1pm','lt-1pm','lt-1pm','lt-1pm','yes-nly','yes-nly',1,1,1,180.34,78.0178,'no','no','no','no','no','no','no','no','no','no','no','no','no','no','no','no','no',11,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `entries` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `partners` DISABLE KEYS */;
