@@ -159,8 +159,7 @@ $(PATH_TO_COVERAGE_REPORT):
 
 package: $(PACKAGE_FILE)
 
-$(PACKAGE_FILE):
-	mkdir -p $(BUILD_DIR)
+$(PACKAGE_FILE): pull
 	cd $(BUILD_DIR) && zip -rq $(PACKAGE_FILE) \
 	$(PROJECT_ID)/app/ \
 	$(PROJECT_ID)/lib/ \
