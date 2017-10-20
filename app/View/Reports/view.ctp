@@ -27,7 +27,7 @@ $this->Html->meta( 'keywords', '', array( 'inline' => false ) );
 	}
 	else {
 
-		echo "<a href=\"/reports/view/{$section}\">{$section_name}</a> / ";
+		echo "<a href=\"" . $this->webroot . "reports/view/{$section}\">{$section_name}</a> / ";
 		echo "<strong>{$report_name}</strong>";
 	}
 	?>
@@ -68,7 +68,7 @@ $this->Html->meta( 'keywords', '', array( 'inline' => false ) );
 						continue;
 					}
 					$active_class = ( $report_slug == $report ) ? 'active' : '';
-					echo "<li class=\"{$active_class}\"><a href=\"/reports/view/{$section}/{$report_slug}\">{$report_details['title']}</a></li>";
+					echo "<li class=\"{$active_class}\"><a href=\"" . $this->webroot . "reports/view/{$section}/{$report_slug}\">{$report_details['title']}</a></li>";
 				}
 				?>
 			</ul>
