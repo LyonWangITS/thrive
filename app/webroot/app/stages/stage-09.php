@@ -311,56 +311,6 @@ if ( !empty( $partner->data['is_feedback_enabled'] ) ) {
 	</section>
 	<?php
 }
-
-if ( !empty( $partner->data['is_adis_enabled'] ) ) {
-	?>
-	<section class="learn-more clearfix">
-		<p class="title lg">Do you want to learn more?</p>
-
-		<p>Alcohol and Drug Information Service (ADIS) staff are available between 7am and 11pm, 7 days a week to answer any questions about alcohol or other drugs you may have after completing this survey. </p>
-
-		<div class="clip contact-details">
-
-			<i class="icn green-phone"></i>
-
-			<div class="text">
-				<p>You can call ADIS now on 9442 5000 or<br />1800 198 024 (Country toll free from landlines) or send them an email <a href="mailto:adis@health.wa.gov.au">adis@health.wa.gov.au</a></p>
-			</div>
-
-		</div>
-
-		<a class="clip chat" href="http://www.drugaware.com.au/" target="_blank">
-
-			<i class="icn chat"></i>
-			<div class="text">
-				<p class="title">Livechat</p>
-				<p>Chat with an ADIS worker now</p>
-			</div>
-
-
-		</a>
-
-		<div class="clear"></div>
-
-		<?php
-		include_once( 'commons/callback-form.php' );
-		?>
-	</section>
-	<?php
-}
-
-if ( $partner->data['slug'] == POLYTECHNIC_WEST_SLUG ) {
-	?>
-	<section class="win">
-
-		<p class="title">Here’s your chance to win that $500!</p>
-
-		<p>Click on <a href="https://curtin.asia.qualtrics.com/SE/?SID=SV_2tufYYwxz3p0V7v" title="Click here for your chance to win $500" target="_blank">this link</a> to enter your email and accept the terms and conditions.</p>
-
-	</section>
-<?php
-}
-
 ?>
 
 </div><!-- content -->

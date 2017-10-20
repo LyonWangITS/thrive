@@ -55,7 +55,6 @@ add_audit_score_graph( $pdf, $survey );
 add_comparisons( $pdf, $survey );
 add_expenses( $pdf, $survey );
 add_bac_estimate( $pdf, $survey );
-add_adis( $pdf, $partner );
 add_faqs_and_tips( $pdf );
 add_support( $pdf, $services );
 
@@ -328,33 +327,6 @@ function add_expenses( FPDI_HTML $pdf, Survey $survey ) {
 	$pdf->SetRightMargin( 5 );
 	$pdf->SetXY( 140, $offset_y + 38 );
 	$pdf->Cell( 140, 0, 'Between $' . number_format( $expenses['from'], 0 ) . ' and $' . number_format( $expenses['to'], 0 ), 0, 0, 'C' );
-
-	// Done, set height.
-	$pdf->SetY( $offset_y + $block_height );
-	debug_block_height( $pdf );
-}
-
-function add_adis( FPDF $pdf, Partner $partner ) {
-
-	// Check if enabled
-	if ( empty( $partner->data['is_adis_enabled'] ) ) {
-
-		return;
-	}
-
-	// Ensure required height is available
-	$block_height = 133;
-	ensure_fixed_height_available( $pdf, $block_height );
-	$offset_y = $pdf->GetY();
-
-	// Create from template to show the BAC background
-	$pdf->setSourceFile( 'pdf-assets/adis.pdf' );
-	$template_id = $pdf->importPage( 1 );
-	$pdf->useTemplate( $template_id, 0, $offset_y, $pdf->w );
-
-	// Manually recreate links from PDF
-	$pdf->Link( 85, 92 + $offset_y, 49, 9, 'mailto:adis@health.wa.gov.au' );
-	$pdf->Link( 164, 64 + $offset_y, 128, 48, 'http://drugaware.com.au/' );
 
 	// Done, set height.
 	$pdf->SetY( $offset_y + $block_height );

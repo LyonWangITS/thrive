@@ -76,8 +76,6 @@ echo '<div class="content-padding clearfix">';
 
 		echo $this->Form->input( 'Partner.is_staff_student', array( 'type' => 'checkbox', 'label' => 'Allow staff members to take the survey as well as students. Otherwise it is assumed all participants are students.' ) );
 
-		echo $this->Form->input( 'Partner.is_adis_enabled', array( 'type' => 'checkbox', 'label' => 'Include Alcohol and Drug Information Service (ADIS) information. Only available if your organisation is based in <strong>Western Australia</strong>. If ticked, on the survey result page we will include contact details and a callback form for ADIS.', 'default' => $no_logo ) );
-
 		// Content
 		echo $this->Form->input( 'Partner.confidentiality_text', array(
 			'label' => 'Confidentiality text',
@@ -91,25 +89,6 @@ echo '</div>';
 
 <h2>Optional survey questions<span>Enable additional demographic and feedback questions</span></h2>
 <div class="content-padding clearfix" id="optional-questions">
-
-	<h3>Demographics</h3>
-	<p>These are additional demographic questions you can choose to include in the survey. Participants are required to answer enabled questions.</p>
-	<p>You can change these settings at any time. If you start collecting this information and later stop, answers already collected remain in the database and will be shown in reports.</p>
-
-	<?php
-	echo $this->Form->input( 'Partner.is_year_level_question_enabled', array(
-		'type' => 'checkbox',
-		'label' => '<strong>What is your year level / class standing?</strong> <span class="extra">Options: <em>1st Year, 2nd Year, 3rd Year, 4th Year, Postgraduate, Not Applicable</em></span>'
-	) );
-	echo $this->Form->input( 'Partner.is_on_campus_question_enabled', array(
-		'type' => 'checkbox',
-		'label' => '<strong>Do you live in on-campus accommodation?</strong> <span class="extra">Options: <em>Yes, No</em></span>'
-	) );
-	echo $this->Form->input( 'Partner.is_from_question_enabled', array(
-		'type' => 'checkbox',
-		'label' => '<strong>Where are you from?</strong> <span class="extra">Options: <em>Perth (Metropolitan) student, Regional (Western Australian) student, Other Australian state student, International student</em></span>'
-	) );
-	?>
 
 	<h3>Feedback</h3>
 	<p>You can enable a set of feedback questions displayed on the result screen of the survey. Answers are optional and given as a star rating from 0 to 10 for each question.</p>

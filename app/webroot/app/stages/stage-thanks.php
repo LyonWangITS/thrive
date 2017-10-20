@@ -21,8 +21,6 @@
 
 			<p>Since you haven't consumed alcohol in the last 12 months we don't have any more questions for you.</p>
 
-			<p>If you would like to know more about how you can support your friends to cut down on their drinking and stay safe when doing so check out the <a href="http://alcoholthinkagain.com.au/Home.aspx" title="Alcohol, Think Again" target="_blank">Alcohol Think Again</a> website.</p>
-
 			<p>Have a great day!</p>
 
 		</div>
