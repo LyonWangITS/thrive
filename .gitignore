@@ -6,6 +6,7 @@ app/Vendor/
 app/webroot/coverage
 *.zip
 vagrant/git-status
+vagrant/id_rsa.pub
 staging.env
 prod.env
 app/tmp/
