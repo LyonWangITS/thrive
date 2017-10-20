@@ -13,6 +13,7 @@
 /*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
 INSERT INTO `accounts` VALUES (1,'Admin',NULL,'admin@example.com',NULL,'fda1172b8d04cf94e7f9f9c776dd4f11656f517f',NULL,NULL,1);
 INSERT INTO `accounts` VALUES (2,'John Smith',1,'demo@example.com',NULL,'fda1172b8d04cf94e7f9f9c776dd4f11656f517f',NULL,1,0);
+INSERT INTO `accounts` VALUES (3,'Albert',1,'albert@example.com',NULL,'fda1172b8d04cf94e7f9f9c776dd4f11656f517f',NULL,2,0);
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `entries` DISABLE KEYS */;
@@ -21,6 +22,7 @@ INSERT INTO `entries` VALUES (1,1,'2017-06-14 13:42:03','2017-06-14 13:45:45','Q
 
 /*!40000 ALTER TABLE `partners` DISABLE KEYS */;
 INSERT INTO `partners` VALUES (1,'Demo University','demo','http://www.curtin.edu.au/','/images/partners/1.png',NULL,'The survey is being conducted by the Western Australian Centre for Health Promotion Research (WACHPR) to explore the use of alcohol by Polytechnic West students. However, the survey is independent, not connected to Polytechnic West student services and completely anonymous.\r\n\r\nThis study has been approved by the Curtin University Human Research Ethics Committee (Approval Number HR70/2013). The Committee is comprised of members of the public, academics, lawyers, doctors and pastoral carers. If needed, verification of approval can be obtained either by writing to the Curtin University Human Research Ethics Committee, c/- Office of Research and Development, Curtin University, GPO Box U1987, Perth 6845 or by telephoning 9266 9223 or by emailing hrec@curtin.edu.au.',1,0,1,1,1,1,2,'2014-02-03 00:00:00');
+INSERT INTO `partners` VALUES (2,'UF','uf','','',NULL,'',0,0,0,0,0,1,2,'2017-10-19 16:19:59');
 /*!40000 ALTER TABLE `partners` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `pending_changes` DISABLE KEYS */;
