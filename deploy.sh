@@ -63,6 +63,22 @@ function set_cake_database_parameters () {
 
 }
 
+
+function set_survey_database_parameters () {
+    echo "Entering $FUNCNAME"
+
+    TARGET=$MYTEMP/app/webroot/app/config.php
+
+    #Setting db parameters in database.php
+    # .* required to grab the entire line where the regexp exists
+    sed "s/'DBHOST', .*/'DBHOST', '"$DB_HOST"');/" -i $TARGET
+    sed "s/'DBUSER', .*/'DBUSER', '"$DB_USER"');/" -i $TARGET
+    sed "s/'DBPASS', .*/'DBPASS', '"$DB_PASSWORD"');/" -i $TARGET
+    sed "s/'DBNAME', .*/'DBNAME', '"$DB_DATABASE"');/" -i $TARGET
+    sed "s/'BASE_URL', .*/'BASE_URL', '"$PROJECT_ID"');/" -i $TARGET
+
+}
+
 function deploy_software_to_temp () {
     echo "Entering $FUNCNAME"
 
@@ -74,6 +90,9 @@ function deploy_software_to_temp () {
     set_cake_salt_value
     turn_off_cake_debugging
     set_cake_database_parameters
+
+    # set other db params
+    set_survey_database_parameters
 
     # adjust ownership of deployed code
     chmod -R u+rwX,go+rX,go-w $MYTEMP
