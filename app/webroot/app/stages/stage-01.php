@@ -123,7 +123,7 @@
 
 	<div class="calendar">
 		<i class="icn cal"></i>
-		<span><?php= date( 'F' ) ?></span>
+		<span><?php echo date( 'F' ); ?></span>
 		<div class="icn shadow"></div>
 	</div>
 </div><!-- field -->
