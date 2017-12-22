@@ -817,7 +817,7 @@ function initStepNine() {
 		if ($(window).scrollTop() + $(window).height() == $(document).height()) {
 			$('.accordian').each(function() {
 				if (!$(this).hasClass('init-expand')) {
-					// Expanding tabs when the user scrolls downt to the bottom.
+					// Expanding tabs when the user scrolls down to the bottom.
 					$(this).addClass('init-expand').addClass('active').next().slideDown(200);
 				}
 			});
