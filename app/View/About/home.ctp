@@ -19,9 +19,9 @@ $this->set( 'title_for_layout', 'THRIVE Alcohol Survey' );
 		
 			<h1>Welcome to the homepage for the THRIVE Alcohol Survey</h1>
 		
-			<p>If you would like to participate in the survey, please click on your university or polytech's name, below.</p>
+			<p>If you would like to participate in the survey, please click on your college's name.</p>
 			
-			<p><small><a href="<?php echo $this->webroot; ?>about">More information about THRIVE</a></small></p>
+			<p><small><a href="https://www.rethinkingdrinking.niaaa.nih.gov/">Rethinking Drinking website</a></small></p>
 
 		</div>
 		

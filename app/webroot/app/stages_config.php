@@ -20,7 +20,7 @@ function get_stages() {
 		array('group' => 'three', 'step' => 'three', 'title' => 'In the last four weeks'),
 		array('group' => 'three', 'step' => 'four', 'title' => 'Effects of Drinking (1/2)'),
 		array('group' => 'three', 'step' => 'five', 'title' => 'Effects of Drinking (2/2)'),
-		array('group' => 'three', 'step' => 'six', 'title' => 'Precautions on Drinking'),
+		array('group' => 'three', 'step' => 'six', 'title' => 'Before and During Drinking'),
 		array('group' => 'four', 'step' => 'seven', 'title' => 'What would you like to do?'),
 		array('group' => 'four', 'step' => 'eight', 'title' => 'Current Smoking'),
 		array('group' => 'five', 'step' => 'nine', 'title' => 'Results'),
@@ -43,6 +43,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 
 	if ($stage == 2) {
 		return array(
+			'include_drinks_guide' => true,
 			'legend' => 'Please answer the following questions about your consumption of alcohol.',
 			'intro' => array(
 				'title' => 'Past and present drinking',
@@ -104,8 +105,11 @@ function get_stage_vars($stage, $global_vars = array()) {
 					'It is important that you answer according to what has actually happened to you and not according to your beliefs about your drinking.'
 				),
 				'columns' => array(
-					'yes' => 'Yes',
-					'no' => 'No',
+					'never' => 'Never',
+					'rarely' => 'Rarely',
+					'sometimes' => 'Sometimes',
+					'often' => 'Often',
+					'always' => 'Always',
 					'skip' => 'I choose not to answer',
 				),
 				'rows' => array(
@@ -144,11 +148,8 @@ function get_stage_vars($stage, $global_vars = array()) {
 					'It is important that you answer according to what has actually happened to you and not according to your beliefs about your drinking.'
 				),
 				'columns' => array(
-					'never' => 'Never',
-					'rarely' => 'Rarely',
-					'sometimes' => 'Sometimes',
-					'often' => 'Often',
-					'always' => 'Always',
+					'yes' => 'Yes',
+					'no' => 'No',
 					'skip' => 'I choose not to answer',
 				),
 				'rows' => array(
@@ -185,7 +186,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 		return array(
 			'legend' => 'Please fill in the details of your alcohol usage below.',
 			'intro' => array(
-				'title' => 'Precautions on Drinking',
+				'title' => 'Before and During Drinking',
 				'description' => array(
 					'The following items are designed to assess the extent to which students endorse common things they do before they drink alcohol or while they are drinking.',
 				),
@@ -271,7 +272,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 			'intro' => array(
 				'title' => 'Thanks for completing the survey, ' . h(ifne($global_vars, 'participant_name')),
 				'description' => array(
-					'Here you will find some feedback based on the answers you have<br />provided as well as some other information on staying safe whilst drinking <br />which you may find useful.',
+					'Here you will find some feedback based on the answers you have<br />provided as well as some other information on staying safe while drinking <br />which you may find useful.',
 					'<a href="download-feedback.php?t=' . h( $global_vars['token'] ) . '&x=.pdf" target="_blank" class="btn pdf"><i class="icn pdf"></i>Download as PDF</a>'
 				),
 			),

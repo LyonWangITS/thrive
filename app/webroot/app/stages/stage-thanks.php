@@ -20,7 +20,7 @@
 			<h1>Thanks for your participation.</h1>
 
 			<p>Since you haven't consumed alcohol in the last 12 months we don't have any more questions for you.</p>
-
+			<p>If you would like to know more about how you can support your friends to cut down on their drinking and stay safe when doing so check out the <a href="https://www.rethinkingdrinking.niaaa.nih.gov/">Rethinking Drinking website</a>.<p/>
 			<p>Have a great day!</p>
 
 		</div>

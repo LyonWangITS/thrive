@@ -66,8 +66,6 @@ function doProcess( $the_survey, $existing_token, $version ){
 				'race' => validateField( ifne( $_POST, 'race' ), 'in-set', 'Please select a value', array( 'native-american','asian','hawaiian','black','white','mixed-race','other','skip' ) ),
 				'ethnicity' => validateField( ifne( $_POST, 'ethnicity' ), 'in-set', 'Please select a value', array( 'hispanic-latino','not-hispanic-latino','skip' ) ),
 				'where' => validateField( ifne( $_POST, 'where' ), 'in-set', 'Please select a value', array( 'dorm','with-parents','with-roommates' ) ),
-				'parents' => validateField( ifne( $_POST, 'parents' ), 'in-set', 'Please select a value', array( 'yes','no' ) ),
-				'history' => validateField( ifne( $_POST, 'history' ), 'in-set', 'Please select a value', array( 'uf-only','transfered' ) ),
 			);
 
 			if ( formIsValid( $form_errors ) ) {
@@ -79,8 +77,6 @@ function doProcess( $the_survey, $existing_token, $version ){
 					'01_race' => $_POST[ 'race' ],
 					'01_ethnicity' => $_POST[ 'ethnicity' ],
 					'01_where' => $_POST[ 'where' ],
-					'01_parents' => ( isset( $_POST[ 'parents' ] ) ) ? ( $_POST[ 'parents' ] == 'yes' ? 1 : 0 ) : null,
-					'01_history' => $_POST[ 'history' ],
 				);
 
 				if ( $data[ '01_alcohol_last_12mths' ] == 0 ){

@@ -260,9 +260,7 @@ function stage_form_complete( form_stage ){
 			'race'					: { skip : false, type : 'select', valid : false },
 			'ethnicity'				: { skip : false, type : 'select', valid : false },
 			'race'					: { skip : false, type : 'select', valid : false },
-			'where' 				: { skip : false, type : 'select', valid : false },
-			'parents'				: { skip : false, type : 'radio', valid : false },
-			'history' 				: { skip : false, type : 'select', valid : false }
+			'where' 				: { skip : false, type : 'select', valid : false }
 		};
 
 		//Gender = m/f or value from dropdown
@@ -813,6 +811,18 @@ function initStepNine() {
 	initFeedbackSlider('rating-confident-reduce-drinking');
 	initFeedbackSlider('rating-important-talk-professional');
 	initFeedbackSlider('rating-ready-talk-professional');
+
+
+	$(window).scroll(function() {
+		if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+			$('.accordian').each(function() {
+				if (!$(this).hasClass('init-expand')) {
+					// Expanding tabs when the user scrolls downt to the bottom.
+					$(this).addClass('init-expand').addClass('active').next().slideDown(200);
+				}
+			});
+		}
+	});
 }
 
 function initFeedbackSlider(id) {

@@ -84,30 +84,6 @@
 	<i class="icn accom"></i>
 </div><!-- field -->
 
-<div class="field class-hours radio-set radios-left clearfix">
-	<i class="icn number">06</i>
-	<p>Did either of your parents graduate from a 4-year college? (Please include biological parents, guardians and step-parents.)</p>
-	<div class="input-wrap">
-		<input type="radio" name="parents" id="parents-yes" value="yes">
-		<label for="parents-yes">Yes</label>
-		<input type="radio" name="parents" id="parents-no" value="no">
-		<label for="parents-no">No</label>
-	</div>
-	<i class="icn books"></i>
-</div><!-- field -->
-
-<div class="field where">
-	<i class="icn number">07</i>
-	<p>Have you attended only UF or did you transfer in from another college or university? </p>
-	<div class="select styled">
-		<select name="history" id="history">
-			<option value="">Please select</option>
-			<option value="uf-only">I have attended only UF</option>
-			<option value="transfered">I transferred from another college/university</option>
-		</select>
-	</div>
-</div><!-- field -->
-
 <div class="field drinks-last-year radio-set clearfix">
 
 	<i class="icn number">08</i>

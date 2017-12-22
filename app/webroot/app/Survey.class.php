@@ -191,8 +191,6 @@
 					'01_race',
 					'01_ethnicity',
 					'01_where',
-					'01_parents',
-					'01_history',
 				);
 				$stage_1_passed = true;
 				foreach( $stage_1_keys as $key ){

@@ -315,6 +315,13 @@ if ( !empty( $partner->data['is_feedback_enabled'] ) ) {
 
 </div><!-- content -->
 
+<section class="tips accordian">
+<div class="heading">
+	<p>Tips</p>
+	<i class="icn down-arrow"></i>
+</div>
+<div class="acc-content"><?php include 'feedback/tips-v' . $page_vars['version'] . '.php'; ?></div>
+</section>
 <section class="facts accordian">
 <div class="heading">
 	<p>Facts</p>
@@ -322,12 +329,12 @@ if ( !empty( $partner->data['is_feedback_enabled'] ) ) {
 </div>
 <div class="acc-content"><?php include 'feedback/facts.php'; ?></div>
 </section>
-<section class="tips accordian">
+<section class="support accordian">
 <div class="heading">
-	<p>Tips</p>
+	<p>Support</p>
 	<i class="icn down-arrow"></i>
 </div>
-<div class="acc-content"><?php include 'feedback/tips-v' . $page_vars['version'] . '.php'; ?></div>
+<div class="acc-content"><?php include 'feedback/support.php'; ?></div>
 </section>
 <?php
 $services = Partner::loadServices( $partner->data['id'] );
