@@ -306,8 +306,6 @@ class ReportsController extends AppController {
 			'Race',
 			'Ethnicity',
 			'Habitation type',
-			'Graduated parents',
-			'Only attended UF',
 			'Consumed alcohol last 12 months',
 			'How often drink alcohol',
 			'How many Standard Drinks on typical day',
@@ -346,10 +344,21 @@ class ReportsController extends AppController {
 		$headers[] = 'Tobacco - Frequency';
 		$headers[] = 'Tobacco - time to init';
 		$headers[] = 'Audit score';
-		$headers[] = 'Feedback - How important is it to you that you reduce your drinking? 1 (Not at all important) - 10 (Very important)';
-		$headers[] = 'Feedback - How confident are you that you can reduce your drinking? 1 (Not at all confident) - 10 (Very confident)';
-		$headers[] = 'Feedback - How important do you think it is that you talk to a health professional (like a doctor or counsellor) about your drinking? 1 (Not at all important) - 10 (Very important)';
-		$headers[] = 'Feedback - How ready are you to talk to a health professional? 1 (Not at all ready) - 10 (Very ready)';
+
+		$feedback_questions = array();
+		if ( !empty( $this->current_user['Partner']['is_feedback_enabled'] ) ) {
+			$headers[] = 'Feedback - How important is it to you that you reduce your drinking? 1 (Not at all important) - 10 (Very important)';
+			$headers[] = 'Feedback - How confident are you that you can reduce your drinking? 1 (Not at all confident) - 10 (Very confident)';
+			$headers[] = 'Feedback - How important do you think it is that you talk to a health professional (like a doctor or counsellor) about your drinking? 1 (Not at all important) - 10 (Very important)';
+			$headers[] = 'Feedback - How ready are you to talk to a health professional? 1 (Not at all ready) - 10 (Very ready)';
+
+			$feedback_questions = array(
+				'rating_important_reduce_drinking',
+				'rating_confident_reduce_drinking',
+				'rating_important_talk_professional',
+				'rating_ready_talk_professional',
+			);
+		}
 
 		fputcsv( $fp, $headers );
 
@@ -365,8 +374,6 @@ class ReportsController extends AppController {
 				( !empty( $entry['Entry']['01_race'] ) ) ? $this->race[$entry['Entry']['01_race']] : '',
 				( !empty( $entry['Entry']['01_ethnicity'] ) ) ? $this->ethnicity[$entry['Entry']['01_ethnicity']] : '',
 				( !empty( $entry['Entry']['01_where'] ) ) ? $this->habitation_type[$entry['Entry']['01_where']] : '',
-				( !empty( $entry['Entry']['01_parents'] ) ) ? 'Yes' : 'No',
-				( !empty( $entry['Entry']['01_history'] ) ) ? $this->history[$entry['Entry']['01_history']] : '',
 				( !empty( $entry['Entry']['01_alcohol_last_12mths'] ) ) ? 'Yes' : 'No',
 				( !empty( $entry['Entry']['02_how_often_drink_alcohol'] ) ) ? $this->how_often_drink[$entry['Entry']['02_how_often_drink_alcohol']] : '',
 				$entry['Entry']['02_how_many_on_typical_day'],
@@ -412,10 +419,10 @@ class ReportsController extends AppController {
 			$row[] = $entry['Entry']['08_tobacco_frequency'];
 			$row[] = !empty($entry['Entry']['08_tobacco_init']) ? $this->tobacco_init[$entry['Entry']['08_tobacco_init']] : '';
 			$row[] = $entry['Entry']['audit_score'];
-			$row[] = $entry['Entry']['rating_important_reduce_drinking'];
-			$row[] = $entry['Entry']['rating_confident_reduce_drinking'];
-			$row[] = $entry['Entry']['rating_important_talk_professional'];
-			$row[] = $entry['Entry']['rating_ready_talk_professional'];
+
+			foreach ($feedback_questions as $question) {
+				$row[] = $entry['Entry'][$question];
+			}
 
 			fputcsv( $fp, $row );
 		}
