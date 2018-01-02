@@ -840,156 +840,53 @@ fieldset legend { display: none; }
 	display: block;
 }
 
+.drinks-guide p.subtitle {
+	font-size: 22px;
+	margin-top: 40px;
+	color: #6f6e6e;
+}
+
 .drinks-guide .dg-wrap {
 	height: 215px;
+	margin-top: 25px;
 }
 
 .drinks-guide .drink-type {
 	float: left;
-	position: relative;
 	display: inline-block;
 	background: url(../images/divider.png) right 104px no-repeat;
-	height: 188px;
-	padding: 0 2.3%;
+	width: 25%;
 }
 
-.drinks-guide .drink-type.drinks-six {
-	background-image: none;
+.drinks-guide .drink-type:last-child {
+	background: none;
 }
 
-	.drinks-guide .drink-type p {
-		text-transform: uppercase;
-		color: #616161; 
-		font-size: 14px;
-		font-family: 'ProximaNova-Bold';
+.drinks-guide .drink-type p {
+	padding: 0 10px;
+	color: #616161;
+	font-size: 15px;
+	font-family: 'ProximaNova-Bold';
 	font-weight: normal;
-		text-align: center;
-		margin: 0;
-	}
-	
-	.drink-type:hover {
-		cursor: pointer;
-	}
-	
-	.drinks-guide i.info {
-		background-position: -256px -320px;
-		width: 20px;
-		height: 20px;
-		margin: 0 auto;
-	}
-	
-	.drink-type:hover i.info {
-		background-position: -320px -320px;
-	}
-	
-	.drink-type .image {
-		position: relative;
-		bottom: 0px;
-		margin: 0 auto 27px;
-		display: block;
-		height: 118px;
-	}
-	
-	.drink-type .image img {
-		width: 100%;
-		height: auto;
-		position: absolute;
-		bottom: 0;
-		left: 0;
-	}
-	
-	.drink-type.drinks-one .image {
-		width: 75px;
-		height: 116px;
-	}
-	
-	.drink-type.drinks-two .image {
-		width: 144px;
-		height: 116px;
-	}
-	
-	.drink-type.drinks-three .image {
-		width: 126px;
-		height: 116px;
-	}
-	
-	
-	.drink-type.drinks-four .image {
-		width: 98px;
-		height: 116px;
-	}
-
-	
-	.drink-type.drinks-five .image {
-		width: 29px;
-		height: 116px;
-	}
-	
-
-	.drink-type.drinks-six .image {
-		width: 32px;
-		height: 116px;
-	}
-	
-
-	
-.drinks-guide .tooltip {
-	background-color: #5b5465;
-	border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-bottom: 5px solid #524b5b;
-	position: absolute;
-	width: 210px;
-	padding: 20px;
-	z-index: 10;
-	display: none;
-	top: 200px;
-}
-
-.drinks-guide .tooltip p {
-	text-transform: none;
-	color: #fff;
-	font-weight: 400;
-	line-height: 19px;
+	text-align: center;
 	margin: 0;
 }
 
-.drinks-guide .tooltip:after {
-	bottom: 100%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
+.drink-type .image {
+	position: relative;
+	margin: 0 auto 5px;
+	display: block;
+	height: 118px;
+}
+
+.drink-type .image img {
 	position: absolute;
-	pointer-events: none;
-}
-
-.drinks-guide .tooltip:after {
-	border-color: rgba(91, 84, 101, 0);
-	border-bottom-color: #5b5465;
-	border-width: 8px;
-	left: 50%;
-	margin-left: -8px;
-}
-
-.drinks-guide .slider-nav {
-	position: absolute;
-	top: 100px;
-}
-
-.drinks-guide .slider-nav.go-left {
-	left: 10px;
-	background-position: -128px -639px;
-	width: 8px;
-	height: 14px;
-}
-
-.drinks-guide .slider-nav.go-right {
-	right: 12px;
-	background-position: -192px -639px;
-	width: 8px;
-	height: 14px;
+	max-height: 100px;
+	width: auto;
+	left: 0;
+	right: 0;
+	bottom: 10px;
+	margin: auto;
 }
 
 /*------------------------------------------------------ SURVEY FORM */
@@ -2678,6 +2575,22 @@ input#height-cm {
 	}
 	.thrive-feedback .heading {
 		padding-bottom: 30px;
+	}
+
+	.drinks-guide .drink-type {
+		width: 100%;
+		display: block;
+		background: none;
+		margin-bottom: 35px;
+	}
+
+	.drinks-guide .drink-type .image {
+		height: auto;
+	}
+
+	.drinks-guide .drink-type .image img {
+		position: relative;
+		display: block;
 	}
 }
 

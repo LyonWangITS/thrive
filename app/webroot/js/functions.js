@@ -30,15 +30,6 @@ $(document).ready(function(){
 	
 	footerLogo();
 	
-	/* drinks guide if < 767 */
-	
-	dgSlider();
-	
-	$( window ).resize(function(){
-		dgSlider();
-		reposition_slider_ui();
-	});
-	
 	initStepTwo();
 	
 	initStepThree();
@@ -565,108 +556,6 @@ function buildSlider( opts ){
 	return slider;
 	
 }
-
-//On window resize we redraw tooltips & bg
-function reposition_slider_ui(){
-	
-	$('.slider .handle').each(function(){
-		
-		var handle = $(this);
-		var handle_center = handle.position().left + (handle.width()/2);
-		
-		var bg = $(this).siblings('.selected-area');
-		var tooltip = $(this).siblings('.tooltip');
-		
-		bg.css( 'width', handle_center + 'px' );
-		tooltip.css('left', ( -(tooltip.outerWidth()/2) + handle_center ) + 'px' );
-		
-	});
-	
-}
-
-var cycle_init = false;
-function dgSlider(){
-	
-	//$('.drinks-guide .tooltip').fadeOut(200);
-	$('.drinks-guide .tooltip').hide();
-	
-	if ($(window).width() < 767){
-		
-		$('.dg-wrap').css({'height' : 215 });
-		
-		if ( !cycle_init ){
-			$( '.dg-wrap' ).cycle({
-				timeout: 2000,
-				slides: '> div',
-				prev:'.go-left',
-				next:'.go-right',  
-				fx: 'scrollHorz', 
-				pauseOnHover: true, 
-				speed: 600, 
-				swipe: true,
-				prev: '.go-left', 
-				next: '.go-right' 
-			});
-			
-			$('.drinks-guide .drink-type').unbind('click mouseenter mouseleave')
-			
-			$('.drinks-guide .drink-type').click(function(){
-
-				var dgWidth = $(this).outerWidth();
-				var finalWidth = (dgWidth - 200)/2;
-				var dgHeight = $(this).find('.tooltip').outerHeight();
-				var finalHeight = dgHeight + 218;
-
-				var trigger_center = Math.round( $(this).innerWidth() / 2 );
-				var tooltip = $(this).find('.tooltip');
-
-				tooltip.css('left', ( trigger_center - ( tooltip.innerWidth() / 2 ) + 'px' ) );
-				tooltip.fadeIn(200);
-				$(this).parent().css('height', finalHeight);
-
-				event.stopPropagation();
-
-			});
-
-			$('body').unbind('click').click(function() {
-
-				$('.drinks-guide .tooltip').hide();
-				$('.dg-wrap').css({'height' : 215 });
-
-			});
-
-
-			$( '.dg-wrap' ).on( 'cycle-next', function() {
-				$('.drinks-guide .tooltip').hide();
-				$('.dg-wrap').css({'height' : 215 });
-			});
-		}
-		cycle_init = true;
-		
-		
-	} else {
-	
-		if ( cycle_init ){
-			$('.dg-wrap').cycle('destroy');			
-		}
-		cycle_init = false;
-		
-		$('.drinks-guide .drink-type').unbind('click mouseenter mouseleave').hover(function(){
-			var dgWidth = $(this).outerWidth();
-			var finalWidth = (dgWidth - 250)/2;
-			$(this).find('.tooltip').css({'left' : finalWidth});
-			$(this).find('.tooltip').fadeIn(200);
-
-		},function(){
-			$(this).find('.tooltip').fadeOut(200);
-			var finalWidth = 0;
-		});
-		
-	}
-	
-}
-
-
 
 /* Helpers */
 function isNumber(n) {

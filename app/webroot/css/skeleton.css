@@ -135,14 +135,6 @@
 		left: 0;
 	}
 	
-	.drinks-guide .drink-type {
-		width: 20%;
-		margin: 0 0 20px;
-		float: none;
-		padding: 0 3%;
-		background-image: none;
-	}
-	
 	.field .labels {
 		position: absolute;
 		right: 17px;
@@ -1186,27 +1178,6 @@
 		
 		#drinking-hours-slider.dragdealer {
 			margin: 0 auto !important;
-		}
-		
-		.drinks-guide {
-			overflow-y: visible !important;
-			padding-top: 0;
-		}
-		
-		.drinks-guide .drink-type {
-			width: 100%;
-			margin: 0 auto 20px;
-			z-index: 4000 !important;
-		}
-		
-		.drinks-guide .drink-type .tooltip {
-			width: 150px;
-			z-index: 100;
-			
-		}
-		
-		.drinks-guide .drink-type .tooltip p {
-			width: 150px;
 		}
 		
 		.dragdealer {
