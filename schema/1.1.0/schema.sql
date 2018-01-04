@@ -40,6 +40,7 @@ CREATE TABLE `entries` (
   `token` varchar(255) NOT NULL DEFAULT '',
   `is_test` int(1) NOT NULL DEFAULT '0',
   `00_participant_name` text NOT NULL,
+  `00_participant_id` int(11) NOT NULL,
   `01_age` int(11) DEFAULT NULL,
   `01_gender` enum('female','male','transgender-ftm','transgender-mtf','genderqueer','androgynous','intersex') DEFAULT NULL,
   `01_race` enum('native-american','asian','hawaiian','black','white','mixed-race','other','skip') DEFAULT NULL,

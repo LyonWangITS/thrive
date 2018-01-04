@@ -110,11 +110,10 @@ input, textarea {
 }
 
 input:focus, textarea:focus {
-	outline: none;
-    -webkit-box-shadow: 0 0 8px 0 #67c3a0;
-    -moz-box-shadow: 0 0 8px 0 #67c3a0;
-    box-shadow: 0 0 8px 0 #67c3a0;
-	border: 1px solid #67c3a0 !important;
+	-webkit-box-shadow: 0 0 8px 0 #67c3a0;
+	-moz-box-shadow: 0 0 8px 0 #67c3a0;
+	box-shadow: 0 0 8px 0 #67c3a0;
+	outline: 1px solid #67c3a0 !important;
 }
 
 input[type=text] {
@@ -424,81 +423,84 @@ fieldset legend { display: none; }
 
 /* Start form */
 
-
 .start form {
 	margin: 48px 0 20px;
 	min-height: 130px;
 }
 
-	.start form legend {
-		display: none;
-	}
-	
-	.start form p {
-		font-size: 12px;
-	}
-	
-	.start fieldset {
-		position: relative;
-		max-width: 440px;
-		min-height: 60px;
-		width: auto;
-		margin: 0 auto;
-	}
-	
-	.start .field {
-		position: absolute;
-		width: 61%;
-		left: 0;
-	}
-	
-		.start .field input {
-			position: absolute;
-			left: 0;
-			top: 0;
-			width: 84%;
-		}
-		
-		.start .field label {
-			position: absolute;
-			left: 8%;
-			top: 18px;
-			z-index: 2;
-		}
-		
-	.start button {
-		position: absolute;
-		right: 0;
-		width: 36%;
-		padding: 0 0 0 5%;
-		text-align: left;
-	}
-	
-		.start button .white-arrow {
-			margin-left: 10px;
-			margin-top: 1px;
-			-webkit-transition: all 0.1s ease-in-out;
-			-moz-transition: all 0.1s ease-in-out;
-			-ms-transition: all 0.1s ease-in-out;
-			-o-transition: all 0.1s ease-in-out;
-			transition: all 0.1s ease-in-out;
-		}
-		
-		.start button:hover .white-arrow {
-			margin-left: 15px;
-		}
+.start form legend {
+	display: none;
+}
 
-	.start fieldset.researcher {
-		max-width: none;
-		min-height: 0;
-		margin-top: 16px;
-	}
-	
-	.start fieldset.researcher label {
-		color: #a19caf;
-		font-size: 12px;
-	}
+.start form p {
+	font-size: 12px;
+}
 
+.start fieldset {
+	max-width: 440px;
+	min-height: 60px;
+	width: auto;
+	margin: 0 auto;
+}
+
+.start .field {
+	float: left;
+	width: 100%;
+	position: relative;
+}
+
+.start .row {
+	margin-top: 15px;
+}
+
+.start #field-id {
+	width: 65%;
+}
+
+.start .field input {
+	display: inline;
+}
+
+.start .field label {
+	width: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.start button {
+	width: 32%;
+	margin-left: 3%;
+	float: left;
+	padding: 0 0 0 5%;
+	text-align: left;
+}
+
+.start button .white-arrow {
+	margin-left: 5px;
+	margin-top: 0;
+	-webkit-transition: all 0.1s ease-in-out;
+	-moz-transition: all 0.1s ease-in-out;
+	-ms-transition: all 0.1s ease-in-out;
+	-o-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
+}
+
+.start button:hover .white-arrow {
+	margin-left: 10px;
+}
+
+.start fieldset.researcher {
+	max-width: none;
+	min-height: 0;
+	margin-top: 15px;
+}
+
+.start fieldset.researcher label {
+	color: #a19caf;
+	font-size: 12px;
+}
 
 
 /*------------------------------------------------------ SURVEY (all other pages) */

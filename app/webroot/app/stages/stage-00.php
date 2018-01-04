@@ -28,12 +28,19 @@
 			<fieldset title="Please fill in these fields">
 				<legend>Please enter your name to continue</legend>
 
-				<div class="field">
-					<label for="name">Your name</label>
-					<input type="text" id="name" name="participant_name" />
+				<div class="row">
+					<div id="field-name" class="field">
+						<label for="name">Your name</label>
+						<input type="text" id="name" name="participant_name" />
+					</div>
 				</div>
-
-				<button type="submit">Let's go! <i class="icn white-arrow"></i></button>
+				<div class="row">
+					<div id="field-id" class="field">
+						<label for="id_number">The ID number you were provided</label>
+						<input type="text" id="id_number" name="participant_id" />
+					</div>
+					<button type="submit">Let's go! <i class="icn white-arrow"></i></button>
+				</div>
 
 			</fieldset>
 

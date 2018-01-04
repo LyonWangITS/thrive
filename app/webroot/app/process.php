@@ -19,7 +19,8 @@ function doProcess( $the_survey, $existing_token, $version ){
 		// 0 : name - notempty
 		if ( $survey_stage == 0 ){
 			$form_errors = array(
-				'participant_name' => validateField( ifne( $_POST, 'participant_name' ), 'notempty', 'Name cannot be empty' )
+				'participant_name' => validateField( ifne( $_POST, 'participant_name' ), 'notempty', 'Name cannot be empty' ),
+				'participant_id' => validateField( ifne( $_POST, 'participant_id' ), 'notempty', 'ID cannot be empty' )
 			);
 
 			if ( formIsValid( $form_errors ) ){
@@ -27,7 +28,7 @@ function doProcess( $the_survey, $existing_token, $version ){
 				//Create it
 				$partner = Partner::getCurrentPartner();
 				$is_test = ( !empty( $_POST['is_test'] ) );
-				$new_token = Survey::create( $partner->data['id'], $_POST[ 'participant_name' ], $is_test );
+				$new_token = Survey::create( $partner->data['id'], $_POST[ 'participant_name' ], $_POST[ 'participant_id' ], $is_test );
 
 				do_survey_redirect($new_token, $version);
 				//exit

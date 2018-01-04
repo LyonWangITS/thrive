@@ -298,9 +298,10 @@ class ReportsController extends AppController {
 		$fp = fopen( 'php://memory', 'w' ); 
 		
 		$headers = array(
-			'ID',
+			'Partner ID',
 			'Completed',
 			'Name',
+			'Participant ID',
 			'Gender',
 			'Age',
 			'Race',
@@ -369,6 +370,7 @@ class ReportsController extends AppController {
 				$entry['Entry']['id'],
 				$entry['Entry']['completed'],
 				$entry['Entry']['00_participant_name'],
+				$entry['Entry']['00_participant_id'],
 				( !empty( $entry['Entry']['01_gender'] ) ) ? $this->genders[$entry['Entry']['01_gender']] : '',
 				$entry['Entry']['01_age'],
 				( !empty( $entry['Entry']['01_race'] ) ) ? $this->race[$entry['Entry']['01_race']] : '',

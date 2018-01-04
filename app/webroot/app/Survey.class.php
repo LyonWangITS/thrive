@@ -109,7 +109,7 @@
 			Create new survey record
 			- return last inserted id
 		*/
-		public static function create( $partner_id, $participant_name, $is_test = false ){
+		public static function create( $partner_id, $participant_name, $participant_id, $is_test = false ){
 
 			$token = Survey::newToken();
 
@@ -125,13 +125,15 @@
 							token,
 							started,
 							is_test,
-							00_participant_name
+							00_participant_name,
+							00_participant_id
 						) VALUES (
 							:partner_id,
 							:token,
 							:started,
 							:is_test,
-							:participant_name
+							:participant_name,
+							:participant_id
 						)";
 
 				try{
@@ -143,6 +145,7 @@
 					$stmt->bindValue( 'started', get_gmt() );
 					$stmt->bindValue( 'is_test', $is_test );
 					$stmt->bindValue( 'participant_name', $participant_name );
+					$stmt->bindValue( 'participant_id', $participant_id );
 
 					$stmt->execute();
 					$inserted_id = $db->lastInsertId();

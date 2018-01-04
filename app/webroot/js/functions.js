@@ -66,6 +66,7 @@ function init_stage_form( form_stage ){
 	if ( form_stage == 0 ){
 		
 		$('label[for=name]').inFieldLabels();
+		$('label[for=id_number]').inFieldLabels();
 		
 	} else if (form_stage == 1 ){
 		
@@ -239,7 +240,8 @@ function stage_form_complete( form_stage ){
 	if ( form_stage == 0 ){
 		
 		form_fields_checked = {
-			'participant_name' 		: { skip : false, valid : false }
+			'participant_name' 		: { skip : false, valid : false },
+			'participant_id' 		: { skip : true, valid : isPositiveNumber($('input[name="participant_id"]').val()) }
 		};
 		
 	} else if ( form_stage == 1 ){
