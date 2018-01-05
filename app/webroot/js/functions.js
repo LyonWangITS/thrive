@@ -27,26 +27,23 @@ $(document).ready(function(){
 			$(this).parent().addClass('active');
 		}
 	});
-	
+
 	footerLogo();
-	
-	initStepTwo();
-	
+
 	initStepThree();
-	
-	initStepNine();
-	
+
+	initStepFour();
+
+	initStepTen();
+
 	modalBox();
-	
+
 	$('.callback input').placeholder();
-	
+
 	$('form.callback').submit(function(){
 		ajaxSubmitCallbackForm();
 		return false;
 	});
-	
-
-
 });
 
 
@@ -88,7 +85,7 @@ function init_stage_form( form_stage ){
 			}
 		} );
 		
-	} else if ( form_stage == 2 ){
+	} else if ( form_stage == 3 ){
 		
 		//#2 - standard drinks typical day
 		buildSlider({
@@ -103,7 +100,7 @@ function init_stage_form( form_stage ){
 			}
 		});
 	
-	} else if ( form_stage == 3 ){
+	} else if ( form_stage == 4 ){
 		
 		$('.stage-form input[name=past_4wk_consumed_alcohol]').bind('change', function(){
 			
@@ -249,6 +246,34 @@ function stage_form_complete( form_stage ){
 		};
 
 	} else if ( form_stage == 2 ){
+		var fields = [
+			'see_things_through_to_the_end',
+			'thinking_careful_purposeful',
+			'great_mood_leading_to_problematic_situations',
+			'unfinished_tasks_bother_me',
+			'think_things_over_before_doing',
+			'feeling_bad_leading_to_regretful_actions',
+			'hate_to_stop_doing_things',
+			'feeling_bad_difficult_to_stop',
+			'enjoy_taking_risks',
+			'good_mood_lose_control',
+			'finish_when_start',
+			'rational_sensible_approach',
+			'upset_act_without_thinking',
+			'welcome_new_exciting_experiences',
+			'rejection_leading_to_say_regretful_things',
+			'learn_fly_airplane',
+			'others_shocked_about_my_excitement',
+			'skiing_very_fast',
+			'think_carefully_before_doing_anything',
+			'act_withoug_thinking_when_excited',
+		];
+
+		$.each(fields, function(i, field) {
+			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
+		});
+
+	} else if ( form_stage == 3 ){
 		
 		form_fields_checked = {
 			'how_often_drink_alcohol'	: { type : 'select', skip : false, valid : false },
@@ -262,7 +287,7 @@ function stage_form_complete( form_stage ){
 			'been_injured_or_injured_someone'			: { type : 'select', skip : false, valid : false },
 			'others_concerned_about_my_drinking'		: { type : 'select', skip : false, valid : false }
 		};
-	} else if ( form_stage == 3 ){
+	} else if ( form_stage == 4 ){
 		
 		//Skip bulk validation
 		form_fields_checked = {
@@ -327,7 +352,7 @@ function stage_form_complete( form_stage ){
 			
 		}
 		
-	} else if ( form_stage == 4 ) {
+	} else if ( form_stage == 5 ) {
 		var fields = [
 			'difficult_to_limit',
 			'start_drinking_after_deciding_not_to',
@@ -345,7 +370,7 @@ function stage_form_complete( form_stage ){
 			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
 		});
 
-	} else if ( form_stage == 5 ) {
+	} else if ( form_stage == 6 ) {
 
 		var fields = [
 			'embarassing_things',
@@ -377,7 +402,7 @@ function stage_form_complete( form_stage ){
 		$.each(fields, function(i, field) {
 			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
 		});
-	} else if ( form_stage == 6 ) {
+	} else if ( form_stage == 7 ) {
 
 		var fields = [
 			'count_drinks',
@@ -396,7 +421,7 @@ function stage_form_complete( form_stage ){
 		$.each(fields, function(i, field) {
 			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
 		});
-	} else if ( form_stage == 7 ) {
+	} else if ( form_stage == 8 ) {
 
 		var fields = [
 			'cut_down_drinking',
@@ -406,7 +431,7 @@ function stage_form_complete( form_stage ){
 		$.each(fields, function(i, field) {
 			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
 		});
-	} else if ( form_stage == 8 ) {
+	} else if ( form_stage == 9 ) {
 
 		var fields = ['tobacco_use', 'tobacco_frequency', 'tobacco_init'];
 
@@ -555,9 +580,9 @@ function isPositiveNumber(n) {
 var start_animate_vessels = false;
 var start_animate_firstaids = false;
 
-function initStepTwo() {
+function initStepThree() {
 
-	if ($('.progress').hasClass('step-two')) {
+	if ($('.progress').hasClass('step-three')) {
 	
 		checkAnimationStepTwo();		
 		$(window).scroll(function(){
@@ -612,9 +637,9 @@ function animationFirstaid() {
 	
 }
 
-function initStepThree() {
+function initStepFour() {
 
-	if ($('.progress').hasClass('step-three')) {
+	if ($('.progress').hasClass('step-four')) {
 	
 		animationClock();
 	
@@ -662,9 +687,9 @@ var start_audit_score,
 	start_audit_bac,
 	start_audit_spend = false;
 
-function initStepNine() {
+function initStepTen() {
 	
-	if (!$('.progress').hasClass('step-nine')) {
+	if (!$('.progress').hasClass('step-ten')) {
 
 		return;
 	}

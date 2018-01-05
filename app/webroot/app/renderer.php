@@ -11,10 +11,7 @@ function renderStage( $target_stage, $page_vars ){
 	// White-label
 	$partner = Partner::getCurrentPartner();
 
-	if ($target_stage === 'thanks'){
-		include_once 'stages/stage-thanks.php';
-	}
-	elseif ($target_stage === 0) {
+	if ($target_stage === 0) {
 		include_once 'stages/stage-00.php';
 	}
 	else {

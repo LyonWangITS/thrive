@@ -1532,6 +1532,9 @@ input#height-cm {
 
 .survey .field.tabular-intro p {
 	margin: 0 0 45px;
+}
+
+.survey .field.tabular-intro.with-image p {
 	width: 65%;
 }
 

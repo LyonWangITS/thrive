@@ -1,7 +1,7 @@
 <?php
 $this->set( 'title_for_layout', 'Login' );
 $this->Html->meta( 'description', 'Thrive - Your Health Online. Alcohol Survey', array( 'inline' => false ) );
-$this->Html->meta( 'keywords', 'Alcohol Survey, University, Tertiary, Polytechnic.', array( 'inline' => false ) );
+$this->Html->meta( 'keywords', 'Alcohol Survey, University', array( 'inline' => false ) );
 ?>
 
 <p class="breadcrumb">
@@ -24,7 +24,7 @@ $this->Html->meta( 'keywords', 'Alcohol Survey, University, Tertiary, Polytechni
 		?>
 		
 		<div class="link-wrap">
-			<p class="left"><a href="<?php echo $this->webroot; ?>admin/forgot_password">Forgotten password?</a></p>
+			<p class="left"><a href="mailto:edgelab@hhp.ufl.edu">Forgotten password?</a></p>
 		</div>
 	
 	</div>

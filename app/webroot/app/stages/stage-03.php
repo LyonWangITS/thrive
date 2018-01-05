@@ -1,132 +1,231 @@
-<div class="field radio-set radio-set-right clearfix">
+<div class="field drink-often select-right clearfix">
 
 	<i class="icn number">01</i>
 
-	<p>Have you consumed alcohol in the last four weeks?</p>
+	<p>How often do you have a drink containing alcohol?</p>
 
-	<div class="input-wrap">
-		<input type="radio" name="past_4wk_consumed_alcohol" id="consumed-yes" value="yes">
-		<label for="consumed-yes">Yes</label>
-		<input type="radio" name="past_4wk_consumed_alcohol" id="consumed-no" value="no">
-		<label for="consumed-no">No</label>
+	<div class="select styled">
+		<select name="how_often_drink_alcohol" title="How often tod you drink alcohol?">
+			<option value="">Please select</option>
+			<option value="never">Never or almost never</option>
+			<option value="lt-1pm">Less than once a month</option>
+			<option value="1pm">Once a month</option>
+			<option value="1p2w">Once every two weeks</option>
+			<option value="1pw">Once a week</option>
+			<option value="2-3pw">Two or three times a week</option>
+			<option value="4pw">Four or more times a week</option>
+		</select>
 	</div>
 
 </div><!-- field -->
 
-<div id="more-fields-wrapper">
+<div class="field many-drinks slider">
 
-	<?php include 'commons/tabular.php'; ?>
+	<i class="icn number">02</i>
 
-	<div class="field clearfix">
+	<p>How many Standard Drinks containing alcohol do you have on a typical day when you are drinking?</p>
 
-		<i class="icn number">03</i>
+	<div id="typical-day-slider" class="slider dragdealer">
 
-		<p>Thinking about only the days you consumed alcohol <strong>during the past 4 weeks</strong>, please enter the average number of <strong>standard drinks</strong> you consumed on each of those days.</p>
-		<p>For example, when you drink on Fridays, if you usually have about 10 drinks, you would select "10" for Friday.</p>
-
-	</div><!-- field -->
-
-	<?php foreach (get_weekdays() as $day => $label): ?>
-		<div class="field tabular tabular-slider clearfix">
-			<p><?php echo $label; ?></p>
-			<div class="input-wrap">
-				<div class="slider-wrapper">
-					<div id="standard-drinks-slider_<?php echo $day; ?>" class="slider dragdealer">
-						<div class="red-bar handle">drag me</div>
-						<div class="selected-area"></div>
-						<div class="tooltip">0 drinks</div>
-						<div class="left-value slider-value">0</div>
-						<div class="right-value slider-value">25+</div>
-					</div>
-					<input type="hidden" name="past_4wk_std_drinks_<?php echo $day; ?>" value="0" />
-				</div>
-			</div>
-		</div><!-- field -->
-	<?php endforeach; ?>
-
-	<div class="field slider clearfix">
-
-		<i class="icn number">04</i>
-
-		<p>In the last four weeks what is the largest number of standard drinks you have consumed on a single occasion?</p>
-
-		<div class="slider-wrapper">
-			<div id="standard-drinks-slider" class="slider dragdealer">
-				<div class="red-bar handle">drag me</div>
-				<div class="selected-area"></div>
-				<div class="tooltip">1 drinks</div>
-				<div class="left-value slider-value">1</div>
-				<div class="right-value slider-value">32+</div>
-			</div>
-		</div>
-
-		<input type="hidden" name="past_4wk_largest_number_single_occasion" value="1" />
-
-	</div><!-- field -->
-
-	<div class="field slider hours clearfix">
-
-		<i class="icn number">05</i>
-
-		<p>Over how many hours did you drink this amount (to the nearest hour)?</p>
-
-		<div class="slider-wrapper">
-			<div id="drinking-hours-slider" class="slider dragdealer">
-				<div class="red-bar handle">drag me</div>
-				<div class="selected-area"></div>
-				<div class="tooltip">8 drinks</div>
-				<div class="left-value slider-value">1</div>
-				<div class="right-value slider-value">24+</div>
-			</div>
-		</div>
-
-		<input type="hidden" name="past_4wk_hours_amount_drank" value="1" />
-
-		<div class="watch">
-			<div class="watch-main"><img src="<?php echo BASE_URL; ?>images/watch.png" alt="Wach face" /></div>
-			<div class="center"><img src="<?php echo BASE_URL; ?>images/watch-center.png" alt="watch center" /></div>
-			<div class="shadow"><img src="<?php echo BASE_URL; ?>images/watch-shadow.png" alt="watch shadow" /></div>
-			<div class="hour"></div>
-			<div class="minute"></div>
-			<div class="second"></div>
-
-		</div>
+		<div class="red-bar handle">drag me</div>
+		<div class="selected-area"></div>
+		<div class="tooltip">1 drinks</div>
+		<div class="left-value slider-value">1</div>
+		<div class="right-value slider-value">32+</div>
 
 	</div>
 
-	<div class="field clearfix">
+	<input type="hidden" name="how_many_on_typical_day" value="1" />
 
-		<i class="icn number">06</i>
+</div><!-- field -->
 
-		<p>In order for us to calculate your Blood Alcohol Concentration please give your best estimate of your height and weight:</p>
+<div class="field six-more select-below clearfix">
 
-		<div class="height clearfix">
+	<i class="icn number">03</i>
 
-			<p>Height</p>
-			<input type="text" name="body_height-feet" placeholder="feet" id="height-feet" title="Please enter your height in feet">
-			<input type="text" name="body_height-inches" placeholder="inches" id="height-inches"  title="Please enter your inches">
+	<p>How often do you have six or more Standard Drinks on one occasion?</p>
 
-			<p class="or">or</p>
+	<div class="select styled">
+		<select name="how_often_six_or_more" title="How often do you have six or more standard drinks on one occasion?">
+			<option value="">Please select</option>
+			<option value="never">Never</option>
+			<option value="1-2py">Once or twice in the last year</option>
+			<option value="lt-1pm">Less than monthly</option>
+			<option value="1pm">Monthly</option>
+			<option value="1pw">Weekly</option>
+			<option value="1pd">Daily or almost daily</option>
+		</select>
+	</div>
 
-			<input type="text" name="body_height-cm" placeholder="cm" id="height-cm" title="Please enter your height">
-
-		</div><!-- height -->
-
-		<div class="weight clearfix">
-
-			<p>Weight</p>
-
-			<input type="text" name="body_weight-number" id="weight" title="Please enter your weight" />
-
-			<div class="select styled">
-				<select name="body_weight-unit" title="Please select whether your weight is in kg or lbs.">
-					<option value="lbs">lbs</option>
-					<option value="kg">kg</option>
-				</select>
-			</div>
-
+	<div class="image vessels">
+		<div class="vessel-img v-one">
+			<img src="<?php echo BASE_URL; ?>images/drinks-1.png" alt="Drinking Vessel" />
 		</div>
+		<div class="vessel-img v-two">
+			<img src="<?php echo BASE_URL; ?>images/drinks-2.png" alt="Drinking Vessel" />
+		</div>
+		<div class="vessel-img v-three">
+			<img src="<?php echo BASE_URL; ?>images/drinks-3.png" alt="Drinking Vessel" />
+		</div>
+		<div class="vessel-img v-four">
+			<img src="<?php echo BASE_URL; ?>images/drinks-4.png" alt="Drinking Vessel" />
+		</div>
+		<div class="vessel-img v-five">
+			<img src="<?php echo BASE_URL; ?>images/drinks-5.png" alt="Drinking Vessel" />
+		</div>
+		<div class="vessel-img v-six">
+			<img src="<?php echo BASE_URL; ?>images/drinks-6.png" alt="Drinking Vessel" />
+		</div>
+		<div class="vessel-img v-seven">
+			<img src="<?php echo BASE_URL; ?>images/drinks-7.png" alt="Drinking Vessel" />
+		</div>
+		<div class="vessel-img v-eight">
+			<img src="<?php echo BASE_URL; ?>images/drinks-8.png" alt="Drinking Vessel" />
+		</div>
+		<div class="vessel-img v-nine">
+			<img src="<?php echo BASE_URL; ?>images/drinks-9.png" alt="Drinking Vessel" />
+		</div>
+	</div>
 
-	</div><!-- field -->
+</div>
 
-</div> <!-- #more-fields-wrapper -->
+<div class="field cant-stop select-right clearfix">
+
+	<i class="icn number">04</i>
+
+	<p>How often during the last year have you found that you were not able to stop drinking once you had started?</p>
+
+	<div class="select styled">
+		<select name="past_year_how_often_unable_to_stop" title="How often during the last year have you been unable to stop drinking once you had started?">
+			<option value="">Please select</option>
+			<option value="never">Never</option>
+			<option value="lt-1pm">Less than monthly</option>
+			<option value="1pm">Monthly</option>
+			<option value="1pw">Weekly</option>
+			<option value="1pd">Daily</option>
+		</select>
+	</div>
+
+</div><!-- field -->
+
+<div class="field failure select-right clearfix">
+
+	<i class="icn number">05</i>
+
+	<p>How often in the last year have you failed to do what was normally expected from you because of drinking?</p>
+
+	<div class="select styled">
+		<select name="past_year_how_often_failed_expectations" title="How often in the last year have you failed to do what was expected from you because of drinking?">
+			<option value="">Please select</option>
+			<option value="never">Never</option>
+			<option value="lt-1pm">Less than monthly</option>
+			<option value="1pm">Monthly</option>
+			<option value="1pw">Weekly</option>
+			<option value="1pd">Daily</option>
+		</select>
+	</div>
+
+</div><!-- field -->
+
+<div class="field next-day select-below clearfix">
+
+	<i class="icn number">06</i>
+
+	<p>How often in the last year have you needed a drink in the morning to get yourself going after a heavy drinking session?</p>
+
+	<div class="select styled">
+		<select name="past_year_needed_morning_drink" title="How often in the last year have you needed a drink in the morning to get yourself going after a heavy drinking session?">
+			<option value="">Please select</option>
+			<option value="never">Never</option>
+			<option value="lt-1pm">Less than monthly</option>
+			<option value="1pm">Monthly</option>
+			<option value="1pw">Weekly</option>
+			<option value="1pd">Daily</option>
+		</select>
+	</div>
+
+</div><!-- field -->
+
+<div class="field select-right clearfix">
+
+	<i class="icn number">07</i>
+
+	<p>How often in the last year have you had a feeling of guilt or remorse after drinking?</p>
+
+	<div class="select styled">
+		<select name="past_year_how_often_remorseful" title="How often in the last year have you had a feeling of guilt or remorse after drinking?">
+			<option value="">Please select</option>
+			<option value="never">Never</option>
+			<option value="lt-1pm">Less than monthly</option>
+			<option value="1pm">Monthly</option>
+			<option value="1pw">Weekly</option>
+			<option value="1pd">Daily</option>
+		</select>
+	</div>
+
+</div><!-- field -->
+
+<div class="field select-right clearfix">
+
+	<i class="icn number">08</i>
+
+	<p>How often in the last year have you been unable to remember what happened the night before because you had been drinking?</p>
+
+	<div class="select styled">
+		<select name="past_year_how_often_unable_to_remember" title="How often in the last year have you been unable to remember what happened the night before because you had been drinking?">
+			<option value="">Please select</option>
+			<option value="never">Never</option>
+			<option value="lt-1pm">Less than monthly</option>
+			<option value="1pm">Monthly</option>
+			<option value="1pw">Weekly</option>
+			<option value="1pd">Daily</option>
+		</select>
+	</div>
+
+</div><!-- field -->
+
+<div class="field injured select-below clearfix">
+
+	<i class="icn number">09</i>
+
+	<p>Have you or someone else been injured as a result of your drinking?</p>
+
+	<div class="select styled">
+		<select name="been_injured_or_injured_someone" title="Have you or someone else been injured as a result of your drinking?">
+			<option value="">Please select</option>
+			<option value="no">Never</option>
+			<option value="yes-nly">Yes, but not in the last year</option>
+			<option value="yes-ly">Yes, during the last year</option>
+		</select>
+	</div>
+
+	<div class="image first-aids">
+		<div class="first-aid-img fa-one">
+			<img src="<?php echo BASE_URL; ?>images/firstaid-1.png" alt="First Aid Kit" />
+		</div>
+		<div class="first-aid-img fa-two">
+			<img src="<?php echo BASE_URL; ?>images/firstaid-2.png" alt="First Aid Kit" />
+		</div>
+		<div class="first-aid-img fa-three">
+			<img src="<?php echo BASE_URL; ?>images/firstaid-3.png" alt="First Aid Kit" />
+		</div>
+	</div>
+
+</div><!-- field -->
+
+<div class="field injured select-right clearfix">
+
+	<i class="icn number">10</i>
+
+	<p>Has a relative, friend, doctor or other health worker been concerned about your drinking or suggested that you should cut down?</p>
+
+	<div class="select styled">
+		<select name="others_concerned_about_my_drinking" title="Has a relative, friend, doctor or other health worker been concerned about your drinking or suggested that you should cut down?">
+			<option value="">Please select</option>
+			<option value="no">Never</option>
+			<option value="yes-nly">Yes, but not in the last year</option>
+			<option value="yes-ly">Yes, during the last year</option>
+		</select>
+	</div>
+
+</div><!-- field -->

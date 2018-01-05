@@ -122,11 +122,6 @@ class ReportsController extends AppController {
 	public $genders = array(
 		'female' => 'Female',
 		'male' => 'Male',
-		'transgender-ftm' => 'Transgender or transexual FtM',
-		'transgender-mtf' => 'Transgender or transexual MtF',
-		'genderqueer' => 'Genderqueer',
-		'androgynous' => 'Androgynous',
-		'intersex' => 'Intersex',
 	);
 
 	public $how_often_drink = array(
@@ -325,6 +320,11 @@ class ReportsController extends AppController {
 			'Body weight (kg)',
 		);
 
+		$stage = get_stage_vars(2);
+		foreach ($stage['tabular']['rows'] as $label) {
+			$headers[] = $label;
+		}
+
 		$days = get_weekdays();
 		foreach ($days as $label) {
 			$headers[] = 'Drink times (past 4 weeks) - ' . $label;
@@ -334,7 +334,7 @@ class ReportsController extends AppController {
 			$headers[] = 'Standard drinks (past 4 weeks) - ' . $label;
 		}
 
-		foreach (range(4, 7) as $step) {
+		foreach (range(5, 8) as $step) {
 			$stage = get_stage_vars($step);
 			foreach ($stage['tabular']['rows'] as $label) {
 				$headers[] = $label;
@@ -377,49 +377,40 @@ class ReportsController extends AppController {
 				( !empty( $entry['Entry']['01_ethnicity'] ) ) ? $this->ethnicity[$entry['Entry']['01_ethnicity']] : '',
 				( !empty( $entry['Entry']['01_where'] ) ) ? $this->habitation_type[$entry['Entry']['01_where']] : '',
 				( !empty( $entry['Entry']['01_alcohol_last_12mths'] ) ) ? 'Yes' : 'No',
-				( !empty( $entry['Entry']['02_how_often_drink_alcohol'] ) ) ? $this->how_often_drink[$entry['Entry']['02_how_often_drink_alcohol']] : '',
-				$entry['Entry']['02_how_many_on_typical_day'],
-				( !empty( $entry['Entry']['02_how_often_six_or_more'] ) ) ? $this->how_often_six_plus[$entry['Entry']['02_how_often_six_or_more']] : '',
-				( !empty( $entry['Entry']['02_past_year_how_often_unable_to_stop'] ) ) ? $this->past_year[$entry['Entry']['02_past_year_how_often_unable_to_stop']] : '',
-				( !empty( $entry['Entry']['02_past_year_how_often_failed_expectations'] ) ) ? $this->past_year[$entry['Entry']['02_past_year_how_often_failed_expectations']] : '',
-				( !empty( $entry['Entry']['02_past_year_needed_morning_drink'] ) ) ? $this->past_year[$entry['Entry']['02_past_year_needed_morning_drink']] : '',
-				( !empty( $entry['Entry']['02_past_year_how_often_remorseful'] ) ) ? $this->past_year[$entry['Entry']['02_past_year_how_often_remorseful']] : '',
-				( !empty( $entry['Entry']['02_past_year_how_often_unable_to_remember'] ) ) ? $this->past_year[$entry['Entry']['02_past_year_how_often_unable_to_remember']] : '',
-				( !empty( $entry['Entry']['02_been_injured_or_injured_someone'] ) ) ? $this->have_you_ever[$entry['Entry']['02_been_injured_or_injured_someone']] : '',
-				( !empty( $entry['Entry']['02_others_concerned_about_my_drinking'] ) ) ? $this->have_you_ever[$entry['Entry']['02_others_concerned_about_my_drinking']] : '',
-				( !empty( $entry['Entry']['03_past_4wk_consumed_alcohol'] ) ) ? 'Yes' : 'No',
+				( !empty( $entry['Entry']['03_how_often_drink_alcohol'] ) ) ? $this->how_often_drink[$entry['Entry']['03_how_often_drink_alcohol']] : '',
+				$entry['Entry']['03_how_many_on_typical_day'],
+				( !empty( $entry['Entry']['03_how_often_six_or_more'] ) ) ? $this->how_often_six_plus[$entry['Entry']['03_how_often_six_or_more']] : '',
+				( !empty( $entry['Entry']['03_past_year_how_often_unable_to_stop'] ) ) ? $this->past_year[$entry['Entry']['03_past_year_how_often_unable_to_stop']] : '',
+				( !empty( $entry['Entry']['03_past_year_how_often_failed_expectations'] ) ) ? $this->past_year[$entry['Entry']['03_past_year_how_often_failed_expectations']] : '',
+				( !empty( $entry['Entry']['03_past_year_needed_morning_drink'] ) ) ? $this->past_year[$entry['Entry']['03_past_year_needed_morning_drink']] : '',
+				( !empty( $entry['Entry']['03_past_year_how_often_remorseful'] ) ) ? $this->past_year[$entry['Entry']['03_past_year_how_often_remorseful']] : '',
+				( !empty( $entry['Entry']['03_past_year_how_often_unable_to_remember'] ) ) ? $this->past_year[$entry['Entry']['03_past_year_how_often_unable_to_remember']] : '',
+				( !empty( $entry['Entry']['03_been_injured_or_injured_someone'] ) ) ? $this->have_you_ever[$entry['Entry']['03_been_injured_or_injured_someone']] : '',
+				( !empty( $entry['Entry']['03_others_concerned_about_my_drinking'] ) ) ? $this->have_you_ever[$entry['Entry']['03_others_concerned_about_my_drinking']] : '',
+				( !empty( $entry['Entry']['04_past_4wk_consumed_alcohol'] ) ) ? 'Yes' : 'No',
 
-				$entry['Entry']['03_past_4wk_largest_number_single_occasion'],
-				$entry['Entry']['03_past_4wk_hours_amount_drank'],
-				$entry['Entry']['03_body_height_cm'],
-				$entry['Entry']['03_body_weight_kg'],
+				$entry['Entry']['04_past_4wk_largest_number_single_occasion'],
+				$entry['Entry']['04_past_4wk_hours_amount_drank'],
+				$entry['Entry']['04_body_height_cm'],
+				$entry['Entry']['04_body_weight_kg'],
 			);
+
+			$row = $this->_append_tabular_columns_to_row($row, $entry, 2);
 
 			foreach (array('', 'std_') as $prefix) {
 				foreach ($days as $day) {
-					$field = '03_past_4wk_' . $prefix . 'drinks_' . $day;
+					$field = '04_past_4wk_' . $prefix . 'drinks_' . $day;
 					$row[] = empty($entry['Entry'][$field]) ? '0' : $entry['Entry'][$field];
 				}
 			}
 
-			foreach (range(4, 7) as $step) {
-				$stage = get_stage_vars($step);
-				if ($step == 7) {
-					$stage['tabular']['columns']['1'] = '1';
-					$stage['tabular']['columns']['7'] = '7';
-				}
-
-				$prefix = '0' . $step . '_';
-
-				foreach (array_keys($stage['tabular']['rows']) as $field) {
-					$field = $prefix . $field;
-					$row[] = is_null($entry['Entry'][$field]) ? '' : str_replace(array_keys($stage['tabular']['columns']), $stage['tabular']['columns'], $entry['Entry'][$field]);
-				}
+			foreach (range(5, 8) as $step) {
+				$row = $this->_append_tabular_columns_to_row($row, $entry, $step);
 			}
 
-			$row[] = !empty($entry['Entry']['08_tobacco_use']) ? $this->tobacco_use[$entry['Entry']['08_tobacco_use']] : '';
-			$row[] = $entry['Entry']['08_tobacco_frequency'];
-			$row[] = !empty($entry['Entry']['08_tobacco_init']) ? $this->tobacco_init[$entry['Entry']['08_tobacco_init']] : '';
+			$row[] = !empty($entry['Entry']['09_tobacco_use']) ? $this->tobacco_use[$entry['Entry']['09_tobacco_use']] : '';
+			$row[] = $entry['Entry']['09_tobacco_frequency'];
+			$row[] = !empty($entry['Entry']['09_tobacco_init']) ? $this->tobacco_init[$entry['Entry']['09_tobacco_init']] : '';
 			$row[] = $entry['Entry']['audit_score'];
 
 			foreach ($feedback_questions as $question) {
@@ -533,7 +524,7 @@ class ReportsController extends AppController {
 		}
 		$categories['32+'] = '32+';
 
-		$this->_generate_field_count_report( $this->reports['consumption']['peak'], $categories, '03_past_4wk_largest_number_single_occasion' );
+		$this->_generate_field_count_report( $this->reports['consumption']['peak'], $categories, '04_past_4wk_largest_number_single_occasion' );
 	}
 
 	/**
@@ -591,6 +582,24 @@ class ReportsController extends AppController {
 	/**
 	*	Helper methods
 	*/
+
+	private function _append_tabular_columns_to_row($row, $entry, $step) {
+		$stage = get_stage_vars($step);
+
+		if ($step == 7) {
+			$stage['tabular']['columns']['1'] = '1';
+			$stage['tabular']['columns']['7'] = '7';
+		}
+
+		$prefix = '0' . $step . '_';
+
+		foreach (array_keys($stage['tabular']['rows']) as $field) {
+			$field = $prefix . $field;
+			$row[] = is_null($entry['Entry'][$field]) ? '' : str_replace(array_keys($stage['tabular']['columns']), $stage['tabular']['columns'], $entry['Entry'][$field]);
+		}
+
+		return $row;
+	}
 
 	/**
 	*	Renders a report where each category is a query used to return an average.

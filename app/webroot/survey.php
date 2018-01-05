@@ -60,24 +60,14 @@
 		- bear in mind that unless the survey is completed they can still go back to any of the previous stages but 0
 	*/
 
-	if ( $existing_token == '' ){
+	$target_stage = 0;
 
-		$target_stage = 0;
-
-	} else {
-
+	if (!empty($existing_token)) {
 		$last_stage = $the_survey->lastCompletedStage();
 
-		if ( in_array( $last_stage, array( 0, 1, 2, 3, 4, 5, 6, 7, 8 ) ) ) {
-
+		if (is_numeric($last_stage) && $last_stage <= 9) {
 			$target_stage = $last_stage + 1;
-
-		} else {
-
-			$target_stage = 0;
-
 		}
-
 	}
 
 	/*
@@ -93,7 +83,7 @@
 		'version' => $version,
 	);
 
-	if ( $target_stage == 9 ) {
+	if ( $target_stage == 10 ) {
 
 		$audit_score = $the_survey->calculateAuditScore();
 		$the_survey->save( array(

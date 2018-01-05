@@ -206,123 +206,116 @@
 					}
 				}
 
-
-				if ( $stage_1_passed ) {
-
-					// 2 : Past & Present Drinking
-					$stage_2_keys = array(
-						'02_how_often_drink_alcohol',
-						'02_how_many_on_typical_day',
-						'02_how_often_six_or_more',
-						'02_past_year_how_often_unable_to_stop',
-						'02_past_year_how_often_failed_expectations',
-						'02_past_year_needed_morning_drink',
-						'02_past_year_how_often_remorseful',
-						'02_past_year_how_often_unable_to_remember',
-						'02_been_injured_or_injured_someone',
-						'02_others_concerned_about_my_drinking'
-					);
-					$stage_2_passed = true;
-					foreach( $stage_2_keys as $key ){
-						if ( ifne( $this->data, $key, null ) === null ){
-							$stage_2_passed = false;
-							break;
-						}
+				$stage_2_passed = true;
+				$page_vars = get_stage_vars(2);
+				foreach (array_keys($page_vars['tabular']['rows']) as $field) {
+					if ( ifne( $this->data, '02_' . $field, null ) === null ) {
+						$stage_2_passed = false;
+						break;
 					}
+				}
 
-					$stage_3_passed = true;
-					$stage_4_passed = true;
-					$stage_5_passed = true;
-
-					// 3 : In the last four weeks
-					// only the first key is required,
-					if ( ifne( $this->data, '03_past_4wk_consumed_alcohol' ) == 1 ) {
-
-						$stage_3_keys = array(
-							'03_past_4wk_consumed_alcohol',
-							'03_past_4wk_largest_number_single_occasion',
-							'03_past_4wk_hours_amount_drank',
-							'03_body_height_cm',
-							'03_body_weight_kg'
-						);
-
-						$weekdays = array(
-							'mon',
-							'tue',
-							'wed',
-							'thu',
-							'fri',
-							'sat',
-							'sun',
-						);
-
-						foreach ($weekdays as $day) {
-							$stage_3_keys[] = '03_past_4wk_drinks_' . $day;
-							$stage_3_keys[] = '03_past_4wk_std_drinks_' . $day;
-						}
-
-						$page_vars = get_stage_vars(4);
-						foreach (array_keys($page_vars['tabular']['rows']) as $field) {
-							if ( ifne( $this->data, '04_' . $field, null ) === null ) {
-								$stage_4_passed = false;
-								break;
-							}
-						}
-
-						$page_vars = get_stage_vars(5);
-						foreach (array_keys($page_vars['tabular']['rows']) as $field) {
-							if ( ifne( $this->data, '05_' . $field, null ) === null ) {
-								$stage_5_passed = false;
-								break;
-							}
-						}
-
-					} else {
-
-						$stage_3_keys = array(
-							'03_past_4wk_consumed_alcohol'
-						);
-
+				// 3 : Past & Present Drinking
+				$stage_3_keys = array(
+					'03_how_often_drink_alcohol',
+					'03_how_many_on_typical_day',
+					'03_how_often_six_or_more',
+					'03_past_year_how_often_unable_to_stop',
+					'03_past_year_how_often_failed_expectations',
+					'03_past_year_needed_morning_drink',
+					'03_past_year_how_often_remorseful',
+					'03_past_year_how_often_unable_to_remember',
+					'03_been_injured_or_injured_someone',
+					'03_others_concerned_about_my_drinking'
+				);
+				$stage_3_passed = true;
+				foreach( $stage_3_keys as $key ){
+					if ( ifne( $this->data, $key, null ) === null ){
+						$stage_3_passed = false;
+						break;
 					}
-					foreach( $stage_3_keys as $key ){
-						if ( ifne( $this->data, $key, null ) === null ) {
-							$stage_3_passed = false;
-							break;
-						}
+				}
+
+				$stage_4_passed = true;
+				$stage_5_passed = true;
+				$stage_6_passed = true;
+
+				$stage_4_keys = array(
+					'04_past_4wk_consumed_alcohol',
+					'04_past_4wk_largest_number_single_occasion',
+					'04_past_4wk_hours_amount_drank',
+					'04_body_height_cm',
+					'04_body_weight_kg'
+				);
+
+				$weekdays = array(
+					'mon',
+					'tue',
+					'wed',
+					'thu',
+					'fri',
+					'sat',
+					'sun',
+				);
+
+				foreach ($weekdays as $day) {
+					$stage_4_keys[] = '04_past_4wk_drinks_' . $day;
+					$stage_4_keys[] = '04_past_4wk_std_drinks_' . $day;
+				}
+
+				$page_vars = get_stage_vars(4);
+				foreach (array_keys($page_vars['tabular']['rows']) as $field) {
+					if ( ifne( $this->data, '05_' . $field, null ) === null ) {
+						$stage_5_passed = false;
+						break;
 					}
+				}
 
-					$stage_6_passed = true;
-					$page_vars = get_stage_vars(6);
-					foreach (array_keys($page_vars['tabular']['rows']) as $field) {
-						if ( ifne( $this->data, '06_' . $field, null ) === null ) {
-							$stage_6_passed = false;
-							break;
-						}
+				$page_vars = get_stage_vars(5);
+				foreach (array_keys($page_vars['tabular']['rows']) as $field) {
+					if ( ifne( $this->data, '06_' . $field, null ) === null ) {
+						$stage_6_passed = false;
+						break;
 					}
+				}
 
-					$stage_7_passed = true;
-					$page_vars = get_stage_vars(7);
-					foreach (array_keys($page_vars['tabular']['rows']) as $field) {
-						if ( ifne( $this->data, '07_' . $field, null ) === null ) {
-							$stage_7_passed = false;
-							break;
-						}
+				foreach( $stage_4_keys as $key ){
+					if ( ifne( $this->data, $key, null ) === null ) {
+						$stage_4_passed = false;
+						break;
 					}
+				}
 
-					$stage_8_keys = array(
-						'08_tobacco_use',
-						'08_tobacco_frequency',
-						'08_tobacco_init',
-					);
-
-					$stage_8_passed = true;
-					foreach( $stage_8_keys as $key ){
-						if ( ifne( $this->data, $key, null ) === null ) {
-							$stage_8_passed = false;
-							break;
-						}
+				$stage_7_passed = true;
+				$page_vars = get_stage_vars(6);
+				foreach (array_keys($page_vars['tabular']['rows']) as $field) {
+					if ( ifne( $this->data, '07_' . $field, null ) === null ) {
+						$stage_7_passed = false;
+						break;
 					}
+				}
 
+				$stage_8_passed = true;
+				$page_vars = get_stage_vars(7);
+				foreach (array_keys($page_vars['tabular']['rows']) as $field) {
+					if ( ifne( $this->data, '08_' . $field, null ) === null ) {
+						$stage_8_passed = false;
+						break;
+					}
+				}
+
+				$stage_9_keys = array(
+					'09_tobacco_use',
+					'09_tobacco_frequency',
+					'09_tobacco_init',
+				);
+
+				$stage_9_passed = true;
+				foreach( $stage_9_keys as $key ){
+					if ( ifne( $this->data, $key, null ) === null ) {
+						$stage_9_passed = false;
+						break;
+					}
 				}
 
 				//Calculate
@@ -334,7 +327,11 @@
 									if ( $stage_6_passed ) {
 										if ( $stage_7_passed ) {
 											if ( $stage_8_passed ) {
-												$last_stage = 8;
+												if ( $stage_9_passed ) {
+													$last_stage = 9;
+												} else {
+													$last_stage = 8;
+												}
 											} else {
 												$last_stage = 7;
 											}
@@ -374,40 +371,40 @@
 		*/
 		public function calculateAuditScore(){
 			/*
-				02_how_often_drink_alcohol
+				03_how_often_drink_alcohol
 				- 'never' = 0, 'lt-1pm' = 1, '1pm' = 1, '1p2w' = 2,'1pw' = 2,'2-3pw' = 3,'4pw' = 4
 
-				02_how_many_on_typical_day (numeric)
+				03_how_many_on_typical_day (numeric)
 				- 1-2 = 0, 3-4 = 1, 5-6 = 2, 7-9 = 3, 10+ = 4
 
-				02_how_often_six_or_more
+				03_how_often_six_or_more
 				- 'never' = 0, '1-2py' = 1,'lt-1pm' = 1, '1pm' = 2, '1pw' = 3, '1pd' = 4
 
-				02_past_year_how_often_unable_to_stop
+				03_past_year_how_often_unable_to_stop
 				- 'never' = 0, 'lt-1pm' = 1, '1pm' = 2, '1pw' = 3, '1pd' = 4
 
-				02_past_year_how_often_failed_expectations
+				03_past_year_how_often_failed_expectations
 				- 'never' = 0, 'lt-1pm' = 1, '1pm' = 2, '1pw' = 3, '1pd' = 4
 
-				02_past_year_needed_morning_drink
+				03_past_year_needed_morning_drink
 				- 'never' = 0, 'lt-1pm' = 1, '1pm' = 2, '1pw' = 3, '1pd' = 4
 
-				02_past_year_how_often_remorseful
+				03_past_year_how_often_remorseful
 				- 'never' = 0, 'lt-1pm' = 1, '1pm' = 2, '1pw' = 3, '1pd' = 4
 
-				02_past_year_how_often_unable_to_remember
+				03_past_year_how_often_unable_to_remember
 				- 'never' = 0, 'lt-1pm' = 1, '1pm' = 2, '1pw' = 3, '1pd' = 4
 
-				02_been_injured_or_injured_someone
+				03_been_injured_or_injured_someone
 				- 'no' = 0, 'yes-nly' = 2, 'yes-ly' = 4
 
-				02_others_concerned_about_my_drinking
+				03_others_concerned_about_my_drinking
 				- 'no' = 0, 'yes-nly' = 2, 'yes-ly' = 4
 
 			*/
 
 			$enum_values = array(
-				'02_how_often_drink_alcohol' => array(
+				'03_how_often_drink_alcohol' => array(
 					'never' => 0,
 					'lt-1pm' => 1,
 					'1pm' => 1,
@@ -416,7 +413,7 @@
 					'2-3pw' => 3,
 					'4pw' => 4
 				),
-				'02_how_often_six_or_more' => array(
+				'03_how_often_six_or_more' => array(
 					'never' => 0,
 					'1-2py' => 1,
 					'lt-1pm' => 1,
@@ -424,47 +421,47 @@
 					'1pw' => 3,
 					'1pd' => 4
 				),
-				'02_past_year_how_often_unable_to_stop' => array(
+				'03_past_year_how_often_unable_to_stop' => array(
 					'never' => 0,
 					'lt-1pm' => 1,
 					'1pm' => 2,
 					'1pw' => 3,
 					'1pd' => 4
 				),
-				'02_past_year_how_often_failed_expectations' => array(
+				'03_past_year_how_often_failed_expectations' => array(
 					'never' => 0,
 					'lt-1pm' => 1,
 					'1pm' => 2,
 					'1pw' => 3,
 					'1pd' => 4
 				),
-				'02_past_year_needed_morning_drink' => array(
+				'03_past_year_needed_morning_drink' => array(
 					'never' => 0,
 					'lt-1pm' => 1,
 					'1pm' => 2,
 					'1pw' => 3,
 					'1pd' => 4
 				),
-				'02_past_year_how_often_remorseful' => array(
+				'03_past_year_how_often_remorseful' => array(
 					'never' => 0,
 					'lt-1pm' => 1,
 					'1pm' => 2,
 					'1pw' => 3,
 					'1pd' => 4
 				),
-				'02_past_year_how_often_unable_to_remember' => array(
+				'03_past_year_how_often_unable_to_remember' => array(
 					'never' => 0,
 					'lt-1pm' => 1,
 					'1pm' => 2,
 					'1pw' => 3,
 					'1pd' => 4
 				),
-				'02_been_injured_or_injured_someone' => array(
+				'03_been_injured_or_injured_someone' => array(
 					'no' => 0,
 					'yes-nly' => 2,
 					'yes-ly' => 4
 				),
-				'02_others_concerned_about_my_drinking' => array(
+				'03_others_concerned_about_my_drinking' => array(
 					'no' => 0,
 					'yes-nly' => 2,
 					'yes-ly' => 4
@@ -477,9 +474,9 @@
 
 			$audit_score = 0;
 
-			$audit_score += ifne ( $enum_values[ '02_how_often_drink_alcohol' ], ifne( $this->data, '02_how_often_drink_alcohol' ) );
+			$audit_score += ifne ( $enum_values[ '03_how_often_drink_alcohol' ], ifne( $this->data, '03_how_often_drink_alcohol' ) );
 
-			$typical_day_count = ifne( $this->data, '02_how_many_on_typical_day' );
+			$typical_day_count = ifne( $this->data, '03_how_many_on_typical_day' );
 			$typical_day_score = 0;
 			if ( $typical_day_count > 0 ){
 				if ( ( $typical_day_count >= 3 ) && ( $typical_day_count <= 4 ) ){
@@ -498,14 +495,14 @@
 			}
 			$audit_score += $typical_day_score;
 
-			$audit_score += ifne ( $enum_values[ '02_how_often_six_or_more' ], ifne( $this->data, '02_how_often_six_or_more' ) );
-			$audit_score += ifne ( $enum_values[ '02_past_year_how_often_unable_to_stop' ], ifne( $this->data, '02_past_year_how_often_unable_to_stop' ) );
-			$audit_score += ifne ( $enum_values[ '02_past_year_how_often_failed_expectations' ], ifne( $this->data, '02_past_year_how_often_failed_expectations' ) );
-			$audit_score += ifne ( $enum_values[ '02_past_year_needed_morning_drink' ], ifne( $this->data, '02_past_year_needed_morning_drink' ) );
-			$audit_score += ifne ( $enum_values[ '02_past_year_how_often_remorseful' ], ifne( $this->data, '02_past_year_how_often_remorseful' ) );
-			$audit_score += ifne ( $enum_values[ '02_past_year_how_often_unable_to_remember' ], ifne( $this->data, '02_past_year_how_often_unable_to_remember' ) );
-			$audit_score += ifne ( $enum_values[ '02_been_injured_or_injured_someone' ], ifne( $this->data, '02_been_injured_or_injured_someone' ) );
-			$audit_score += ifne ( $enum_values[ '02_others_concerned_about_my_drinking' ], ifne( $this->data, '02_others_concerned_about_my_drinking' ) );
+			$audit_score += ifne ( $enum_values[ '03_how_often_six_or_more' ], ifne( $this->data, '03_how_often_six_or_more' ) );
+			$audit_score += ifne ( $enum_values[ '03_past_year_how_often_unable_to_stop' ], ifne( $this->data, '03_past_year_how_often_unable_to_stop' ) );
+			$audit_score += ifne ( $enum_values[ '03_past_year_how_often_failed_expectations' ], ifne( $this->data, '03_past_year_how_often_failed_expectations' ) );
+			$audit_score += ifne ( $enum_values[ '03_past_year_needed_morning_drink' ], ifne( $this->data, '03_past_year_needed_morning_drink' ) );
+			$audit_score += ifne ( $enum_values[ '03_past_year_how_often_remorseful' ], ifne( $this->data, '03_past_year_how_often_remorseful' ) );
+			$audit_score += ifne ( $enum_values[ '03_past_year_how_often_unable_to_remember' ], ifne( $this->data, '03_past_year_how_often_unable_to_remember' ) );
+			$audit_score += ifne ( $enum_values[ '03_been_injured_or_injured_someone' ], ifne( $this->data, '03_been_injured_or_injured_someone' ) );
+			$audit_score += ifne ( $enum_values[ '03_others_concerned_about_my_drinking' ], ifne( $this->data, '03_others_concerned_about_my_drinking' ) );
 
 			return $audit_score;
 
@@ -518,8 +515,8 @@
 
 			$audit_score = $this->calculateAuditScore();
 
-			$standard_drinks = ifne( $this->data, '03_past_4wk_largest_number_single_occasion' );
-			$weight = ifne( $this->data, '03_body_weight_kg' );
+			$standard_drinks = ifne( $this->data, '04_past_4wk_largest_number_single_occasion' );
+			$weight = ifne( $this->data, '04_body_weight_kg' );
 
 			//Body water constant
 			/*
@@ -544,7 +541,7 @@
 				$metabolism_rate = 0.02;
 			}
 
-			$drinking_period = ifne( $this->data, '03_past_4wk_hours_amount_drank' );
+			$drinking_period = ifne( $this->data, '04_past_4wk_hours_amount_drank' );
 
 			$bac = ( ( 0.806 * $standard_drinks ) / ( $body_water_constant * $weight ) ) - ( $metabolism_rate * $drinking_period );
 
@@ -589,7 +586,7 @@
 				'4pw' => 208
 			);
 
-			$past_year_spending = ifne( $this->data, '02_how_many_on_typical_day' ) * $frequency_multipliers[ ifne( $this->data, '02_how_often_drink_alcohol' ) ];
+			$past_year_spending = ifne( $this->data, '03_how_many_on_typical_day' ) * $frequency_multipliers[ ifne( $this->data, '03_how_often_drink_alcohol' ) ];
 
 			return array(
 				'from' => round( $past_year_spending * 1.50 ),
@@ -603,7 +600,7 @@
 
 			//Standard drinks consumed per occasion
 			//You reported having approximately {XX} drinks on a typical occasion. The graph on the right shows how this compares to other people your age.
-			$consumption_typical_day = ifne( $this->data, '02_how_many_on_typical_day' );
+			$consumption_typical_day = ifne( $this->data, '03_how_many_on_typical_day' );
 
 			$frequency_multipliers = array(
 				'never' => 0,
@@ -614,7 +611,7 @@
 				'2-3pw' => 2.5,
 				'4pw' => 4
 			);
-			$consumption_per_week = $consumption_typical_day * $frequency_multipliers[ ifne( $this->data, '02_how_often_drink_alcohol' ) ];
+			$consumption_per_week = $consumption_typical_day * $frequency_multipliers[ ifne( $this->data, '03_how_often_drink_alcohol' ) ];
 
 			return array(
 				'typical_day' => $consumption_typical_day,

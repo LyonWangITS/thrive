@@ -16,14 +16,15 @@ function get_stages() {
 	return array(
 		array('group' => 'zero', 'step' => 'zero', 'title' => ''),
 		array('group' => 'one', 'step' => 'one', 'title' => 'All about you'),
-		array('group' => 'two', 'step' => 'two', 'title' => 'Past and Present Drinking'),
-		array('group' => 'three', 'step' => 'three', 'title' => 'In the last four weeks'),
-		array('group' => 'three', 'step' => 'four', 'title' => 'Effects of Drinking (1/2)'),
-		array('group' => 'three', 'step' => 'five', 'title' => 'Effects of Drinking (2/2)'),
-		array('group' => 'three', 'step' => 'six', 'title' => 'Before and During Drinking'),
-		array('group' => 'four', 'step' => 'seven', 'title' => 'What would you like to do?'),
-		array('group' => 'four', 'step' => 'eight', 'title' => 'Current Smoking'),
-		array('group' => 'five', 'step' => 'nine', 'title' => 'Results'),
+		array('group' => 'one', 'step' => 'two', 'title' => 'All about you'),
+		array('group' => 'two', 'step' => 'three', 'title' => 'Past and Present Drinking'),
+		array('group' => 'three', 'step' => 'four', 'title' => 'In the last four weeks'),
+		array('group' => 'three', 'step' => 'five', 'title' => 'Effects of Drinking (1/2)'),
+		array('group' => 'three', 'step' => 'six', 'title' => 'Effects of Drinking (2/2)'),
+		array('group' => 'three', 'step' => 'seven', 'title' => 'Before and During Drinking'),
+		array('group' => 'four', 'step' => 'eight', 'title' => 'What would you like to do?'),
+		array('group' => 'four', 'step' => 'nine', 'title' => 'Current Smoking'),
+		array('group' => 'five', 'step' => 'ten', 'title' => 'Results'),
 	);
 }
 
@@ -43,6 +44,54 @@ function get_stage_vars($stage, $global_vars = array()) {
 
 	if ($stage == 2) {
 		return array(
+			'legend' => 'Please fill in these details about yourself.',
+			'intro' => array(
+				'title' => 'All about you',
+				'description' => array(
+					'Thanks, ' . h(ifne($global_vars, 'participant_name')) . '. First of all we\'d like to know a little bit more about you...',
+				),
+			),
+			'include_tabular' => true,
+			'tabular' => array(
+				'section_number' => '01',
+				'intro' => array(
+					'Below are a number of statements that describe ways in which people act and think. For each statement, please indicate how much you agree or disagree with the statement.',
+					'Be sure to indicate your agreement or disagreement for every statement below.',
+				),
+				'columns' => array(
+					'agree-strongly' => 'Agree Strongly',
+					'agree-somewhat' => 'Agree Somewhat',
+					'disagree-somewhat' => 'Disagree Somewhat',
+					'disagree-strongly' => 'Disagree Strongly',
+				),
+				'rows' => array(
+					'see_things_through_to_the_end' => 'I generally like to see things through to the end.',
+					'thinking_careful_purposeful' => 'My thinking is usually careful and purposeful.',
+					'great_mood_leading_to_problematic_situations' => 'When I am in a great mood, I tend to get into situations that could cause me problems.',
+					'unfinished_tasks_bother_me' => 'Unfinished tasks really bother me.',
+					'think_things_over_before_doing' => 'I like to stop and think things over before I do them.',
+					'feeling_bad_leading_to_regretful_actions' => 'When I feel bad, I will often do things I later regret in order to make myself feel better now.',
+					'hate_to_stop_doing_things' => 'Once I get going on something, I hate to stop.',
+					'feeling_bad_difficult_to_stop' => 'Sometimes when I feel bad, I can’t seem to stop what I am doing even though it is making me feel worse.',
+					'enjoy_taking_risks' => 'I quite enjoy taking risks.',
+					'good_mood_lose_control' => 'I tend to lose control when I am in a great mood.',
+					'finish_when_start' => 'I finish when I start.',
+					'rational_sensible_approach' => 'I tend to value and follow a rational, “sensible” approach to things.',
+					'upset_act_without_thinking' => 'When I am upset, I often act without thinking.',
+					'welcome_new_exciting_experiences' => 'I welcome new and exciting experiences and sensations, even if they are a little frightening and unconventional.',
+					'rejection_leading_to_say_regretful_things' => 'When I feel rejected, I will often say things I later regret.',
+					'learn_fly_airplane' => 'I would like to learn to fly an airplane.',
+					'others_shocked_about_my_excitement' => 'Others are shocked or worried about the things I do when I am feeling very excited.',
+					'skiing_very_fast' => 'I would enjoy the sensation of skiing very fast down a high mountain slope.',
+					'think_carefully_before_doing_anything' => 'I usually think carefully before doing anything.',
+					'act_withoug_thinking_when_excited' => 'I tend to act without thinking when I am really excited.',
+				),
+			),
+		);
+	}
+
+	if ($stage == 3) {
+		return array(
 			'include_drinks_guide' => true,
 			'legend' => 'Please answer the following questions about your consumption of alcohol.',
 			'intro' => array(
@@ -55,7 +104,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 		);
 	}
 
-	if ($stage == 3) {
+	if ($stage == 4) {
 		$tabular_rows = array();
 		foreach (get_weekdays() as $day => $label) {
 			$tabular_rows['past_4wk_drinks_' . $day] = $label;
@@ -85,7 +134,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 		);
 	}
 
-	if ($stage == 4) {
+	if ($stage == 5) {
 		return array(
 			'legend' => 'Please fill in the details of your alcohol usage below.',
 			'intro' => array(
@@ -128,7 +177,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 		);
 	}
 
-	if ($stage == 5) {
+	if ($stage == 6) {
 		return array(
 			'legend' => 'Please fill in the details of your alcohol usage below.',
 			'intro' => array(
@@ -182,7 +231,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 		);
 	}
 
-	if ($stage == 6) {
+	if ($stage == 7) {
 		return array(
 			'legend' => 'Please fill in the details of your alcohol usage below.',
 			'intro' => array(
@@ -227,7 +276,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 		);
 	}
 
-	if ($stage == 7) {
+	if ($stage == 8) {
 		return array(
 			'legend' => 'Please fill the fields below.',
 			'intro' => array(
@@ -258,7 +307,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 		);
 	}
 
-	if ($stage == 8) {
+	if ($stage == 9) {
 		return array(
 			'legend' => 'Please fill the fields below.',
 			'intro' => array('title' => 'Current smoking'),
@@ -266,7 +315,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 		);
 	}
 
-	if ($stage == 9) {
+	if ($stage == 10) {
 		return array(
 			'legend' => 'Please fill the fields below.',
 			'intro' => array(

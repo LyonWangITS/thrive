@@ -63,7 +63,7 @@ function doProcess( $the_survey, $existing_token, $version ){
 				do_survey_redirect($existing_token, $version);
 			}
 
-		} else if ( $survey_stage == 2 ){
+		} else if ( $survey_stage == 3 ){
 
 			$form_errors = array(
 				'how_often_drink_alcohol' => validateField( ifne( $_POST, 'how_often_drink_alcohol' ), 'in-set', 'Please select a value', array( 'never','lt-1pm','1pm','1p2w','1pw','2-3pw','4pw' ) ),
@@ -81,16 +81,16 @@ function doProcess( $the_survey, $existing_token, $version ){
 			if ( formIsValid( $form_errors ) ) {
 
 				$the_survey->save(array(
-					'02_how_often_drink_alcohol' => $_POST[ 'how_often_drink_alcohol' ],
-					'02_how_many_on_typical_day' => $_POST[ 'how_many_on_typical_day' ],
-					'02_how_often_six_or_more' => $_POST[ 'how_often_six_or_more' ],
-					'02_past_year_how_often_unable_to_stop' => $_POST[ 'past_year_how_often_unable_to_stop' ],
-					'02_past_year_how_often_failed_expectations' => $_POST[ 'past_year_how_often_failed_expectations' ],
-					'02_past_year_needed_morning_drink' => $_POST[ 'past_year_needed_morning_drink' ],
-					'02_past_year_how_often_remorseful' => $_POST[ 'past_year_how_often_remorseful' ],
-					'02_past_year_how_often_unable_to_remember' => $_POST[ 'past_year_how_often_unable_to_remember' ],
-					'02_been_injured_or_injured_someone' => $_POST[ 'been_injured_or_injured_someone' ],
-					'02_others_concerned_about_my_drinking' => $_POST[ 'others_concerned_about_my_drinking' ]
+					'03_how_often_drink_alcohol' => $_POST[ 'how_often_drink_alcohol' ],
+					'03_how_many_on_typical_day' => $_POST[ 'how_many_on_typical_day' ],
+					'03_how_often_six_or_more' => $_POST[ 'how_often_six_or_more' ],
+					'03_past_year_how_often_unable_to_stop' => $_POST[ 'past_year_how_often_unable_to_stop' ],
+					'03_past_year_how_often_failed_expectations' => $_POST[ 'past_year_how_often_failed_expectations' ],
+					'03_past_year_needed_morning_drink' => $_POST[ 'past_year_needed_morning_drink' ],
+					'03_past_year_how_often_remorseful' => $_POST[ 'past_year_how_often_remorseful' ],
+					'03_past_year_how_often_unable_to_remember' => $_POST[ 'past_year_how_often_unable_to_remember' ],
+					'03_been_injured_or_injured_someone' => $_POST[ 'been_injured_or_injured_someone' ],
+					'03_others_concerned_about_my_drinking' => $_POST[ 'others_concerned_about_my_drinking' ]
 				));
 
 				do_survey_redirect($existing_token, $version);
@@ -99,7 +99,7 @@ function doProcess( $the_survey, $existing_token, $version ){
 				//echo print_r($form_errors);
 			}
 
-		} else if ( $survey_stage == 3 ){
+		} else if ( $survey_stage == 4 ){
 
 			$consumed_alcohol_message = validateField( ifne( $_POST, 'past_4wk_consumed_alcohol' ), 'in-set', 'Please select a value', array( 'yes', 'no') );
 			if ( $consumed_alcohol_message == '' ){
@@ -144,11 +144,11 @@ function doProcess( $the_survey, $existing_token, $version ){
 
 					if ( formIsValid( $form_errors ) ) {
 						$values = array(
-							'03_past_4wk_consumed_alcohol' => ( $_POST[ 'past_4wk_consumed_alcohol' ] == 'yes' ? 1 : 0 ),
-							'03_past_4wk_largest_number_single_occasion' => $_POST[ 'past_4wk_largest_number_single_occasion' ],
-							'03_past_4wk_hours_amount_drank' => $_POST[ 'past_4wk_hours_amount_drank' ],
-							'03_body_height_cm' => $body_height_cm,
-							'03_body_weight_kg' => $_POST[ 'body_weight-number'] * ( ifne( $_POST, 'body_weight-unit', 'kg' ) == 'lbs' ? 0.453592 : 1 )
+							'04_past_4wk_consumed_alcohol' => ( $_POST[ 'past_4wk_consumed_alcohol' ] == 'yes' ? 1 : 0 ),
+							'04_past_4wk_largest_number_single_occasion' => $_POST[ 'past_4wk_largest_number_single_occasion' ],
+							'04_past_4wk_hours_amount_drank' => $_POST[ 'past_4wk_hours_amount_drank' ],
+							'04_body_height_cm' => $body_height_cm,
+							'04_body_weight_kg' => $_POST[ 'body_weight-number'] * ( ifne( $_POST, 'body_weight-unit', 'kg' ) == 'lbs' ? 0.453592 : 1 )
 						);
 
 						foreach ($weekdays as $day) {
@@ -158,7 +158,7 @@ function doProcess( $the_survey, $existing_token, $version ){
 							);
 
 							foreach ($fields as $field) {
-								$values['03_' . $field] = $_POST[$field];
+								$values['04_' . $field] = $_POST[$field];
 							}
 						}
 
@@ -193,7 +193,7 @@ function doProcess( $the_survey, $existing_token, $version ){
 			}
 
 
-		} else if ( in_array($survey_stage, range(4, 7)) ) {
+		} else if ( in_array($survey_stage, array(2, 5, 6, 7, 8)) ) {
 
 			$values = array();
 			$form_errors = array();
@@ -212,13 +212,13 @@ function doProcess( $the_survey, $existing_token, $version ){
 
 		}
 
-		else if ( $survey_stage == 8 ) {
+		else if ( $survey_stage == 9 ) {
 			$form_errors = array();
 			if ( formIsValid( $form_errors ) ) {
 				$the_survey->save(array(
-					'08_tobacco_use' => ifne( $_POST, 'tobacco_use', null ),
-					'08_tobacco_frequency' => ifne( $_POST, 'tobacco_frequency', null ),
-					'08_tobacco_init' => ifne( $_POST, 'tobacco_init', null ),
+					'09_tobacco_use' => ifne( $_POST, 'tobacco_use', null ),
+					'09_tobacco_frequency' => ifne( $_POST, 'tobacco_frequency', null ),
+					'09_tobacco_init' => ifne( $_POST, 'tobacco_init', null ),
 				));
 
 				do_survey_redirect($existing_token, $version);

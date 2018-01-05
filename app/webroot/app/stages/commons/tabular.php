@@ -1,7 +1,7 @@
 <?php $vars = $page_vars['tabular']; ?>
 <?php $n_cols = count($vars['columns']); ?>
 
-<div class="field tabular-intro clearfix cols-<?php echo $n_cols; ?>">
+<div class="field tabular-intro clearfix cols-<?php echo $n_cols . (empty($vars['image_name']) ? '' : ' with-image'); ?>">
 
 	<i class="icn number"><?php echo $vars['section_number']; ?></i>
 
