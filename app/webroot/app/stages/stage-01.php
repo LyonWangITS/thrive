@@ -1,28 +1,18 @@
 <div class="field gender radio-set clearfix">
 	<i class="icn number">01</i>
 
-	<p>Gender?</p>
+	<p>What was your gender assigned at birth?</p>
 	<div class="gender-wrap">
-		<i class="icn female"></i>
-		<div class="input-wrap female">
-			<input type="radio" name="gender-mf" id="gender-female"value="Female">
-			<label for="gender-female">Female</label>
-		</div>
-		<i class="icn male"></i>
 		<div class="input-wrap male">
-			<input type="radio" name="gender-mf" id="gender-male" value="Male">
+			<input type="radio" name="gender" id="gender-male" value="Male">
 			<label for="gender-male">Male</label>
 		</div>
-		<div class="select styled">
-			<select name="gender-more" title="If other, please select from the following options.">
-				<option value="">Select more options</option>
-				<option value="transgender-ftm">Transgender or transexual FtM</option>
-				<option value="transgender-mtf">Transgender or transexual MtF</option>
-				<option value="genderqueer">Genderqueer</option>
-				<option value="androgynous">Androgynous</option>
-				<option value="intersex">Intersex</option>
-			</select>
+		<i class="icn male"></i>
+		<div class="input-wrap female">
+			<input type="radio" name="gender" id="gender-female"value="Female">
+			<label for="gender-female">Female</label>
 		</div>
+		<i class="icn female"></i>
 	</div><!-- gender-wrap -->
 </div><!-- field -->
 
@@ -84,22 +74,26 @@
 	<i class="icn accom"></i>
 </div><!-- field -->
 
-<div class="field drinks-last-year radio-set clearfix">
+<div class="field text-right clearfix">
+	<i class="icn number">06</i>
+	<p>What was the name of your first pet?</p>
+	<input type="text" id="first-pet" name="first_pet" />
+</div>
 
+<div class="field text-right clearfix">
+	<i class="icn number">07</i>
+	<p>What was the first music concert you attended?</p>
+	<input type="text" id="first-concert" name="first_concert" />
+</div>
+
+<div class="field text-right clearfix">
 	<i class="icn number">08</i>
+	<p>What are the 2nd and 3rd letters in your Mother's name?</p>
+	<input type="text" id="mother-letters" name="mother_letters" maxlength="2" />
+</div>
 
-	<p>Have you had an alcoholic drink of any kind in the last 12 months?</p>
-
-	<div class="input-wrap">
-		<input type="radio" name="alcohol_last_12mths" id="drinks-yes" value="yes">
-		<label for="drinks-yes">Yes</label>
-		<input type="radio" name="alcohol_last_12mths" id="drinks-no" value="no">
-		<label for="drinks-no">No</label>
-	</div>
-
-	<div class="calendar">
-		<i class="icn cal"></i>
-		<span><?php echo date( 'F' ); ?></span>
-		<div class="icn shadow"></div>
-	</div>
-</div><!-- field -->
+<div class="field text-right clearfix">
+	<i class="icn number">09</i>
+	<p>What are the 4th and 5th digits in your cell phone number?</p>
+	<input type="text" id="phone-digits" name="phone_digits" maxlength="2" />
+</div>

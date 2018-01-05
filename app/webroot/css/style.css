@@ -943,7 +943,6 @@ fieldset legend { display: none; }
 .survey input[type=text] {
 	background-color: #f2f2f2;
 	height: 39px;
-	width: 65px;
 	padding: 0 4%;
 	border-top: 1px solid #d8d8d8;
 }
@@ -972,27 +971,31 @@ fieldset legend { display: none; }
 
 /* gender */
 
-.gender .input-wrap {
-	position: absolute;
-	display: block;	
-}
-
 i.female {
-	position: absolute;
-	bottom: 0;
+	float: right;
 	background-position: 0 -320px;
 	width: 74px;
 	height: 81px;
-	left: 19%;
+	margin-top: 9px;
 }
 
 i.male {
-	position: absolute;
-	bottom: 0;
+	float: right;
 	background-position: -128px -319px;
 	width: 79px;
 	height: 90px;
-	left: 41%;
+}
+
+.gender label {
+	margin-left: 5px;
+}
+
+.gender .male label {
+	margin-right: 0;
+}
+
+.gender p {
+	float: left;
 }
 
 .gender .styled {
@@ -1002,22 +1005,9 @@ i.male {
 	top: 50px;
 }
 
-.gender #gender-female {
-	position: absolute;
+.gender .input-wrap label {
+	float: right;
 }
-
-.gender .input-wrap {
-	top: 39px;
-}
-
-.gender .input-wrap.female {
-	left: 28%;
-}
-
-.gender .input-wrap.male {
-	left: 50%;
-}
-
 
 /* staff or student */
 
@@ -3110,27 +3100,6 @@ footer {
 	display: block;
 }
 
-
-/*  --------------------------------------------------- THANKS BOX */
-
-.thanks-box {
-	background-color: #fff; 
-	color: #555; 
-	padding: 40px 40px 20px; 
-	width: 70%; 
-	margin: 0 auto; 
-	-webkit-box-shadow:  0px 0px 15px 1px rgba(0, 0, 0, 0.5); 
-	box-shadow:  0px 0px 15px 1px rgba(0, 0, 0, 0.5);
-}
-
-.thanks-box a {
-	color: #67c3a0;
-}
-
-.thanks-box a:hover {
-	color: #5cae8f;
-}
-
 /*  --------------------------------------------------- CUSTOM CLASSES */
 
 .clear { clear: both; }
@@ -3198,5 +3167,23 @@ button[disabled=disabled]{
 
 	.tabular .slider {
 		top: 15px;
+	}
+
+	.field.text-right p {
+		float: left;
+		max-width: 70%;
+	}
+
+	.field.text-right input {
+		float: right;
+	}
+
+	.field.text-right input {
+		width: 65px;
+	}
+
+	#first-pet,
+	#first-concert {
+		width: 25%;
 	}
 }

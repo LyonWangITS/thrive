@@ -384,6 +384,10 @@
 			margin: 20px 0 40px;
 		}
 
+        .start .row {
+            margin: 0;
+        }
+
         .start .field {
 	        width: 100%;
 	        display: block;
@@ -391,15 +395,11 @@
 	        margin: 0 0 10px;
 	        height: 60px;
         }
-        
-        .start .field label {
-			position: relative;
-			left: auto;
-			top: 18px;
-			margin: 0 auto;
-			z-index: 2;
-		}
-        
+
+        .start #field-id {
+            width: 100%;
+        }
+
         .start .field input {
 	        text-align: center;
         }
@@ -409,6 +409,7 @@
 	        top: auto;
 	        position: relative;
 	        text-align: center;
+	        margin-left: 0;
         }
         
         .start button:hover .icn {
@@ -703,6 +704,7 @@
 		i.male,
 		i.staff-card,
 		i.student-card,
+		i.accom,
 		.drinks-last-year .calendar {
 			display: none;
 		}
@@ -741,6 +743,10 @@
 		.gender .styled {
 			width: 100%;
 			display: block;
+		}
+
+		.where.field .styled {
+			max-width: 100%;
 		}
 		
 		.survey .field.staff-student p {
@@ -1196,16 +1202,6 @@
 		/* Animation setup */
 		.bac .metre {
 			display: none;
-		}
-		
-		.thanks-box {
-			background-color: #fff; 
-			color: #555; 
-			padding: 40px 5% 20px; 
-			width: 90%; 
-			margin: 0 auto; 
-			-webkit-box-shadow:  0px 0px 15px 1px rgba(0, 0, 0, 0.5); 
-			box-shadow:  0px 0px 15px 1px rgba(0, 0, 0, 0.5);
 		}
 
 		.acc-content section {

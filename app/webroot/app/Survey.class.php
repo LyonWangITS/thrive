@@ -190,10 +190,13 @@
 				$stage_1_keys = array(
 					'01_gender',
 					'01_age',
-					'01_alcohol_last_12mths',
 					'01_race',
 					'01_ethnicity',
 					'01_where',
+					'01_first_pet',
+					'01_first_concert',
+					'01_mother_letters',
+					'01_phone_digits',
 				);
 				$stage_1_passed = true;
 				foreach( $stage_1_keys as $key ){
@@ -204,7 +207,7 @@
 				}
 
 
-				if ( $stage_1_passed && ( ifne( $this->data, '01_alcohol_last_12mths' ) ) ){
+				if ( $stage_1_passed ) {
 
 					// 2 : Past & Present Drinking
 					$stage_2_keys = array(
@@ -320,15 +323,6 @@
 						}
 					}
 
-				} else {
-
-					//No Drinks in last 12 months, survey is skipped at this point
-					$stage_2_passed = false;
-					$stage_3_passed = false;
-					$stage_4_passed = false;
-					$stage_5_passed = false;
-					$stage_6_passed = false;
-
 				}
 
 				//Calculate
@@ -370,15 +364,6 @@
 			return $last_stage;
 
 		}
-
-		/*
-			Helper to quickly determine whether alcohol drank in last 12 mths
-		*/
-		public function drankAlcoholInLast12Mths(){
-			return ifne( $this->data, '01_alcohol_last_12mths' );
-		}
-
-
 
 
 		/*
@@ -642,10 +627,7 @@
 
 
 		public function calculateAverageConsumption() {
-			$avg = array(
-				'per_occasion' => 4,
-				'per_week' => 6,
-			);
+			$avg = array();
 
 			if ($this->data['01_gender'] == 'male') {
 				if ($this->data['01_age'] > 20) {
@@ -657,7 +639,7 @@
 					$avg['week'] = 5.91;
 				}
 			}
-			elseif ($the_survey->data['01_gender'] == 'female') {
+			else {
 				if ($the_survey->data['01_age'] > 20) {
 					$avg['occasion'] = 2.93;
 					$avg['week'] = 4.42;

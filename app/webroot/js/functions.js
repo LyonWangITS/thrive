@@ -69,18 +69,6 @@ function init_stage_form( form_stage ){
 		$('label[for=id_number]').inFieldLabels();
 		
 	} else if (form_stage == 1 ){
-		
-		//Gender selector
-		$('.stage-form input[name=gender-mf]').bind('change', function(){
-			if ($(this).val() != ''){
-				$('.stage-form select[name=gender-more]').val('');
-			}
-		});
-		$('.stage-form select[name=gender-more]').bind('change', function(){
-			if ($(this).val() != ''){
-				$('.stage-form input[name=gender-mf]').prop('checked', false);
-			}
-		});
 
 		//Toggle demographic questions based on if staff/student
 		$('.stage-form input[name=staff_student]').bind('change', function(){
@@ -245,23 +233,20 @@ function stage_form_complete( form_stage ){
 		};
 		
 	} else if ( form_stage == 1 ){
-		
+
+		var phone_digits = $('input[name="phone_digits"]').val();
 		form_fields_checked = {
-			'gender' 				: { skip : true, valid : false },
 			'age'					: { skip : false, type: 'select', valid : false },
-			'alcohol_last_12mths'	: { skip : false, type : 'radio', valid : false },
+			'gender'				: { skip : false, type : 'radio', valid : false },
 			'race'					: { skip : false, type : 'select', valid : false },
 			'ethnicity'				: { skip : false, type : 'select', valid : false },
 			'race'					: { skip : false, type : 'select', valid : false },
-			'where' 				: { skip : false, type : 'select', valid : false }
+			'where' 				: { skip : false, type : 'select', valid : false },
+			'first_pet'				: { skip : false, valid : false },
+			'first_concert'			: { skip : false, valid : false },
+			'mother_letters'		: { skip : true, valid : $('input[name="mother_letters"]').val().length === 2},
+			'phone_digits'			: { skip : true, valid : isPositiveNumber(phone_digits) && phone_digits.length === 2 },
 		};
-
-		//Gender = m/f or value from dropdown
-		var gender_radio = $('input[name=gender-mf]:checked');
-		var gender_select = $('select[name=gender-more]');
-		if ( ( ( gender_radio.length > 0 ) && ( gender_radio.val() != '' ) ) || ( gender_select.val() != '' ) ){
-			form_fields_checked['gender'].valid = true;
-		}
 
 	} else if ( form_stage == 2 ){
 		

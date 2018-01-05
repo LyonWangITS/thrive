@@ -36,60 +36,31 @@ function doProcess( $the_survey, $existing_token, $version ){
 
 		}
 
-
-		/*
-
-			'01_gender',
-			'01_age',
-			'01_type_of_study',
-			'01_hours_per_week',
-			'01_alcohol_last_12mths'
-
-		*/
 		if ( $survey_stage == 1 ){
 
-			$gender = ifne( $_POST, 'gender-mf', ifne( $_POST, 'gender-more' ) );
-
-			/*
 			$form_errors = array(
-				'gender' => validateField( $gender, 'in-set', 'Gender is unrecognized', array('female','male','transgender-ftm','transgender-mtf','genderqueer','androgynous','intersex') ),
-				'age' => validateField( ifne( $_POST, 'age' ), ( $_POST[ 'age' ] > 17 ), 'You must be over 17 to take part in this survey' ),
-				'type_of_study' => validateField( ifne( $_POST, 'type_of_study' ), 'in-set', 'Please select a value', array( 'vet-trade','vet-non-trade','higher-ed','unsure' ) ),
-				'hours_per_week' => validateField( ifne( $_POST, 'hours_per_week' ), 'in-set', 'Please select a value', array( 'gt-10', 'lt-10' ) ),
-				'alcohol_last_12mths' => validateField( ifne( $_POST, 'alcohol_last_12mths' ), 'in-set', 'Please select a value', array( 'yes', 'no') )
-			);
-			*/
-
-			$form_errors = array(
-				'alcohol_last_12mths' => validateField( ifne( $_POST, 'alcohol_last_12mths' ), 'in-set', 'Please select a value', array( 'yes', 'no') ),
-				'gender' => validateField( $gender, 'in-set', 'Gender is unrecognized', array('female','male','transgender-ftm','transgender-mtf','genderqueer','androgynous','intersex') ),
+				'gender' => validateField( ifne( $_POST, 'gender' ), 'in-set', 'Gender is unrecognized', array('female','male','transgender-ftm','transgender-mtf','genderqueer','androgynous','intersex') ),
 				'age' => validateField( ifne( $_POST, 'age' ), 'in-set', 'Please select a value', array( 18,19,20,21,22,23,24 ) ),
 				'race' => validateField( ifne( $_POST, 'race' ), 'in-set', 'Please select a value', array( 'native-american','asian','hawaiian','black','white','mixed-race','other','skip' ) ),
 				'ethnicity' => validateField( ifne( $_POST, 'ethnicity' ), 'in-set', 'Please select a value', array( 'hispanic-latino','not-hispanic-latino','skip' ) ),
 				'where' => validateField( ifne( $_POST, 'where' ), 'in-set', 'Please select a value', array( 'dorm','with-parents','with-roommates' ) ),
 			);
 
+			foreach (array('first_pet', 'first_concert', 'mother_letters', 'phone_digits') as $field) {
+				$form_errors[$field] = validateField( ifne( $_POST, $field ), 'notempty', 'Field cannot be empty' );
+			}
+
+			$fields = array_keys($form_errors);
+
 			if ( formIsValid( $form_errors ) ) {
-
-				$data = array(
-					'01_gender' => $gender,
-					'01_age' => $_POST[ 'age' ],
-					'01_alcohol_last_12mths' => ( $_POST[ 'alcohol_last_12mths' ] == 'yes' ? 1 : 0 ),
-					'01_race' => $_POST[ 'race' ],
-					'01_ethnicity' => $_POST[ 'ethnicity' ],
-					'01_where' => $_POST[ 'where' ],
-				);
-
-				if ( $data[ '01_alcohol_last_12mths' ] == 0 ){
-					$data[ 'completed' ] = get_gmt();
+				$data = array();
+				foreach ($fields as $field) {
+					$data['01_' . $field] = $_POST[$field];
 				}
 
 				$the_survey->save( $data );
 
 				do_survey_redirect($existing_token, $version);
-				//exit
-			} else {
-				//echo print_r($form_errors);
 			}
 
 		} else if ( $survey_stage == 2 ){
