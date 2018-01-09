@@ -316,76 +316,28 @@ if ( !empty( $partner->data['is_feedback_enabled'] ) ) {
 </div><!-- content -->
 
 <section class="tips accordian">
-<div class="heading">
-	<p>Tips</p>
-	<i class="icn down-arrow"></i>
-</div>
-<div class="acc-content"><?php include 'feedback/tips-v' . $page_vars['version'] . '.php'; ?></div>
-</section>
-<section class="facts accordian">
-<div class="heading">
-	<p>Facts</p>
-	<i class="icn down-arrow"></i>
-</div>
-<div class="acc-content"><?php include 'feedback/facts.php'; ?></div>
-</section>
-<section class="support accordian">
-<div class="heading">
-	<p>Support</p>
-	<i class="icn down-arrow"></i>
-</div>
-<div class="acc-content"><?php include 'feedback/support.php'; ?></div>
-</section>
-<?php
-$services = Partner::loadServices( $partner->data['id'] );
-if ( !empty( $services ) ) {
-?>
-<section class="support accordian">
 	<div class="heading">
-		<p>Support</p>
+		<p>Tips</p>
 		<i class="icn down-arrow"></i>
 	</div>
-	<div class="acc-content">
-		<section>
-
-			<div class="support-info">
-
-				<?php
-				foreach ( $services as $service ) {
-					?>
-
-					<div class="contact-group">
-
-						<h4><?php echo htmlentities( $service['name'] ); ?></h4>
-						<ul>
-							<li><i class="icn green-phone-sm"></i><strong>Phone</strong> <span><?php echo nl2br( htmlentities( $service['contact_numbers'] ) ); ?></span>
-							</li>
-							<li><i class="icn green-pins"></i><strong>Address</strong> <span><?php echo nl2br( htmlentities( $service['address'] ) ); ?></span></li>
-							<li><i class="icn green-clock"></i><strong>Opening hours</strong> <span><?php echo nl2br( htmlentities( $service['opening_hours'] ) ); ?></span></li>
-							<li><i class="icn green-fees"></i><strong>Fees</strong> <span><?php echo htmlentities( $service['fees'] ); ?></span></li>
-							<?php
-							if ( !empty( $service['website'] ) ) {
-								?>
-								<li><i class="icn green-globe"></i><strong>Website</strong> <span><a href="<?php echo htmlentities( $service['website'] ); ?>"><?php echo htmlentities( $service['website'] ); ?></a></span></li>
-							<?php
-							}
-							if ( !empty( $service['additional_info'] ) ) {
-								?>
-								<li><i class="icn green-additional"></i><strong>Additional info</strong> <span><?php echo nl2br( htmlentities( $service['additional_info'] ) ); ?></span></li>
-							<?php
-							}
-							?>
-						</ul>
-					</div>
-				<?php
-				}
-				?>
-
-			</div>
-
-		</section>
-	</div>
+	<?php $sections = get_feedback_tips($page_vars['version']); ?>
+	<div class="acc-content"><?php include 'feedback/tips-facts.php'; ?></div>
 </section>
-	<?php
-}
-?>
+<section class="facts accordian">
+	<div class="heading">
+		<p>Facts</p>
+		<i class="icn down-arrow"></i>
+	</div>
+	<?php $sections = get_feedback_facts(); ?>
+	<div class="acc-content"><?php include 'feedback/tips-facts.php'; ?></div>
+</section>
+<?php $services = Partner::loadServices($partner->data['id']); ?>
+<?php if (!empty($services)): ?>
+	<section class="support accordian">
+		<div class="heading">
+			<p>Support</p>
+			<i class="icn down-arrow"></i>
+		</div>
+		<div class="acc-content"><?php include 'feedback/support.php'; ?></div>
+	</section>
+<?php endif; ?>

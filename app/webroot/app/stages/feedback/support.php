@@ -1,28 +1,63 @@
 <section>
 	<p>Some people can stop or reduce their drinking by themselves, while others might need some additional support. See which option below suits you best.</p>
 </section>
-
 <section>
-	<h3>Meridian Behavioral Health Center</h3>
-	<p>Meridian is a private, non-profit organization. They are committed to enhancing health and wellness for all those with whom they come in contact. Whether you are looking to improve your sense of well-being, gain a performance edge, or deal with a mental illness or substance use issue, they have staff and services to meet your needs. Visit them on the web at <a href="http://mbhci.org">mbhci.org</a> or call them at (800) 330-5615 or (352) 374-5615</p>
-</section>
-
-<section>
-	<h3>Florida Recovery Center</h3>
-	<p>Florida Recovery Center is a treatment center that is run by UF Health. They provide all levels of care for people suffering from drug addiction or alcohol addiction who need drug rehab or alcohol treatment. The staff can provide medical consults, comprehensive labs and psychological testing for people who have an addiction and/or other psychiatric conditions. Visit them on the web at <a href="http://floridarecoverycenter.ufhealth.org">floridarecoverycenter.ufhealth.org</a> or call them at (855) 265-4FRC</p>
-</section>
-
-<section>
-	<h3>Information about research studies at the University of Florida</h3>
-	<p>Information about research studies at the University of Florida can be found at <a href="http://www.ctsi.ufl.edu/community/become-a-research-participant/">www.ctsi.ufl.edu/community/become-a-research-participant/</a> or <a href="http://ufhealth.org/research-studies-clinical-trials">hrefufhealth.org/research-studies-clinical-trials</a></p>
-</section>
-
-<section>
-	<h3>"Rethinking Drinking" website</h3>
-	<p>This is an interactive website offered by the National Institute on Alcohol Abuse and Alcoholism. You can find out more about your level of risk and get useful tips to reduce your drinking: <a href="http://www.rethinkingdrinking.niaaa.nih.gov">www.rethinkingdrinking.niaaa.nih.gov</a></p>
-</section>
-
-<section>
-	<h3>Other referrals</h3>
-	<p>Any questions or interested in additional referrals? Call us at 352-214-4047 or email us at <a href="mailto:anchorsresearch@hhp.ufl.edu">anchorsresearch@hhp.ufl.edu</a>. If you call, you do not need to give your name.</p>
+	<div class="support-info">
+		<?php foreach ($services as $service): ?>
+			<div class="contact-group">
+				<h4><?php echo htmlentities($service['name']); ?></h4>
+				<ul>
+					<?php if (!empty($service['contact_numbers'])): ?>
+						<li>
+							<i class="icn green-phone-sm"></i>
+							<strong>Phone</strong>
+							<span><?php echo nl2br(htmlentities($service['contact_numbers'])); ?></span>
+						</li>
+					<?php endif; ?>
+					<?php if (!empty($service['address'])): ?>
+						<li>
+							<i class="icn green-pins"></i>
+							<strong>Address</strong>
+							<span><?php echo nl2br(htmlentities($service['address'])); ?></span>
+						</li>
+					<?php endif; ?>
+					<?php if (!empty($service['opening_hours'])): ?>
+						<li>
+							<i class="icn green-clock"></i>
+							<strong>Opening hours</strong>
+							<span><?php echo nl2br(htmlentities($service['opening_hours'])); ?></span>
+						</li>
+					<?php endif; ?>
+					<?php if (!empty($service['fees'])): ?>
+						<li>
+							<i class="icn green-fees"></i>
+							<strong>Fees</strong>
+							<span><?php echo htmlentities($service['fees']);?></span>
+						</li>
+					<?php endif; ?>
+					<?php if (!empty($service['website'])): ?>
+						<li>
+							<i class="icn green-globe"></i>
+							<strong>Website</strong>
+							<span>
+								<?php $websites = array(); ?>
+								<?php foreach (explode(',', $service['website']) as $url): ?>
+									<?php $url = htmlentities(trim($url)); ?>
+									<?php $websites[] = '<a href="' . $url . '">' . $url . '</a>'; ?>
+								<?php endforeach; ?>
+								<?php echo implode('<br>', $websites); ?>
+							</span>
+						</li>
+					<?php endif; ?>
+					<?php if (!empty($service['additional_info'])): ?>
+						<li>
+							<i class="icn green-additional"></i>
+							<strong>Additional info</strong>
+							<span><?php echo nl2br(htmlentities($service['additional_info'])); ?></span>
+						</li>
+					<?php endif; ?>
+				</ul>
+			</div>
+		<?php endforeach; ?>
+	</div>
 </section>

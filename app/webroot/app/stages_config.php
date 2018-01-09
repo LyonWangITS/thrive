@@ -330,3 +330,151 @@ function get_stage_vars($stage, $global_vars = array()) {
 
 	return array();
 }
+
+function get_feedback_tips($version = 1) {
+	if ($version == 1) {
+		$tips = array(
+			array(
+				'label' => 'Flock together',
+				'content' => 'There are more reasons to stick with your friends than just to laugh at them when they start stumbling. Looking out for them (and they for you) can ensure that the night ends on a good note and not with someone left on the side of the road or unconscious in a toilet stall.',
+			),
+			array(
+				'label' => 'Cashed up?',
+				'content' => 'Two-minute noodle dinners can get pretty boring after the second week - but then that might be the only option after a big night out! Carrying less money with you when you go out reduces the amount of alcohol you purchase which can be good for your body as well as your pocket. Make sure you leave some aside though if you need to catch a taxi - try putting it in your shoe so you\'re less likely to spend it.',
+			),
+			array(
+				'label' => 'How many have you had?',
+				'content' => 'Do you know what a standard drink is? It\'s a measurement of alcohol and it isn\'t always the same as a bottle/can/glass. Most drinks are more than a single \'standard drink\' so you could be consuming more than you think. Safe drinking guidelines are based on this measurement so it pays to know what they are. Set a limit at the start of the night and stick to it. Avoid partial drink refills so you can actually keep track.',
+			),
+			array(
+				'label' => 'Slow down',
+				'content' => 'Extend your night - space your drinks with water or soft drinks. It\'ll keep you hydrated and less likely to end up on the floor. Even start off your night with a non-alcoholic drink to quench your thirst before moving onto the booze. Grab a bite to eat beforehand and snack throughout the night.',
+			),
+			array(
+				'label' => 'Be yourself',
+				'content' => 'If you don\'t feel like another drink or want to drink at your own pace, real friends should respect that. If you\'re getting hassled, tell them you\'re driving, on antibiotics, or you\'re a sexual athlete who needs to perform later that night. And soft drinks look the same whether there\'s alcohol in them or not. Find something that works for you.',
+			),
+			array(
+				'label' => 'Can I buy you a drink?',
+				'content' => 'There might be some strangers you want to meet, but it\'s probably better to do it while you\'re conscious. Drink spiking happens - to girls and guys. To protect yourself, only accept drinks from people you don\'t know if they are unopened cans or bottles. Never leave your drink unattended and keep a thumb over the top of your bottle - it\'ll also help prevent you wasting your drink if your arms get a little too excited.',
+			),
+			array(
+				'label' => 'Unwanted gifts',
+				'content' => 'Getting lucky doesn\'t mean you have to get Chlamydia. If there\'s any possibility that you may end up in bed with someone - carry a condom with you - and make sure you know how to use it.',
+			),
+			array(
+				'label' => 'Stay off the road',
+				'content' => 'Plan how you\'re getting home before you go out. Grab a taxi - go in a group and you can share the bill. Put the taxi number in your phone. If you\'re organising a designated driver, make sure they really are not drinking - the last thing you want is to get to home-time with no money and no one is able to drive.',
+			),
+			array(
+				'label' => 'Mixers',
+				'content' => 'Diversity might be the spice of life but when it comes to drugs it can be fatal. Mixing alcohol with other drugs - even prescribed medication can have unanticipated effects. Stick to the alcohol and if you\'re sick take the night off.',
+			),
+		);
+	}
+	elseif ($version == 2) {
+		$tips = array(
+			array(
+				'label' => 'How many have you had?',
+				'content' => 'Do you know what a standard drink is? It\'s a measurement of alcohol and it isn\'t always the same as a bottle/can/glass. Most drinks are more than a single \'standard drink\' so you could be consuming more than you think. Safe drinking guidelines are based on this measurement so it pays to know what they are. Avoid partial drink refills so you can actually keep track of the number of drinks you\'ve had in the course of a night.',
+			),
+			array(
+				'label' => 'Stick to your guns',
+				'content' => 'Set a drink limit at the start of the night and stick to it.',
+			),
+			array(
+				'label' => 'Slow down',
+				'content' => 'Extend your night. Space out your drinks.',
+			),
+			array(
+				'label' => 'Take turns',
+				'content' => 'Alternate between alcoholic drinks and either water, juice or soft drinks. It\'ll keep you hydrated and less likely to end up on the floor. Even start off your night with a non-alcoholic drink to quench your thirst before moving onto the booze.',
+			),
+		);
+	}
+	elseif ($version == 3) {
+		$tips = array(
+			array(
+				'label' => 'Flock together',
+				'content' => 'There are more reasons to stick with your friends then just to laugh at them when they start stumbling. Looking out for them (and they for you) can ensure that the night ends on a good note and not with someone left on the side of the road or unconscious in a toilet stall.',
+			),
+			array(
+				'label' => 'Unwanted gifts',
+				'content' => 'Getting lucky doesn\'t mean you have to get Chlamydia. If there\'s any possibility that you may end up in bed with someone - carry a condom with you - and make sure you know how to use it.',
+			),
+			array(
+				'label' => 'Stay off the road',
+				'content' => 'Plan how you\'re getting home before you go out. Grab a taxi - go in a group and you can share the bill. Put the taxi number in your phone.',
+			),
+			array(
+				'label' => 'How to designate a driver',
+				'content' => 'If you\'re organizing a designated driver, make sure they really are not drinking - the last thing you want is to get to home-time with no money and no one is able to drive.',
+			),
+		);
+	}
+
+	return array(
+		'intro' => array('label' => 'Stuff other people do...'),
+		'content' => $tips,
+	);
+}
+
+function get_feedback_facts() {
+	return array(
+		'intro' => array(
+			'label' => 'Stuff about alcohol and you...',
+			'content' => 'Safe drinking guidelines have been developed to help you protect your health - both physically and socially. Everyone is faced with some risk when consuming alcohol but thinking before you drink can lead to an enjoyable and safe experience.',
+		),
+		'content' => array(
+			array(
+				'label' => 'Standard Drinks',
+				'content' => 'Alcohol comes in all different types, colours and containers. Regardless of this, a standard drink is about 14 grams or 17.7mL of pure alcohol. Alcohol labels are displayed on the bottle to tell you how many standard drinks it contains. Remember one bottle/can/glass doesn\'t always equal one standard drink.',
+				'list' => array(
+					'Men shouldn\'t drink more than 4 standard drinks a day to avoid long-term harm, with at least two alcohol-free days a week.',
+					'Women shouldn\'t drink more than 3 standard drinks a day to avoid long-term harm, with at least two alcohol-free days a week.',
+				),
+			),
+			array(
+				'label' => 'Everyone is Different',
+				'content' => 'People come in all different shapes and sizes, so depending on your gender, age, weight and other factors; you may be affected by alcohol more than others. Get to know your body in relation to the standard drink guidelines, and try to keep one to two days a week free of alcohol.',
+			),
+			array(
+				'label' => 'Staying Under the Limit',
+				'content' => 'It doesn\'t take much to put you over the 0.08% blood alcohol concentration (BAC) limit (0.02% for those under the age of 21). To stay under this:',
+				'list' => array(
+					'Women of average size shouldn\'t drink more than one standard drink per hour; and',
+					'Men of average size can drink up to two standard drinks in the first hour and no more than one standard drink per hour after that.',
+				),
+			),
+			array(
+				'label' => 'Alcohol and Your Body',
+				'content' => array(
+					'The immediate effects of alcohol can include slurred speech, blurred vision, changes in mood, loss of inhibitions, vomiting, loss of balance and clumsiness. These effects are greater with increasing amounts of alcohol consumed. More serious effects can be unconsciousness, alcohol poisoning, coma or death with excessive alcohol consumption. It\'s called a depressant for a reason.',
+					'Longer-term effects of heavy drinking can leave you with serious health problems. These can include alcohol dependence, liver damage or disease, mood changes, cancer (mouth, throat, breast), sexual difficulties, memory loss or strokes.',
+				),
+			),
+			array(
+				'label' => 'Other Effects of Alcohol',
+				'content' => 'Alcohol can affect more than just your body. There are physical and social risks that may happen when drinking too much. These can include injury, car crashes, getting into trouble with the police, arguments, fights, unwanted or unsafe sexual activity, offending others or doing things you regret later. Controlling your drinks enables you to control your behaviour.',
+			),
+			array(
+				'label' => 'Alcohol and the Law',
+				'content' => 'Alcohol impairs your judgement, which can lead to doing something you wouldn\'t when sober. Some alcohol-related laws to keep in mind are:',
+				'list' => array(
+					'Consuming alcohol in a public place or on private property could result in a $500 fine and may even lead to a jail term of up to 60 days;',
+					'Argumentative, disorderly or violent behavior isn\'t acceptable, it can get you into trouble with the police;',
+				),
+			),
+			array(
+				'label' => 'Driving Under the Influence (DUI)',
+				'content' => 'DUI is taken very seriously. Here are the BAC limits for drivers of different ages and the hefty punishments that may result if you decide to take the risk:',
+				'list' => array(
+					'Drivers under the age of 21 - Your BAC limit for driving is 0.02%',
+					'Other drivers - Your BAC limit is 0.08%',
+					'If you are found to have driven under the influence, for a first offense you could get a fine between $500-$2000, plus administrative and potentially lawyer\'s fees. Even the first offense could lead to a sentence of 6-9 months in jail or an alcohol/drug treatment program plus probation, 50 hours or more of mandatory community service and leave you without a license for 6 months-1 year. Subsequent offenses and DUIs where bodily harm is involved increase the amount of fines and increase the likelihood of actual jail time rather than community service only.'
+				),
+				'secondary_content' => 'Drinking alcohol can be part of an enjoyable night out, but drinking safely will ensure you have good memories and that you keep your license.',
+			),
+		),
+	);
+}

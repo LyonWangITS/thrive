@@ -149,10 +149,10 @@ for ( $i = -1; $i < $count; $i++ ) {
 	echo '<h3>Support service <span class="number">' . ( $i + 1 ). '</span></h3>';
 	echo $this->Form->hidden( "Service.{$i}.id" );
 	echo $this->Form->input( "Service.{$i}.name", array( 'label' => 'Service name <span class="required">*</span>' ) );
-	echo $this->Form->input( "Service.{$i}.contact_numbers", array( 'label' => 'Contact number(s) <span class="required">*</span>', 'rows' => 3 ) );
-	echo $this->Form->input( "Service.{$i}.address", array( 'label' => 'Address <span class="required">*</span>', 'rows' => 3 ) );
-	echo $this->Form->input( "Service.{$i}.opening_hours", array( 'label' => 'Opening hours <span class="required">*</span>', 'rows' => 3 ) );
-	echo $this->Form->input( "Service.{$i}.fees", array( 'label' => 'Fees (if applicable - if none state n/a) <span class="required">*</span>' ) );
+	echo $this->Form->input( "Service.{$i}.contact_numbers", array( 'label' => 'Contact number(s)', 'rows' => 3 ) );
+	echo $this->Form->input( "Service.{$i}.address", array( 'label' => 'Address', 'rows' => 3 ) );
+	echo $this->Form->input( "Service.{$i}.opening_hours", array( 'label' => 'Opening hours', 'rows' => 3 ) );
+	echo $this->Form->input( "Service.{$i}.fees", array( 'label' => 'Fees' ) );
 	echo $this->Form->input( "Service.{$i}.website", array( 'label' => 'Website' ) );
 	echo $this->Form->input( "Service.{$i}.additional_info", array( 'label' => 'Additional information', 'rows' => 3 ) );
 	echo ' <a class="delete-service btn d-purple sm" href="#"><i class="icn trash"></i> Delete</a>';

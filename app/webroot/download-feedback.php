@@ -352,6 +352,14 @@ function add_support( FPDF $pdf, array $services ) {
 	// Space
 	$pdf->SetY( $pdf->GetY() + 20 );
 
+	// Intro text.
+	$pdf->SetTextColor( 111, 110, 110 );
+	$pdf->SetFont( 'ProximaNova', '', 11 );
+	$pdf->SetXY( 26, $pdf->GetY() );
+	$pdf->Cell( 0, 20, 'Some people can stop or reduce their drinking by themselves, while others might need some additional support. See which option below suits you best.', 0, 0 );
+
+	$pdf->SetY( $pdf->GetY() + 20 );
+
 	// Services
 	// To avoid a service breaking across a page, we buffer each one then append it
 	foreach ( $services as $service ) {
@@ -378,13 +386,21 @@ function add_support( FPDF $pdf, array $services ) {
 		$side_border_top = $buffer->GetY();
 
 		// Details
-		draw_support_row( $buffer, 'phone', 'Phone', $service['contact_numbers'] );
-		$buffer->Image( 'pdf-assets/service-divider.png', 55, $buffer->GetY(), 208 );
-		draw_support_row( $buffer, 'address', 'Address', $service['address'] );
-		$buffer->Image( 'pdf-assets/service-divider.png', 55, $buffer->GetY(), 208 );
-		draw_support_row( $buffer, 'hours', 'Opening hours', $service['opening_hours'] );
-		$buffer->Image( 'pdf-assets/service-divider.png', 55, $buffer->GetY(), 208 );
-		draw_support_row( $buffer, 'fees', 'Fees', $service['fees'] );
+		if ( !empty( $service['contact_numbers'] ) ) {
+			draw_support_row( $buffer, 'phone', 'Phone', $service['contact_numbers'] );
+		}
+		if ( !empty( $service['address'] ) ) {
+			$buffer->Image( 'pdf-assets/service-divider.png', 55, $buffer->GetY(), 208 );
+			draw_support_row( $buffer, 'address', 'Address', $service['address'] );
+		}
+		if ( !empty( $service['opening_hours'] ) ) {
+			$buffer->Image( 'pdf-assets/service-divider.png', 55, $buffer->GetY(), 208 );
+			draw_support_row( $buffer, 'hours', 'Opening hours', $service['opening_hours'] );
+		}
+		if ( !empty( $service['fees'] ) ) {
+			$buffer->Image( 'pdf-assets/service-divider.png', 55, $buffer->GetY(), 208 );
+			draw_support_row( $buffer, 'fees', 'Fees', $service['fees'] );
+		}
 		if ( !empty( $service['website'] ) ) {
 
 			$buffer->Image( 'pdf-assets/service-divider.png', 55, $buffer->GetY(), 208 );
