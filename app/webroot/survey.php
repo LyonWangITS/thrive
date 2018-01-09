@@ -92,10 +92,7 @@
 		$page_vars[ 'audit_score' ] = $audit_score;
 		$page_vars[ 'expenses' ] = $the_survey->calculateExpenses();
 		$page_vars[ 'consumption' ] = $the_survey->calculateConsumption();
-
-		if ( ifne( $the_survey->data, '03_past_4wk_consumed_alcohol' ) == 1 ){
-			$page_vars[ 'bac' ] = $the_survey->calculateBAC();
-		}
+		$page_vars[ 'bac' ] = $the_survey->calculateBAC();
 
 		$page_vars[ 'rating_important_reduce_drinking' ] = $the_survey->data[ 'rating_important_reduce_drinking' ];
 		$page_vars[ 'rating_confident_reduce_drinking' ] = $the_survey->data[ 'rating_confident_reduce_drinking' ];

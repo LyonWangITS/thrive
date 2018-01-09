@@ -4,7 +4,7 @@
 
 <section>
 	<h3>Flock together</h3>
-	<p>There are more reasons to stick with your friends then just to laugh at them when they start stumbling. Looking out for them (and they for you) can ensure that the night ends on a good note and not with someone left on the side of the road or unconscious in a toilet stall.</p>
+	<p>There are more reasons to stick with your friends than just to laugh at them when they start stumbling. Looking out for them (and they for you) can ensure that the night ends on a good note and not with someone left on the side of the road or unconscious in a toilet stall.</p>
 </section>
 
 <section>

@@ -116,12 +116,12 @@ function get_stage_vars($stage, $global_vars = array()) {
 			'intro' => array(
 				'title' => 'In the last four weeks',
 				'description' => array(
-					'Now we\'d like to ask you about your drinking in the last four weeks only.<br>We understand that this might be difficult to remember exactly so<br>for these questions please give your best estimate.',
+					'Now we\'d like to ask you about your drinking in the <strong>last four weeks only</strong>.<br>We understand that this might be difficult to remember exactly so<br>for these questions please give your best estimate.',
 					'Please use the definitions of Standard Drinks below as a guide.',
 				),
 			),
 			'tabular' => array(
-				'section_number' => '02',
+				'section_number' => '01',
 				'image_name' => 'vessels',
 				'image_desc' => 'Drinking Vessel',
 				'intro' => array(
@@ -141,7 +141,6 @@ function get_stage_vars($stage, $global_vars = array()) {
 				'title' => 'Effects of Drinking',
 				'description' => array(
 					'These questions relate to your experiences when drinking.',
-					'Remember your responses are anonymous.',
 				),
 			),
 			'include_tabular' => true,
@@ -150,7 +149,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 				'image_name' => 'vessels',
 				'image_desc' => 'Drinking Vessel',
 				'intro' => array(
-					'Please rate the following items according to how often each has occurred in your drinking experiences <strong>during the past 30 days</strong>.',
+					'Please rate the following items according to how often each has occurred in your drinking experiences <strong>in the past month</strong>.',
 					'It is important that you answer according to what has actually happened to you and not according to your beliefs about your drinking.'
 				),
 				'columns' => array(
@@ -184,7 +183,6 @@ function get_stage_vars($stage, $global_vars = array()) {
 				'title' => 'Effects of Drinking',
 				'description' => array(
 					'These questions relate to your experiences when drinking.',
-					'Remember your responses are anonymous.',
 				),
 			),
 			'include_tabular' => true,
@@ -193,8 +191,8 @@ function get_stage_vars($stage, $global_vars = array()) {
 				'image_name' => 'vessels',
 				'image_desc' => 'Drinking Vessel',
 				'intro' => array(
-					'Please rate the following items according to how often each has occurred in your drinking experiences <strong>during the past 30 days</strong>.',
-					'It is important that you answer according to what has actually happened to you and not according to your beliefs about your drinking.'
+					'Below is a list of things that sometimes happen to people either during, or after they have been drinking alcohol.',
+					'Next to each item below, please click YES or NO to indicate whether that item describes something that has happened to you <strong>in the past month</strong>.',
 				),
 				'columns' => array(
 					'yes' => 'Yes',
@@ -246,7 +244,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 				'image_name' => 'vessels',
 				'image_desc' => 'Drinking Vessel',
 				'intro' => array(
-					'Answer each of the following by clicking on the appropriate box.',
+					'Answer each of the following by clicking on the appropriate circle.',
 					'When I am drinking, I...',
 				),
 				'columns' => array(
@@ -321,7 +319,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 			'intro' => array(
 				'title' => 'Thanks for completing the survey, ' . h(ifne($global_vars, 'participant_name')),
 				'description' => array(
-					'Here you will find some feedback based on the answers you have<br />provided as well as some other information on staying safe while drinking <br />which you may find useful.',
+					'In a moment, you will have a chance to review some personalized feedback based on your responses to the questions in this survey. Please take a look at this feedback and the information in the Tips, Facts and Support screens.',
 					'<a href="download-feedback.php?t=' . h( $global_vars['token'] ) . '&x=.pdf" target="_blank" class="btn pdf"><i class="icn pdf"></i>Download as PDF</a>'
 				),
 			),

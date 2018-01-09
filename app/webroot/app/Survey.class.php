@@ -241,7 +241,6 @@
 				$stage_6_passed = true;
 
 				$stage_4_keys = array(
-					'04_past_4wk_consumed_alcohol',
 					'04_past_4wk_largest_number_single_occasion',
 					'04_past_4wk_hours_amount_drank',
 					'04_body_height_cm',
@@ -263,7 +262,7 @@
 					$stage_4_keys[] = '04_past_4wk_std_drinks_' . $day;
 				}
 
-				$page_vars = get_stage_vars(4);
+				$page_vars = get_stage_vars(5);
 				foreach (array_keys($page_vars['tabular']['rows']) as $field) {
 					if ( ifne( $this->data, '05_' . $field, null ) === null ) {
 						$stage_5_passed = false;
@@ -271,7 +270,7 @@
 					}
 				}
 
-				$page_vars = get_stage_vars(5);
+				$page_vars = get_stage_vars(6);
 				foreach (array_keys($page_vars['tabular']['rows']) as $field) {
 					if ( ifne( $this->data, '06_' . $field, null ) === null ) {
 						$stage_6_passed = false;
@@ -287,7 +286,7 @@
 				}
 
 				$stage_7_passed = true;
-				$page_vars = get_stage_vars(6);
+				$page_vars = get_stage_vars(7);
 				foreach (array_keys($page_vars['tabular']['rows']) as $field) {
 					if ( ifne( $this->data, '07_' . $field, null ) === null ) {
 						$stage_7_passed = false;
@@ -296,7 +295,7 @@
 				}
 
 				$stage_8_passed = true;
-				$page_vars = get_stage_vars(7);
+				$page_vars = get_stage_vars(8);
 				foreach (array_keys($page_vars['tabular']['rows']) as $field) {
 					if ( ifne( $this->data, '08_' . $field, null ) === null ) {
 						$stage_8_passed = false;

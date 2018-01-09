@@ -518,11 +518,11 @@ class ReportsController extends AppController {
 	public function data_consumption_peak() {
 
 		$categories = array();
-		for ( $i = 1; $i < 32; $i++ ) {
+		for ( $i = 1; $i < 25; $i++ ) {
 
 			$categories[$i] = $i;
 		}
-		$categories['32+'] = '32+';
+		$categories['25+'] = '25+';
 
 		$this->_generate_field_count_report( $this->reports['consumption']['peak'], $categories, '04_past_4wk_largest_number_single_occasion' );
 	}

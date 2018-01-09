@@ -29,13 +29,13 @@
 
 		<div class="red-bar handle">drag me</div>
 		<div class="selected-area"></div>
-		<div class="tooltip">1 drinks</div>
-		<div class="left-value slider-value">1</div>
-		<div class="right-value slider-value">32+</div>
+		<div class="tooltip"></div>
+		<div class="left-value slider-value"></div>
+		<div class="right-value slider-value">25+</div>
 
 	</div>
 
-	<input type="hidden" name="how_many_on_typical_day" value="1" />
+	<input type="hidden" name="how_many_on_typical_day" value="0" />
 
 </div><!-- field -->
 

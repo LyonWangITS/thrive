@@ -33,7 +33,7 @@
 							<?php include 'tabular.php'; ?>
 						<?php endif; ?>
 
-						<?php $path = dirname(dirname(__FILE__)) . '/stage-0' . $target_stage . '.php'; ?>
+						<?php $path = dirname(dirname(__FILE__)) . '/stage-' . ($target_stage < 10 ? '0' . $target_stage : $target_stage) . '.php'; ?>
 						<?php if (file_exists($path)): ?>
 							<?php include_once $path; ?>
 						<?php endif; ?>

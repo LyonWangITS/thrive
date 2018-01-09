@@ -228,10 +228,6 @@ function add_comparisons( FPDF $pdf, Survey $survey ) {
 function add_bac_estimate( FPDF $pdf, Survey $survey ) {
 
 	// Calculate BAC
-	if ( empty( $survey->data['03_past_4wk_consumed_alcohol'] ) ) {
-
-		return;
-	}
 	$bac = $survey->calculateBAC();
 
 	if ( $bac <= 0 ) {

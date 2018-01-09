@@ -11,17 +11,17 @@
 		</div>
 		
 		<div class="drink-type drinks-two">
-			<div class="image"><img src="<?php echo BASE_URL; ?>images/sdg-2.png" alt="Glass of wine" /></div>
+			<div class="image"><img src="<?php echo BASE_URL; ?>images/sdg-2.png" style="height:80px;" alt="Glass of wine" /></div>
 			<p>5 oz. glass of wine</p>
 		</div>
 		
 		<div class="drink-type drinks-three">
-			<div class="image"><img src="<?php echo BASE_URL; ?>images/sdg-3.png" style="height:60px;" alt="Glass of whiskey" /></div>
+			<div class="image"><img src="<?php echo BASE_URL; ?>images/sdg-3.png" style="height:40px;" alt="Glass of whiskey" /></div>
 			<p>1 &#189; oz. of hard liquor<br>(e.g. run, vodka, whiskey)</p>
 		</div>
 		
 		<div class="drink-type drinks-four">
-			<div class="image"><img src="<?php echo BASE_URL; ?>images/sdg-4.png" alt="Mixed drink" /></div>
+			<div class="image"><img src="<?php echo BASE_URL; ?>images/sdg-4.png" style="height:80px;" alt="Mixed drink" /></div>
 			<p>Mixed or straight drink with 1 &#189; oz. of hard liquor</p>
 		</div>
 	</div>

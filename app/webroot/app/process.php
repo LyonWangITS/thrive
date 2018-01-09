@@ -67,7 +67,7 @@ function doProcess( $the_survey, $existing_token, $version ){
 
 			$form_errors = array(
 				'how_often_drink_alcohol' => validateField( ifne( $_POST, 'how_often_drink_alcohol' ), 'in-set', 'Please select a value', array( 'never','lt-1pm','1pm','1p2w','1pw','2-3pw','4pw' ) ),
-				'how_many_on_typical_day' => validateField( ifne( $_POST, 'how_many_on_typical_day' ), 'notempty', 'Please enter a value' ),
+				'how_many_on_typical_day' => validateField( ifne( $_POST, 'how_many_on_typical_day' ), 'in-set', 'Please enter a value', array_merge(range(1, 24), array('25+')) ),
 				'how_often_six_or_more' => validateField( ifne( $_POST, 'how_often_six_or_more' ), 'in-set', 'Please select a value', array( 'never','1-2py','lt-1pm','1pm','1pw','1pd' ) ),
 				'past_year_how_often_unable_to_stop' => validateField( ifne( $_POST, 'past_year_how_often_unable_to_stop' ), 'in-set', 'Please select a value', array( 'never','lt-1pm','1pm','1pw','1pd' ) ),
 				'past_year_how_often_failed_expectations' => validateField( ifne( $_POST, 'past_year_how_often_failed_expectations' ), 'in-set', 'Please select a value', array( 'never','lt-1pm','1pm','1pw','1pd' ) ),
@@ -100,96 +100,63 @@ function doProcess( $the_survey, $existing_token, $version ){
 			}
 
 		} else if ( $survey_stage == 4 ){
+			//Manual validation of height/weight fields
+			$body_height_cm = ifne( $_POST, 'body_height-cm' );
 
-			$consumed_alcohol_message = validateField( ifne( $_POST, 'past_4wk_consumed_alcohol' ), 'in-set', 'Please select a value', array( 'yes', 'no') );
-			if ( $consumed_alcohol_message == '' ){
+			$body_height_feet = ifne( $_POST, 'body_height-feet' );
+			$body_height_inches = ifne( $_POST, 'body_height-inches', '' );
+			$body_height_inches = ( $body_height_inches == '' ? 0 : $body_height_inches );
 
-				if ( $_POST[ 'past_4wk_consumed_alcohol' ] == 'yes' ){
+			$body_height_message = '';
+			$body_weight_message = '';
 
-					//Manual validation of height/weight fields
-					$body_height_cm = ifne( $_POST, 'body_height-cm' );
+			if ( $body_height_cm == '' ){
+				if ( ( $body_height_feet == '' ) ){
+					$body_height_message = 'Please enter a weight in cm or feet/inches';
+				} else {
+					//Calculate height in cm
+					$body_height_cm = ( $body_height_feet * 30.48 ) + ( $body_height_inches * 2.54 );
+				}
+			}
 
-					$body_height_feet = ifne( $_POST, 'body_height-feet' );
-					$body_height_inches = ifne( $_POST, 'body_height-inches', '' );
-					$body_height_inches = ( $body_height_inches == '' ? 0 : $body_height_inches );
+			//Validate everything
+			$form_errors = array(
+				'past_4wk_largest_number_single_occasion' => validateField( ifne( $_POST, 'past_4wk_largest_number_single_occasion' ), 'in-set', 'Please enter a value', array_merge(range(1, 24), array('25+'))),
+				'past_4wk_hours_amount_drank' => validateField( ifne( $_POST, 'past_4wk_hours_amount_drank' ), 'in-set', 'Please enter a value', array_merge(range(1, 23), array('24+'))),
+				'body_height_cm' => $body_height_message,
+				'body_weight_kg' => validateField( ifne( $_POST, 'body_weight-number' ), 'notempty', 'Please enter your weight' )
+			);
 
-					$body_height_message = '';
-					$body_weight_message = '';
+			$weekdays = get_weekdays();
+			$weekdays = array_keys($weekdays);
 
-					if ( $body_height_cm == '' ){
-						if ( ( $body_height_feet == '' ) ){
-							$body_height_message = 'Please enter a weight in cm or feet/inches';
-						} else {
-							//Calculate height in cm
-							$body_height_cm = ( $body_height_feet * 30.48 ) + ( $body_height_inches * 2.54 );
-						}
-					}
+			foreach ($weekdays as $day) {
+				$form_errors['past_4wk_drinks_' . $day] = validateField(ifne($_POST, 'past_4wk_drinks_' . $day), 'in-set', 'Please select a value', array_keys($stage_vars['tabular']['columns']));
+				$form_errors['past_4wk_std_drinks_' . $day] = validateField(ifne($_POST, 'past_4wk_std_drinks_' . $day ), 'in-set', 'Please enter a value', array_merge(range(0, 24), array('25+')));
+			}
 
-					//Validate everything
-					$form_errors = array(
-						'past_4wk_consumed_alcohol' => $consumed_alcohol_message,
-						'past_4wk_largest_number_single_occasion' => validateField( ifne( $_POST, 'past_4wk_largest_number_single_occasion' ), 'notempty', 'Please enter a value' ),
-						'past_4wk_hours_amount_drank' => validateField( ifne( $_POST, 'past_4wk_hours_amount_drank' ), 'notempty', 'Please enter a value' ),
-						'body_height_cm' => $body_height_message,
-						'body_weight_kg' => validateField( ifne( $_POST, 'body_weight-number' ), 'notempty', 'Please enter your weight' )
+			if ( formIsValid( $form_errors ) ) {
+				$values = array(
+					'04_past_4wk_largest_number_single_occasion' => $_POST[ 'past_4wk_largest_number_single_occasion' ],
+					'04_past_4wk_hours_amount_drank' => $_POST[ 'past_4wk_hours_amount_drank' ],
+					'04_body_height_cm' => $body_height_cm,
+					'04_body_weight_kg' => $_POST[ 'body_weight-number'] * ( ifne( $_POST, 'body_weight-unit', 'kg' ) == 'lbs' ? 0.453592 : 1 )
+				);
+
+				foreach ($weekdays as $day) {
+					$fields = array(
+						'past_4wk_drinks_' . $day,
+						'past_4wk_std_drinks_' . $day,
 					);
 
-					$weekdays = get_weekdays();
-					$weekdays = array_keys($weekdays);
-
-					foreach ($weekdays as $day) {
-						$form_errors['past_4wk_drinks_' . $day] = validateField(ifne($_POST, 'past_4wk_drinks_' . $day), 'in-set', 'Please select a value', array_keys($stage_vars['tabular']['columns']));
-						$form_errors['past_4wk_std_drinks_' . $day] = validateField(ifne($_POST, 'past_4wk_std_drinks_' . $day ), 'notempty', 'Please enter a value');
+					foreach ($fields as $field) {
+						$values['04_' . $field] = $_POST[$field];
 					}
-
-					if ( formIsValid( $form_errors ) ) {
-						$values = array(
-							'04_past_4wk_consumed_alcohol' => ( $_POST[ 'past_4wk_consumed_alcohol' ] == 'yes' ? 1 : 0 ),
-							'04_past_4wk_largest_number_single_occasion' => $_POST[ 'past_4wk_largest_number_single_occasion' ],
-							'04_past_4wk_hours_amount_drank' => $_POST[ 'past_4wk_hours_amount_drank' ],
-							'04_body_height_cm' => $body_height_cm,
-							'04_body_weight_kg' => $_POST[ 'body_weight-number'] * ( ifne( $_POST, 'body_weight-unit', 'kg' ) == 'lbs' ? 0.453592 : 1 )
-						);
-
-						foreach ($weekdays as $day) {
-							$fields = array(
-								'past_4wk_drinks_' . $day,
-								'past_4wk_std_drinks_' . $day,
-							);
-
-							foreach ($fields as $field) {
-								$values['04_' . $field] = $_POST[$field];
-							}
-						}
-
-
-						$the_survey->save($values);
-						do_survey_redirect($existing_token, $version);
-						//exit
-
-					} else {
-
-						//echo print_r( $form_errors );
-
-					}
-
-
-				} else {
-
-					//Nothing else to validate
-					$the_survey->save(array(
-						'03_past_4wk_consumed_alcohol' => ( $_POST[ 'past_4wk_consumed_alcohol' ] == 'yes' ? 1 : 0 )
-					));
-
-					do_survey_redirect($existing_token, $version);
-					//exit
-
 				}
 
-			} else {
 
-				//echo print_r($form_errors);
-
+				$the_survey->save($values);
+				do_survey_redirect($existing_token, $version);
 			}
 
 

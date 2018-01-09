@@ -15,10 +15,14 @@
 		</div>
 	<?php endif; ?>
 
-	<div class="labels">
-		<?php foreach ($vars['columns'] as $title): ?>
-			<span><?php print $title; ?></span>
-		<?php endforeach; ?>
+	<div class="labels-wrapper">
+		<div class="labels-wrapper-inner">
+			<div class="labels">
+				<?php foreach ($vars['columns'] as $title): ?>
+					<span><?php print $title; ?></span>
+				<?php endforeach; ?>
+			</div>
+		</div>
 	</div>
 
 </div><!-- field -->
