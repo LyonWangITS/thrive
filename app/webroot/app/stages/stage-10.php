@@ -52,29 +52,19 @@
 
 			<p class="range">You fall into the <strong><?php echo $audit_range ?> <?php echo $audit_result_label ?> Range</strong></p>
 
-			<?php
-				if ( ( $the_audit_score >= 0 ) && ( $the_audit_score <= 7 ) ) {
-					//0-7 Moderate Drinking
-			?>
+			<?php if ($the_audit_score >= 0 && $the_audit_score <= 7): ?>
+				<!-- 0-7 Moderate Drinking -->
 				<p>Low risk of alcohol related harm</p>
-			<?php
-				} else if ( ( $the_audit_score >= 8 ) && ( $the_audit_score <= 15 ) ) {
-					//8-15 Hazardous drinking
-			?>
+			<?php elseif ($the_audit_score >= 8 && $the_audit_score <= 15): ?>
+				<!-- 8-15 Hazardous drinking -->
 				<p>High risk of experiencing alcohol related harm and some people in this range may already be experiencing significant harm.</p>
-			<?php
-				} else if ( ( $the_audit_score >= 16 ) && ( $the_audit_score <= 19 ) ) {
-					//16-19 Harmful drinking
-			?>
+			<?php elseif ($the_audit_score >= 16 && $the_audit_score <= 19 ): ?>
+				<!-- 16-19 Harmful drinking -->
 				<p>A person scoring in this range will already be experiencing significant alcohol related harm.</p>
-			<?php
-				} else if ( ( $the_audit_score >= 20 ) ) {
-					//2-40 Alcohol dependence
-			?>
+			<?php elseif ($the_audit_score >= 20): ?>
+				<!-- //2-40 Alcohol dependence -->
 				<p>A person scoring in this range may be alcohol dependent and advised to have a clinical assessment of their drinking.</p>
-			<?php
-				}
-			?>
+			<?php endif; ?>
 
 			<p>
 				The main way to reduce your risk level (and AUDIT score) is to reduce the number of drinks you consume per occasion.
@@ -315,22 +305,16 @@ if ( !empty( $partner->data['is_feedback_enabled'] ) ) {
 
 </div><!-- content -->
 
-<section class="tips accordian">
-	<div class="heading">
-		<p>Tips</p>
-		<i class="icn down-arrow"></i>
-	</div>
-	<?php $sections = get_feedback_tips($page_vars['version']); ?>
-	<div class="acc-content"><?php include 'feedback/tips-facts.php'; ?></div>
-</section>
-<section class="facts accordian">
-	<div class="heading">
-		<p>Facts</p>
-		<i class="icn down-arrow"></i>
-	</div>
-	<?php $sections = get_feedback_facts(); ?>
-	<div class="acc-content"><?php include 'feedback/tips-facts.php'; ?></div>
-</section>
+<?php foreach (get_feedback_sections() as $key => $section): ?>
+	<section class="<?php echo $key; ?> accordian">
+		<div class="heading">
+			<p><?php echo $section['label']; ?></p>
+			<i class="icn down-arrow"></i>
+		</div>
+		<div class="acc-content"><?php include 'feedback/section.php'; ?></div>
+	</section>
+<?php endforeach; ?>
+
 <?php $services = Partner::loadServices($partner->data['id']); ?>
 <?php if (!empty($services)): ?>
 	<section class="support accordian">
