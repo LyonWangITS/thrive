@@ -30,13 +30,15 @@ function get_stages() {
 
 
 function get_stage_vars($stage, $global_vars = array()) {
+	$participant_name = isset($global_vars['participant_name']) ? htmlspecialchars($global_vars['participant_name']) : '';
+
 	if ($stage == 1) {
 		return array(
 			'legend' => 'Please fill in these details about yourself.',
 			'intro' => array(
 				'title' => 'All about you',
 				'description' => array(
-					'Thanks, ' . h(ifne($global_vars, 'participant_name')) . '. First of all we\'d like to know a little bit more about you...',
+					'Thanks, ' . $participant_name . '. First of all we\'d like to know a little bit more about you...',
 				),
 			),
 		);
@@ -48,7 +50,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 			'intro' => array(
 				'title' => 'All about you',
 				'description' => array(
-					'Thanks, ' . h(ifne($global_vars, 'participant_name')) . '. First of all we\'d like to know a little bit more about you...',
+					'Thanks, ' . $participant_name . '. First of all we\'d like to know a little bit more about you...',
 				),
 			),
 			'include_tabular' => true,
@@ -318,10 +320,10 @@ function get_stage_vars($stage, $global_vars = array()) {
 		return array(
 			'legend' => 'Please fill the fields below.',
 			'intro' => array(
-				'title' => 'Thanks for completing the survey, ' . h(ifne($global_vars, 'participant_name')),
+				'title' => 'Thanks for completing the survey, ' . $participant_name,
 				'description' => array(
 					'In a moment, you will have a chance to review some personalized feedback based on your responses to the questions in this survey. Please take a look at this feedback and the information in the Tips, Facts and Support screens.',
-					'<a href="download-feedback.php?t=' . h( $global_vars['token'] ) . '&v=' . $version . '&x=.pdf" target="_blank" class="btn pdf"><i class="icn pdf"></i>Download as PDF</a>'
+					'<a href="download-feedback.php?t=' . htmlspecialchars($global_vars['token']) . '&v=' . $version . '&x=.pdf" target="_blank" class="btn pdf"><i class="icn pdf"></i>Download as PDF</a>'
 				),
 			),
 			'classes' => 'results',

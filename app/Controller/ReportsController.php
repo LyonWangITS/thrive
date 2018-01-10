@@ -33,11 +33,6 @@ class ReportsController extends AppController {
 		),
 		'consumption' => array(
 			'_name' => 'Alcohol consumption',
-			'have_consumed' => array(
-				'title' => 'Proportion who have consumed alcohol in past 12 months',
-				'xaxis' => 'Consumed alcohol in the last 12 months',
-				'yaxis' => 'Frequency',
-			),
 			'audit_age' => array(
 				'title' => 'Graph of mean AUDIT score by age',
 				'xaxis' => 'Age groupings',
@@ -302,7 +297,10 @@ class ReportsController extends AppController {
 			'Race',
 			'Ethnicity',
 			'Habitation type',
-			'Consumed alcohol last 12 months',
+			'First pet name',
+			'first music concert you attended',
+			'2nd and 3rd letters in Mother\'s name',
+			'4th and 5th digits in cell phone number',
 			'How often drink alcohol',
 			'How many Standard Drinks on typical day',
 			'How often 6+ Standard Drinks on one occasion',
@@ -313,7 +311,6 @@ class ReportsController extends AppController {
 			'Past year - unable to remember',
 			'Ever been injured or injured someone',
 			'Others been concerned',
-			'Past 4 weeks consumed alcohol',
 			'Past 4 weeks largest number single occasion',
 			'Past 4 weeks over how many hours', 
 			'Body height (cm)',
@@ -376,9 +373,12 @@ class ReportsController extends AppController {
 				( !empty( $entry['Entry']['01_race'] ) ) ? $this->race[$entry['Entry']['01_race']] : '',
 				( !empty( $entry['Entry']['01_ethnicity'] ) ) ? $this->ethnicity[$entry['Entry']['01_ethnicity']] : '',
 				( !empty( $entry['Entry']['01_where'] ) ) ? $this->habitation_type[$entry['Entry']['01_where']] : '',
-				( !empty( $entry['Entry']['01_alcohol_last_12mths'] ) ) ? 'Yes' : 'No',
+				$entry['Entry']['01_first_pet'],
+				$entry['Entry']['01_first_concert'],
+				$entry['Entry']['01_mother_letters'],
+				$entry['Entry']['01_phone_digits'],
 				( !empty( $entry['Entry']['03_how_often_drink_alcohol'] ) ) ? $this->how_often_drink[$entry['Entry']['03_how_often_drink_alcohol']] : '',
-				$entry['Entry']['03_how_many_on_typical_day'],
+				$entry['Entry']['03_how_many_on_typical_day'] == 25 ? '25+' : $entry['Entry']['03_how_many_on_typical_day'],
 				( !empty( $entry['Entry']['03_how_often_six_or_more'] ) ) ? $this->how_often_six_plus[$entry['Entry']['03_how_often_six_or_more']] : '',
 				( !empty( $entry['Entry']['03_past_year_how_often_unable_to_stop'] ) ) ? $this->past_year[$entry['Entry']['03_past_year_how_often_unable_to_stop']] : '',
 				( !empty( $entry['Entry']['03_past_year_how_often_failed_expectations'] ) ) ? $this->past_year[$entry['Entry']['03_past_year_how_often_failed_expectations']] : '',
@@ -387,10 +387,9 @@ class ReportsController extends AppController {
 				( !empty( $entry['Entry']['03_past_year_how_often_unable_to_remember'] ) ) ? $this->past_year[$entry['Entry']['03_past_year_how_often_unable_to_remember']] : '',
 				( !empty( $entry['Entry']['03_been_injured_or_injured_someone'] ) ) ? $this->have_you_ever[$entry['Entry']['03_been_injured_or_injured_someone']] : '',
 				( !empty( $entry['Entry']['03_others_concerned_about_my_drinking'] ) ) ? $this->have_you_ever[$entry['Entry']['03_others_concerned_about_my_drinking']] : '',
-				( !empty( $entry['Entry']['04_past_4wk_consumed_alcohol'] ) ) ? 'Yes' : 'No',
 
-				$entry['Entry']['04_past_4wk_largest_number_single_occasion'],
-				$entry['Entry']['04_past_4wk_hours_amount_drank'],
+				$entry['Entry']['04_past_4wk_largest_number_single_occasion'] == 25 ? '25+' : $entry['Entry']['04_past_4wk_largest_number_single_occasion'],
+				$entry['Entry']['04_past_4wk_hours_amount_drank'] == 24 ? '24+' : $entry['Entry']['04_past_4wk_hours_amount_drank'],
 				$entry['Entry']['04_body_height_cm'],
 				$entry['Entry']['04_body_weight_kg'],
 			);
@@ -400,7 +399,7 @@ class ReportsController extends AppController {
 			foreach (array('', 'std_') as $prefix) {
 				foreach ($days as $day) {
 					$field = '04_past_4wk_' . $prefix . 'drinks_' . $day;
-					$row[] = empty($entry['Entry'][$field]) ? '0' : $entry['Entry'][$field];
+					$row[] = $entry['Entry'][$field] == 25 ? '25+' : $entry['Entry'][$field];
 				}
 			}
 
@@ -447,19 +446,6 @@ class ReportsController extends AppController {
 	public function data_demographics_gender() {
 
 		$this->_generate_field_count_report( $this->reports['demographics']['gender'], $this->genders, '01_gender' );
-	}
-
-	/**
-	*	Alcohol consumption - Proportion who have consumed alcohol in past 12 months report
-	*/
-	public function data_consumption_have_consumed() {
-
-		$categories = array(
-			'1' => 'Yes',
-			'0' => 'No',
-		);
-
-		$this->_generate_field_count_report( $this->reports['consumption']['have_consumed'], $categories, '01_alcohol_last_12mths' );
 	}
 
 	/**
@@ -586,7 +572,7 @@ class ReportsController extends AppController {
 	private function _append_tabular_columns_to_row($row, $entry, $step) {
 		$stage = get_stage_vars($step);
 
-		if ($step == 7) {
+		if ($step == 8) {
 			$stage['tabular']['columns']['1'] = '1';
 			$stage['tabular']['columns']['7'] = '7';
 		}
