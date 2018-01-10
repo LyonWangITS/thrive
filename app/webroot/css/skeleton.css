@@ -941,7 +941,11 @@
 		.results p.title {
 			display: block;
 		}
-		
+
+		.results .service-website {
+			word-break: break-all;
+		}
+
 		.watch {
 			display: none;
 		}
