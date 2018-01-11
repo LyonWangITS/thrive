@@ -5,7 +5,7 @@ $this->Html->meta( 'keywords', 'Alcohol Survey, University, Tertiary, Polytechni
 ?>
 
 <p class="breadcrumb">
-	<a href="/admin/login">Login</a> /
+	<a href="<?php echo $this->webroot; ?>admin/login">Login</a> /
 	<strong>Register</strong>
 </p>
 
@@ -17,7 +17,7 @@ $this->Html->meta( 'keywords', 'Alcohol Survey, University, Tertiary, Polytechni
 	
 		<p>THRIVE is a freely available online alcohol intervention developed and hosted by Curtin University. Find out more <a href="http://wachpr.curtin.edu.au/thrive/">about THRIVE</a>.</p>
 	
-		<p>If you would like to create a THRIVE account for your organisation please fill out the details below. Before you proceed please ensure that you are familiar with the <a href="/about/terms" title="Read the terms of use for THRIVE.">THRIVE terms of use</a>.</p>
+		<p>If you would like to create a THRIVE account for your organisation please fill out the details below. Before you proceed please ensure that you are familiar with the <a href="<?php echo $this->webroot; ?>about/terms" title="Read the terms of use for THRIVE.">THRIVE terms of use</a>.</p>
 		
 	</div> 
 	

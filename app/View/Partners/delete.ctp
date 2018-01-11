@@ -5,8 +5,8 @@ $this->Html->meta( 'keywords', '', array( 'inline' => false ) );
 ?>
 
 <p class="breadcrumb">
-	<a href="/admin">Dashboard</a> /
-	<a href="/partners/view">Partners</a> /
+	<a href="<?php echo $this->webroot; ?>admin">Dashboard</a> /
+	<a href="<?php echo $this->webroot; ?>partners/view">Partners</a> /
 	<strong>Delete</strong>
 </p>
 <h1>Delete partner '<?php p( $partner['Partner']['name'] ); ?>'</h1>
@@ -30,7 +30,7 @@ if ( isset( $this->request->query['return'] ) ) {
 }
 else {
 	?>
-	<p><a href="/partners/view">Back</a></p>
+	<p><a href="<?php echo $this->webroot; ?>partners/view">Back</a></p>
 	<?php
 }
 ?>

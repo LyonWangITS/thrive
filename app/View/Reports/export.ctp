@@ -5,8 +5,8 @@ $this->Html->meta( 'keywords', '', array( 'inline' => false ) );
 ?>
 
 <p class="breadcrumb display-right">
-	<a href="/admin">Dashboard</a> /
-	<a href="/reports">Reports</a> /
+	<a href="<?php echo $this->webroot; ?>admin">Dashboard</a> /
+	<a href="<?php echo $this->webroot; ?>reports">Reports</a> /
 	<strong>Export data</strong>
 </p>
 

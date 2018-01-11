@@ -110,11 +110,10 @@ input, textarea {
 }
 
 input:focus, textarea:focus {
-	outline: none;
-    -webkit-box-shadow: 0 0 8px 0 #67c3a0;
-    -moz-box-shadow: 0 0 8px 0 #67c3a0;
-    box-shadow: 0 0 8px 0 #67c3a0;
-	border: 1px solid #67c3a0 !important;
+	-webkit-box-shadow: 0 0 8px 0 #67c3a0;
+	-moz-box-shadow: 0 0 8px 0 #67c3a0;
+	box-shadow: 0 0 8px 0 #67c3a0;
+	outline: 1px solid #67c3a0 !important;
 }
 
 input[type=text] {
@@ -217,6 +216,19 @@ input[type="radio"] + label:before { background-position: 0 0;} input[type="radi
 }
 
 .researcher [type="checkbox"] + label:before { background-position: -832px -384px;} .researcher input[type="checkbox"]:checked + label:before { background-position: -832px -448px;}
+
+.authors {
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 60px;
+}
+
+.authors ol li {
+    list-style: decimal;
+    line-height: 16px;
+    list-style-position: inside;
+    margin-bottom: 0;
+}
 
 
 .ie8 label:before { display:none !important; content:none !important; /*this removes the fake content*/ }
@@ -411,81 +423,85 @@ fieldset legend { display: none; }
 
 /* Start form */
 
-
 .start form {
 	margin: 48px 0 20px;
 	min-height: 130px;
 }
 
-	.start form legend {
-		display: none;
-	}
-	
-	.start form p {
-		font-size: 12px;
-	}
-	
-	.start fieldset {
-		position: relative;
-		max-width: 440px;
-		min-height: 60px;
-		width: auto;
-		margin: 0 auto;
-	}
-	
-	.start .field {
-		position: absolute;
-		width: 61%;
-		left: 0;
-	}
-	
-		.start .field input {
-			position: absolute;
-			left: 0;
-			top: 0;
-			width: 84%;
-		}
-		
-		.start .field label {
-			position: absolute;
-			left: 8%;
-			top: 18px;
-			z-index: 2;
-		}
-		
-	.start button {
-		position: absolute;
-		right: 0;
-		width: 36%;
-		padding: 0 0 0 5%;
-		text-align: left;
-	}
-	
-		.start button .white-arrow {
-			margin-left: 10px;
-			margin-top: 1px;
-			-webkit-transition: all 0.1s ease-in-out;
-			-moz-transition: all 0.1s ease-in-out;
-			-ms-transition: all 0.1s ease-in-out;
-			-o-transition: all 0.1s ease-in-out;
-			transition: all 0.1s ease-in-out;
-		}
-		
-		.start button:hover .white-arrow {
-			margin-left: 15px;
-		}
+.start form legend {
+	display: none;
+}
 
-	.start fieldset.researcher {
-		max-width: none;
-		min-height: 0;
-		margin-top: 16px;
-	}
-	
-	.start fieldset.researcher label {
-		color: #a19caf;
-		font-size: 12px;
-	}
+.start form p {
+	font-size: 12px;
+}
 
+.start fieldset {
+	max-width: 440px;
+	min-height: 60px;
+	width: auto;
+	margin: 0 auto;
+}
+
+.start .field {
+	float: left;
+	width: 100%;
+	position: relative;
+}
+
+.start .row {
+	margin-top: 15px;
+}
+
+.start #field-id {
+	width: 65%;
+}
+
+.start .field input {
+	display: inline;
+}
+
+.start .field label {
+	width: 100%;
+	max-width: 150px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.start button {
+	width: 32%;
+	margin-left: 3%;
+	float: left;
+	padding: 0 0 0 5%;
+	text-align: left;
+}
+
+.start button .white-arrow {
+	margin-left: 5px;
+	margin-top: 0;
+	-webkit-transition: all 0.1s ease-in-out;
+	-moz-transition: all 0.1s ease-in-out;
+	-ms-transition: all 0.1s ease-in-out;
+	-o-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
+}
+
+.start button:hover .white-arrow {
+	margin-left: 10px;
+}
+
+.start fieldset.researcher {
+	max-width: none;
+	min-height: 0;
+	margin-top: 15px;
+}
+
+.start fieldset.researcher label {
+	color: #a19caf;
+	font-size: 12px;
+}
 
 
 /*------------------------------------------------------ SURVEY (all other pages) */
@@ -563,19 +579,19 @@ fieldset legend { display: none; }
 
 	/* Current position line */
 	
-	.step-one .current-pos {
+	.group-one .current-pos {
 		width: 20%;
 	}
 	
-	.step-two .current-pos {
+	.group-two .current-pos {
 		width: 39%;
 	}
 	
-	.step-three .current-pos {
+	.group-three .current-pos {
 		width: 55%;
 	}
 	
-	.step-four .current-pos {
+	.group-four .current-pos {
 		width: 70%;
 	}
 	
@@ -589,7 +605,7 @@ fieldset legend { display: none; }
 	z-index: 2;
 }
 
-	.progress .hi {
+	.progress .s-zero {
 		left: 4.5%;
 	}
 
@@ -618,7 +634,7 @@ fieldset legend { display: none; }
 	position: absolute;
 }
 
-	.progress .hi .icn {
+	.progress .s-zero .icn {
 		background-position: -385px 0;
 		width: 45px;
 		height: 39px;
@@ -632,7 +648,7 @@ fieldset legend { display: none; }
 		top: 29px;
 	}
 	
-	.progress.step-one .s-one .icn {
+	.progress.group-one .s-one .icn {
 		background-position: -445px -61px;
 		width: 80px;
 		height: 55px;
@@ -646,7 +662,7 @@ fieldset legend { display: none; }
 		top: 29px;
 	}
 	
-	.progress.step-two .s-two .icn {
+	.progress.group-two .s-two .icn {
 		background-position: -573px -61px;
 		width: 62px;
 		height: 64px;
@@ -660,7 +676,7 @@ fieldset legend { display: none; }
 		top: 28px;
 	}
 	
-	.progress.step-three .s-three .icn {
+	.progress.group-three .s-three .icn {
 		background-position: -637px -61px;
 		width: 63px;
 		height: 58px;
@@ -674,7 +690,7 @@ fieldset legend { display: none; }
 		top: 29px;
 	}
 	
-	.progress.step-four .s-four .icn {
+	.progress.group-four .s-four .icn {
 		background-position: -702px -62px;
 		width: 73px;
 		height: 58px;
@@ -688,7 +704,7 @@ fieldset legend { display: none; }
 		top: 29px;
 	}
 	
-	.progress.step-five .s-five .icn {
+	.progress.group-five .s-five .icn {
 		background-position: -829px -62px;
 		width: 55px;
 		height: 64px;
@@ -705,25 +721,25 @@ fieldset legend { display: none; }
 		bottom: -1px !important;
 	}
 	
-	.progress.step-one .icn.arrow {
+	.progress.group-one .icn.arrow {
 		background-position: -448px -576px !important;
 		margin: 0 0 0 27px !important;
 		bottom: -7px !important;
 	}
 	
-	.progress.step-two .icn.arrow {
+	.progress.group-two .icn.arrow {
 		background-position: -512px -576px !important;
 	}
 	
-	.progress.step-three .icn.arrow {
+	.progress.group-three .icn.arrow {
 		background-position: -577px -576px !important;
 	}
 	
-	.progress.step-four .icn.arrow {
+	.progress.group-four .icn.arrow {
 		background-position: -640px -576px !important;
 	}
 
-	.progress.step-five .icn.arrow {
+	.progress.group-five .icn.arrow {
 		background-position: -705px -576px !important;
 		margin: 0 0 0 16px !important;
 	}
@@ -737,24 +753,24 @@ fieldset legend { display: none; }
 	display: inline-block;
 }
 
-.step-one span {
+.group-one span {
 	margin: 84px auto 0;
 }
 
-.step-two span {
+.group-two span {
 	margin: 90px 0 0 -50px;
 }
 
-.step-three span {
+.group-three span {
 	margin: 90px 0 0 -35px;
 }
 
-.step-four span {
+.group-four span {
 	/*margin: 90px 0 0 -50px;*/
 	margin: 90px 0 0 -22px;
 }
 
-.step-five span {
+.group-five span {
 	margin: 90px 0 0 0;
 }
 		
@@ -780,6 +796,11 @@ fieldset legend { display: none; }
 .intro p {
 	font-size: 19px;
 	line-height: 26px;
+}
+
+.intro p strong {
+	text-transform: uppercase;
+	text-decoration: underline;
 }
 
 .btn.pdf {
@@ -827,156 +848,53 @@ fieldset legend { display: none; }
 	display: block;
 }
 
+.drinks-guide p.subtitle {
+	font-size: 20px;
+	margin-top: 40px;
+	color: #6f6e6e;
+}
+
 .drinks-guide .dg-wrap {
 	height: 215px;
+	margin-top: 25px;
 }
 
 .drinks-guide .drink-type {
 	float: left;
-	position: relative;
 	display: inline-block;
 	background: url(../images/divider.png) right 104px no-repeat;
-	height: 188px;
-	padding: 0 2.3%;
+	width: 25%;
 }
 
-.drinks-guide .drink-type.drinks-six {
-	background-image: none;
+.drinks-guide .drink-type:last-child {
+	background: none;
 }
 
-	.drinks-guide .drink-type p {
-		text-transform: uppercase;
-		color: #616161; 
-		font-size: 14px;
-		font-family: 'ProximaNova-Bold';
+.drinks-guide .drink-type p {
+	padding: 0 10px;
+	color: #616161;
+	font-size: 15px;
+	font-family: 'ProximaNova-Bold';
 	font-weight: normal;
-		text-align: center;
-		margin: 0;
-	}
-	
-	.drink-type:hover {
-		cursor: pointer;
-	}
-	
-	.drinks-guide i.info {
-		background-position: -256px -320px;
-		width: 20px;
-		height: 20px;
-		margin: 0 auto;
-	}
-	
-	.drink-type:hover i.info {
-		background-position: -320px -320px;
-	}
-	
-	.drink-type .image {
-		position: relative;
-		bottom: 0px;
-		margin: 0 auto 27px;
-		display: block;
-		height: 118px;
-	}
-	
-	.drink-type .image img {
-		width: 100%;
-		height: auto;
-		position: absolute;
-		bottom: 0;
-		left: 0;
-	}
-	
-	.drink-type.drinks-one .image {
-		width: 75px;
-		height: 116px;
-	}
-	
-	.drink-type.drinks-two .image {
-		width: 144px;
-		height: 116px;
-	}
-	
-	.drink-type.drinks-three .image {
-		width: 126px;
-		height: 116px;
-	}
-	
-	
-	.drink-type.drinks-four .image {
-		width: 98px;
-		height: 116px;
-	}
-
-	
-	.drink-type.drinks-five .image {
-		width: 29px;
-		height: 116px;
-	}
-	
-
-	.drink-type.drinks-six .image {
-		width: 32px;
-		height: 116px;
-	}
-	
-
-	
-.drinks-guide .tooltip {
-	background-color: #5b5465;
-	border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-bottom: 5px solid #524b5b;
-	position: absolute;
-	width: 210px;
-	padding: 20px;
-	z-index: 10;
-	display: none;
-	top: 200px;
-}
-
-.drinks-guide .tooltip p {
-	text-transform: none;
-	color: #fff;
-	font-weight: 400;
-	line-height: 19px;
+	text-align: center;
 	margin: 0;
 }
 
-.drinks-guide .tooltip:after {
-	bottom: 100%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
+.drink-type .image {
+	position: relative;
+	margin: 0 auto 5px;
+	display: block;
+	height: 118px;
+}
+
+.drink-type .image img {
 	position: absolute;
-	pointer-events: none;
-}
-
-.drinks-guide .tooltip:after {
-	border-color: rgba(91, 84, 101, 0);
-	border-bottom-color: #5b5465;
-	border-width: 8px;
-	left: 50%;
-	margin-left: -8px;
-}
-
-.drinks-guide .slider-nav {
-	position: absolute;
-	top: 100px;
-}
-
-.drinks-guide .slider-nav.go-left {
-	left: 10px;
-	background-position: -128px -639px;
-	width: 8px;
-	height: 14px;
-}
-
-.drinks-guide .slider-nav.go-right {
-	right: 12px;
-	background-position: -192px -639px;
-	width: 8px;
-	height: 14px;
+	max-height: 100px;
+	width: auto;
+	left: 0;
+	right: 0;
+	bottom: 10px;
+	margin: auto;
 }
 
 /*------------------------------------------------------ SURVEY FORM */
@@ -1031,7 +949,6 @@ fieldset legend { display: none; }
 .survey input[type=text] {
 	background-color: #f2f2f2;
 	height: 39px;
-	width: 65px;
 	padding: 0 4%;
 	border-top: 1px solid #d8d8d8;
 }
@@ -1060,27 +977,31 @@ fieldset legend { display: none; }
 
 /* gender */
 
-.gender .input-wrap {
-	position: absolute;
-	display: block;	
-}
-
 i.female {
-	position: absolute;
-	bottom: 0;
+	float: right;
 	background-position: 0 -320px;
 	width: 74px;
 	height: 81px;
-	left: 19%;
+	margin-top: 9px;
 }
 
 i.male {
-	position: absolute;
-	bottom: 0;
+	float: right;
 	background-position: -128px -319px;
 	width: 79px;
 	height: 90px;
-	left: 41%;
+}
+
+.gender label {
+	margin-left: 5px;
+}
+
+.gender .male label {
+	margin-right: 0;
+}
+
+.gender p {
+	float: left;
 }
 
 .gender .styled {
@@ -1090,22 +1011,9 @@ i.male {
 	top: 50px;
 }
 
-.gender #gender-female {
-	position: absolute;
+.gender .input-wrap label {
+	float: right;
 }
-
-.gender .input-wrap {
-	top: 39px;
-}
-
-.gender .input-wrap.female {
-	left: 28%;
-}
-
-.gender .input-wrap.male {
-	left: 50%;
-}
-
 
 /* staff or student */
 
@@ -1240,8 +1148,7 @@ i.male {
 
 
 
-/* STEP TWO */
-
+/* STEP THREE */
 
 .field.select-right p,
 .field.select-below p {
@@ -1249,11 +1156,19 @@ i.male {
 	max-width: 54%;
 }
 
+.field.radios-left p {
+    max-width: 70%;
+}
+
 .field.select-right .styled {
 	max-width: 223px;
 	position: absolute;
 	right: 70px;
 	top: 50px;
+}
+
+.field.select-left .styled {
+    max-width: 50%;
 }
 
 .field.select-below .styled {
@@ -1443,7 +1358,7 @@ i.male {
 
 
 
-/* STEP THREE */
+/* STEP FOUR */
 
 .radio-set-right .input-wrap {
 	position: absolute;
@@ -1603,10 +1518,10 @@ i.male {
 .survey .field .weight input {
 	float: left;
 	margin: 0 10px 0 0;
+	width: 65px;
 }
 
-input#height-feet,
-input#height-inches {
+input#height-cm {
 	margin: 15px 10px 0 0;
 }
 
@@ -1623,7 +1538,14 @@ input#height-inches {
 /* STEP FOUR */
 
 .survey .field.tabular-intro p {
-	margin: 0 0 40px;
+	margin: 0 0 45px;
+}
+
+.survey .field.tabular-intro p strong {
+	text-transform: uppercase;
+}
+
+.survey .field.tabular-intro.with-image p {
 	width: 65%;
 }
 
@@ -1677,6 +1599,36 @@ input#height-inches {
 	width: auto;
 }
 
+.tabular-intro .labels-wrapper.fixed {
+	position: fixed;
+	width: 100%;
+	max-width: 960px;
+	top: 0;
+	left: 50%;
+	display: block;
+	transform: translateX(-50%);
+	z-index: 2;
+}
+
+.tabular-intro .labels-wrapper.fixed .labels-wrapper-inner {
+	position: relative;
+	padding-top: 77px;
+	background-color: #fff;
+}
+
+.tabular-intro.cols-6 .labels span {
+    width: 72px;
+    margin: 0;
+}
+.tabular-intro.cols-7 .labels span {
+    width: 68px;
+    margin: 0;
+}
+.tabular-intro.cols-8 .labels span {
+    width: 63px;
+    margin: 0;
+}
+
 .tabular label span {
 	display: none;
 }
@@ -1689,6 +1641,19 @@ input#height-inches {
 
 .tabular .input-wrap label {
 	margin: 0 0 0 43px;
+}
+
+.tabular.cols-6 .input-wrap label {
+	margin: 0 0 0 25px;
+}
+.tabular.cols-7 .input-wrap label {
+	margin: 0 0 0 20px;
+}
+.tabular.cols-8 .input-wrap label {
+	margin: 0 0 0 15px;
+}
+.field.tabular.cols-8 p {
+	max-width: 32%;
 }
 
 
@@ -2634,6 +2599,22 @@ input#height-inches {
 	.thrive-feedback .heading {
 		padding-bottom: 30px;
 	}
+
+	.drinks-guide .drink-type {
+		width: 100%;
+		display: block;
+		background: none;
+		margin-bottom: 35px;
+	}
+
+	.drinks-guide .drink-type .image {
+		height: auto;
+	}
+
+	.drinks-guide .drink-type .image img {
+		position: relative;
+		display: block;
+	}
 }
 
 @media only screen and (max-width: 480px) {
@@ -3150,27 +3131,6 @@ footer {
 	display: block;
 }
 
-
-/*  --------------------------------------------------- THANKS BOX */
-
-.thanks-box {
-	background-color: #fff; 
-	color: #555; 
-	padding: 40px 40px 20px; 
-	width: 70%; 
-	margin: 0 auto; 
-	-webkit-box-shadow:  0px 0px 15px 1px rgba(0, 0, 0, 0.5); 
-	box-shadow:  0px 0px 15px 1px rgba(0, 0, 0, 0.5);
-}
-
-.thanks-box a {
-	color: #67c3a0;
-}
-
-.thanks-box a:hover {
-	color: #5cae8f;
-}
-
 /*  --------------------------------------------------- CUSTOM CLASSES */
 
 .clear { clear: both; }
@@ -3220,9 +3180,44 @@ footer {
 button[disabled=disabled]{
 	opacity: 0.5;
 }
-#more-fields-wrapper {
-	display: none;
-}
 .slider-wrapper {
 	visibility: hidden;
+}
+
+.tabular.tabular-slider .input-wrap {
+	width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+	.tabular.tabular-slider .input-wrap {
+		width: 65%;
+	}
+
+	.tabular .slider {
+		top: 15px;
+	}
+
+	.field.text-right p {
+		float: left;
+		max-width: 70%;
+	}
+
+	.field.text-right input {
+		float: right;
+	}
+
+	.field.text-right input {
+		width: 65px;
+	}
+
+	#first-pet,
+	#first-concert {
+		width: 25%;
+	}
+}
+
+@media only screen and (max-width: 959px) {
+	.tabular-intro .labels-wrapper.fixed .labels-wrapper-inner {
+		margin: 0 10px;
+	}
 }

@@ -62,8 +62,7 @@
 	-moz-border-radius: 3px;
 	border-bottom: 2px solid #59a88a;
 	position: absolute;
-	/*width: auto;*/
-	width: 74px;
+	width: 90px;
 	padding: 5px 10px;
 	z-index: 10;
 	top: 35px;

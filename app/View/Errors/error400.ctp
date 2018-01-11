@@ -19,13 +19,11 @@ $partners = $this->Partner->find( 'all', array(
 
 <p>Sorry, this URL does not match an organisation participating in THRIVE.</p>
 
-<p>Please click on your university or polytech's name, below. If it is not listed but you would like to know more about how you can support your friends to cut down on their drinking and stay safe when doing so check out the <a href="http://alcoholthinkagain.com.au/Home.aspx">Alcohol Think Again website</a>.</p>
-
 <ul>
 	<?php
 	foreach ( $partners as $partner ) {
 
-		echo "<li><a href=\"/{$partner['Partner']['slug']}\">{$partner['Partner']['name']}</a></li>";
+		echo "<li><a href=\"" . $this->webroot . "{$partner['Partner']['slug']}\">{$partner['Partner']['name']}</a></li>";
 	}
 	?>
 </ul>

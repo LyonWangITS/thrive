@@ -17,7 +17,7 @@ class PartnerRoute extends CakeRoute {
 		) );
 		if ( $count > 0 ) {
 
-			header( "Location: /{$partner_slug}/survey.php" );
+			header( "Location: " . Router::url("/{$partner_slug}/survey.php"));
 			die;
 		}
 

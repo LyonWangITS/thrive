@@ -4,13 +4,13 @@
 	<?php echo $this->Html->charset(); ?>
 	<meta name="viewport" content="user-scalable=yes, width=device-width">
 	<?php echo $this->fetch('meta'); ?>
-    
+
 	<title><?php echo $title_for_layout; ?> - THRIVE</title>
 	
-	<link rel="stylesheet" href="/css/ui-lightness/jquery-ui-1.10.3.custom.css" type="text/css">
-	<link rel="stylesheet" href="/css/draft.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo $this->webroot; ?>css/ui-lightness/jquery-ui-1.10.3.custom.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo $this->webroot; ?>css/draft.css" type="text/css">
 	<?php echo $this->fetch( 'css' ); ?>
-	<link rel="shortcut icon" href="/images/favicon.ico">
+	<link rel="shortcut icon" href="<?php echo $this->webroot; ?>images/favicon.ico">
 	
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>

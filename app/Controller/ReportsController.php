@@ -1,5 +1,7 @@
 <?php
 
+require_once '../webroot/app/stages_config.php';
+
 /**
 *	Reporting section.
 */
@@ -28,34 +30,9 @@ class ReportsController extends AppController {
 				'xaxis' => 'Age groupings',
 				'yaxis' => 'Frequency',
 			),
-			'staff_student' => array(
-				'title' => 'Sample proportions by staff/student',
-				'xaxis' => 'Staff/student',
-				'yaxis' => 'Frequency',
-			),
-			'year_level' => array(
-				'title' => 'Sample proportions by level/class standing',
-				'xaxis' => 'Level/class standing',
-				'yaxis' => 'Frequency',
-			),
-			'on_campus' => array(
-				'title' => 'Sample proportions by if accommodation on-campus',
-				'xaxis' => 'On-campus accommodation',
-				'yaxis' => 'Frequency',
-			),
-			'where_from' => array(
-				'title' => 'Sample proportions by where from',
-				'xaxis' => 'Where from',
-				'yaxis' => 'Frequency',
-			),
 		),
 		'consumption' => array(
 			'_name' => 'Alcohol consumption',
-			'have_consumed' => array(
-				'title' => 'Proportion who have consumed alcohol in past 12 months',
-				'xaxis' => 'Consumed alcohol in the last 12 months',
-				'yaxis' => 'Frequency',
-			),
 			'audit_age' => array(
 				'title' => 'Graph of mean AUDIT score by age',
 				'xaxis' => 'Age groupings',
@@ -75,29 +52,6 @@ class ReportsController extends AppController {
 				'title' => 'Drinks consumed at peak consumption',
 				'xaxis' => 'Number of drinks',
 				'yaxis' => 'Number who consumed this',
-			),
-		),
-		'related_harm' => array(
-			'_name' => 'Alcohol-related harm',
-			'answered' => array(
-				'title' => 'Proportion who answered these questions',
-				'xaxis' => 'Questions answered',
-				'yaxis' => 'Frequency',
-			),
-			'answered_question' => array(
-				'title' => 'Proportion who answered each question',
-				'xaxis' => 'Question answered',
-				'yaxis' => 'Frequency',
-			),
-			'age' => array(
-				'title' => 'Harms experienced by age',
-				'xaxis' => 'Harms',
-				'yaxis' => 'Frequency',
-			),
-			'gender' => array(
-				'title' => 'Harms experienced by gender',
-				'xaxis' => 'Harms',
-				'yaxis' => 'Frequency',
 			),
 		),
 		'feedback' => array(
@@ -163,59 +117,6 @@ class ReportsController extends AppController {
 	public $genders = array(
 		'female' => 'Female',
 		'male' => 'Male',
-		'transgender-ftm' => 'Transgender or transexual FtM',
-		'transgender-mtf' => 'Transgender or transexual MtF',
-		'genderqueer' => 'Genderqueer',
-		'androgynous' => 'Androgynous',
-		'intersex' => 'Intersex',
-	);
-
-	public $year_levels = array(
-		'1st-year' => '1st Year',
-		'2nd-year' => '2nd Year',
-		'3rd-year' => '3rd Year',
-		'4th-year' => '4th Year',
-		'postgraduate' => 'Postgraduate',
-		'not-applicable' => 'Not Applicable',
-	);
-
-	public $where_from = array(
-		'perth-metro' => 'Perth (Metropolitan) student',
-		'regional-wa' => 'Regional (Western Australian) student',
-		'other-state' => 'Other Australian state student',
-		'international' => 'International student',
-	);
-
-	public $harm_fields = array(
-		'04_hangover' => 'Hangover',
-		'04_emotional_outburst' => 'Emotional outburst',
-		'04_vomiting' => 'Vomiting',
-		'04_heated_argument' => 'Heated argument',
-		'04_physically_aggressive' => 'Physically aggressive',
-		'04_blackouts' => 'Blackouts',
-		'04_inability_to_pay_bills' => 'Inability to pay bills',
-		'04_unprotected_sex' => 'Unprotected sex',
-		'04_sexual_situation_not_happy_about' => 'Sexual situation not happy about',
-		'04_sexual_encounter_later_regretted' => 'Sexual encounter later regretted',
-		'04_injury_requiring_medical_attention' => 'Injury requiring medical attention',
-		'04_drove_car_unsafely' => 'Drove car unsafely',
-		'04_passenger_of_unsafe_driver' => 'Passenger of unsafe driver',
-		'04_stole_property' => 'Stole property',
-		'04_committed_vandalism' => 'Committed vandalism',
-		'04_removed_or_banned_from_pub_club' => 'Removed of banned from pub/club',
-		'04_arrested' => 'Arrested',
-	);
-
-	/* Lookups (should be moved to database once we fold the survey into Cake. */
-
-	public $sexual_orientations = array(
-		'm' => 'Attracted to males',
-		'mostly-m' => 'Mostly attracted to males',
-		'f' => 'Attracted to females',
-		'mostly-f' => 'Mostly attracted to females',
-		'equally-mf' => 'I am equally attracted to males and females',
-		'unsure' => 'Unsure',
-		'skip' => 'Prefer not to say',
 	);
 
 	public $how_often_drink = array(
@@ -249,6 +150,49 @@ class ReportsController extends AppController {
 		'no' => 'Never',
 		'yes-nly' => 'Yes, but not in last year',
 		'yes-ly' => 'Yes, during last year',
+	);
+
+	public $race = array(
+		'native-american' => 'American Indian or Alaskan Native',
+		'asian' => 'Asian',
+		'hawaiian' => 'Native Hawaiian or Other Pacific Islander',
+		'black' => 'Black or African American',
+		'white' => 'White/Caucasian',
+		'mixed-race' => 'Mixed Race',
+		'other' => 'Other',
+		'skip' => 'I Choose Not to Answer',
+	);
+
+	public $ethnicity = array(
+		'hispanic-latino' => 'Hispanic or Latino(a)',
+		'not-hispanic-latino' => 'Not Hispanic or Latino(a)',
+		'skip' => 'I Choose Not to Answer',
+	);
+
+	public $habitation_type = array(
+		'dorm' => 'Dorm',
+		'with-parents' => 'Apartment or house with parents or other relatives',
+		'with-roommates' => 'Apartment or house with friends or roommates',
+	);
+
+	public $history = array(
+		'uf-only' => 'I have attended only UF',
+		'transfered' => 'I transferred from another college/university',
+	);
+
+	public $tobacco_use = array(
+		'never' => 'Never smoked cigarettes at all, or never smoked them regularly',
+		'used_to_smoke_regularly' => 'Do not smoke now but used to smoke regularly (once or more per day)',
+		'occasionally' => 'Occasionally smoke (on average, less than one per day)',
+		'regularly' => 'Currently smoke cigarettes regularly (more than one per day)',
+	);
+
+	public $tobacco_init = array(
+		'0' => 'I do not smoke on a daily basis',
+		'5' => 'Within 5 minutes',
+		'30' => '5-30 minutes',
+		'60' => '31-60 minutes',
+		'61' => 'More than 60 minutes',
 	);
 
 	/**
@@ -344,17 +288,19 @@ class ReportsController extends AppController {
 		$fp = fopen( 'php://memory', 'w' ); 
 		
 		$headers = array(
-			'ID',
+			'Partner ID',
 			'Completed',
 			'Name',
+			'Participant ID',
 			'Gender',
 			'Age',
-			'Staff/Student',
-			'Full/part time',
-			'Level/Class standing',
-			'On-campus accommodation',
-			'Where from',
-			'Consumed alcohol last 12 months',
+			'Race',
+			'Ethnicity',
+			'Habitation type',
+			'First pet name',
+			'first music concert you attended',
+			'2nd and 3rd letters in Mother\'s name',
+			'4th and 5th digits in cell phone number',
 			'How often drink alcohol',
 			'How many Standard Drinks on typical day',
 			'How often 6+ Standard Drinks on one occasion',
@@ -365,63 +311,110 @@ class ReportsController extends AppController {
 			'Past year - unable to remember',
 			'Ever been injured or injured someone',
 			'Others been concerned',
-			'Past 4 weeks consumed alcohol',
 			'Past 4 weeks largest number single occasion',
 			'Past 4 weeks over how many hours', 
 			'Body height (cm)',
 			'Body weight (kg)',
 		);
-		foreach ( $this->harm_fields as $field => $name ) {
 
-			$headers[] = $name;
+		$stage = get_stage_vars(2);
+		foreach ($stage['tabular']['rows'] as $label) {
+			$headers[] = $label;
 		}
+
+		$days = get_weekdays();
+		foreach ($days as $label) {
+			$headers[] = 'Drink times (past 4 weeks) - ' . $label;
+		}
+
+		foreach ($days as $label) {
+			$headers[] = 'Standard drinks (past 4 weeks) - ' . $label;
+		}
+
+		foreach (range(5, 8) as $step) {
+			$stage = get_stage_vars($step);
+			foreach ($stage['tabular']['rows'] as $label) {
+				$headers[] = $label;
+			}
+		}
+
+		$headers[] = 'Tobacco - Use description';
+		$headers[] = 'Tobacco - Frequency';
+		$headers[] = 'Tobacco - time to init';
 		$headers[] = 'Audit score';
-		$headers[] = 'Feedback - How important is it to you that you reduce your drinking? 1 (Not at all important) - 10 (Very important)';
-		$headers[] = 'Feedback - How confident are you that you can reduce your drinking? 1 (Not at all confident) - 10 (Very confident)';
-		$headers[] = 'Feedback - How important do you think it is that you talk to a health professional (like a doctor or counsellor) about your drinking? 1 (Not at all important) - 10 (Very important)';
-		$headers[] = 'Feedback - How ready are you to talk to a health professional? 1 (Not at all ready) - 10 (Very ready)';
+
+		$feedback_questions = array();
+		if ( !empty( $this->current_user['Partner']['is_feedback_enabled'] ) ) {
+			$headers[] = 'Feedback - How important is it to you that you reduce your drinking? 1 (Not at all important) - 10 (Very important)';
+			$headers[] = 'Feedback - How confident are you that you can reduce your drinking? 1 (Not at all confident) - 10 (Very confident)';
+			$headers[] = 'Feedback - How important do you think it is that you talk to a health professional (like a doctor or counsellor) about your drinking? 1 (Not at all important) - 10 (Very important)';
+			$headers[] = 'Feedback - How ready are you to talk to a health professional? 1 (Not at all ready) - 10 (Very ready)';
+
+			$feedback_questions = array(
+				'rating_important_reduce_drinking',
+				'rating_confident_reduce_drinking',
+				'rating_important_talk_professional',
+				'rating_ready_talk_professional',
+			);
+		}
 
 		fputcsv( $fp, $headers );
 
+		$days = array_keys($days);
 		foreach ( $data as $entry ) {
 
 			$row = array(
 				$entry['Entry']['id'],
 				$entry['Entry']['completed'],
 				$entry['Entry']['00_participant_name'],
+				$entry['Entry']['00_participant_id'],
 				( !empty( $entry['Entry']['01_gender'] ) ) ? $this->genders[$entry['Entry']['01_gender']] : '',
 				$entry['Entry']['01_age'],
-				ucfirst( $entry['Entry']['01_staff_student'] ),
-				str_replace( array( 'lt-10', 'gt-10' ), array( 'Part time', 'Full time' ), $entry['Entry']['01_hours_per_week'] ),
-				str_replace( array( '1st-year', '2nd-year', '3rd-year', '4th-year', 'postgraduate', 'not-applicable' ), array( '1st Year', '2nd Year', '3rd Year', '4th Year', 'Postgraduate', 'Not Applicable' ), $entry['Entry']['01_year_level'] ),
-				( $entry['Entry']['01_on_campus'] == null ) ? '' : ( ( $entry['Entry']['01_on_campus'] == 1 ) ? 'Yes' : 'No' ),
-				str_replace( array( 'perth-metro', 'regional-wa', 'other-state', 'international' ), array( 'Perth (Metropolitan) student', 'Regional (Western Australian) student', 'Other Australian state student', 'International student' ), $entry['Entry']['01_where_from'] ),
-				( !empty( $entry['Entry']['01_alcohol_last_12mths'] ) ) ? 'Yes' : 'No',
-				( !empty( $entry['Entry']['02_how_often_drink_alcohol'] ) ) ? $this->how_often_drink[$entry['Entry']['02_how_often_drink_alcohol']] : '',
-				$entry['Entry']['02_how_many_on_typical_day'],
-				( !empty( $entry['Entry']['02_how_often_six_or_more'] ) ) ? $this->how_often_six_plus[$entry['Entry']['02_how_often_six_or_more']] : '',
-				( !empty( $entry['Entry']['02_past_year_how_often_unable_to_stop'] ) ) ? $this->past_year[$entry['Entry']['02_past_year_how_often_unable_to_stop']] : '',
-				( !empty( $entry['Entry']['02_past_year_how_often_failed_expectations'] ) ) ? $this->past_year[$entry['Entry']['02_past_year_how_often_failed_expectations']] : '',
-				( !empty( $entry['Entry']['02_past_year_needed_morning_drink'] ) ) ? $this->past_year[$entry['Entry']['02_past_year_needed_morning_drink']] : '',
-				( !empty( $entry['Entry']['02_past_year_how_often_remorseful'] ) ) ? $this->past_year[$entry['Entry']['02_past_year_how_often_remorseful']] : '',
-				( !empty( $entry['Entry']['02_past_year_how_often_unable_to_remember'] ) ) ? $this->past_year[$entry['Entry']['02_past_year_how_often_unable_to_remember']] : '',
-				( !empty( $entry['Entry']['02_been_injured_or_injured_someone'] ) ) ? $this->have_you_ever[$entry['Entry']['02_been_injured_or_injured_someone']] : '',
-				( !empty( $entry['Entry']['02_others_concerned_about_my_drinking'] ) ) ? $this->have_you_ever[$entry['Entry']['02_others_concerned_about_my_drinking']] : '',
-				( !empty( $entry['Entry']['03_past_4wk_consumed_alcohol'] ) ) ? 'Yes' : 'No',
-				$entry['Entry']['03_past_4wk_largest_number_single_occasion'],
-				$entry['Entry']['03_past_4wk_hours_amount_drank'],
-				$entry['Entry']['03_body_height_cm'],
-				$entry['Entry']['03_body_weight_kg'],
-			);
-			foreach ( $this->harm_fields as $field => $name ) {
+				( !empty( $entry['Entry']['01_race'] ) ) ? $this->race[$entry['Entry']['01_race']] : '',
+				( !empty( $entry['Entry']['01_ethnicity'] ) ) ? $this->ethnicity[$entry['Entry']['01_ethnicity']] : '',
+				( !empty( $entry['Entry']['01_where'] ) ) ? $this->habitation_type[$entry['Entry']['01_where']] : '',
+				$entry['Entry']['01_first_pet'],
+				$entry['Entry']['01_first_concert'],
+				$entry['Entry']['01_mother_letters'],
+				$entry['Entry']['01_phone_digits'],
+				( !empty( $entry['Entry']['03_how_often_drink_alcohol'] ) ) ? $this->how_often_drink[$entry['Entry']['03_how_often_drink_alcohol']] : '',
+				$entry['Entry']['03_how_many_on_typical_day'] == 25 ? '25+' : $entry['Entry']['03_how_many_on_typical_day'],
+				( !empty( $entry['Entry']['03_how_often_six_or_more'] ) ) ? $this->how_often_six_plus[$entry['Entry']['03_how_often_six_or_more']] : '',
+				( !empty( $entry['Entry']['03_past_year_how_often_unable_to_stop'] ) ) ? $this->past_year[$entry['Entry']['03_past_year_how_often_unable_to_stop']] : '',
+				( !empty( $entry['Entry']['03_past_year_how_often_failed_expectations'] ) ) ? $this->past_year[$entry['Entry']['03_past_year_how_often_failed_expectations']] : '',
+				( !empty( $entry['Entry']['03_past_year_needed_morning_drink'] ) ) ? $this->past_year[$entry['Entry']['03_past_year_needed_morning_drink']] : '',
+				( !empty( $entry['Entry']['03_past_year_how_often_remorseful'] ) ) ? $this->past_year[$entry['Entry']['03_past_year_how_often_remorseful']] : '',
+				( !empty( $entry['Entry']['03_past_year_how_often_unable_to_remember'] ) ) ? $this->past_year[$entry['Entry']['03_past_year_how_often_unable_to_remember']] : '',
+				( !empty( $entry['Entry']['03_been_injured_or_injured_someone'] ) ) ? $this->have_you_ever[$entry['Entry']['03_been_injured_or_injured_someone']] : '',
+				( !empty( $entry['Entry']['03_others_concerned_about_my_drinking'] ) ) ? $this->have_you_ever[$entry['Entry']['03_others_concerned_about_my_drinking']] : '',
 
-				$row[] = ucfirst( $entry['Entry'][$field] );
+				$entry['Entry']['04_past_4wk_largest_number_single_occasion'] == 25 ? '25+' : $entry['Entry']['04_past_4wk_largest_number_single_occasion'],
+				$entry['Entry']['04_past_4wk_hours_amount_drank'] == 24 ? '24+' : $entry['Entry']['04_past_4wk_hours_amount_drank'],
+				$entry['Entry']['04_body_height_cm'],
+				$entry['Entry']['04_body_weight_kg'],
+			);
+
+			$row = $this->_append_tabular_columns_to_row($row, $entry, 2);
+
+			foreach (array('', 'std_') as $prefix) {
+				foreach ($days as $day) {
+					$field = '04_past_4wk_' . $prefix . 'drinks_' . $day;
+					$row[] = $entry['Entry'][$field] == 25 ? '25+' : $entry['Entry'][$field];
+				}
 			}
+
+			foreach (range(5, 8) as $step) {
+				$row = $this->_append_tabular_columns_to_row($row, $entry, $step);
+			}
+
+			$row[] = !empty($entry['Entry']['09_tobacco_use']) ? $this->tobacco_use[$entry['Entry']['09_tobacco_use']] : '';
+			$row[] = $entry['Entry']['09_tobacco_frequency'];
+			$row[] = !empty($entry['Entry']['09_tobacco_init']) ? $this->tobacco_init[$entry['Entry']['09_tobacco_init']] : '';
 			$row[] = $entry['Entry']['audit_score'];
-			$row[] = $entry['Entry']['rating_important_reduce_drinking'];
-			$row[] = $entry['Entry']['rating_confident_reduce_drinking'];
-			$row[] = $entry['Entry']['rating_important_talk_professional'];
-			$row[] = $entry['Entry']['rating_ready_talk_professional'];
+
+			foreach ($feedback_questions as $question) {
+				$row[] = $entry['Entry'][$question];
+			}
 
 			fputcsv( $fp, $row );
 		}
@@ -453,61 +446,6 @@ class ReportsController extends AppController {
 	public function data_demographics_gender() {
 
 		$this->_generate_field_count_report( $this->reports['demographics']['gender'], $this->genders, '01_gender' );
-	}
-
-	/**
-	*	Demographic - Proportion by Staff/Student report
-	*/
-	public function data_demographics_staff_student() {
-
-		$categories = array(
-			'student' => 'Student',
-			'staff' => 'Staff',
-		);
-
-		$this->_generate_field_count_report( $this->reports['demographics']['staff_student'], $categories, '01_staff_student' );
-	}
-
-	/**
-	 *	Demographic - Proportion by Level/Class Standing report
-	 */
-	public function data_demographics_year_level() {
-
-		$this->_generate_field_count_report( $this->reports['demographics']['year_level'], $this->year_levels, '01_year_level' );
-	}
-
-	/**
-	 *	Demographic - Proportion by On-Campus Accommodation report
-	 */
-	public function data_demographics_on_campus() {
-
-		$categories = array(
-			'1' => 'Yes',
-			'0' => 'No',
-		);
-
-		$this->_generate_field_count_report( $this->reports['demographics']['on_campus'], $categories, '01_on_campus' );
-	}
-
-	/**
-	 *	Demographic - Proportion by Where From report
-	 */
-	public function data_demographics_where_from() {
-
-		$this->_generate_field_count_report( $this->reports['demographics']['where_from'], $this->where_from, '01_where_from' );
-	}
-
-	/**
-	*	Alcohol consumption - Proportion who have consumed alcohol in past 12 months report
-	*/
-	public function data_consumption_have_consumed() {
-
-		$categories = array(
-			'1' => 'Yes',
-			'0' => 'No',
-		);
-
-		$this->_generate_field_count_report( $this->reports['consumption']['have_consumed'], $categories, '01_alcohol_last_12mths' );
 	}
 
 	/**
@@ -566,123 +504,13 @@ class ReportsController extends AppController {
 	public function data_consumption_peak() {
 
 		$categories = array();
-		for ( $i = 1; $i < 32; $i++ ) {
+		for ( $i = 1; $i < 25; $i++ ) {
 
 			$categories[$i] = $i;
 		}
-		$categories['32+'] = '32+';
+		$categories['25+'] = '25+';
 
-		$this->_generate_field_count_report( $this->reports['consumption']['peak'], $categories, '03_past_4wk_largest_number_single_occasion' );
-	}
-
-	/**
-	*	Alcohol-related harm - Proportion who answered these questions report
-	*/
-	public function data_related_harm_answered() {
-
-		$all_query = implode( ' IS NOT NULL AND ', array_keys( $this->harm_fields ) ) . ' IS NOT NULL';
-		$some_query = "(" . implode( ' IS NOT NULL OR ', array_keys( $this->harm_fields ) ) . " IS NOT NULL ) AND NOT( $all_query )";
-		$none_query = implode( ' IS NULL AND ', array_keys( $this->harm_fields ) ) . ' IS NULL';
-
-		$categories = array(
-			array(
-				'name' => 'All questions',
-				'query' => $all_query,
-			),
-			array(
-				'name' => 'Some but not all',
-				'query' => $some_query,
-			),
-			array(
-				'name' => 'None',
-				'query' => $none_query,
-			),
-		);
-
-		$this->_generate_query_count_report( $this->reports['related_harm']['answered'], $categories );
-	}
-
-	/**
-	*	Alcohol-related harm - Proportion who answered each question report
-	*/
-	public function data_related_harm_answered_question() {
-
-		$series = array();
-
-		$answered_question = array();
-		$answered_yes = array();
-		foreach ( $this->harm_fields as $key => $name ) {
-
-			$answered_question[] = array(
-				'name' => $name,
-				'query' => "{$key} IN ('yes', 'no')",
-			);
-			$answered_yes[] = array(
-				'name' => $name,
-				'query' => "{$key} IN ('yes')",
-			);
-		}
-
-		$series[] = array(
-			'label' => 'Answered question',
-			'data' => $answered_question,
-		);
-		$series[] = array(
-			'label' => 'Answered yes',
-			'data' => $answered_yes,
-		);
-
-		$this->_generate_multi_query_count_report( $this->reports['related_harm']['answered_question'], $series );
-	}
-
-	/**
-	*	Alcohol-related harm - Harm experienced by age
-	*/
-	public function data_related_harm_age() {
-
-		$series = array();
-		foreach ( $this->age_groups as $group ) {
-
-			$categories = array();
-			foreach ( $this->harm_fields as $harm_key => $harm_name ) {
-
-				$categories[] = array(
-					'name' => $harm_name,
-					'query' => "{$harm_key} = 'yes' AND ({$group['query']})",
-				);
-			}
-			$series[] = array(
-				'label' => $group['name'],
-				'data' => $categories,
-			);
-		}
-
-		$this->_generate_multi_query_count_report( $this->reports['related_harm']['age'], $series );
-	}
-
-	/**
-	*	Alcohol-related harm - Harm experienced by gender
-	*/
-	public function data_related_harm_gender() {
-
-		$series = array();
-		foreach ( $this->genders as $gender_key => $gender_name ) {
-
-			$categories = array();
-			foreach ( $this->harm_fields as $harm_key => $harm_name ) {
-
-				$categories[] = array(
-					'name' => $harm_name,
-					'query' => "{$harm_key} = 'yes' AND 01_gender = '{$gender_key}'",
-				);
-			}
-			$series[] = array(
-				'label' => $gender_name,
-				'data' => $categories,
-			);
-		}
-
-		$this->_generate_multi_query_count_report( $this->reports['related_harm']['gender'], $series );
+		$this->_generate_field_count_report( $this->reports['consumption']['peak'], $categories, '04_past_4wk_largest_number_single_occasion' );
 	}
 
 	/**
@@ -740,6 +568,24 @@ class ReportsController extends AppController {
 	/**
 	*	Helper methods
 	*/
+
+	private function _append_tabular_columns_to_row($row, $entry, $step) {
+		$stage = get_stage_vars($step);
+
+		if ($step == 8) {
+			$stage['tabular']['columns']['1'] = '1';
+			$stage['tabular']['columns']['7'] = '7';
+		}
+
+		$prefix = '0' . $step . '_';
+
+		foreach (array_keys($stage['tabular']['rows']) as $field) {
+			$field = $prefix . $field;
+			$row[] = is_null($entry['Entry'][$field]) ? '' : str_replace(array_keys($stage['tabular']['columns']), $stage['tabular']['columns'], $entry['Entry'][$field]);
+		}
+
+		return $row;
+	}
 
 	/**
 	*	Renders a report where each category is a query used to return an average.

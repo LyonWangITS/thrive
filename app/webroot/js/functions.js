@@ -27,35 +27,25 @@ $(document).ready(function(){
 			$(this).parent().addClass('active');
 		}
 	});
-	
+
 	footerLogo();
-	
-	/* drinks guide if < 767 */
-	
-	dgSlider();
-	
-	$( window ).resize(function(){
-		dgSlider();
-		reposition_slider_ui();
-	});
-	
-	initStepTwo();
-	
+
 	initStepThree();
-	
-	initStepFive();	
-	
+
+	initStepFour();
+
+	initStepTen();
+
 	modalBox();
-	
+
+	setTabularFixedHeader();
+
 	$('.callback input').placeholder();
-	
+
 	$('form.callback').submit(function(){
 		ajaxSubmitCallbackForm();
 		return false;
 	});
-	
-
-
 });
 
 
@@ -75,20 +65,9 @@ function init_stage_form( form_stage ){
 	if ( form_stage == 0 ){
 		
 		$('label[for=name]').inFieldLabels();
+		$('label[for=id_number]').inFieldLabels();
 		
 	} else if (form_stage == 1 ){
-		
-		//Gender selector
-		$('.stage-form input[name=gender-mf]').bind('change', function(){
-			if ($(this).val() != ''){
-				$('.stage-form select[name=gender-more]').val('');
-			}
-		});
-		$('.stage-form select[name=gender-more]').bind('change', function(){
-			if ($(this).val() != ''){
-				$('.stage-form input[name=gender-mf]').prop('checked', false);
-			}
-		});
 
 		//Toggle demographic questions based on if staff/student
 		$('.stage-form input[name=staff_student]').bind('change', function(){
@@ -108,91 +87,78 @@ function init_stage_form( form_stage ){
 			}
 		} );
 		
-	} else if ( form_stage == 2 ){
-		
+	} else if ( form_stage == 3 ){
+
 		//#2 - standard drinks typical day
 		buildSlider({
 			id		: 'typical-day-slider',
-			from	: 1,
-			to		: 32,
-			to_label: '32+',
+			from	: 0,
+			to		: 25,
+			to_label: '25+',
+			from_label: 'Select',
 			field	: $('.stage-form input[name=how_many_on_typical_day]'),
 			unit	: {
 				singular 	: 'drink',
 				plural		: 'drinks'
 			}
 		});
-	
-	} else if ( form_stage == 3 ){
+
+	} else if ( form_stage == 4 ){
 		
-		$('.stage-form input[name=past_4wk_consumed_alcohol]').bind('change', function(){
-			
-			if ( $('.stage-form input[name=past_4wk_consumed_alcohol]:checked').val() == 'yes' ){
-				
-				$('#more-fields-wrapper').slideDown( 400, function(){
-					
-					$('.slider-wrapper').css( 'visibility', 'hidden' );
-					
-					// last four weeks, drinks consumed on a single occasion
-					buildSlider({
-						id		: 'standard-drinks-slider',
-						from	: 1,
-						to		: 32,
-						to_label: '32+',
-						field	: $('.stage-form input[name=past_4wk_largest_number_single_occasion]'),
-						unit	: {
-							singular 	: 'drink',
-							plural		: 'drinks'
-						}
-					});
-					
-					// how many hours drink was consumed in
-					buildSlider({
-						id		: 'drinking-hours-slider',
-						from	: 1,
-						to		: 24,
-						to_label: '24+',
-						field	: $('.stage-form input[name=past_4wk_hours_amount_drank]'),
-						unit	: {
-							singular 	: 'hour',
-							plural		: 'hours'
-						}
-					});
-					
-					$('.slider-wrapper').css('opacity', 0).css( 'visibility', 'visible' ).animate({
-						'opacity'	: 1
-					}, 400 );
-										
-				});
-				
-			} else {
-				
-				$('#more-fields-wrapper').slideUp( 400, function(){
-					
-					// reset slider positions for next render
-					$('.slider-wrapper').css( 'visibility', 'hidden' );
-					$('input[name=past_4wk_largest_number_single_occasion]').val('1');
-					$('input[name=past_4wk_hours_amount_drank]').val('1');
-					
-					//Everything else
-					$('input[name=body_height-cm]').val('');
-					$('input[name=body_height-feet]').val('');
-					$('input[name=body_height-inches]').val('');
-					$('input[name=body_weight-number]').val('');
-					$('select[name=body_weight-unit]').val('kg');
-					
-				});
-				
-			}
-			
+		var weekdays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+		$.each(weekdays, function(i, value) {
+			buildSlider({
+				id		: 'standard-drinks-slider_' + value,
+				from	: -1,
+				from_label: 'Select',
+				to		: 25,
+				to_label: '25+',
+				field	: $('.stage-form input[name=past_4wk_std_drinks_' + value + ']'),
+				unit	: {
+					singular 	: 'drink',
+					plural		: 'drinks'
+				}
+			});
 		});
+
+		// last four weeks, drinks consumed on a single occasion
+		buildSlider({
+			id		: 'standard-drinks-slider',
+			from	: 0,
+			from_label: 'Select',
+			to		: 25,
+			to_label: '25+',
+			field	: $('.stage-form input[name=past_4wk_largest_number_single_occasion]'),
+			unit	: {
+				singular 	: 'drink',
+				plural		: 'drinks'
+			}
+		});
+
+		// how many hours drink was consumed in
+		buildSlider({
+			id		: 'drinking-hours-slider',
+			from	: 0,
+			from_label: 'Select',
+			to		: 24,
+			to_label: '24+',
+			field	: $('.stage-form input[name=past_4wk_hours_amount_drank]'),
+			unit	: {
+				singular 	: 'hour',
+				plural		: 'hours'
+			}
+		});
+
+		$('.slider-wrapper').css('opacity', 0).css( 'visibility', 'visible' ).animate({
+			'opacity'	: 1
+		}, 400 );
 		
 		$('input[name=body_height-cm]').bind('keyup change', function(){
 			if ( $(this).val() != '' ){
 				$('input[name=body_height-feet], input[name=body_height-inches]').val('');
 			}
 		});
-		
+
 		$('input[name=body_height-feet], input[name=body_height-inches]').bind('keyup change', function(){
 			
 			if ( $(this).val() != '' ){
@@ -202,22 +168,19 @@ function init_stage_form( form_stage ){
 		});
 		
 	}
-	
-	
-	
-	//Render form status
-	if ( form_stage != 4 ){
-		$('input, select').each(function(){
-			$(this).bind('change', function(){
-				stage_form_complete( form_stage );
-			});
-		});
 
-		$('input').bind('keyup', function(){
+
+	//Render form status
+	$('input, select').each(function(){
+		$(this).bind('change', function(){
 			stage_form_complete( form_stage );
 		});
-	}
-	
+	});
+
+	$('input').bind('keyup', function(){
+		stage_form_complete( form_stage );
+	});
+
 }
 
 /*
@@ -230,72 +193,60 @@ function stage_form_complete( form_stage ){
 	if ( form_stage == 0 ){
 		
 		form_fields_checked = {
-			'participant_name' 		: { skip : false, valid : false }
+			'participant_name' 		: { skip : false, valid : false },
+			'participant_id' 		: { skip : true, valid : isPositiveNumber($('input[name="participant_id"]').val()) }
 		};
-		
+
 	} else if ( form_stage == 1 ){
-		
+
+		var phone_digits = $('input[name="phone_digits"]').val();
 		form_fields_checked = {
-			'gender' 				: { skip : true, valid : false },
 			'age'					: { skip : false, type: 'select', valid : false },
-			'staff_student' 		: { skip : false, type : 'radio', valid : false },
-			'hours_per_week' 		: { skip : false, type : 'radio', valid : false },
-			'year_level'			: { skip : false, type : 'select', valid : false },
-			'on_campus' 			: { skip : false, type : 'radio', valid : false },
-			'where_from'			: { skip : false, type : 'select', valid : false },
-			'alcohol_last_12mths'	: { skip : false, type : 'radio', valid : false }
+			'gender'				: { skip : false, type : 'radio', valid : false },
+			'race'					: { skip : false, type : 'select', valid : false },
+			'ethnicity'				: { skip : false, type : 'select', valid : false },
+			'race'					: { skip : false, type : 'select', valid : false },
+			'where' 				: { skip : false, type : 'select', valid : false },
+			'first_pet'				: { skip : false, valid : false },
+			'first_concert'			: { skip : false, valid : false },
+			'mother_letters'		: { skip : true, valid : $('input[name="mother_letters"]').val().length === 2},
+			'phone_digits'			: { skip : true, valid : isPositiveNumber(phone_digits) && phone_digits.length === 2 },
 		};
-
-		//Gender = m/f or value from dropdown
-		var gender_radio = $('input[name=gender-mf]:checked');
-		var gender_select = $('select[name=gender-more]');
-		if ( ( ( gender_radio.length > 0 ) && ( gender_radio.val() != '' ) ) || ( gender_select.val() != '' ) ){
-			form_fields_checked['gender'].valid = true;
-		}
-
-		// Conditional validation around staff/student question and hours per week.
-		// Check if question is in form or just hidden input
-		if ( $('.stage-form input[name=staff_student][type=hidden]').length == 1 ) {
-
-			//No staff/student question, not required.
-			form_fields_checked[ 'staff_student' ].valid = true;
-		}
-
-		// Demographic questions only required if student.
-		if ( $('.stage-form input[name=staff_student]:checked').val() == 'staff' ){
-
-			form_fields_checked[ 'hours_per_week' ].valid = true;
-			form_fields_checked[ 'year_level' ].valid = true;
-			form_fields_checked[ 'on_campus' ].valid = true;
-			form_fields_checked[ 'where_from' ].valid = true;
-		}
-
-		// Additional demographic questions. Partners can toggle these on/off, so only
-		// required if they're included
-
-		// Year level question
-		if ( $('select[name="year_level"]' ).length == 0 ) {
-
-			form_fields_checked[ 'year_level' ].valid = true;
-		}
-
-		// Accommodation question
-		if ( $('input[name="on_campus"]' ).length == 0 ) {
-
-			form_fields_checked[ 'on_campus' ].valid = true;
-		}
-
-		// From question
-		if ( $('select[name="where_from"]' ).length == 0 ) {
-
-			form_fields_checked[ 'where_from' ].valid = true;
-		}
 
 	} else if ( form_stage == 2 ){
-		
+		var fields = [
+			'see_things_through_to_the_end',
+			'thinking_careful_purposeful',
+			'great_mood_leading_to_problematic_situations',
+			'unfinished_tasks_bother_me',
+			'think_things_over_before_doing',
+			'feeling_bad_leading_to_regretful_actions',
+			'hate_to_stop_doing_things',
+			'feeling_bad_difficult_to_stop',
+			'enjoy_taking_risks',
+			'good_mood_lose_control',
+			'finish_when_start',
+			'rational_sensible_approach',
+			'upset_act_without_thinking',
+			'welcome_new_exciting_experiences',
+			'rejection_leading_to_say_regretful_things',
+			'learn_fly_airplane',
+			'others_shocked_about_my_excitement',
+			'skiing_very_fast',
+			'think_carefully_before_doing_anything',
+			'act_withoug_thinking_when_excited',
+		];
+
+		$.each(fields, function(i, field) {
+			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
+		});
+
+	} else if ( form_stage == 3 ){
+
+		var tipical_day_val = $('input[name="how_many_on_typical_day"]').val();
 		form_fields_checked = {
 			'how_often_drink_alcohol'	: { type : 'select', skip : false, valid : false },
-			'how_many_on_typical_day'	: { skip : false, valid : false },
+			'how_many_on_typical_day'	: { skip : true, valid : tipical_day_val > 0 || tipical_day_val === '25+' },
 			'how_often_six_or_more'		: { type : 'select', skip : false, valid : false },
 			'past_year_how_often_unable_to_stop' 		: { type : 'select', skip : false, valid : false },
 			'past_year_how_often_failed_expectations'	: { type : 'select', skip : false, valid : false },
@@ -305,63 +256,127 @@ function stage_form_complete( form_stage ){
 			'been_injured_or_injured_someone'			: { type : 'select', skip : false, valid : false },
 			'others_concerned_about_my_drinking'		: { type : 'select', skip : false, valid : false }
 		};
-	} else if ( form_stage == 3 ){
-		
-		//Skip bulk validation
+	} else if ( form_stage == 4 ){
+
+		var single_oc_val = $('input[name="past_4wk_largest_number_single_occasion"]').val();
+		var hours_val = $('input[name="past_4wk_hours_amount_drank"]').val();
+
 		form_fields_checked = {
-			'past_4wk_consumed_alcohol'					: { skip : true, valid : false },
-			'past_4wk_largest_number_single_occasion'	: { skip : true, valid : false },
-			'past_4wk_hours_amount_drank'				: { skip : true, valid : false },
+			'past_4wk_largest_number_single_occasion'	: { skip : true, valid : single_oc_val > 0 || single_oc_val === '25+' },
+			'past_4wk_hours_amount_drank'				: { skip : true, valid : hours_val > 0 || hours_val === '24+' },
 			'body_height-cm'							: { skip : true, accepts : 'number', valid : false },
 			'body_height-feet'							: { skip : true, accepts : 'number', valid : false },
 			'body_height-inches'						: { skip : true, accepts : 'number', valid : false },
-			'body_weight-number'						: { skip : true, accepts : 'number', valid : false },
-			'body_weight-unit'							: { type : 'select', skip : true, valid : false }
+			'body_weight-number'						: { skip : false, accepts : 'number', valid : false },
+			'body_weight-unit'							: { type : 'select', skip : false, valid : false }
 		};
-		
-		var consumed_alcohol_field = $('input[name=past_4wk_consumed_alcohol]:checked');
-		
-		if ( ( consumed_alcohol_field.length > 0 ) && ( consumed_alcohol_field.val() != '' ) ){
+
+		var weekdays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+		$.each(weekdays, function(i, day) {
+			var std_drinks_val = $('input[name="past_4wk_std_drinks_' + day + '"]').val();
+			form_fields_checked['past_4wk_drinks_' + day] = { type: 'radio', skip : false, valid : false };
+			form_fields_checked['past_4wk_std_drinks_' + day] = {  skip : true, valid : std_drinks_val >= 0 || std_drinks_val === '25+' };
+		});
+
+		//Manually validate height fields
+		var height_cm_field = $('input[name=body_height-cm]');
+		var height_feet_field = $('input[name=body_height-feet]');
+		var height_inches_field = $('input[name=body_height-inches]');
+
+		if ( isPositiveNumber( height_cm_field.val() ) || isPositiveNumber( height_feet_field.val() ) ){
 			
-			form_fields_checked.past_4wk_consumed_alcohol.valid = true;
-			
-			var consumed_alcohol = consumed_alcohol_field.val();
-			
-			if ( consumed_alcohol == 'no' ){
-				
-				//Manually passed
-				for( var field_name in form_fields_checked ){
-					form_fields_checked[ field_name ].valid = true;
-				}
-				
-			} else {
-				
-				//Need validation, unskip some
-				form_fields_checked[ 'past_4wk_largest_number_single_occasion' ].skip = false;
-				form_fields_checked[ 'past_4wk_hours_amount_drank' ].skip = false;
-				form_fields_checked[ 'body_weight-number' ].skip = false;
-				form_fields_checked[ 'body_weight-unit'	].skip = false;
-				
-				//Manually validate height fields
-				var height_cm_field = $('input[name=body_height-cm]');
-				var height_feet_field = $('input[name=body_height-feet]');
-				var height_inches_field = $('input[name=body_height-inches]');
-				
-				if ( isPositiveNumber( height_cm_field.val() ) || isPositiveNumber( height_feet_field.val() ) ){
-					
-					form_fields_checked[ 'body_height-cm' ].valid = { skip : true, valid : true };
-					form_fields_checked[ 'body_height-feet' ] = { skip : true, valid : true };
-					form_fields_checked[ 'body_height-inches' ] = { skip : true, valid : ( height_inches_field.val() == '' || isPositiveNumber( height_inches_field.val() ) ) };
-					
-				} 				
-			}
-			
-			
+			form_fields_checked[ 'body_height-cm' ].valid = { skip : true, valid : true };
+			form_fields_checked[ 'body_height-feet' ] = { skip : true, valid : true };
+			form_fields_checked[ 'body_height-inches' ] = { skip : true, valid : ( height_inches_field.val() == '' || isPositiveNumber( height_inches_field.val() ) ) };
+
 		}
-		
-	} else if ( form_stage == 4 ){
-		
-		//All fields optional 
+
+	} else if ( form_stage == 5 ) {
+		var fields = [
+			'difficult_to_limit',
+			'start_drinking_after_deciding_not_to',
+			'end_up_drinking_more',
+			'cut_down_drinking',
+			'drink_when_causing_problems',
+			'stop_drinking_after_two_drinks',
+			'stop_drinking_after_drunk',
+			'irresistible_urge_continue_drinking',
+			'difficult_to_resist_drinking',
+			'able_to_slow_drinking'
+		];
+
+		$.each(fields, function(i, field) {
+			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
+		});
+
+	} else if ( form_stage == 6 ) {
+
+		var fields = [
+			'embarassing_things',
+			'hangover',
+			'sick',
+			'end_up_drinking_without_planning',
+			'take_foolish_risks',
+			'pass_out',
+			'need_larger_amounts_to_feel_effect',
+			'impulsive_things',
+			'memory_loss',
+			'drive_unsafely',
+			'miss_work_or_class',
+			'regretted_sexual_situations',
+			'difficult_to_limit',
+			'become_rude',
+			'wake_up_unexpected_place',
+			'feel_bad',
+			'lack_of_energy',
+			'suffered_work_quality',
+			'spend_too_much_time_drinking',
+			'neglect_obligations',
+			'relationship_problems',
+			'overweight',
+			'harmed_physical_appearance',
+			'need_drink_before_breakfast'
+		];
+
+		$.each(fields, function(i, field) {
+			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
+		});
+	} else if ( form_stage == 7 ) {
+
+		var fields = [
+			'count_drinks',
+			'set_number_drinks',
+			'eat_before',
+			'space_drinks_out',
+			'alternate_drinks',
+			'drink_for_quality',
+			'avoid_drinking_games',
+			'have_a_reliable_driver',
+			'preplan_transportation',
+			'dst_protection',
+			'watch_out_for_each_other',
+		];
+
+		$.each(fields, function(i, field) {
+			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
+		});
+	} else if ( form_stage == 8 ) {
+
+		var fields = [
+			'cut_down_drinking',
+			'stop_drinking',
+		];
+
+		$.each(fields, function(i, field) {
+			form_fields_checked[field] = { skip : false, type : 'radio', valid : false };
+		});
+	} else if ( form_stage == 9 ) {
+
+		var fields = ['tobacco_use', 'tobacco_frequency', 'tobacco_init'];
+
+		$.each(fields, function(i, field) {
+			form_fields_checked[field] = { skip : false, type : 'select', valid : false };
+		});
 	}
 	
 	
@@ -442,6 +457,12 @@ function buildSlider( opts ){
 				val = opts.to_label;
 			}
 		}
+
+		if ( val == opts.from ){
+			if ( typeof( opts.from_label) !== 'undefined' ){
+				val = opts.from_label;
+			}
+		}
 		
 		var suffix = '';
 		if ( typeof( opts.unit ) !== 'undefined' ){
@@ -468,6 +489,8 @@ function buildSlider( opts ){
 		//Background color
 		var bg = $('#' + opts.id + ' .selected-area').css('width', handle_center );
 
+		// Triggering change event.
+		opts.field.change();
 	};
 	
 	//Reset handle left first
@@ -493,108 +516,6 @@ function buildSlider( opts ){
 	
 }
 
-//On window resize we redraw tooltips & bg
-function reposition_slider_ui(){
-	
-	$('.slider .handle').each(function(){
-		
-		var handle = $(this);
-		var handle_center = handle.position().left + (handle.width()/2);
-		
-		var bg = $(this).siblings('.selected-area');
-		var tooltip = $(this).siblings('.tooltip');
-		
-		bg.css( 'width', handle_center + 'px' );
-		tooltip.css('left', ( -(tooltip.outerWidth()/2) + handle_center ) + 'px' );
-		
-	});
-	
-}
-
-var cycle_init = false;
-function dgSlider(){
-	
-	//$('.drinks-guide .tooltip').fadeOut(200);
-	$('.drinks-guide .tooltip').hide();
-	
-	if ($(window).width() < 767){
-		
-		$('.dg-wrap').css({'height' : 215 });
-		
-		if ( !cycle_init ){
-			$( '.dg-wrap' ).cycle({
-				timeout: 2000,
-				slides: '> div',
-				prev:'.go-left',
-				next:'.go-right',  
-				fx: 'scrollHorz', 
-				pauseOnHover: true, 
-				speed: 600, 
-				swipe: true,
-				prev: '.go-left', 
-				next: '.go-right' 
-			});
-			
-			$('.drinks-guide .drink-type').unbind('click mouseenter mouseleave')
-			
-			$('.drinks-guide .drink-type').click(function(){
-
-				var dgWidth = $(this).outerWidth();
-				var finalWidth = (dgWidth - 200)/2;
-				var dgHeight = $(this).find('.tooltip').outerHeight();
-				var finalHeight = dgHeight + 218;
-
-				var trigger_center = Math.round( $(this).innerWidth() / 2 );
-				var tooltip = $(this).find('.tooltip');
-
-				tooltip.css('left', ( trigger_center - ( tooltip.innerWidth() / 2 ) + 'px' ) );
-				tooltip.fadeIn(200);
-				$(this).parent().css('height', finalHeight);
-
-				event.stopPropagation();
-
-			});
-
-			$('body').unbind('click').click(function() {
-
-				$('.drinks-guide .tooltip').hide();
-				$('.dg-wrap').css({'height' : 215 });
-
-			});
-
-
-			$( '.dg-wrap' ).on( 'cycle-next', function() {
-				$('.drinks-guide .tooltip').hide();
-				$('.dg-wrap').css({'height' : 215 });
-			});
-		}
-		cycle_init = true;
-		
-		
-	} else {
-	
-		if ( cycle_init ){
-			$('.dg-wrap').cycle('destroy');			
-		}
-		cycle_init = false;
-		
-		$('.drinks-guide .drink-type').unbind('click mouseenter mouseleave').hover(function(){
-			var dgWidth = $(this).outerWidth();
-			var finalWidth = (dgWidth - 250)/2;
-			$(this).find('.tooltip').css({'left' : finalWidth});
-			$(this).find('.tooltip').fadeIn(200);
-
-		},function(){
-			$(this).find('.tooltip').fadeOut(200);
-			var finalWidth = 0;
-		});
-		
-	}
-	
-}
-
-
-
 /* Helpers */
 function isNumber(n) {
 	return !isNaN(parseFloat(n)) && isFinite(n);
@@ -606,9 +527,9 @@ function isPositiveNumber(n) {
 var start_animate_vessels = false;
 var start_animate_firstaids = false;
 
-function initStepTwo() {
+function initStepThree() {
 
-	if ($('.progress').hasClass('step-two')) {
+	if ($('.progress').hasClass('step-three')) {
 	
 		checkAnimationStepTwo();		
 		$(window).scroll(function(){
@@ -663,9 +584,9 @@ function animationFirstaid() {
 	
 }
 
-function initStepThree() {
+function initStepFour() {
 
-	if ($('.progress').hasClass('step-three')) {
+	if ($('.progress').hasClass('step-four')) {
 	
 		animationClock();
 	
@@ -713,9 +634,9 @@ var start_audit_score,
 	start_audit_bac,
 	start_audit_spend = false;
 
-function initStepFive() {
+function initStepTen() {
 	
-	if (!$('.progress').hasClass('step-five')) {
+	if (!$('.progress').hasClass('step-ten')) {
 
 		return;
 	}
@@ -738,6 +659,18 @@ function initStepFive() {
 	initFeedbackSlider('rating-confident-reduce-drinking');
 	initFeedbackSlider('rating-important-talk-professional');
 	initFeedbackSlider('rating-ready-talk-professional');
+
+
+	$(window).scroll(function() {
+		if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+			$('.accordian').each(function() {
+				if (!$(this).hasClass('init-expand')) {
+					// Expanding tabs when the user scrolls down to the bottom.
+					$(this).addClass('init-expand').addClass('active').next().slideDown(200);
+				}
+			});
+		}
+	});
 }
 
 function initFeedbackSlider(id) {
@@ -773,7 +706,12 @@ function initFeedbackSlider(id) {
 			saveFeedbackScore(this.wrapper.id, value);
 		}
 	});
-	slider.setStep(parseInt($('input[name="' + field + '"]' ).val()) + 1);
+
+	var $field = $('input[name="' + field + '"]' );
+	if ($field.length > 0) {
+		slider.setStep(parseInt($field.val()) + 1);
+	}
+
 	$('#' + id).siblings('ul.score').find('li').bind('click', function() {
 
 		var value = parseInt($(this).text());
@@ -1079,6 +1017,32 @@ function modalBox(){
 		return false;
 	});
 	
+}
+
+function setTabularFixedHeader() {
+	if ($(window).width() < 767) {
+		return;
+	}
+
+	var $tabularHeader = $('.tabular-intro .labels');
+	if ($tabularHeader.length === 0) {
+		return;
+	}
+
+	var $tabular = $('.radio-set.tabular').last();
+	var $tabularHeaderWrapper = $tabularHeader.parent().parent();
+	var yTabularHeaderPos = $tabularHeader.offset().top;
+
+	$(window).scroll(function() {
+		var scrollPos = $(window).scrollTop();
+
+		if (scrollPos >= yTabularHeaderPos && scrollPos < $tabular.offset().top + $tabular.height()) {
+		   $tabularHeaderWrapper.addClass('fixed');
+		}
+		else {
+		   $tabularHeaderWrapper.removeClass('fixed');
+		}
+	});
 }
 
 function footerLogo() {

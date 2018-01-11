@@ -8,6 +8,7 @@ require_once( 'app/db.php' );
 require_once( 'app/helpers.php' );
 require_once( 'app/Partner.class.php' );
 require_once( 'app/Survey.class.php' );
+require_once( 'app/stages_config.php' );
 require_once( 'app/library/fpdf/fpdf.php' );
 require_once( 'app/library/fpdi/fpdi.php' );
 require_once( 'app/library/fpdi_html.php' );
@@ -55,7 +56,6 @@ add_audit_score_graph( $pdf, $survey );
 add_comparisons( $pdf, $survey );
 add_expenses( $pdf, $survey );
 add_bac_estimate( $pdf, $survey );
-add_adis( $pdf, $partner );
 add_faqs_and_tips( $pdf );
 add_support( $pdf, $services );
 
@@ -139,11 +139,12 @@ function add_audit_score_graph( FPDF $pdf, Survey $survey ) {
 }
 
 function add_comparisons( FPDF $pdf, Survey $survey ) {
+	$avg = $survey->calculateAverageConsumption();
 
 	// Check if section required
 	$consumption = $survey->calculateConsumption();
-	$show_per_occasion = $consumption['typical_day'] > 4;
-	$show_per_week = $consumption['per_week'] > 6;
+	$show_per_occasion = $consumption['typical_day'] > $avg['occasion'];
+	$show_per_week = $consumption['per_week'] > $avg['week'];
 	if ( !$show_per_occasion && !$show_per_week ) {
 
 		return;
@@ -180,7 +181,7 @@ function add_comparisons( FPDF $pdf, Survey $survey ) {
 
 		// Bars
 		draw_graph_bar( $pdf, $bar_y, '<font color="#b2b2b2">YOU HAVE</font> <font color="#f27678">' . $consumption['typical_day'] . ' STANDARD DRINKS</font> <font color="#b2b2b2">ON A TYPICAL OCCASION</font>', $consumption['typical_day'], 100, 'red' );
-		draw_graph_bar( $pdf, $bar_y + 10, '<font color="#b2b2b2">AVERAGE HAS 4.0 STANDARD DRINKS ON A TYPICAL OCCASION</font>', 4.0, ( 4 / $consumption['typical_day'] * 100 ), 'gray' );
+		draw_graph_bar( $pdf, $bar_y + 10, '<font color="#b2b2b2">AVERAGE HAS ' . $avg['occasion'] . ' STANDARD DRINKS ON A TYPICAL OCCASION</font>', $avg['occasion'], ( $avg['occasion'] / $consumption['typical_day'] * 100 ), 'gray' );
 		$pdf->SetY( $pdf->GetY() + 10 );
 	}
 
@@ -210,7 +211,7 @@ function add_comparisons( FPDF $pdf, Survey $survey ) {
 
 		// Bars
 		draw_graph_bar( $pdf, $bar_y, '<font color="#b2b2b2">YOU HAVE</font> <font color="#f27678">' . $consumption['per_week'] . ' STANDARD DRINKS</font> <font color="#b2b2b2">PER WEEK</font>', $consumption['per_week'], 100, 'red' );
-		draw_graph_bar( $pdf, $bar_y + 10, '<font color="#b2b2b2">AVERAGE HAS 6.0 STANDARD DRINKS PER WEEK</font>', 6.0, ( 6 / $consumption['per_week'] * 100 ), 'gray' );
+		draw_graph_bar( $pdf, $bar_y + 10, '<font color="#b2b2b2">AVERAGE ' . $avg['week'] . ' STANDARD DRINKS PER WEEK</font>', $avg['week'], ( $avg['week'] / $consumption['per_week'] * 100 ), 'gray' );
 		$pdf->SetY( $pdf->GetY() + 10 );
 	}
 
@@ -228,11 +229,11 @@ function add_comparisons( FPDF $pdf, Survey $survey ) {
 function add_bac_estimate( FPDF $pdf, Survey $survey ) {
 
 	// Calculate BAC
-	if ( empty( $survey->data['03_past_4wk_consumed_alcohol'] ) ) {
+	$bac = $survey->calculateBAC();
 
+	if ( $bac <= 0 ) {
 		return;
 	}
-	$bac = $survey->calculateBAC();
 
 	// Ensure required height is available
 	$block_height = 134;
@@ -329,33 +330,6 @@ function add_expenses( FPDI_HTML $pdf, Survey $survey ) {
 	debug_block_height( $pdf );
 }
 
-function add_adis( FPDF $pdf, Partner $partner ) {
-
-	// Check if enabled
-	if ( empty( $partner->data['is_adis_enabled'] ) ) {
-
-		return;
-	}
-
-	// Ensure required height is available
-	$block_height = 133;
-	ensure_fixed_height_available( $pdf, $block_height );
-	$offset_y = $pdf->GetY();
-
-	// Create from template to show the BAC background
-	$pdf->setSourceFile( 'pdf-assets/adis.pdf' );
-	$template_id = $pdf->importPage( 1 );
-	$pdf->useTemplate( $template_id, 0, $offset_y, $pdf->w );
-
-	// Manually recreate links from PDF
-	$pdf->Link( 85, 92 + $offset_y, 49, 9, 'mailto:adis@health.wa.gov.au' );
-	$pdf->Link( 164, 64 + $offset_y, 128, 48, 'http://drugaware.com.au/' );
-
-	// Done, set height.
-	$pdf->SetY( $offset_y + $block_height );
-	debug_block_height( $pdf );
-}
-
 function add_support( FPDF $pdf, array $services ) {
 
 	// Check if section required
@@ -377,6 +351,14 @@ function add_support( FPDF $pdf, array $services ) {
 	$pdf->Cell( $pdf->w, 0, 'Support', 0, 2 );
 
 	// Space
+	$pdf->SetY( $pdf->GetY() + 20 );
+
+	// Intro text.
+	$pdf->SetTextColor( 111, 110, 110 );
+	$pdf->SetFont( 'ProximaNova', '', 11 );
+	$pdf->SetXY( 26, $pdf->GetY() );
+	$pdf->Cell( 0, 20, 'Some people can stop or reduce their drinking by themselves, while others might need some additional support. See which option below suits you best.', 0, 0 );
+
 	$pdf->SetY( $pdf->GetY() + 20 );
 
 	// Services
@@ -405,13 +387,21 @@ function add_support( FPDF $pdf, array $services ) {
 		$side_border_top = $buffer->GetY();
 
 		// Details
-		draw_support_row( $buffer, 'phone', 'Phone', $service['contact_numbers'] );
-		$buffer->Image( 'pdf-assets/service-divider.png', 55, $buffer->GetY(), 208 );
-		draw_support_row( $buffer, 'address', 'Address', $service['address'] );
-		$buffer->Image( 'pdf-assets/service-divider.png', 55, $buffer->GetY(), 208 );
-		draw_support_row( $buffer, 'hours', 'Opening hours', $service['opening_hours'] );
-		$buffer->Image( 'pdf-assets/service-divider.png', 55, $buffer->GetY(), 208 );
-		draw_support_row( $buffer, 'fees', 'Fees', $service['fees'] );
+		if ( !empty( $service['contact_numbers'] ) ) {
+			draw_support_row( $buffer, 'phone', 'Phone', $service['contact_numbers'] );
+		}
+		if ( !empty( $service['address'] ) ) {
+			$buffer->Image( 'pdf-assets/service-divider.png', 55, $buffer->GetY(), 208 );
+			draw_support_row( $buffer, 'address', 'Address', $service['address'] );
+		}
+		if ( !empty( $service['opening_hours'] ) ) {
+			$buffer->Image( 'pdf-assets/service-divider.png', 55, $buffer->GetY(), 208 );
+			draw_support_row( $buffer, 'hours', 'Opening hours', $service['opening_hours'] );
+		}
+		if ( !empty( $service['fees'] ) ) {
+			$buffer->Image( 'pdf-assets/service-divider.png', 55, $buffer->GetY(), 208 );
+			draw_support_row( $buffer, 'fees', 'Fees', $service['fees'] );
+		}
 		if ( !empty( $service['website'] ) ) {
 
 			$buffer->Image( 'pdf-assets/service-divider.png', 55, $buffer->GetY(), 208 );
@@ -452,39 +442,69 @@ function add_support( FPDF $pdf, array $services ) {
 }
 
 function add_faqs_and_tips( FPDF $pdf ) {
+	foreach (get_feedback_sections() as $type => $section) {
+		// Page 1
+		$pdf->AddPage();
 
-	// Page 1
-	$pdf->AddPage();
-	$pdf->setSourceFile( 'pdf-assets/tips-faqs.pdf' );
-	$template_id = $pdf->importPage( 1 );
-	$pdf->useTemplate( $template_id, 0, 0, $pdf->w );
+		// Title bg
+		$pdf->Image('pdf-assets/' . $type . '-bg.png', 0, 0, $pdf->w, 39);
 
-	// Page 2
-	$pdf->AddPage();
-	$template_id = $pdf->importPage( 2 );
-	$pdf->useTemplate( $template_id, 0, 0, $pdf->w, 440 );
-	$pdf->Link( 40, 297, 46, 9, 'http://www.police.wa.gov.au/Traffic/Drinkdriving/Penalties/tabid/989/Default.aspx' );
-	$pdf->Link( 40, 310, 23, 9, 'https://www.vicroads.vic.gov.au/safety-and-road-rules/road-rules/penalties/drink-driving-penalties' );
-	$pdf->Link( 40, 322, 41, 9, 'http://www.dpti.sa.gov.au/towardszerotogether/Safer_behaviours/Drink_and_drug_driving_penalties2' );
-	$pdf->Link( 40, 335, 33, 9, 'http://www.qld.gov.au/transport/safety/road-safety/drink-driving/penalties/' );
-	$pdf->Link( 40, 347, 45, 9, 'http://transport.nt.gov.au/safety/road-safety/our-safer-road-users/alcohol-and-drugs' );
-	$pdf->Link( 40, 359, 45, 9, 'http://www.rms.nsw.gov.au/usingroads/penalties/alcoholanddrugs.html' );
-	$pdf->Link( 40, 372, 65, 9, 'http://www.police.act.gov.au/roads-and-traffic/drink-driving.aspx' );
+		// Title
+		$pdf->SetTextColor( 255, 255, 255);
+		$pdf->SetFont( 'ProximaNova', 'B', 28);
+		$pdf->SetXY(26, 21);
+		$pdf->Cell( $pdf->w, 0, $section['label'], 0, 2);
 
+		// Intro label
+		$pdf->SetTextColor( 111, 110, 110 );
+		$pdf->SetFont('ProximaNova', 'B', 18);
+		$pdf->SetXY(26, $pdf->GetY() + 40);
+		$pdf->Cell(0, 6, $section['intro']['label'], 0, 0);
 
-	// Page 3
-	$pdf->AddPage();
-	$template_id = $pdf->importPage( 3 );
-	$pdf->useTemplate( $template_id, 0, 0, $pdf->w );
-	$pdf->Link( 74, 288, 36, 9, 'http://alcohol.gov.au/internet/alcohol/publishing.nsf/Content/standard' );
+		$pdf->SetY($pdf->GetY() + 5);
+		if (!empty($section['intro']['content'])) {
+			// Intro content
+			$pdf->SetFont('ProximaNova', '', 11);
+			$pdf->SetXY(26, $pdf->GetY() + 5);
+			$pdf->MultiCell($pdf->w - 52, 6, $section['intro']['content'], 0);
+		}
 
-	// Page 4
-	$pdf->AddPage();
-	$template_id = $pdf->importPage( 4 );
-	$pdf->useTemplate( $template_id, 0, 0, $pdf->w );
-	$pdf->Link( 105, 114, 67, 9, 'http://theothertalk.org.au/safe-partying-tips-for-schoolies' );
-	$pdf->Link( 180, 114, 77, 9, 'http://www.alcohol.gov.au/internet/alcohol/publishing.nsf/Content/C6738D5F231CC231CA25767200820337/$File/young.pdf' );
-	$pdf->Link( 25, 122, 54, 9, 'http://www.alcohol.gov.au/internet/alcohol/publishing.nsf/Content/guide-young' );
+		foreach ($section['content'] as $sub_section) {
+			if (!is_array($sub_section['content'])) {
+				$sub_section['content'] = array($sub_section['content']);
+			}
+
+			// Sub-section label
+			$pdf->SetFont('ProximaNova', 'B', 11);
+			$pdf->SetXY(26, $pdf->GetY() + 16);
+			$pdf->Cell(0, 0, $sub_section['label'], 0, 0);
+
+			// Sub-section content
+			$pdf->SetFont('ProximaNova', '', 11);
+			foreach ($sub_section['content'] as $row) {
+				$pdf->SetXY(26, $pdf->GetY() + 5);
+				$pdf->MultiCell($pdf->w - 52, 6, $row, 0);
+			}
+
+			if (!empty($sub_section['list'])) {
+				foreach ($sub_section['list'] as $row) {
+					$pdf->SetXY(31, $pdf->GetY() + 2);
+					$pdf->MultiCell($pdf->w - 52, 6, chr(127) . ' ' . $row, 0);
+				}
+			}
+
+			if (!empty($sub_section['secondary_content'])) {
+				if (!is_array($sub_section['secondary_content'])) {
+					$sub_section['secondary_content'] = array($sub_section['secondary_content']);
+				}
+
+				foreach ($sub_section['secondary_content'] as $row) {
+					$pdf->SetXY(26, $pdf->GetY() + 5);
+					$pdf->MultiCell($pdf->w - 52, 6, $row, 0);
+				}
+			}
+		}
+	}
 }
 
 //

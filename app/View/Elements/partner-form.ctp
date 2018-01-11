@@ -76,8 +76,6 @@ echo '<div class="content-padding clearfix">';
 
 		echo $this->Form->input( 'Partner.is_staff_student', array( 'type' => 'checkbox', 'label' => 'Allow staff members to take the survey as well as students. Otherwise it is assumed all participants are students.' ) );
 
-		echo $this->Form->input( 'Partner.is_adis_enabled', array( 'type' => 'checkbox', 'label' => 'Include Alcohol and Drug Information Service (ADIS) information. Only available if your organisation is based in <strong>Western Australia</strong>. If ticked, on the survey result page we will include contact details and a callback form for ADIS.', 'default' => $no_logo ) );
-
 		// Content
 		echo $this->Form->input( 'Partner.confidentiality_text', array(
 			'label' => 'Confidentiality text',
@@ -91,25 +89,6 @@ echo '</div>';
 
 <h2>Optional survey questions<span>Enable additional demographic and feedback questions</span></h2>
 <div class="content-padding clearfix" id="optional-questions">
-
-	<h3>Demographics</h3>
-	<p>These are additional demographic questions you can choose to include in the survey. Participants are required to answer enabled questions.</p>
-	<p>You can change these settings at any time. If you start collecting this information and later stop, answers already collected remain in the database and will be shown in reports.</p>
-
-	<?php
-	echo $this->Form->input( 'Partner.is_year_level_question_enabled', array(
-		'type' => 'checkbox',
-		'label' => '<strong>What is your year level / class standing?</strong> <span class="extra">Options: <em>1st Year, 2nd Year, 3rd Year, 4th Year, Postgraduate, Not Applicable</em></span>'
-	) );
-	echo $this->Form->input( 'Partner.is_on_campus_question_enabled', array(
-		'type' => 'checkbox',
-		'label' => '<strong>Do you live in on-campus accommodation?</strong> <span class="extra">Options: <em>Yes, No</em></span>'
-	) );
-	echo $this->Form->input( 'Partner.is_from_question_enabled', array(
-		'type' => 'checkbox',
-		'label' => '<strong>Where are you from?</strong> <span class="extra">Options: <em>Perth (Metropolitan) student, Regional (Western Australian) student, Other Australian state student, International student</em></span>'
-	) );
-	?>
 
 	<h3>Feedback</h3>
 	<p>You can enable a set of feedback questions displayed on the result screen of the survey. Answers are optional and given as a star rating from 0 to 10 for each question.</p>
@@ -137,7 +116,7 @@ if ( empty( $partner ) ) {
 else if ( empty( $current_user['Account']['is_admin'] ) ) {
 
 	echo '<h3>Change password</h3>';
-	echo '<p>You can <a href="/admin/change_password">change your password here</a>.</p>';
+	echo '<p>You can <a href="' . $this->webroot . 'admin/change_password">change your password here</a>.</p>';
 }
 
 echo '</div>';
@@ -170,10 +149,10 @@ for ( $i = -1; $i < $count; $i++ ) {
 	echo '<h3>Support service <span class="number">' . ( $i + 1 ). '</span></h3>';
 	echo $this->Form->hidden( "Service.{$i}.id" );
 	echo $this->Form->input( "Service.{$i}.name", array( 'label' => 'Service name <span class="required">*</span>' ) );
-	echo $this->Form->input( "Service.{$i}.contact_numbers", array( 'label' => 'Contact number(s) <span class="required">*</span>', 'rows' => 3 ) );
-	echo $this->Form->input( "Service.{$i}.address", array( 'label' => 'Address <span class="required">*</span>', 'rows' => 3 ) );
-	echo $this->Form->input( "Service.{$i}.opening_hours", array( 'label' => 'Opening hours <span class="required">*</span>', 'rows' => 3 ) );
-	echo $this->Form->input( "Service.{$i}.fees", array( 'label' => 'Fees (if applicable - if none state n/a) <span class="required">*</span>' ) );
+	echo $this->Form->input( "Service.{$i}.contact_numbers", array( 'label' => 'Contact number(s)', 'rows' => 3 ) );
+	echo $this->Form->input( "Service.{$i}.address", array( 'label' => 'Address', 'rows' => 3 ) );
+	echo $this->Form->input( "Service.{$i}.opening_hours", array( 'label' => 'Opening hours', 'rows' => 3 ) );
+	echo $this->Form->input( "Service.{$i}.fees", array( 'label' => 'Fees' ) );
 	echo $this->Form->input( "Service.{$i}.website", array( 'label' => 'Website' ) );
 	echo $this->Form->input( "Service.{$i}.additional_info", array( 'label' => 'Additional information', 'rows' => 3 ) );
 	echo ' <a class="delete-service btn d-purple sm" href="#"><i class="icn trash"></i> Delete</a>';
@@ -186,7 +165,7 @@ echo '<a id="add-service" href="#"><i class="icn plus"></i> Add service</a>';
 // For new partners and not admin
 if ( empty( $partner ) && empty( $current_user['Account']['is_admin'] ) ) {
 	echo '<div class="terms">';
-	echo $this->Form->input( 'Account.read_terms', array( 'type' => 'checkbox', 'label' => 'I agree to the THRIVE <a href="/about/terms" target="_blank">Terms of Use</a>. <span class="required">*</span>' ) ); 
+	echo $this->Form->input( 'Account.read_terms', array( 'type' => 'checkbox', 'label' => 'I agree to the THRIVE <a href="' . $this->webroot . 'about/terms" target="_blank">Terms of Use</a>. <span class="required">*</span>' ) );
 	echo '</div>';
 }
 echo '</div>';

@@ -86,10 +86,7 @@ COMPOSER_INSTALLED=app/Vendor/composer/installed.json
 COMPOSER=$(REPO_DIR)/$(COMPOSER_INSTALLED)
 PACKAGE_FILE=/tmp/$(PACKAGE).zip
 $(eval SCRATCH = $(shell mktemp -d))
-
-APP_CONSTANTS_FILE := app/Config/constants.php
-PACKAGE_APP_CONSTANTS_FILE = $(REPO_DIR)/$(APP_CONSTANTS_FILE)
-BUILD_CODE_VERSION = $(shell if [ -e ${PACKAGE_APP_CONSTANTS_FILE} ]; then grep APP_VERSION ${PACKAGE_APP_CONSTANTS_FILE} | cut -d "'" -f 4 ; else echo '0.0.0'; fi)
+BUILD_CODE_VERSION=$(CODE_VERSION)
 PACKAGE=$(PROJECT_ID)-$(BUILD_CODE_VERSION)
 
 check_commit:
@@ -124,7 +121,7 @@ pull: checkout
 	cd $(REPO_DIR) ; \
 	git pull
 
-init: pull composer
+init: pull
     # - Install your dependencies via gem, maven, etc.
     # - Download sql dumps or copy configuration templates
     #   that a dev needs to get up and running.
@@ -162,9 +159,10 @@ $(PATH_TO_COVERAGE_REPORT):
 
 package: $(PACKAGE_FILE)
 
-$(PACKAGE_FILE): composer
+$(PACKAGE_FILE): pull
 	cd $(BUILD_DIR) && zip -rq $(PACKAGE_FILE) \
 	$(PROJECT_ID)/app/ \
+	$(PROJECT_ID)/lib/ \
 	$(PROJECT_ID)/index.php \
 	$(PROJECT_ID)/.htaccess \
 	$(PROJECT_ID)/deploy.sh \

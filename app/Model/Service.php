@@ -12,26 +12,6 @@ class Service extends AppModel {
 			'required' => 'create',
 			'message' => 'Please enter the organisation name.',
 		),
-		'contact_numbers' => array(
-			'rule' => 'notEmpty',
-			'required' => 'create',
-			'message' => 'Please enter the contact number(s).',
-		),
-		'address' => array(
-			'rule' => 'notEmpty',
-			'required' => 'create',
-			'message' => 'Please enter address details.',
-		),
-		'opening_hours' => array(
-			'rule' => 'notEmpty',
-			'required' => 'create',
-			'message' => 'Please enter details of opening hours.',
-		),
-		'fees' => array(
-			'rule' => 'notEmpty',
-			'required' => 'create',
-			'message' => 'Please enter any fees or put n/a if no fees.',
-		),
 	);
 
 	public $belongsTo = array(
