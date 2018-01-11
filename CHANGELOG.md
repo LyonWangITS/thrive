@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.1] - 2018-01-11
+### Changed
+- Bump version number in .env to 1.1.1 (Philip Chase)
+- Remove old data from prod.sql and reset passwords (Philip Chase)
+- Redump the database with relocated services table and old test data removed (Philip Chase)
+- Move the services table from the testing data export to the minimal data export (Philip Chase)
+
+
 ## [1.1.0] - 2018-01-11
 ### Changed
 - Address customer requests from 2018-01-03 email from Rob (Tiago Bember Simeao)

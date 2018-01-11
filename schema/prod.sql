@@ -20,12 +20,13 @@ INSERT INTO `accounts` VALUES (2,'Robert Leeman',1,'robert.leeman@ufl.edu',NULL,
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `entries` DISABLE KEYS */;
-INSERT INTO `entries` VALUES (1,1,'2017-06-14 13:42:03','2017-06-14 13:45:45','Q0lf6slDZOGaPHYhSHc7P9wBlNA21a3I',0,'Philip',22,'male','hawaiian',1,'not-hispanic-latino','dorm',0,'uf-only','1pw',1,'never','lt-1pm','lt-1pm','lt-1pm','lt-1pm','lt-1pm','yes-nly','yes-nly',1,1,2,3,4,3,2,1,10,11,12,13,14,15,16,1,1,180.34,78.0178,'no','no','no','no','no','no','no','no','no','no','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never','never',5,5,'never',5,5,11,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `entries` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `partners` DISABLE KEYS */;
 INSERT INTO `partners` VALUES (1,'UF','uf','','',NULL,'',0,0,0,0,0,1,2,'2017-10-19 16:19:59');
 /*!40000 ALTER TABLE `partners` ENABLE KEYS */;
+
+update accounts set password =  sha1(concat('hfsd8f7hF7SDH*(#S7DHF78fshd88S8D76&^FSDsd' , 'change this password'));
 
 /*!40000 ALTER TABLE `pending_changes` DISABLE KEYS */;
 /*!40000 ALTER TABLE `pending_changes` ENABLE KEYS */;
