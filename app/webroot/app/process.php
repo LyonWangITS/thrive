@@ -82,7 +82,7 @@ function doProcess( $the_survey, $existing_token, $version ){
 
 				$the_survey->save(array(
 					'03_how_often_drink_alcohol' => $_POST[ 'how_often_drink_alcohol' ],
-					'03_how_many_on_typical_day' => $_POST[ 'how_many_on_typical_day' ],
+					'03_how_many_on_typical_day' => $_POST[ 'how_many_on_typical_day' ] == '25+' ? 25 : $_POST[ 'how_many_on_typical_day' ],
 					'03_how_often_six_or_more' => $_POST[ 'how_often_six_or_more' ],
 					'03_past_year_how_often_unable_to_stop' => $_POST[ 'past_year_how_often_unable_to_stop' ],
 					'03_past_year_how_often_failed_expectations' => $_POST[ 'past_year_how_often_failed_expectations' ],
@@ -137,23 +137,19 @@ function doProcess( $the_survey, $existing_token, $version ){
 
 			if ( formIsValid( $form_errors ) ) {
 				$values = array(
-					'04_past_4wk_largest_number_single_occasion' => $_POST[ 'past_4wk_largest_number_single_occasion' ],
-					'04_past_4wk_hours_amount_drank' => $_POST[ 'past_4wk_hours_amount_drank' ],
+					'04_past_4wk_largest_number_single_occasion' => $_POST[ 'past_4wk_largest_number_single_occasion' ] == '25+' ? 25 : $_POST[ 'past_4wk_largest_number_single_occasion' ],
+					'04_past_4wk_hours_amount_drank' => $_POST[ 'past_4wk_hours_amount_drank' ] == '24+' ? 24 : $_POST[ 'past_4wk_hours_amount_drank' ],
 					'04_body_height_cm' => $body_height_cm,
 					'04_body_weight_kg' => $_POST[ 'body_weight-number'] * ( ifne( $_POST, 'body_weight-unit', 'kg' ) == 'lbs' ? 0.453592 : 1 )
 				);
 
 				foreach ($weekdays as $day) {
-					$fields = array(
-						'past_4wk_drinks_' . $day,
-						'past_4wk_std_drinks_' . $day,
-					);
+					$field = 'past_4wk_drinks_' . $day;
+					$values['04_' . $field] = $_POST[$field];
 
-					foreach ($fields as $field) {
-						$values['04_' . $field] = $_POST[$field];
-					}
+					$field = 'past_4wk_std_drinks_' . $day;
+					$values['04_' . $field] = $_POST[$field] == '25+' ? 25 : $_POST[$field];
 				}
-
 
 				$the_survey->save($values);
 				do_survey_redirect($existing_token, $version);

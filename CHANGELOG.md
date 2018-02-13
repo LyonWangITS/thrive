@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.1.4] - 2018-02-05
 ### Changed
 - Fixing undefined variable error
+- Fixing "25+" values save
+- Increasing font size of descriptions on drinks guide
+- Making gray bullets darker
+- Fixing text overflow on graph bar
+- Moving services from data_minimal.sql to data_testing.sql
+- Updating prod.sql in order to include a list of services and disable feedback questions
+- Bump code and DB version numbers to 1.1.4 in .env
+
 
 ## [1.1.3] - 2018-01-11
 ### Changed

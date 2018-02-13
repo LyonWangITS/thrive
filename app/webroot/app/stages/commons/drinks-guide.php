@@ -7,7 +7,7 @@
 
 		<div class="drink-type drinks-one">
 			<div class="image"><img src="<?php echo BASE_URL; ?>images/sdg-1.png" alt="Bottle of beer" /></div>
-			<p>12 oz. can/bottle of beer</p>
+			<p>12 oz. can/bottle or glass of beer</p>
 		</div>
 		
 		<div class="drink-type drinks-two">
