@@ -636,7 +636,7 @@
 				}
 			}
 			else {
-				if ($the_survey->data['01_age'] > 20) {
+				if ($this->data['01_age'] > 20) {
 					$avg['occasion'] = 2.93;
 					$avg['week'] = 4.42;
 				}

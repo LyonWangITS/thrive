@@ -175,7 +175,7 @@ input[type="checkbox"] + label:before {
     position:relative; /* we need to move the element without effecting the doc flow */
     top:0.6em;  /* we're moving it slightly down for alignment purposes */
     left:-2px; /* we're moving it slightly to the left */
-    width:49px; height:36px; /* the width and height of the fake elements */
+    width:49px; height:37px; /* the width and height of the fake elements */
     background-image:url(../images/formelements.png); /* the background image sprite */
 }
 
@@ -873,8 +873,7 @@ fieldset legend { display: none; }
 .drinks-guide .drink-type p {
 	padding: 0 10px;
 	color: #616161;
-	font-size: 15px;
-	font-family: 'ProximaNova-Bold';
+	font-size: 20px;
 	font-weight: normal;
 	text-align: center;
 	margin: 0;
@@ -2075,6 +2074,7 @@ input#height-cm {
 .bar-wrap .bar.avg-score {
 	left: 0px;
 	top: 0;
+	min-width: 90px;
 }
 
 .bar-wrap .bar span {
