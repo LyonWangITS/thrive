@@ -7,8 +7,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Typos and small text fixes
 - Small fixes on mobile version
+- Bump code version to 1.1.5 in .env
 
-## [1.1.4] - 2018-02-05
+## [1.1.4] - 2018-02-21
 ### Changed
 - Fixing undefined variable error
 - Fixing "25+" values save
