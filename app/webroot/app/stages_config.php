@@ -252,7 +252,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 				'columns' => array(
 					'never' => 'Never',
 					'almost-never' => 'Almost never',
-					'sort-time' => 'Sort of the time',
+					'some-time' => 'Some of the time',
 					'half-time' => 'Half of the time',
 					'most-time' => 'Most of the time',
 					'almost-always' => 'Almost always',
@@ -291,13 +291,13 @@ function get_stage_vars($stage, $global_vars = array()) {
 					'On a 7-point scale with <strong>1</strong> indicating <strong>not at all</strong> and <strong>7</strong> indicating <strong>definitely</strong>, please rate the following',
 				),
 				'columns' => array(
-					'1' => 'Not at all<br><br>1',
+					'1' => '<span class="hide-mobile">Not at all<br><br>1</span><span class="hide-desktop">1 - Not at all</span>',
 					'2' => '2',
 					'3' => '3',
 					'4' => '4',
 					'5' => '5',
 					'6' => '6',
-					'7' => 'Definitely<br><br>7',
+					'7' => '<span class="hide-mobile">Definitely<br><br>7</span><span class="hide-desktop">7 - Definitely</span>',
 				),
 				'rows' => array(
 					'cut_down_drinking' => 'I would like to cut down on drinking.',
@@ -389,7 +389,7 @@ function get_feedback_tips($version) {
 			),
 			array(
 				'label' => 'Stay off the road',
-				'content' => 'Plan how you\'re getting home before you go out. Grab a taxi - go in a group and you can share the bill. Put the taxi number in your phone. If you\'re organising a designated driver, make sure they really are not drinking - the last thing you want is to get to home-time with no money and no one is able to drive.',
+				'content' => 'Plan how you\'re getting home before you go out. Grab a taxi - go in a group and you can share the bill. Put the taxi number in your phone. If you\'re organizing a designated driver, make sure they really are not drinking - the last thing you want is to have no money and no one able to drive when it is time to head home.',
 			),
 			array(
 				'label' => 'Mixers',
@@ -435,7 +435,7 @@ function get_feedback_tips($version) {
 			),
 			array(
 				'label' => 'How to designate a driver',
-				'content' => 'If you\'re organizing a designated driver, make sure they really are not drinking - the last thing you want is to get to home-time with no money and no one is able to drive.',
+				'content' => 'If you\'re organizing a designated driver, make sure they really are not drinking - the last thing you want is to have no money and no one able to drive when it is time to head home.',
 			),
 		);
 	}

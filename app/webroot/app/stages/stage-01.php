@@ -1,7 +1,7 @@
 <div class="field gender radio-set clearfix">
 	<i class="icn number">01</i>
 
-	<p>What was your gender assigned at birth?</p>
+	<p>What sex were you assigned at birth?</p>
 	<div class="gender-wrap">
 		<div class="input-wrap male">
 			<input type="radio" name="gender" id="gender-male" value="Male">

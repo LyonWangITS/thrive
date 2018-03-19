@@ -660,17 +660,21 @@ function initStepTen() {
 	initFeedbackSlider('rating-important-talk-professional');
 	initFeedbackSlider('rating-ready-talk-professional');
 
-
-	$(window).scroll(function() {
-		if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-			$('.accordian').each(function() {
-				if (!$(this).hasClass('init-expand')) {
-					// Expanding tabs when the user scrolls down to the bottom.
-					$(this).addClass('init-expand').addClass('active').next().slideDown(200);
-				}
-			});
+	var expandFeedback = function() {
+		if ($(window).scrollTop() + $(window).height() !== $(document).height()) {
+			return;
 		}
-	});
+
+		$('.accordian').each(function() {
+			if (!$(this).hasClass('init-expand')) {
+				// Expanding tabs when the user scrolls down to the bottom.
+				$(this).addClass('init-expand').addClass('active').next().slideDown(200);
+			}
+		});
+	}
+
+	$('body').on({'touchmove': expandFeedback});
+	$(window).scroll(expandFeedback);
 }
 
 function initFeedbackSlider(id) {
