@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.6] - 2018-03-20
+### Changed
+- Fixing width of paragraph elements on mobile
+- Fixing feedback sections auto open on mobile
+- Bump code version to 1.1.6 in .env
+
 ## [1.1.5] - 2018-03-19
 ### Changed
 - Typos and small text fixes

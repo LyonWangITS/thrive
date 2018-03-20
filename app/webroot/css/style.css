@@ -3238,4 +3238,8 @@ button[disabled=disabled]{
 	.field.select-left .styled {
 		max-width: 100%;
 	}
+
+	.survey .field.tabular-intro.with-image p {
+		width: 100%;
+	}
 }
