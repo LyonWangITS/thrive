@@ -9,11 +9,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Fixing feedback sections auto open on mobile
 - Bump code version to 1.1.6 in .env
 
-## [1.1.5] - 2018-03-19
+## [1.1.5] - 2018-03-20
 ### Changed
 - Typos and small text fixes
 - Small fixes on mobile version
 - Bump code version to 1.1.5 in .env
+
 
 ## [1.1.4] - 2018-02-21
 ### Changed
