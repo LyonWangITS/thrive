@@ -57,7 +57,7 @@
 
 		<article>
 			<p>Your BAC is an indication of how intoxicated you are, with a higher BAC corresponding with a greater likelihood of experiencing alcohol-related harm, especially when driving.</p>
-			<p>This estimate takes into account you gender, weight, the number of standard drinks consumed and the number of hours over which you reported drinking this amount.</p>
+			<p>This estimate takes into account your gender, weight, the number of standard drinks consumed and the number of hours over which you reported drinking this amount.</p>
 		</article>
 
 		<?php /* </div> */ ?>

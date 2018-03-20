@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.5] - 2018-03-20
+### Changed
+- Typos and small text fixes
+- Small fixes on mobile version
+- Bump code version to 1.1.5 in .env
+
+
 ## [1.1.4] - 2018-02-21
 ### Changed
 - Fixing undefined variable error
