@@ -661,7 +661,7 @@ function initStepTen() {
 	initFeedbackSlider('rating-ready-talk-professional');
 
 	var expandFeedback = function() {
-		if ($(window).scrollTop() + $(window).height() !== $(document).height()) {
+		if ($(window).scrollTop() + window.innerHeight !== $(document).height()) {
 			return;
 		}
 
@@ -673,8 +673,12 @@ function initStepTen() {
 		});
 	}
 
-	$('body').on({'touchmove': expandFeedback});
-	$(window).scroll(expandFeedback);
+	if ($(window).width() < 767) {
+		$('body').on({'touchmove': expandFeedback});
+	}
+	else {
+		$(window).scroll(expandFeedback);
+	}
 }
 
 function initFeedbackSlider(id) {
