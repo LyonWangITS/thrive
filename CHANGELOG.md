@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.7] - 2018-04-23
+### Changed
+- Fixed selection of "Some of the time"
+
+
 ## [1.1.6] - 2018-03-21
 ### Changed
 - Fixing width of paragraph elements on mobile
