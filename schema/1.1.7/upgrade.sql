@@ -9,3 +9,15 @@ ALTER TABLE entries CHANGE `07_have_a_reliable_driver` `07_have_a_reliable_drive
 ALTER TABLE entries CHANGE `07_preplan_transportation` `07_preplan_transportation` ENUM('never','almost-never','some-time','half-time','most-time','almost-always','always','skip') DEFAULT NULL;
 ALTER TABLE entries CHANGE `07_dst_protection` `07_dst_protection` ENUM('never','almost-never','some-time','half-time','most-time','almost-always','always','skip') DEFAULT NULL;
 ALTER TABLE entries CHANGE `07_watch_out_for_each_other` `07_watch_out_for_each_other` ENUM('never','almost-never','some-time','half-time','most-time','almost-always','always','skip') DEFAULT NULL;
+
+UPDATE entries SET `07_count_drinks` = 'some-time' WHERE `07_count_drinks` = '';
+UPDATE entries SET `07_set_number_drinks` = 'some-time' WHERE `07_set_number_drinks` = '';
+UPDATE entries SET `07_eat_before` = 'some-time' WHERE `07_eat_before` = '';
+UPDATE entries SET `07_space_drinks_out` = 'some-time' WHERE `07_space_drinks_out` = '';
+UPDATE entries SET `07_alternate_drinks` = 'some-time' WHERE `07_alternate_drinks` = '';
+UPDATE entries SET `07_drink_for_quality` = 'some-time' WHERE `07_drink_for_quality` = '';
+UPDATE entries SET `07_avoid_drinking_games` = 'some-time' WHERE `07_avoid_drinking_games` = '';
+UPDATE entries SET `07_have_a_reliable_driver` = 'some-time' WHERE `07_have_a_reliable_driver` = '';
+UPDATE entries SET `07_preplan_transportation` = 'some-time' WHERE `07_preplan_transportation` = '';
+UPDATE entries SET `07_dst_protection` = 'some-time' WHERE `07_dst_protection` = '';
+UPDATE entries SET `07_watch_out_for_each_other` = 'some-time' WHERE `07_watch_out_for_each_other` = '';
