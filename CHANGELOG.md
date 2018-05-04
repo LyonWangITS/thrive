@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.8] - 2018-05-04
+### Changed
+- Do a 3-step rename of 'sort-time' enum value on form 07 fields (Philip Chase)
+
+
 ## [1.1.7] - 2018-05-04
 ### Changed
 - Fixed selection of "Some of the time"
