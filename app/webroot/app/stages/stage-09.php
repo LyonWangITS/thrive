@@ -39,10 +39,10 @@
 
 	<i class="icn number">03</i>
 
-	<p>How soon after waking to you smoke your first cigarette?</p>
+	<p>How soon after waking do you smoke your first cigarette?</p>
 
 	<div class="select styled">
-		<select name="tobacco_init" title="How soon after waking to you smoke your first cigarette?">
+		<select name="tobacco_init" title="How soon after waking do you smoke your first cigarette?">
 			<option value="">Please select</option>
 			<option value="0">I do not smoke on a daily basis</option>
 			<option value="5">Within 5 minutes</option>
