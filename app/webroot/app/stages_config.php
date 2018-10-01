@@ -447,8 +447,8 @@ function get_feedback_facts() {
 			'label' => 'Standard Drinks',
 			'content' => 'Alcohol comes in all different types, colours and containers. Regardless of this, a standard drink is about 14 grams or 17.7mL of pure alcohol. Alcohol labels are displayed on the bottle to tell you how many standard drinks it contains. Remember one bottle/can/glass doesn\'t always equal one standard drink.',
 			'list' => array(
-				'Men shouldn\'t drink more than 4 standard drinks a day to avoid long-term harm, with at least two alcohol-free days a week.',
-				'Women shouldn\'t drink more than 3 standard drinks a day to avoid long-term harm, with at least two alcohol-free days a week.',
+				'Males are recommended to limit drinking to no more than 4 standard drinks a day to avoid long-term harm, with at least two alcohol-free days a week.',
+				'Females are recommended to limit drinking to no more than 3 standard drinks a day to avoid long-term harm, with at least two alcohol-free days a week.',
 			),
 		),
 		array(
