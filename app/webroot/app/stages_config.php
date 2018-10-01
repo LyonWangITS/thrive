@@ -459,8 +459,8 @@ function get_feedback_facts() {
 			'label' => 'Staying Under the Limit',
 			'content' => 'It doesn\'t take much to put you over the 0.08% blood alcohol concentration (BAC) limit (0.02% for those under the age of 21). To stay under this:',
 			'list' => array(
-				'Women of average size shouldn\'t drink more than one standard drink per hour; and',
-				'Men of average size can drink up to two standard drinks in the first hour and no more than one standard drink per hour after that.',
+				'Females of average size are recommended to limit drinking to no more than one standard drink per hour; and',
+				'Males of average size are recommended to limit drinking to no more than two standard drinks in the first hour and then no more than one standard drink per hour after that.',
 			),
 		),
 		array(
