@@ -389,7 +389,7 @@ function get_feedback_tips($version) {
 			),
 			array(
 				'label' => 'Stay off the road',
-				'content' => 'Plan how you\'re getting home before you go out. Grab a taxi - go in a group and you can share the bill. Put the taxi number in your phone. If you\'re organizing a designated driver, make sure they really are not drinking - the last thing you want is to have no money and no one able to drive when it is time to head home.',
+				'content' => 'Plan how you\'re getting home before you go out. Grab a taxi, Uber or Lyft - go in a group and you can share the bill. Put the taxi number in your phone or download a ride sharing app onto your smartphone and make sure you have current credit card info entered. If you\'re organizing a designated driver, make sure they really are not drinking - the last thing you want is to have no money and no one able to drive when it is time to head home.',
 			),
 			array(
 				'label' => 'Mixers',
