@@ -453,7 +453,7 @@ function get_feedback_facts() {
 		),
 		array(
 			'label' => 'Everyone is Different',
-			'content' => 'People come in all different shapes and sizes, so depending on your gender, age, weight and other factors; you may be affected by alcohol more than others. Get to know your body in relation to the standard drink guidelines, and try to keep one to two days a week free of alcohol.',
+			'content' => 'People come in all different shapes and sizes, so depending on your sex, age, weight and other factors; you may be affected by alcohol more than others. Get to know your body in relation to the standard drink guidelines, and try to keep one to two days a week free of alcohol.',
 		),
 		array(
 			'label' => 'Staying Under the Limit',
