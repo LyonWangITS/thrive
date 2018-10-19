@@ -126,8 +126,8 @@ function init_stage_form( form_stage ){
 			id		: 'standard-drinks-slider',
 			from	: 0,
 			from_label: 'Select',
-			to		: 25,
-			to_label: '25+',
+			to		: 36,
+			to_label: '36+',
 			field	: $('.stage-form input[name=past_4wk_largest_number_single_occasion]'),
 			unit	: {
 				singular 	: 'drink',
@@ -262,7 +262,7 @@ function stage_form_complete( form_stage ){
 		var hours_val = $('input[name="past_4wk_hours_amount_drank"]').val();
 
 		form_fields_checked = {
-			'past_4wk_largest_number_single_occasion'	: { skip : true, valid : single_oc_val > 0 || single_oc_val === '25+' },
+			'past_4wk_largest_number_single_occasion'	: { skip : true, valid : single_oc_val > 0 || single_oc_val === '36+' },
 			'past_4wk_hours_amount_drank'				: { skip : true, valid : hours_val > 0 || hours_val === '24+' },
 			'body_height-cm'							: { skip : true, accepts : 'number', valid : false },
 			'body_height-feet'							: { skip : true, accepts : 'number', valid : false },

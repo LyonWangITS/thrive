@@ -69,6 +69,7 @@
 			<option value="dorm">Dorm</option>
 			<option value="with-parents">Apartment or house with parents or other relatives</option>
 			<option value="with-roommates">Apartment or house with friends or roommates</option>
+			<option value="with-roommates">Apartment or house alone</option>
 		</select>
 	</div>
 	<i class="icn accom"></i>

@@ -222,7 +222,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 					'suffered_work_quality' => 'The quality of my work or schoolwork has suffered because of my drinking.',
 					'spend_too_much_time_drinking' => 'I have spent too much time drinking.',
 					'neglect_obligations' => 'I have neglected my obligations to family, work, or school because of drinking.',
-					'relationship_problems' => 'My drinking has created problems between myself and my boyfriend/girlfriend/spouse, parents, or other near relatives.',
+					'relationship_problems' => 'My drinking has created problems between myself and my romantic partner, parents, or other near relatives.',
 					'overweight' => 'I have been overweight because of drinking.',
 					'harmed_physical_appearance' => 'My physical appearance has been harmed by my drinking.',
 					'need_drink_before_breakfast' => 'I have felt like I needed a drink after I’d gotten up (that is, before breakfast).',
@@ -389,7 +389,7 @@ function get_feedback_tips($version) {
 			),
 			array(
 				'label' => 'Stay off the road',
-				'content' => 'Plan how you\'re getting home before you go out. Grab a taxi - go in a group and you can share the bill. Put the taxi number in your phone. If you\'re organizing a designated driver, make sure they really are not drinking - the last thing you want is to have no money and no one able to drive when it is time to head home.',
+				'content' => 'Plan how you\'re getting home before you go out. Grab a taxi, Uber or Lyft - go in a group and you can share the bill. Put the taxi number in your phone or download a ride sharing app onto your smartphone and make sure you have current credit card info entered. If you\'re organizing a designated driver, make sure they really are not drinking - the last thing you want is to have no money and no one able to drive when it is time to head home.',
 			),
 			array(
 				'label' => 'Mixers',
@@ -445,22 +445,22 @@ function get_feedback_facts() {
 	return array(
 		array(
 			'label' => 'Standard Drinks',
-			'content' => 'Alcohol comes in all different types, colours and containers. Regardless of this, a standard drink is about 14 grams or 17.7mL of pure alcohol. Alcohol labels are displayed on the bottle to tell you how many standard drinks it contains. Remember one bottle/can/glass doesn\'t always equal one standard drink.',
+			'content' => 'Alcohol comes in all different types, colours and containers. Regardless of this, a standard drink is about 14 grams or 17.7mL of pure alcohol. Alcohol labels are displayed on the bottle to tell you how many standard drinks it contains. Remember one bottle/can/glass doesn\'t always equal one standard drink. The National Institute on Alcohol Abuse and Alcoholism has some recommendations about number of drinks per day and per week.',
 			'list' => array(
-				'Men shouldn\'t drink more than 4 standard drinks a day to avoid long-term harm, with at least two alcohol-free days a week.',
-				'Women shouldn\'t drink more than 3 standard drinks a day to avoid long-term harm, with at least two alcohol-free days a week.',
+				'Males are recommended to limit drinking to no more than 4 standard drinks a day to avoid long-term harm, with at least two alcohol-free days a week.',
+				'Females are recommended to limit drinking to no more than 3 standard drinks a day to avoid long-term harm, with at least two alcohol-free days a week.',
 			),
 		),
 		array(
 			'label' => 'Everyone is Different',
-			'content' => 'People come in all different shapes and sizes, so depending on your gender, age, weight and other factors; you may be affected by alcohol more than others. Get to know your body in relation to the standard drink guidelines, and try to keep one to two days a week free of alcohol.',
+			'content' => 'People come in all different shapes and sizes, so depending on your sex, age, weight and other factors; you may be affected by alcohol more than others. Get to know your body in relation to the standard drink guidelines, and try to keep one to two days a week free of alcohol.',
 		),
 		array(
 			'label' => 'Staying Under the Limit',
 			'content' => 'It doesn\'t take much to put you over the 0.08% blood alcohol concentration (BAC) limit (0.02% for those under the age of 21). To stay under this:',
 			'list' => array(
-				'Women of average size shouldn\'t drink more than one standard drink per hour; and',
-				'Men of average size can drink up to two standard drinks in the first hour and no more than one standard drink per hour after that.',
+				'Females of average size are recommended to limit drinking to no more than one standard drink per hour; and',
+				'Males of average size are recommended to limit drinking to no more than two standard drinks in the first hour and then no more than one standard drink per hour after that.',
 			),
 		),
 		array(

@@ -39,7 +39,7 @@
 			<div class="selected-area"></div>
 			<div class="tooltip">Select</div>
 			<div class="left-value slider-value"></div>
-			<div class="right-value slider-value">25+</div>
+			<div class="right-value slider-value">36+</div>
 		</div>
 	</div>
 
