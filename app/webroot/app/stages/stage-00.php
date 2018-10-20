@@ -17,7 +17,7 @@
 
 		<h1>Welcome</h1>
 		<p>This survey will ask questions about your alcohol and tobacco use and provide you personalized feedback on your drinking. It will take approximately 10 minute to complete.</p>
-		<p>The survey is conducted by the University of Florida to explore the use of alcohol by college students. Administrators at the University of Florida will not be made aware of your responses. Your participation helps us to evaluate the use of Internet-based methods of health promotion and data collection.</p>
+		<p>The survey is conducted by the University of Florida to explore the use of alcohol by young adults. Administrators at the University of Florida will not be made aware of your responses. Your participation helps us to evaluate the use of Internet-based methods of health promotion and data collection.</p>
 		<p>In order for us to personalize this survey for you, please enter a name in the box below.<br>Please do not enter your last name.</p>
 
 		<form method="post" class="stage-form">
