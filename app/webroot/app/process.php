@@ -131,7 +131,6 @@ function doProcess( $the_survey, $existing_token, $version ){
 			$weekdays = array_keys($weekdays);
 
 			foreach ($weekdays as $day) {
-				$form_errors['past_4wk_drinks_' . $day] = validateField(ifne($_POST, 'past_4wk_drinks_' . $day), 'in-set', 'Please select a value', array_keys($stage_vars['tabular']['columns']));
 				$form_errors['past_4wk_std_drinks_' . $day] = validateField(ifne($_POST, 'past_4wk_std_drinks_' . $day ), 'in-set', 'Please enter a value', array_merge(range(0, 24), array('25+')));
 			}
 
@@ -144,9 +143,6 @@ function doProcess( $the_survey, $existing_token, $version ){
 				);
 
 				foreach ($weekdays as $day) {
-					$field = 'past_4wk_drinks_' . $day;
-					$values['04_' . $field] = $_POST[$field];
-
 					$field = 'past_4wk_std_drinks_' . $day;
 					$values['04_' . $field] = $_POST[$field] == '25+' ? 25 : $_POST[$field];
 				}

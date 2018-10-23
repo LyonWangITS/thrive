@@ -258,7 +258,6 @@
 				);
 
 				foreach ($weekdays as $day) {
-					$stage_4_keys[] = '04_past_4wk_drinks_' . $day;
 					$stage_4_keys[] = '04_past_4wk_std_drinks_' . $day;
 				}
 

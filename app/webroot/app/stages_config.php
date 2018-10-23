@@ -107,11 +107,6 @@ function get_stage_vars($stage, $global_vars = array()) {
 	}
 
 	if ($stage == 4) {
-		$tabular_rows = array();
-		foreach (get_weekdays() as $day => $label) {
-			$tabular_rows['past_4wk_drinks_' . $day] = $label;
-		}
-
 		return array(
 			'include_drinks_guide' => true,
 			'legend' => 'Please fill in the details about your drinking habits below.',
@@ -121,17 +116,6 @@ function get_stage_vars($stage, $global_vars = array()) {
 					'Now we\'d like to ask you about your drinking in the <strong>last four weeks only</strong>.<br>We understand that this might be difficult to remember exactly so<br>for these questions please give your best estimate.',
 					'Please use the definitions of Standard Drinks below as a guide.',
 				),
-			),
-			'tabular' => array(
-				'section_number' => '01',
-				'image_name' => 'vessels',
-				'image_desc' => 'Drinking Vessel',
-				'intro' => array(
-					'Indicate below how many times you drank any alcohol on each day of the week <strong>during the past 4 weeks</strong>.',
-					'For example, if you never drank on any Tuesday, you would select "None" for Tuesdays. If you drank on every Thursday in the past 4 weeks, you would select "4" for Thursday.',
-				),
-				'columns' => array_combine(range(0, 4), array('None', '1', '2', '3', '4')),
-				'rows' => $tabular_rows,
 			),
 		);
 	}

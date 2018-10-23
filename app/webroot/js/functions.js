@@ -274,7 +274,6 @@ function stage_form_complete( form_stage ){
 		var weekdays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 		$.each(weekdays, function(i, day) {
 			var std_drinks_val = $('input[name="past_4wk_std_drinks_' + day + '"]').val();
-			form_fields_checked['past_4wk_drinks_' + day] = { type: 'radio', skip : false, valid : false };
 			form_fields_checked['past_4wk_std_drinks_' + day] = {  skip : true, valid : std_drinks_val >= 0 || std_drinks_val === '25+' };
 		});
 
