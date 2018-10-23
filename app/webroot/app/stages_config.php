@@ -107,11 +107,6 @@ function get_stage_vars($stage, $global_vars = array()) {
 	}
 
 	if ($stage == 4) {
-		$tabular_rows = array();
-		foreach (get_weekdays() as $day => $label) {
-			$tabular_rows['past_4wk_drinks_' . $day] = $label;
-		}
-
 		return array(
 			'include_drinks_guide' => true,
 			'legend' => 'Please fill in the details about your drinking habits below.',
@@ -121,17 +116,6 @@ function get_stage_vars($stage, $global_vars = array()) {
 					'Now we\'d like to ask you about your drinking in the <strong>last four weeks only</strong>.<br>We understand that this might be difficult to remember exactly so<br>for these questions please give your best estimate.',
 					'Please use the definitions of Standard Drinks below as a guide.',
 				),
-			),
-			'tabular' => array(
-				'section_number' => '01',
-				'image_name' => 'vessels',
-				'image_desc' => 'Drinking Vessel',
-				'intro' => array(
-					'Indicate below how many times you drank any alcohol on each day of the week <strong>during the past 4 weeks</strong>.',
-					'For example, if you never drank on any Tuesday, you would select "None" for Tuesdays. If you drank on every Thursday in the past 4 weeks, you would select "4" for Thursday.',
-				),
-				'columns' => array_combine(range(0, 4), array('None', '1', '2', '3', '4')),
-				'rows' => $tabular_rows,
 			),
 		);
 	}
@@ -222,7 +206,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 					'suffered_work_quality' => 'The quality of my work or schoolwork has suffered because of my drinking.',
 					'spend_too_much_time_drinking' => 'I have spent too much time drinking.',
 					'neglect_obligations' => 'I have neglected my obligations to family, work, or school because of drinking.',
-					'relationship_problems' => 'My drinking has created problems between myself and my boyfriend/girlfriend/spouse, parents, or other near relatives.',
+					'relationship_problems' => 'My drinking has created problems between myself and my romantic partner, parents, or other near relatives.',
 					'overweight' => 'I have been overweight because of drinking.',
 					'harmed_physical_appearance' => 'My physical appearance has been harmed by my drinking.',
 					'need_drink_before_breakfast' => 'I have felt like I needed a drink after I’d gotten up (that is, before breakfast).',
@@ -364,36 +348,16 @@ function get_feedback_tips($version) {
 				'content' => 'There are more reasons to stick with your friends than just to laugh at them when they start stumbling. Looking out for them (and they for you) can ensure that the night ends on a good note and not with someone left on the side of the road or unconscious in a toilet stall.',
 			),
 			array(
-				'label' => 'Cashed up?',
-				'content' => 'Two-minute noodle dinners can get pretty boring after the second week - but then that might be the only option after a big night out! Carrying less money with you when you go out reduces the amount of alcohol you purchase which can be good for your body as well as your pocket. Make sure you leave some aside though if you need to catch a taxi - try putting it in your shoe so you\'re less likely to spend it.',
-			),
-			array(
-				'label' => 'How many have you had?',
-				'content' => 'Do you know what a standard drink is? It\'s a measurement of alcohol and it isn\'t always the same as a bottle/can/glass. Most drinks are more than a single \'standard drink\' so you could be consuming more than you think. Safe drinking guidelines are based on this measurement so it pays to know what they are. Set a limit at the start of the night and stick to it. Avoid partial drink refills so you can actually keep track.',
-			),
-			array(
-				'label' => 'Slow down',
-				'content' => 'Extend your night - space your drinks with water or soft drinks. It\'ll keep you hydrated and less likely to end up on the floor. Even start off your night with a non-alcoholic drink to quench your thirst before moving onto the booze. Grab a bite to eat beforehand and snack throughout the night.',
-			),
-			array(
-				'label' => 'Be yourself',
-				'content' => 'If you don\'t feel like another drink or want to drink at your own pace, real friends should respect that. If you\'re getting hassled, tell them you\'re driving, on antibiotics, or you\'re a sexual athlete who needs to perform later that night. And soft drinks look the same whether there\'s alcohol in them or not. Find something that works for you.',
-			),
-			array(
-				'label' => 'Can I buy you a drink?',
-				'content' => 'There might be some strangers you want to meet, but it\'s probably better to do it while you\'re conscious. Drink spiking happens - to girls and guys. To protect yourself, only accept drinks from people you don\'t know if they are unopened cans or bottles. Never leave your drink unattended and keep a thumb over the top of your bottle - it\'ll also help prevent you wasting your drink if your arms get a little too excited.',
-			),
-			array(
 				'label' => 'Unwanted gifts',
 				'content' => 'Getting lucky doesn\'t mean you have to get Chlamydia. If there\'s any possibility that you may end up in bed with someone - carry a condom with you - and make sure you know how to use it.',
 			),
 			array(
 				'label' => 'Stay off the road',
-				'content' => 'Plan how you\'re getting home before you go out. Grab a taxi - go in a group and you can share the bill. Put the taxi number in your phone. If you\'re organizing a designated driver, make sure they really are not drinking - the last thing you want is to have no money and no one able to drive when it is time to head home.',
+				'content' => 'Plan how you\'re getting home before you go out. Grab a taxi, Uber or Lyft - go in a group and you can share the bill. Put the taxi number in your phone or download a ride sharing app onto your smartphone and make sure you have current credit card info entered. If you\'re organizing a designated driver, make sure they really are not drinking - the last thing you want is to have no money and no one able to drive when it is time to head home.',
 			),
 			array(
-				'label' => 'Mixers',
-				'content' => 'Diversity might be the spice of life but when it comes to drugs it can be fatal. Mixing alcohol with other drugs - even prescribed medication can have unanticipated effects. Stick to the alcohol and if you\'re sick take the night off.',
+				'label' => 'How to designate a driver',
+				'content' => 'If you\'re organizing a designated driver, make sure they really are not drinking - the last thing you want is to get home-time with no money and no one is able to drive.',
 			),
 		);
 	}
@@ -445,22 +409,22 @@ function get_feedback_facts() {
 	return array(
 		array(
 			'label' => 'Standard Drinks',
-			'content' => 'Alcohol comes in all different types, colours and containers. Regardless of this, a standard drink is about 14 grams or 17.7mL of pure alcohol. Alcohol labels are displayed on the bottle to tell you how many standard drinks it contains. Remember one bottle/can/glass doesn\'t always equal one standard drink.',
+			'content' => 'Alcohol comes in all different types, colours and containers. Regardless of this, a standard drink is about 14 grams or 17.7mL of pure alcohol. Alcohol labels are displayed on the bottle to tell you how many standard drinks it contains. Remember one bottle/can/glass doesn\'t always equal one standard drink. The National Institute on Alcohol Abuse and Alcoholism has some recommendations about number of drinks per day and per week.',
 			'list' => array(
-				'Men shouldn\'t drink more than 4 standard drinks a day to avoid long-term harm, with at least two alcohol-free days a week.',
-				'Women shouldn\'t drink more than 3 standard drinks a day to avoid long-term harm, with at least two alcohol-free days a week.',
+				'Males are recommended to limit drinking to no more than 4 standard drinks a day to avoid long-term harm, with at least two alcohol-free days a week.',
+				'Females are recommended to limit drinking to no more than 3 standard drinks a day to avoid long-term harm, with at least two alcohol-free days a week.',
 			),
 		),
 		array(
 			'label' => 'Everyone is Different',
-			'content' => 'People come in all different shapes and sizes, so depending on your gender, age, weight and other factors; you may be affected by alcohol more than others. Get to know your body in relation to the standard drink guidelines, and try to keep one to two days a week free of alcohol.',
+			'content' => 'People come in all different shapes and sizes, so depending on your sex, age, weight and other factors; you may be affected by alcohol more than others. Get to know your body in relation to the standard drink guidelines, and try to keep one to two days a week free of alcohol.',
 		),
 		array(
 			'label' => 'Staying Under the Limit',
 			'content' => 'It doesn\'t take much to put you over the 0.08% blood alcohol concentration (BAC) limit (0.02% for those under the age of 21). To stay under this:',
 			'list' => array(
-				'Women of average size shouldn\'t drink more than one standard drink per hour; and',
-				'Men of average size can drink up to two standard drinks in the first hour and no more than one standard drink per hour after that.',
+				'Females of average size are recommended to limit drinking to no more than one standard drink per hour; and',
+				'Males of average size are recommended to limit drinking to no more than two standard drinks in the first hour and then no more than one standard drink per hour after that.',
 			),
 		),
 		array(

@@ -247,21 +247,6 @@
 					'04_body_weight_kg'
 				);
 
-				$weekdays = array(
-					'mon',
-					'tue',
-					'wed',
-					'thu',
-					'fri',
-					'sat',
-					'sun',
-				);
-
-				foreach ($weekdays as $day) {
-					$stage_4_keys[] = '04_past_4wk_drinks_' . $day;
-					$stage_4_keys[] = '04_past_4wk_std_drinks_' . $day;
-				}
-
 				$page_vars = get_stage_vars(5);
 				foreach (array_keys($page_vars['tabular']['rows']) as $field) {
 					if ( ifne( $this->data, '05_' . $field, null ) === null ) {

@@ -46,7 +46,7 @@
 
 	<div class="score-text <?php echo $donut_class ?>">
 
-		<h2>Your audit score is <strong><?php echo $the_audit_score ?></strong></h2>
+		<h2>Your AUDIT score is <strong><?php echo $the_audit_score ?></strong></h2>
 
 		<div class="description">
 

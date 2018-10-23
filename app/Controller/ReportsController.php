@@ -388,7 +388,7 @@ class ReportsController extends AppController {
 				( !empty( $entry['Entry']['03_been_injured_or_injured_someone'] ) ) ? $this->have_you_ever[$entry['Entry']['03_been_injured_or_injured_someone']] : '',
 				( !empty( $entry['Entry']['03_others_concerned_about_my_drinking'] ) ) ? $this->have_you_ever[$entry['Entry']['03_others_concerned_about_my_drinking']] : '',
 
-				$entry['Entry']['04_past_4wk_largest_number_single_occasion'] == 25 ? '25+' : $entry['Entry']['04_past_4wk_largest_number_single_occasion'],
+				$entry['Entry']['04_past_4wk_largest_number_single_occasion'] == 36 ? '36+' : $entry['Entry']['04_past_4wk_largest_number_single_occasion'],
 				$entry['Entry']['04_past_4wk_hours_amount_drank'] == 24 ? '24+' : $entry['Entry']['04_past_4wk_hours_amount_drank'],
 				$entry['Entry']['04_body_height_cm'],
 				$entry['Entry']['04_body_weight_kg'],
