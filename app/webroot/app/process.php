@@ -127,13 +127,6 @@ function doProcess( $the_survey, $existing_token, $version ){
 				'body_weight_kg' => validateField( ifne( $_POST, 'body_weight-number' ), 'notempty', 'Please enter your weight' )
 			);
 
-			$weekdays = get_weekdays();
-			$weekdays = array_keys($weekdays);
-
-			foreach ($weekdays as $day) {
-				$form_errors['past_4wk_std_drinks_' . $day] = validateField(ifne($_POST, 'past_4wk_std_drinks_' . $day ), 'in-set', 'Please enter a value', array_merge(range(0, 24), array('25+')));
-			}
-
 			if ( formIsValid( $form_errors ) ) {
 				$values = array(
 					'04_past_4wk_largest_number_single_occasion' => $_POST[ 'past_4wk_largest_number_single_occasion' ] == '36+' ? 36 : $_POST[ 'past_4wk_largest_number_single_occasion' ],
@@ -141,11 +134,6 @@ function doProcess( $the_survey, $existing_token, $version ){
 					'04_body_height_cm' => $body_height_cm,
 					'04_body_weight_kg' => $_POST[ 'body_weight-number'] * ( ifne( $_POST, 'body_weight-unit', 'kg' ) == 'lbs' ? 0.453592 : 1 )
 				);
-
-				foreach ($weekdays as $day) {
-					$field = 'past_4wk_std_drinks_' . $day;
-					$values['04_' . $field] = $_POST[$field] == '25+' ? 25 : $_POST[$field];
-				}
 
 				$the_survey->save($values);
 				do_survey_redirect($existing_token, $version);
