@@ -22,7 +22,7 @@
 	<div class="select styled">
 		<select name="age" id="age" title="Please select your age from the drop down.">
 			<option value="">Please select</option>
-			<?php foreach (range(18, 24) as $i): ?>
+			<?php foreach (range(18, 30) as $i): ?>
 				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 			<?php endforeach; ?>
 		</select>

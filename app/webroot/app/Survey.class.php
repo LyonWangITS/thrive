@@ -611,7 +611,11 @@
 			$avg = array();
 
 			if ($this->data['01_gender'] == 'male') {
-				if ($this->data['01_age'] > 20) {
+				if ($this->data['01_age'] <= 20) {
+					$avg['occasion'] = 3.84;
+					$avg['week'] = 5.91;
+				}
+				elseif ($this->data['01_age'] > 20 && $this->data['01_age'] <= 24) {
 					$avg['occasion'] = 4.22;
 					$avg['week'] = 8.16;
 				}
@@ -621,7 +625,11 @@
 				}
 			}
 			else {
-				if ($this->data['01_age'] > 20) {
+				if ($this->data['01_age'] <= 20) {
+					$avg['occasion'] = 2.95;
+					$avg['week'] = 3.62;
+				}
+				elseif ($this->data['01_age'] > 20 && $this->data['01_age'] <= 24) {
 					$avg['occasion'] = 2.93;
 					$avg['week'] = 4.42;
 				}
