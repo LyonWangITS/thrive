@@ -352,8 +352,8 @@ function get_feedback_tips($version) {
 				'content' => 'Getting lucky doesn\'t mean you have to get Chlamydia. If there\'s any possibility that you may end up in bed with someone - carry a condom with you - and make sure you know how to use it.',
 			),
 			array(
-				'label' => 'Stay off the road',
-				'content' => 'Plan how you\'re getting home before you go out. Grab a taxi, Uber or Lyft - go in a group and you can share the bill. Put the taxi number in your phone or download a ride sharing app onto your smartphone and make sure you have current credit card info entered. If you\'re organizing a designated driver, make sure they really are not drinking - the last thing you want is to have no money and no one able to drive when it is time to head home.',
+				'label' => 'Arrive Alive',
+				'content' => 'Plan how you\'re getting home before you go out. Grab a taxi, Uber or Lyft - go in a group and you can share the bill. Put the taxi number in your phone or download a ride sharing app onto your smartphone and make sure you have current credit card info entered.',
 			),
 			array(
 				'label' => 'How to designate a driver',
