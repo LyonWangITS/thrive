@@ -22,7 +22,7 @@
 	<div class="select styled">
 		<select name="age" id="age" title="Please select your age from the drop down.">
 			<option value="">Please select</option>
-			<?php foreach (range(18, 24) as $i): ?>
+			<?php foreach (range(18, 30) as $i): ?>
 				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 			<?php endforeach; ?>
 		</select>
@@ -69,7 +69,7 @@
 			<option value="dorm">Dorm</option>
 			<option value="with-parents">Apartment or house with parents or other relatives</option>
 			<option value="with-roommates">Apartment or house with friends or roommates</option>
-			<option value="with-roommates">Apartment or house alone</option>
+			<option value="alone">Apartment or house alone</option>
 		</select>
 	</div>
 	<i class="icn accom"></i>

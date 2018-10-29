@@ -247,21 +247,6 @@
 					'04_body_weight_kg'
 				);
 
-				$weekdays = array(
-					'mon',
-					'tue',
-					'wed',
-					'thu',
-					'fri',
-					'sat',
-					'sun',
-				);
-
-				foreach ($weekdays as $day) {
-					$stage_4_keys[] = '04_past_4wk_drinks_' . $day;
-					$stage_4_keys[] = '04_past_4wk_std_drinks_' . $day;
-				}
-
 				$page_vars = get_stage_vars(5);
 				foreach (array_keys($page_vars['tabular']['rows']) as $field) {
 					if ( ifne( $this->data, '05_' . $field, null ) === null ) {
@@ -626,7 +611,11 @@
 			$avg = array();
 
 			if ($this->data['01_gender'] == 'male') {
-				if ($this->data['01_age'] > 20) {
+				if ($this->data['01_age'] <= 20) {
+					$avg['occasion'] = 3.84;
+					$avg['week'] = 5.91;
+				}
+				elseif ($this->data['01_age'] > 20 && $this->data['01_age'] <= 24) {
 					$avg['occasion'] = 4.22;
 					$avg['week'] = 8.16;
 				}
@@ -636,7 +625,11 @@
 				}
 			}
 			else {
-				if ($this->data['01_age'] > 20) {
+				if ($this->data['01_age'] <= 20) {
+					$avg['occasion'] = 2.95;
+					$avg['week'] = 3.62;
+				}
+				elseif ($this->data['01_age'] > 20 && $this->data['01_age'] <= 24) {
 					$avg['occasion'] = 2.93;
 					$avg['week'] = 4.42;
 				}

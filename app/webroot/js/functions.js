@@ -104,22 +104,6 @@ function init_stage_form( form_stage ){
 		});
 
 	} else if ( form_stage == 4 ){
-		
-		var weekdays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
-		$.each(weekdays, function(i, value) {
-			buildSlider({
-				id		: 'standard-drinks-slider_' + value,
-				from	: -1,
-				from_label: 'Select',
-				to		: 25,
-				to_label: '25+',
-				field	: $('.stage-form input[name=past_4wk_std_drinks_' + value + ']'),
-				unit	: {
-					singular 	: 'drink',
-					plural		: 'drinks'
-				}
-			});
-		});
 
 		// last four weeks, drinks consumed on a single occasion
 		buildSlider({
@@ -270,13 +254,6 @@ function stage_form_complete( form_stage ){
 			'body_weight-number'						: { skip : false, accepts : 'number', valid : false },
 			'body_weight-unit'							: { type : 'select', skip : false, valid : false }
 		};
-
-		var weekdays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
-		$.each(weekdays, function(i, day) {
-			var std_drinks_val = $('input[name="past_4wk_std_drinks_' + day + '"]').val();
-			form_fields_checked['past_4wk_drinks_' + day] = { type: 'radio', skip : false, valid : false };
-			form_fields_checked['past_4wk_std_drinks_' + day] = {  skip : true, valid : std_drinks_val >= 0 || std_drinks_val === '25+' };
-		});
 
 		//Manually validate height fields
 		var height_cm_field = $('input[name=body_height-cm]');

@@ -40,10 +40,10 @@ function doProcess( $the_survey, $existing_token, $version ){
 
 			$form_errors = array(
 				'gender' => validateField( ifne( $_POST, 'gender' ), 'in-set', 'Gender is unrecognized', array('female','male','transgender-ftm','transgender-mtf','genderqueer','androgynous','intersex') ),
-				'age' => validateField( ifne( $_POST, 'age' ), 'in-set', 'Please select a value', array( 18,19,20,21,22,23,24 ) ),
+				'age' => validateField( ifne( $_POST, 'age' ), 'in-set', 'Please select a value', array( 18,19,20,21,22,23,24,25,26,27,28,29,30 ) ),
 				'race' => validateField( ifne( $_POST, 'race' ), 'in-set', 'Please select a value', array( 'native-american','asian','hawaiian','black','white','mixed-race','other','skip' ) ),
 				'ethnicity' => validateField( ifne( $_POST, 'ethnicity' ), 'in-set', 'Please select a value', array( 'hispanic-latino','not-hispanic-latino','skip' ) ),
-				'where' => validateField( ifne( $_POST, 'where' ), 'in-set', 'Please select a value', array( 'dorm','with-parents','with-roommates' ) ),
+				'where' => validateField( ifne( $_POST, 'where' ), 'in-set', 'Please select a value', array( 'dorm','with-parents','with-roommates', 'alone' ) ),
 			);
 
 			foreach (array('first_pet', 'first_concert', 'mother_letters', 'phone_digits') as $field) {
@@ -127,14 +127,6 @@ function doProcess( $the_survey, $existing_token, $version ){
 				'body_weight_kg' => validateField( ifne( $_POST, 'body_weight-number' ), 'notempty', 'Please enter your weight' )
 			);
 
-			$weekdays = get_weekdays();
-			$weekdays = array_keys($weekdays);
-
-			foreach ($weekdays as $day) {
-				$form_errors['past_4wk_drinks_' . $day] = validateField(ifne($_POST, 'past_4wk_drinks_' . $day), 'in-set', 'Please select a value', array_keys($stage_vars['tabular']['columns']));
-				$form_errors['past_4wk_std_drinks_' . $day] = validateField(ifne($_POST, 'past_4wk_std_drinks_' . $day ), 'in-set', 'Please enter a value', array_merge(range(0, 24), array('25+')));
-			}
-
 			if ( formIsValid( $form_errors ) ) {
 				$values = array(
 					'04_past_4wk_largest_number_single_occasion' => $_POST[ 'past_4wk_largest_number_single_occasion' ] == '36+' ? 36 : $_POST[ 'past_4wk_largest_number_single_occasion' ],
@@ -142,14 +134,6 @@ function doProcess( $the_survey, $existing_token, $version ){
 					'04_body_height_cm' => $body_height_cm,
 					'04_body_weight_kg' => $_POST[ 'body_weight-number'] * ( ifne( $_POST, 'body_weight-unit', 'kg' ) == 'lbs' ? 0.453592 : 1 )
 				);
-
-				foreach ($weekdays as $day) {
-					$field = 'past_4wk_drinks_' . $day;
-					$values['04_' . $field] = $_POST[$field];
-
-					$field = 'past_4wk_std_drinks_' . $day;
-					$values['04_' . $field] = $_POST[$field] == '25+' ? 25 : $_POST[$field];
-				}
 
 				$the_survey->save($values);
 				do_survey_redirect($existing_token, $version);

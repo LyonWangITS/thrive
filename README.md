@@ -2,10 +2,12 @@
 
 ## Accessing the management app
 
-Access logins at https://thrive.dev/admin/login
+Access logins at [https://thrive.test/admin/login](https://thrive.test/admin/login)
 
-The default admin account is admin@example.com, password of 'password'.
-The default site account at Demo University is demo@example.com, password of 'password'.
+The default admin account is `admin@example.com`, password of `password`.
+The default site account at Demo University is `demo@example.com`, password of `password`.
+
+Survey results can be accessed by logging in at [https://thrive.test/admin/login](https://thrive.test/admin/login) as `albert@example.com` with password of `password`.
 
 
 ## Survey access

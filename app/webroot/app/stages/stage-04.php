@@ -1,35 +1,6 @@
-<?php include 'commons/tabular.php'; ?>
-
-<div class="field clearfix">
-
-	<i class="icn number">02</i>
-
-	<p>Thinking about only the days you consumed alcohol <strong>during the past 4 weeks</strong>, please enter the average number of <strong>standard drinks</strong> you consumed on each of those days.</p>
-	<p>For example, when you drink on Tuesdays, if you usually have about 2 drinks, you would select "2" for Tuesday. When you drink on Thursdays, if you usually have about 25 drinks, you would select “25+” for Thursday.</p>
-
-</div><!-- field -->
-
-<?php foreach (get_weekdays() as $day => $label): ?>
-	<div class="field tabular tabular-slider clearfix">
-		<p><?php echo $label; ?></p>
-		<div class="input-wrap">
-			<div class="slider-wrapper">
-				<div id="standard-drinks-slider_<?php echo $day; ?>" class="slider dragdealer">
-					<div class="red-bar handle">drag me</div>
-					<div class="selected-area"></div>
-					<div class="tooltip">Select</div>
-					<div class="left-value slider-value"></div>
-					<div class="right-value slider-value">25+</div>
-				</div>
-				<input type="hidden" name="past_4wk_std_drinks_<?php echo $day; ?>" value="-1" />
-			</div>
-		</div>
-	</div><!-- field -->
-<?php endforeach; ?>
-
 <div class="field slider clearfix">
 
-	<i class="icn number">03</i>
+	<i class="icn number">01</i>
 
 	<p>In the <strong>last four weeks</strong> what is the largest number of standard drinks you have consumed on a single occasion?</p>
 
@@ -43,13 +14,13 @@
 		</div>
 	</div>
 
-	<input type="hidden" name="past_4wk_largest_number_single_occasion" value="0" />
+	<input type="hidden" name="past_4wk_largest_number_single_occasion" value="-1" />
 
 </div><!-- field -->
 
 <div class="field slider hours clearfix">
 
-	<i class="icn number">04</i>
+	<i class="icn number">02</i>
 
 	<p>Over how many hours did you drink this amount (to the nearest hour)?</p>
 
@@ -79,7 +50,7 @@
 
 <div class="field clearfix">
 
-	<i class="icn number">05</i>
+	<i class="icn number">03</i>
 
 	<p>In order for us to calculate your Blood Alcohol Concentration please give your best estimate of your height and weight:</p>
 
