@@ -173,6 +173,7 @@ class ReportsController extends AppController {
 		'dorm' => 'Dorm',
 		'with-parents' => 'Apartment or house with parents or other relatives',
 		'with-roommates' => 'Apartment or house with friends or roommates',
+		'alone' => 'Apartment or house alone',
 	);
 
 	public $history = array(
