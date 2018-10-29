@@ -397,17 +397,6 @@ class ReportsController extends AppController {
 
 			$row = $this->_append_tabular_columns_to_row($row, $entry, 2);
 
-			foreach (array('', 'std_') as $prefix) {
-				foreach ($days as $day) {
-					$field = '04_past_4wk_' . $prefix . 'drinks_' . $day;
-					$row[] = $entry['Entry'][$field] == 25 ? '25+' : $entry['Entry'][$field];
-				}
-			}
-
-			foreach (range(5, 8) as $step) {
-				$row = $this->_append_tabular_columns_to_row($row, $entry, $step);
-			}
-
 			$row[] = !empty($entry['Entry']['09_tobacco_use']) ? $this->tobacco_use[$entry['Entry']['09_tobacco_use']] : '';
 			$row[] = $entry['Entry']['09_tobacco_frequency'];
 			$row[] = !empty($entry['Entry']['09_tobacco_init']) ? $this->tobacco_init[$entry['Entry']['09_tobacco_init']] : '';
