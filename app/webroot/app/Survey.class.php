@@ -634,8 +634,8 @@
 					$avg['week'] = 4.42;
 				}
 				else {
-					$avg['occasion'] = 2.95;
-					$avg['week'] = 3.62;
+					$avg['occasion'] = 0;
+					$avg['week'] = 0;
 				}
 			}
 
