@@ -17,7 +17,7 @@
 -- update accounts set password =  sha1(concat('hfsd8f7hF7SDH*(#S7DHF78fshd88S8D76&^FSDsd' , 'password'));
 INSERT INTO `accounts` VALUES (1,'Admin',NULL,'cts-it-all@ctsi.ufl.edu',NULL,'password',NULL,NULL,1);
 INSERT INTO `accounts` VALUES (2,'Robert Leeman',1,'robert.leeman@ufl.edu',NULL,'password',NULL,1,0);
-update accounts set password =  sha1(concat('hfsd8f7hF7SDH*(#S7DHF78fshd88S8D76&^FSDsd' , 'change this password'));
+update accounts set password =  sha1(concat('hfsd8f7hF7SDH*(#S7DHF78fshd88S8D76&^FSDsd' , 'change this password')) WHERE id in (1, 2);
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 
 /*!40000 ALTER TABLE `entries` DISABLE KEYS */;
