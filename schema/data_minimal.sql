@@ -21,14 +21,6 @@ INSERT INTO `roles` VALUES (1,'Researcher',1);
 INSERT INTO `roles` VALUES (2,'Health service provider',2);
 INSERT INTO `roles` VALUES (3,'Management/Executive',3);
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
-
-/*!40000 ALTER TABLE `services` DISABLE KEYS */;
-INSERT INTO `services` VALUES (1,2,'Meridian Behavioral Health Center','(800) 330-5615, (352) 374-5615','','','','http://mbhci.org','Meridian is a private, non-profit organization. They are committed to enhancing health and wellness for all those with whom they come in contact. Whether you are looking to improve your sense of well-being, gain a performance edge, or deal with a mental illness or substance use issue, they have staff and services to meet your needs.');
-INSERT INTO `services` VALUES (2,2,'Florida Recovery Center','(855) 265-4FRC','','','','https://floridarecoverycenter.ufhealth.org','Florida Recovery Center is a treatment center that is run by UF Health. They provide all levels of care for people suffering from drug addiction or alcohol addiction who need drug rehab or alcohol treatment. The staff can provide medical consults, comprehensive labs and psychological testing for people who have an addiction and/or other psychiatric conditions.');
-INSERT INTO `services` VALUES (3,2,'Information about research studies at the University of Florida','','','','','https://www.ctsi.ufl.edu/community/become-a-research-participant, https://ufhealth.org/research-studies-clinical-trials','');
-INSERT INTO `services` VALUES (4,2,'\"Rethinking Drinking\" website','','','','','https://www.rethinkingdrinking.niaaa.nih.gov','This is an interactive website offered by the National Institute on Alcohol Abuse and Alcoholism. You can find out more about your level of risk and get useful tips to reduce your drinking');
-INSERT INTO `services` VALUES (5,2,'Other referrals','352-214-4047','','','','','Any questions or interested in additional referrals? Call us at 352-214-4047 or email us at anchorsresearch@hhp.ufl.edu. If you call, you do not need to give your name.');
-/*!40000 ALTER TABLE `services` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
