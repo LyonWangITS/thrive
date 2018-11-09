@@ -19,14 +19,14 @@ dump_schema:
 dump_minimal_data:
 	mysqldump $(FLAGS_DATA_ONLY) \
 	$(DB) \
-	lu_partner_states roles services | \
+	lu_partner_states roles | \
 	sed "s/'0000-00-00 00:00:00'/now()/g;"  > data_minimal.sql
 	du -h data_minimal.sql
 
 dump_testing_data:
 	mysqldump $(FLAGS_DATA_ONLY) \
 	$(DB) \
-	accounts entries partners pending_changes | \
+	accounts entries partners pending_changes services | \
 	sed "s/'0000-00-00 00:00:00'/now()/g;" > data_testing.sql
 
 dump_dev: dump_schema dump_minimal_data dump_testing_data
