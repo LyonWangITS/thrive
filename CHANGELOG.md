@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.1] - 2018-11-09
+### Changed
+- Update password for admin and Leeman's user accounts. (Marly Cormar)
+- Update DB_EPOCH_VERSION and CODE_VERSION. (Marly Cormar)
+- Update schema files for v1.2.0 (Marly Cormar)
+- Include database deployment instructions. (Marly Cormar)
+- Relocate services from data_minimal to data_testing. (Marly Cormar)
+- Associate db changes with the correct version number. (Marly Cormar)
+
+
 ## [1.2.0] - 2018-11-09
 ### Changed
 - Update anchors branch with changes for the anchors MSM study provided by Rober Leeman on 09-12-2018.
