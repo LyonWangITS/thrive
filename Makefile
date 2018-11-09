@@ -189,10 +189,10 @@ zip_verification:
 
 check_commit:
 ifndef COMMIT
-	$(eval COMMIT := master)
+	$(eval COMMIT := anchors_master)
 endif
 ifeq ($(COMMIT),)
-	$(eval COMMIT := master)
+	$(eval COMMIT := anchors_master)
 endif
 
 all: check_commit
