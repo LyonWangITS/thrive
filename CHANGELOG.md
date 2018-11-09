@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.0] - 2018-11-09
+### Changed
+- Update anchors branch with changes for the anchors MSM study provided by Rober Leeman on 09-12-2018.
+- Update normative scores for average ethanol consumption. (Marly Cormar)
+- Update schema and data testing. (Marly Cormar)
+- Increase max. possible age to 30. (Marly Cormar)
+- Remove past_4wk_std_drinks_* and past_4wk_drinks. (Marly Cormar)
+- Add data download instructions to README and clean up formatting (Philip Chase)
+- Expand slider bar with label "In the last four weeks what is the largest number of standard drinks you have consumed on a single occasion?" to 36+. (Marly Cormar)
+- Make aesthetic changes to the wording of instructions and feedback.
+
+
 ## [1.1.8] - 2018-05-04
 ### Changed
 - Do a 3-step rename of 'sort-time' enum value on form 07 fields (Philip Chase)
