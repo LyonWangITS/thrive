@@ -626,16 +626,16 @@
 			}
 			else {
 				if ($this->data['01_age'] <= 20) {
-					$avg['occasion'] = 2.95;
-					$avg['week'] = 3.62;
+					$avg['occasion'] = 3.9;
+					$avg['week'] = 7.19;
 				}
 				elseif ($this->data['01_age'] > 20 && $this->data['01_age'] <= 24) {
-					$avg['occasion'] = 2.93;
-					$avg['week'] = 4.42;
+					$avg['occasion'] = 3.09;
+					$avg['week'] = 8.46;
 				}
 				else {
-					$avg['occasion'] = 0;
-					$avg['week'] = 0;
+					$avg['occasion'] = 4.26;
+					$avg['week'] = 13.24;
 				}
 			}
 
