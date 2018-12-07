@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.2] - 2018-12-07
+### Changed
+- Fix female drinks per occasion/week. (Marly Cormar)
+- Change commit branch from master to anchors_master. (Marly Cormar)
+
+
 ## [1.2.1] - 2018-11-09
 ### Changed
 - Update password for admin and Leeman's user accounts. (Marly Cormar)
