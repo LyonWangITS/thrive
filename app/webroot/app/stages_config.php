@@ -369,7 +369,7 @@ function get_feedback_tips($version) {
 			),
 			array(
 				'label' => 'How many have you had?',
-				'content' => 'Do you know what a standard drink is? It\'s a measurement of alcohol and it isn\'t always the same as a bottle/can/glass. Most drinks are more than a single \'standard drink\' so you could be consuming more than you think. Safe drinking guidelines are based on this measurement so it pays to know what they are. Set a limit at the start of the night and stick to it. Avoid partial drink refills so you can actually keep track.',
+				'content' => 'Do you know what a standard drink is? It\'s a measurement of alcohol and it isn\'t always the same as a bottle/can/glass. Most drinks are more than a single \'standard drink\' so you could be consuming more than you think. Set a limit at the start of the night and stick to it. Avoid partial drink refills so you can actually keep track.',
 			),
 			array(
 				'label' => 'Slowing down',
