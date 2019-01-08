@@ -364,7 +364,7 @@ function get_feedback_tips($version) {
 				'content' => 'There are more reasons to stick with your friends than just to laugh at them when they start stumbling. Looking out for them (and they for you) can ensure that the night ends on a good note and not with someone left on the side of the road or unconscious in a toilet stall.',
 			),
 			array(
-				'label' => 'Cashed up?',
+				'label' => 'A cap on your tab?',
 				'content' => 'Two-minute noodle dinners can get pretty boring after the second week - but then that might be the only option after a big night out! Carrying less money with you when you go out reduces the amount of alcohol you purchase which can be good for your body as well as your pocket. Make sure you leave some aside though if you need to catch a taxi - try putting it in your shoe so you\'re less likely to spend it.',
 			),
 			array(
