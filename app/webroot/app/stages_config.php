@@ -430,7 +430,7 @@ function get_feedback_tips($version) {
 				'content' => 'Getting lucky doesn\'t mean you have to get Chlamydia. If there\'s any possibility that you may end up in bed with someone - carry a condom with you - and make sure you know how to use it.',
 			),
 			array(
-				'label' => 'Stay off the road',
+				'label' => 'Arrive alive',
 				'content' => 'Plan how you\'re getting home before you go out. Grab a taxi - go in a group and you can share the bill. Put the taxi number in your phone.',
 			),
 			array(
