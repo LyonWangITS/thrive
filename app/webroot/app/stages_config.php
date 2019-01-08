@@ -372,7 +372,7 @@ function get_feedback_tips($version) {
 				'content' => 'Do you know what a standard drink is? It\'s a measurement of alcohol and it isn\'t always the same as a bottle/can/glass. Most drinks are more than a single \'standard drink\' so you could be consuming more than you think. Safe drinking guidelines are based on this measurement so it pays to know what they are. Set a limit at the start of the night and stick to it. Avoid partial drink refills so you can actually keep track.',
 			),
 			array(
-				'label' => 'Slow down',
+				'label' => 'Slowing down',
 				'content' => 'Extend your night - space your drinks with water or soft drinks. It\'ll keep you hydrated and less likely to end up on the floor. Even start off your night with a non-alcoholic drink to quench your thirst before moving onto the booze. Grab a bite to eat beforehand and snack throughout the night.',
 			),
 			array(
