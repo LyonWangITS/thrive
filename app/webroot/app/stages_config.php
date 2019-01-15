@@ -364,15 +364,15 @@ function get_feedback_tips($version) {
 				'content' => 'There are more reasons to stick with your friends than just to laugh at them when they start stumbling. Looking out for them (and they for you) can ensure that the night ends on a good note and not with someone left on the side of the road or unconscious in a toilet stall.',
 			),
 			array(
-				'label' => 'Cashed up?',
+				'label' => 'A cap on your tab?',
 				'content' => 'Two-minute noodle dinners can get pretty boring after the second week - but then that might be the only option after a big night out! Carrying less money with you when you go out reduces the amount of alcohol you purchase which can be good for your body as well as your pocket. Make sure you leave some aside though if you need to catch a taxi - try putting it in your shoe so you\'re less likely to spend it.',
 			),
 			array(
 				'label' => 'How many have you had?',
-				'content' => 'Do you know what a standard drink is? It\'s a measurement of alcohol and it isn\'t always the same as a bottle/can/glass. Most drinks are more than a single \'standard drink\' so you could be consuming more than you think. Safe drinking guidelines are based on this measurement so it pays to know what they are. Set a limit at the start of the night and stick to it. Avoid partial drink refills so you can actually keep track.',
+				'content' => 'Do you know what a standard drink is? It\'s a measurement of alcohol and it isn\'t always the same as a bottle/can/glass. Most drinks are more than a single \'standard drink\' so you could be consuming more than you think. Set a limit at the start of the night and stick to it. Avoid partial drink refills so you can actually keep track.',
 			),
 			array(
-				'label' => 'Slow down',
+				'label' => 'Slowing down',
 				'content' => 'Extend your night - space your drinks with water or soft drinks. It\'ll keep you hydrated and less likely to end up on the floor. Even start off your night with a non-alcoholic drink to quench your thirst before moving onto the booze. Grab a bite to eat beforehand and snack throughout the night.',
 			),
 			array(
@@ -388,7 +388,7 @@ function get_feedback_tips($version) {
 				'content' => 'Getting lucky doesn\'t mean you have to get Chlamydia. If there\'s any possibility that you may end up in bed with someone - carry a condom with you - and make sure you know how to use it.',
 			),
 			array(
-				'label' => 'Stay off the road',
+				'label' => 'Arrive alive',
 				'content' => 'Plan how you\'re getting home before you go out. Grab a taxi, Uber or Lyft - go in a group and you can share the bill. Put the taxi number in your phone or download a ride sharing app onto your smartphone and make sure you have current credit card info entered. If you\'re organizing a designated driver, make sure they really are not drinking - the last thing you want is to have no money and no one able to drive when it is time to head home.',
 			),
 			array(
@@ -430,7 +430,7 @@ function get_feedback_tips($version) {
 				'content' => 'Getting lucky doesn\'t mean you have to get Chlamydia. If there\'s any possibility that you may end up in bed with someone - carry a condom with you - and make sure you know how to use it.',
 			),
 			array(
-				'label' => 'Stay off the road',
+				'label' => 'Arrive alive',
 				'content' => 'Plan how you\'re getting home before you go out. Grab a taxi - go in a group and you can share the bill. Put the taxi number in your phone.',
 			),
 			array(
