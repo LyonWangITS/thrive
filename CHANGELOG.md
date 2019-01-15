@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [standard_1.2.0] - 2019-01-15
+### Changed
+- Do a 3-step rename of 'sort-time' enum value on form 07 fields (Philip Chase)
+- Change heading text to 'Arrive alive' in get_feedback_tips where version = 1 (Philip Chase)
+- Change commit branch to standard_master. (Marly Cormar)
+- Replace 'Stay off the road' by 'Arrive alive'. (Marly Cormar)
+- Remove sentence starting with "Safe drinking guidelines are based ...". (Marly Cormar)
+- Change "Slow down" by "Slowing down". (Marly Cormar)
+- Change "Cashed up" by "A cap on your tab". (Marly Cormar)
+- Replace the word "gender" by "sex". (Marly Cormar)
+- Expand information on 'Standard Drinks'. (Marly Cormar)
+- Expand slider bar with label "In the last four weeks what is the largest number of standard drinks you have consumed on a single occasion?" to 36+. (Marly Cormar)
+- Update paragraph below label "Stay of the road". (Marly Cormar)
+- Change the bullets under "Standard Drinks". (Marly Cormar)
+- Update bullet points under 'Staying Under the Limit'. (Marly Cormar)
+- Change the word "gender" by "sex". (Marly Cormar)
+- Change from "audit" to "AUDIT". (Marly Cormar)
+- Correct typo by changing "to" to "do". (Marly Cormar)
+- Change from "boyfriend/girlfriend/spouse" to "romantic partner". (Marly Cormar)
+- Change ip and ports to avoid conflicts with idmd dev host. (Marly Cormar)
+
+### Add
+- Add data download instructions to README and clean up formatting (Philip Chase)
+- Include new option for the living arrangements. (Marly Cormar)
+
+
 ## [1.1.8] - 2018-05-04
 ### Changed
 - Do a 3-step rename of 'sort-time' enum value on form 07 fields (Philip Chase)
