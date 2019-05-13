@@ -80,7 +80,7 @@ END
     wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add -
     echo "deb https://packages.sury.org/php/ stretch main" | sudo tee /etc/apt/sources.list.d/php.list
     apt-get update
-    apt-get install -y php5.6 php5.6-mysql php5.6-mcrypt php5.6-gd php5.6-dom
+    apt-get install -y php5.6 php5.6-mysql php5.6-mcrypt php5.6-gd php5.6-dom php5.6-mbstring
 
     # Configure mysqld to be more permissive
     log "Configure mysqld to be more permissive..."
