@@ -130,9 +130,9 @@ init: pull
 composer: $(COMPOSER)
 
 $(COMPOSER): pull
-	sudo php5dismod xdebug
+	sudo phpdismod xdebug
 	cd $(REPO_DIR)/app && composer install --no-dev 2>&1
-	sudo php5enmod xdebug
+	sudo phpenmod xdebug
 
 # TODO this planned prereq code for the coverage target needs work to integrate it with the coverage target
 GIT_STATUS=$(SHARED_DIR)/git-status
