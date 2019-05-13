@@ -57,8 +57,8 @@ function install_prereqs() {
     gpg -a --export 5072E1F5 | sudo apt-key add -
 
 cat << END > /etc/apt/sources.list.d/mysql.list
-deb http://repo.mysql.com/apt//debian/ jessie $MYSQL_REPO
-deb-src http://repo.mysql.com/apt//debian/ jessie $MYSQL_REPO
+deb http://repo.mysql.com/apt/debian/ stretch $MYSQL_REPO
+deb-src http://repo.mysql.com/apt/debian/ stretch $MYSQL_REPO
 END
 
     apt-get update
