@@ -112,6 +112,7 @@ This project requires some vagrant plugins.  Install them with these commands:
     vagrant plugin install vagrant-env
     vagrant plugin install vagrant-hostsupdater
     vagrant plugin install vagrant-triggers
+    vagrant plugin install vagrant-vbguest
 
 With the plugins installed, the application configured and some minimal dataqbase files in place, start the vagrant VM. with this command:
 

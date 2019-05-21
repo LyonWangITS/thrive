@@ -15,6 +15,7 @@ This project requires some vagrant plugins.  Install them with these commands:
 
     vagrant plugin install vagrant-env
     vagrant plugin install vagrant-hostsupdater
+    vagrant plugin install vagrant-vbguest
 
 With the plugins installed, run `vagrant up` to build this VM.
 
