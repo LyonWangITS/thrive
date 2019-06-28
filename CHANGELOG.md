@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+
+## [1.2.3] - 2019-06-28
+### Changed
+- Document the required installation of vbguest vagrant plugin. (Marly Cormar)
+- Upgrade sync folder type to virtualbox. (Marly Cormar)
+- Install php5.6 and needed packages. (Marly Cormar)
+- Include debian stretch repos in the sources list. (Marly Cormar)
+- Change php5enmod/dismod by phpenmod/dismod in the Makefile. (Marly Cormar)
+- Set CONFIG_VM_BOX to debian/stretch64 in the .env file. (Marly Cormar)
+- Update prod.sql.example with Bonnie Rowland as a new user. (Marly Cormar)
+- Update code_version to 1.2.2. (Marly Cormar)
+- Specify how to set up a new db in the documentation. (Marly Cormar)
+
+
 ## [1.2.2] - 2018-12-07
 ### Changed
 - Fix female drinks per occasion/week. (Marly Cormar)
