@@ -8,6 +8,7 @@
 #    Ruchi Vivek Desai <ruchivdesai@gmail.com>
 #    Taeber Rapczak <taeber@ufl.edu>
 #    Josh Hanna <josh@hanna.io>
+#    Marly Cormar <marlycormar@ufl.edu>
 #
 # Copyright (c) 2016, University of Florida
 # All rights reserved.
@@ -37,7 +38,7 @@ function install_prereqs() {
     log "Install prerequisite packages..."
     REQUIRED_PARAMETER_COUNT=3
     if [ $# != $REQUIRED_PARAMETER_COUNT ]; then
-        echo "${FUNCNAME[0]} Installs and configures MySQL, Apache and php5"
+        echo "${FUNCNAME[0]} Installs and configures MySQL, Apache and php5.6"
         echo "${FUNCNAME[0]} requires these $REQUIRED_PARAMETER_COUNT parameters in this order:"
         echo "MYSQL_REPO           The MySQL Repo to install from.  E.g., mysql-5.6"
         echo "DATABASE_ROOT_PASS   Password of the MySQL root user."
@@ -49,14 +50,15 @@ function install_prereqs() {
         MYSQLCONF=$3
     fi
 
+    apt-get install -y dirmngr --install-recommends
 
     # Try two different keyservers to get the MySQL repository key
     gpg --keyserver-options timeout=10000 --keyserver pgp.mit.edu --recv-keys 5072E1F5 || gpg  --keyserver-options timeout=10000 --keyserver pool.sks-keyservers.net --recv-keys 5072E1F5
     gpg -a --export 5072E1F5 | sudo apt-key add -
 
 cat << END > /etc/apt/sources.list.d/mysql.list
-deb http://repo.mysql.com/apt//debian/ jessie $MYSQL_REPO
-deb-src http://repo.mysql.com/apt//debian/ jessie $MYSQL_REPO
+deb http://repo.mysql.com/apt/debian/ stretch $MYSQL_REPO
+deb-src http://repo.mysql.com/apt/debian/ stretch $MYSQL_REPO
 END
 
     apt-get update
@@ -71,7 +73,14 @@ END
 
     apt-get install -y apache2
     apt-get install -y mysql-community-server
-    apt-get install -y php5 php5-mysql php5-mcrypt php5-gd
+
+    # Installing php5.6
+    log "Installing php5.6..."
+    apt-get install -y ca-certificates apt-transport-https
+    wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add -
+    echo "deb https://packages.sury.org/php/ stretch main" | sudo tee /etc/apt/sources.list.d/php.list
+    apt-get update
+    apt-get install -y php5.6 php5.6-mysql php5.6-mcrypt php5.6-gd php5.6-dom php5.6-mbstring
 
     # Configure mysqld to be more permissive
     log "Configure mysqld to be more permissive..."
@@ -84,9 +93,9 @@ END
     update-rc.d mysql defaults
 
     # Increase the default upload size limit to allow ginormous files
-    sed -i 's/upload_max_filesize =.*/upload_max_filesize = 20M/' /etc/php5/apache2/php.ini
-    sed -i 's/;date.timezone =.*/date.timezone = America\/New_York/' /etc/php5/apache2/php.ini
-    sed -i 's/;date.timezone =.*/date.timezone = America\/New_York/' /etc/php5/cli/php.ini
+    sed -i 's/upload_max_filesize =.*/upload_max_filesize = 20M/' /etc/php/5.6/apache2/php.ini
+    sed -i 's/;date.timezone =.*/date.timezone = America\/New_York/' /etc/php/5.6/apache2/php.ini
+    sed -i 's/;date.timezone =.*/date.timezone = America\/New_York/' /etc/php/5.6/cli/php.ini
 
     log "Stop apache..."
     service apache2 stop
@@ -296,7 +305,7 @@ function create_tables() {
 function install_xdebug() {
     # Install XDebug for enabling code coverage
     log "Executing: install_xdebug()"
-    apt-get install -y php5-xdebug
+    apt-get install -y php5.6-xdebug
 
     echo 'Restarting apache server'
     service apache2 restart
@@ -321,9 +330,9 @@ function install_composer_deps() {
         # silence the deprecation notice
         # The Composer\Package\LinkConstraint\VersionConstraint class is deprecated,
         # use Composer\Semver\Constraint\Constraint instead. in phar:///usr/local/bin/composer/src/Composer/Package/LinkConstraint/VersionConstraint.php:17
-        php5dismod xdebug
+        phpdismod xdebug
         composer install 2>&1 | tee ~/log_install_composer_deps
-        php5enmod xdebug
+        phpenmod xdebug
     popd
     log "Done with install_composer_deps()"
 }

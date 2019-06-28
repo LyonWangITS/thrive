@@ -45,7 +45,9 @@ When the VM is built, the Vagrant provisioning scripts reference a variable `DB_
 
 ### Database deployment in staging or prod
 
-When deploying the database in a staging or prod instance, the epoch files are only used once. What's more the testing data is not used.  A small `prod.sql` with production passwords for the default accounts might be used, but this is optional. Any such `prod.sql` would be crafted by hand. Generally this is done by cribbing content from the `data_minimal.sql` and `data_testing.sql` files. This project includes a `prod.sql` which serves as a template for the SQL changes that need to be applied to a new staging or production instance of this application.
+When deploying the database in a staging or prod instance, the epoch files are only used once. What's more the testing data is not used.  A small `prod.sql.example` with production passwords for the default accounts might be used, but this is optional. Any such `prod.sql.example` would be crafted by hand. Generally this is done by cribbing content from the `data_minimal.sql` and `data_testing.sql` files. This project includes a `prod.sql.example` which serves as a template for the SQL changes that need to be applied to a new staging or production instance of this application.
+
+To set up a new database, apply first the latest `schema.sql` file to the db, and then proceed with the `data_minimal.sql` and `prod.sql.example` files. Note that the `prod.sql.example` file should be edited; at least the password 'change this password' should be updated.
 
 For upgrades to staging or production hosts, `upgrade.sql` scripts are applied by hand. Each upgrade.sql for versions between that which is deployed and that which you are upgrading to must be deployed by hand, in ascending version sort order. They can be batched together, but they must all be applied and in the correct order.
 
