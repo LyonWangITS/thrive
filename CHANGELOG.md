@@ -1,7 +1,20 @@
-# Change Log for the THRIVE repo
+# Change Log for the THRIVE (standard) repo
 
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
+
+
+## [standard_1.2.1] - 2019-06-28
+### Changed
+- Document the required installation of vbguest vagrant plugin. (Marly Cormar)
+- Upgrade sync folder type to virtualbox. (Marly Cormar)
+- Include debian stretch repos in the sources list in the boostrap.sh script. (Marly Cormar)
+- Change php5enmod/dismod by phpenmod/dismod in the Makefile. (Marly Cormar)
+- Set CONFIG_VM_BOX to debian/stretch64 in the .env file. (Marly Cormar)
+- Add debian stretch to the packages source list. (Marly Cormar)
+- Install php5.6 and needed packages. (Marly Cormar)
+- Update package version to 1.2.0. (Marly Cormar)
+
 
 ## [standard_1.2.0] - 2019-01-15
 ### Changed
