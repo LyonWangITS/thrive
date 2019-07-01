@@ -11,6 +11,7 @@
 			<option value="used_to_smoke_regularly">Do not smoke now but used to smoke regularly (once or more per day)</option>
 			<option value="occasionally">Occasionally smoke (on average, less than one per day)</option>
 			<option value="regularly">Currently smoke cigarettes regularly (more than one per day)</option>
+			<option value="skip">I choose not to answer</option>
 		</select>
 	</div>
 
@@ -26,6 +27,7 @@
 		<select name="tobacco_frequency" title="During the past month, how many cigarettes did you smoke on a typical day?">
 			<option value="">Please select</option>
 			<option value="0">Did not smoke</option>
+			<option value="skip">I choose not to answer</option>
 			<?php foreach (range(1, 50) as $i): ?>
 				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 			<?php endforeach; ?>
@@ -49,6 +51,7 @@
 			<option value="30">5-30 minutes</option>
 			<option value="60">31-60 minutes</option>
 			<option value="61">More than 60 minutes</option>
+			<option value="skip">I choose not to answer</option>
 		</select>
 	</div>
 
