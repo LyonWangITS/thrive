@@ -65,6 +65,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 					'agree-somewhat' => 'Agree Somewhat',
 					'disagree-somewhat' => 'Disagree Somewhat',
 					'disagree-strongly' => 'Disagree Strongly',
+					'skip' => 'I choose not to answer',
 				),
 				'rows' => array(
 					'see_things_through_to_the_end' => 'I generally like to see things through to the end.',
@@ -130,7 +131,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 					'Indicate below how many times you drank any alcohol on each day of the week <strong>during the past 4 weeks</strong>.',
 					'For example, if you never drank on any Tuesday, you would select "None" for Tuesdays. If you drank on every Thursday in the past 4 weeks, you would select "4" for Thursday.',
 				),
-				'columns' => array_combine(range(0, 4), array('None', '1', '2', '3', '4')),
+				'columns' => array_combine(range(0, 5), array('None', '1', '2', '3', '4', 'I choose not to answer')),
 				'rows' => $tabular_rows,
 			),
 		);
@@ -298,6 +299,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 					'5' => '5',
 					'6' => '6',
 					'7' => '<span class="hide-mobile">Definitely<br><br>7</span><span class="hide-desktop">7 - Definitely</span>',
+					'skip' => 'I choose not to answer',
 				),
 				'rows' => array(
 					'cut_down_drinking' => 'I would like to cut down on drinking.',
