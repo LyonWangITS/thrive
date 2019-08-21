@@ -3243,3 +3243,32 @@ button[disabled=disabled]{
 		width: 100%;
 	}
 }
+
+.description p {
+	font-size: 20px;
+}
+
+.summary p {
+	font-size: 20px;
+ }
+
+.bar-set .label {
+	font-size: 20px;
+}
+
+.compare-wrap p {
+	font-size: 20px;
+}
+
+.did-you-know .article-wrap article p {
+	font-size: 20px;
+}
+
+.acc-content section p {
+	font-size: 20px;
+}
+
+.acc-content section ul li {
+	font-size: 20px;
+}
+}
