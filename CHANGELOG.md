@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [1.2.4] - 2019-08-26
+### Changed
+- Increase font size in the personalized feedback. (Marly Cormar)
+
+
 ## [1.2.3] - 2019-06-28
 ### Changed
 - Document the required installation of vbguest vagrant plugin. (Marly Cormar)
