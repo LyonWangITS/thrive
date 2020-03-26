@@ -1,4 +1,5 @@
 <?php include 'commons/tabular.php'; ?>
+<script type="text/javascript" src="<?php echo BASE_URL; ?>js/toggle_drink_sliders.js" defer></script>
 
 <div class="field clearfix">
 
