@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [standard_1.3.1] - 2020-07-31
+### Changed
+- Bump CODE_VERSION in .env (Philip Chase)
+
+
 ## [standard_1.3.0] - 2020-07-31
 ### Added
 - add timestamps for submission of each survey page (Kyle Chesney)
