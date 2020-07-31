@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [standard_1.3.0] - 2020-07-31
+### Added
+- add timestamps for submission of each survey page (Kyle Chesney)
+- Add VERSION matching existing CODE_VERSION value in .env (Philip Chase)
+- add additional gpg keyserver (Kyle Chesney)
+- add form filling js script and update README (Kyle Chesney)
+
+### Changed
+- hide drinks/day sliders on stage-04 unless they are relevant (Kyle Chesney)
+- Increase font size of the feedback page. (Marly Cormar)
+- Add "I choose not to answer" option to drinking questions and the "generally I see things.." question. (Marly Cormar)
+- Add "I choose not to answer" option to smoking questions. (Marly Cormar)
+- Fix missing "s" in "minute". (Marly Cormar)
+- Fix missing article "the". (Marly Cormar)
+
+
 ## [standard_1.2.1] - 2019-06-28
 ### Changed
 - Document the required installation of vbguest vagrant plugin. (Marly Cormar)
