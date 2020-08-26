@@ -270,6 +270,11 @@ function stage_form_complete( form_stage ){
 
 	} else if ( form_stage == 5 ) {
 		var fields = [
+			'tried_to_limit_amount_drank',
+			'tried_to_resist_opportunity_to_start_drinking',
+			'tried_to_slow_my_drinking',
+			'tried_to_drink_less',
+			'tried_to_stop_drinking',
 			'difficult_to_limit',
 			'start_drinking_after_deciding_not_to',
 			'end_up_drinking_more',
