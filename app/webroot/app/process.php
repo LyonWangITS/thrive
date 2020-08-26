@@ -15,6 +15,8 @@ function doProcess( $the_survey, $existing_token, $version ){
 		$survey_stage = ifne( $_POST, 'survey-stage', 0 );
 		$stage_vars = get_stage_vars($survey_stage);
 
+        $the_survey->save([ '0' . $survey_stage . '_completed' => get_gmt() ]); // timestamp page completion
+
 		//Validation rules
 		// 0 : name - notempty
 		if ( $survey_stage == 0 ){

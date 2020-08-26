@@ -53,7 +53,7 @@ function install_prereqs() {
     apt-get install -y dirmngr --install-recommends
 
     # Try two different keyservers to get the MySQL repository key
-    gpg --keyserver-options timeout=10000 --keyserver pgp.mit.edu --recv-keys 5072E1F5 || gpg  --keyserver-options timeout=10000 --keyserver pool.sks-keyservers.net --recv-keys 5072E1F5
+    gpg --keyserver-options timeout=10000 --keyserver pgp.mit.edu --recv-keys 5072E1F5 || gpg  --keyserver-options timeout=10000 --keyserver pool.sks-keyservers.net --recv-keys 5072E1F5 || gpg  --keyserver-options timeout=10000 --keyserver keyserver.ubuntu.com --recv-keys 5072E1F5
     gpg -a --export 5072E1F5 | sudo apt-key add -
 
 cat << END > /etc/apt/sources.list.d/mysql.list
