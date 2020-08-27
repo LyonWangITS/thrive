@@ -344,7 +344,7 @@ class ReportsController extends AppController {
 		$headers[] = 'Audit score';
 
 		foreach ( range(1, 9) as $index ) {
-			$headers[] = ( ( $index > 9 ) ? '' : '0' ) . $index . '_completed';
+			$headers[] = 'step ' . $index . ' completed';
 		}
 
 		$feedback_questions = array();
@@ -420,7 +420,7 @@ class ReportsController extends AppController {
 				if ( $entry['Entry'][( ( $index > 9 ) ? '' : '0' ) . $index . '_completed'] ) {
 					$row[] = $entry['Entry'][( ( $index > 9 ) ? '' : '0' ) . $index . '_completed'];
 				} else {
-					$row[] = 'n/a';
+					$row[] = '';
 				}
 			}
 
