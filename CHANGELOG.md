@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [anchors_1.3.2] - 2020-09-01
+### Added
+- added "skip" to db for stage 2 questions (Kyle Chesney)
+
+
 ## [anchors_1.3.1] - 2020-08-28
 ### Added
 - add timestamps for submission of each survey page (Kyle Chesney)
