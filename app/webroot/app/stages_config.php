@@ -164,6 +164,11 @@ function get_stage_vars($stage, $global_vars = array()) {
 					'skip' => 'I choose not to answer',
 				),
 				'rows' => array(
+					"tried_to_limit_amount_drank" => "I have tried to limit the amount I drank",
+					"tried_to_resist_opportunity_to_start_drinking" => "I have tried to resist the opportunity to start drinking",
+					"tried_to_slow_my_drinking" => "I have tried to slow my drinking",
+					"tried_to_drink_less" => "I have tried to cut down on my drinking (i.e., drink less)",
+					"tried_to_stop_drinking" => "I have tried to stop drinking for a period of time",
 					'difficult_to_limit' => 'I have found it difficult to limit the amount I drank',
 					'start_drinking_after_deciding_not_to' => 'I have started drinking even after deciding not to',
 					'end_up_drinking_more' => 'Even when I intended to have only one or two drinks, I ended up having many more',
