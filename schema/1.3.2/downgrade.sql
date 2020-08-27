@@ -1,0 +1,21 @@
+-- Remove "skip" options for stage 2
+ALTER TABLE entries MODIFY COLUMN `02_see_things_through_to_the_end` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_thinking_careful_purposeful` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_great_mood_leading_to_problematic_situations` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_unfinished_tasks_bother_me` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_think_things_over_before_doing` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_feeling_bad_leading_to_regretful_actions` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_hate_to_stop_doing_things` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_feeling_bad_difficult_to_stop` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_enjoy_taking_risks` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_good_mood_lose_control` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_finish_when_start` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_rational_sensible_approach` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_upset_act_without_thinking` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_welcome_new_exciting_experiences` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_rejection_leading_to_say_regretful_things` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_learn_fly_airplane` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_others_shocked_about_my_excitement` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_skiing_very_fast` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_think_carefully_before_doing_anything` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
+ALTER TABLE entries MODIFY COLUMN `02_act_withoug_thinking_when_excited` ENUM('agree-strongly','agree-somewhat','disagree-somewhat','disagree-strongly') DEFAULT NULL;
