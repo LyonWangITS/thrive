@@ -28,6 +28,9 @@ Vagrant.configure(2) do |config|
     owner: "www-data",
     group: "vagrant"
 
+  # To keep the vagrant folder also synced
+  config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
+
   config.vm.provider "virtualbox" do |vb|
     # vb.memory = "1024"
     # Get virtual box name vagrant env plugin
