@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [anchors_1.3.1] - 2020-08-28
+### Added
+- add timestamps for submission of each survey page (Kyle Chesney)
+- Add VERSION matching existing CODE_VERSION value in .env (Philip Chase)
+- add additional gpg keyserver (Kyle Chesney)
+- add form filling js script and update README (Kyle Chesney)
+
+### Changed
+- Add "I choose not to answer" option to drinking questions and the "generally I see things.." question. (Marly Cormar)
+- Add "I choose not to answer" option to smoking questions. (Marly Cormar)
+
 
 ## [1.2.4] - 2019-08-26
 ### Changed
