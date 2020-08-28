@@ -323,15 +323,6 @@ class ReportsController extends AppController {
 			$headers[] = $label;
 		}
 
-		$days = get_weekdays();
-		foreach ($days as $label) {
-			$headers[] = 'Drink times (past 4 weeks) - ' . $label;
-		}
-
-		foreach ($days as $label) {
-			$headers[] = 'Standard drinks (past 4 weeks) - ' . $label;
-		}
-
 		foreach (range(5, 8) as $step) {
 			$stage = get_stage_vars($step);
 			foreach ($stage['tabular']['rows'] as $label) {
@@ -361,7 +352,6 @@ class ReportsController extends AppController {
 
 		fputcsv( $fp, $headers );
 
-		$days = array_keys($days);
 		foreach ( $data as $entry ) {
 
 			$row = array(
@@ -395,7 +385,10 @@ class ReportsController extends AppController {
 				$entry['Entry']['04_body_weight_kg'],
 			);
 
-			$row = $this->_append_tabular_columns_to_row($row, $entry, 2);
+            $row = $this->_append_tabular_columns_to_row($row, $entry, 2);
+            foreach (range(5, 8) as $step) {
+                $row = $this->_append_tabular_columns_to_row($row, $entry, $step);
+            }
 
 			$row[] = !empty($entry['Entry']['09_tobacco_use']) ? $this->tobacco_use[$entry['Entry']['09_tobacco_use']] : '';
 			$row[] = $entry['Entry']['09_tobacco_frequency'];
