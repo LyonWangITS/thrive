@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [standard_1.4.0] - 2020-09-16
+### Added
+- Add 5 'Effects of Drinking' questions to survey stage 5 (Kyle Chesney)
+- Fix broken 'skip' options in stage 2 (Kyle Chesney)
+- Add new data fields for timers to data export (James Pence)
+
+### Changed
+- Explicitly declare the /vagrant synced_folder (Philip Chase)
+
+
 ## [standard_1.3.1] - 2020-07-31
 ### Changed
 - Bump CODE_VERSION in .env (Philip Chase)
