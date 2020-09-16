@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [standard_1.4.1] - 2020-09-16
+### Changed
+- Move VM to std.thrive.test and *216 for IP and port numbers (Philip Chase)
+- Read CODE_VERSION from VERSION file in Makefile (Philip Chase)
+
+
 ## [standard_1.4.0] - 2020-09-16
 ### Added
 - Add 5 'Effects of Drinking' questions to survey stage 5 (Kyle Chesney)
