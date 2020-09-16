@@ -343,6 +343,10 @@ class ReportsController extends AppController {
 		$headers[] = 'Tobacco - time to init';
 		$headers[] = 'Audit score';
 
+		foreach ( range(1, 9) as $index ) {
+			$headers[] = 'step ' . $index . ' completed';
+		}
+
 		$feedback_questions = array();
 		if ( !empty( $this->current_user['Partner']['is_feedback_enabled'] ) ) {
 			$headers[] = 'Feedback - How important is it to you that you reduce your drinking? 1 (Not at all important) - 10 (Very important)';
@@ -411,6 +415,14 @@ class ReportsController extends AppController {
 			$row[] = $entry['Entry']['09_tobacco_frequency'];
 			$row[] = !empty($entry['Entry']['09_tobacco_init']) ? $this->tobacco_init[$entry['Entry']['09_tobacco_init']] : '';
 			$row[] = $entry['Entry']['audit_score'];
+
+			foreach ( range(1, 9) as $index ) {
+				if ( $entry['Entry'][( ( $index > 9 ) ? '' : '0' ) . $index . '_completed'] ) {
+					$row[] = $entry['Entry'][( ( $index > 9 ) ? '' : '0' ) . $index . '_completed'];
+				} else {
+					$row[] = '';
+				}
+			}
 
 			foreach ($feedback_questions as $question) {
 				$row[] = $entry['Entry'][$question];
