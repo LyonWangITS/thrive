@@ -186,6 +186,7 @@ class ReportsController extends AppController {
 		'used_to_smoke_regularly' => 'Do not smoke now but used to smoke regularly (once or more per day)',
 		'occasionally' => 'Occasionally smoke (on average, less than one per day)',
 		'regularly' => 'Currently smoke cigarettes regularly (more than one per day)',
+		'skip' => 'I choose not to answer',
 	);
 
 	public $tobacco_init = array(
