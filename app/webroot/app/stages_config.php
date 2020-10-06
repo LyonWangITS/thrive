@@ -19,7 +19,7 @@ function get_stages() {
 		array('group' => 'one', 'step' => 'two', 'title' => 'All about you'),
 		array('group' => 'two', 'step' => 'three', 'title' => 'Past and Present Drinking'),
 		array('group' => 'three', 'step' => 'four', 'title' => 'In the last four weeks'),
-		array('group' => 'three', 'step' => 'five', 'title' => 'Effects of Drinking (1/2)'),
+		array('group' => 'three', 'step' => 'five', 'title' => 'Effects of Drinking' /*(1/2)*/ ),
 		array('group' => 'three', 'step' => 'six', 'title' => 'Effects of Drinking (2/2)'),
 		array('group' => 'three', 'step' => 'seven', 'title' => 'Before and During Drinking'),
 		array('group' => 'four', 'step' => 'eight', 'title' => 'What would you like to do?'),
@@ -169,6 +169,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 	}
 
 	if ($stage == 6) {
+        return;
 		return array(
 			'legend' => 'Please fill in the details of your alcohol usage below.',
 			'intro' => array(
@@ -222,6 +223,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 	}
 
 	if ($stage == 7) {
+        return;
 		return array(
 			'legend' => 'Please fill in the details of your alcohol usage below.',
 			'intro' => array(
@@ -267,6 +269,7 @@ function get_stage_vars($stage, $global_vars = array()) {
 	}
 
 	if ($stage == 8) {
+        return;
 		return array(
 			'legend' => 'Please fill the fields below.',
 			'intro' => array(

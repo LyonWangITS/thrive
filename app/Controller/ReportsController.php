@@ -318,12 +318,7 @@ class ReportsController extends AppController {
 			'Body weight (kg)',
 		);
 
-		$stage = get_stage_vars(2);
-		foreach ($stage['tabular']['rows'] as $label) {
-			$headers[] = $label;
-		}
-
-		foreach (range(5, 8) as $step) {
+		foreach ([2, 5] as $step) {
 			$stage = get_stage_vars($step);
 			foreach ($stage['tabular']['rows'] as $label) {
 				$headers[] = $label;
@@ -335,9 +330,10 @@ class ReportsController extends AppController {
 		$headers[] = 'Tobacco - time to init';
 		$headers[] = 'Audit score';
 
-		foreach ( range(1, 9) as $index ) {
+		foreach ( range(1, 5) as $index ) {
 			$headers[] = 'step ' . $index . ' completed';
 		}
+        $headers[] = 'step 9 completed';
 
 		$feedback_questions = array();
 		if ( !empty( $this->current_user['Partner']['is_feedback_enabled'] ) ) {
@@ -390,16 +386,19 @@ class ReportsController extends AppController {
 			);
 
             $row = $this->_append_tabular_columns_to_row($row, $entry, 2);
-            foreach (range(5, 8) as $step) {
+            $row = $this->_append_tabular_columns_to_row($row, $entry, 5);
+            /* skip 6-8
+            foreach (range(6, 8) as $step) {
                 $row = $this->_append_tabular_columns_to_row($row, $entry, $step);
             }
+            */
 
 			$row[] = !empty($entry['Entry']['09_tobacco_use']) ? $this->tobacco_use[$entry['Entry']['09_tobacco_use']] : '';
 			$row[] = $entry['Entry']['09_tobacco_frequency'];
 			$row[] = !empty($entry['Entry']['09_tobacco_init']) ? $this->tobacco_init[$entry['Entry']['09_tobacco_init']] : '';
 			$row[] = $entry['Entry']['audit_score'];
 
-			foreach ( range(1, 9) as $index ) {
+			foreach ( array_merge(range(1, 5), [9]) as $index ) {
 				if ( $entry['Entry'][( ( $index > 9 ) ? '' : '0' ) . $index . '_completed'] ) {
 					$row[] = $entry['Entry'][( ( $index > 9 ) ? '' : '0' ) . $index . '_completed'];
 				} else {
