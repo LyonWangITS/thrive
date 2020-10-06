@@ -318,12 +318,7 @@ class ReportsController extends AppController {
 			'Body weight (kg)',
 		);
 
-		$stage = get_stage_vars(2);
-		foreach ($stage['tabular']['rows'] as $label) {
-			$headers[] = $label;
-		}
-
-		foreach (range(5, 8) as $step) {
+		foreach ([2, 5] as $step) {
 			$stage = get_stage_vars($step);
 			foreach ($stage['tabular']['rows'] as $label) {
 				$headers[] = $label;
@@ -566,6 +561,10 @@ class ReportsController extends AppController {
 
 	private function _append_tabular_columns_to_row($row, $entry, $step) {
 		$stage = get_stage_vars($step);
+
+        if (in_array($step, range(6, 8)) ) {
+            return;
+        }
 
 		if ($step == 8) {
 			$stage['tabular']['columns']['1'] = '1';
