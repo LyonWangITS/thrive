@@ -195,6 +195,7 @@ class ReportsController extends AppController {
 		'30' => '5-30 minutes',
 		'60' => '31-60 minutes',
 		'61' => 'More than 60 minutes',
+		'-1' => 'I choose not to answer',
 	);
 
 	/**
