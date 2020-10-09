@@ -166,6 +166,7 @@ $(PACKAGE_FILE): pull
 	$(PROJECT_ID)/index.php \
 	$(PROJECT_ID)/.htaccess \
 	$(PROJECT_ID)/deploy.sh \
+	$(PROJECT_ID)/VERSION \
 	$(PROJECT_ID)/CHANGELOG.md
 	ls -ltrh $(PACKAGE_FILE)
 	cp $(PACKAGE_FILE) /vagrant/
