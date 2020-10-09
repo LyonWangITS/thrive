@@ -612,30 +612,30 @@
 
 			if ($this->data['01_gender'] == 'male') {
 				if ($this->data['01_age'] >= 18 && $this->data['01_age'] <= 20) {
-					$avg['occasion'] = 3.9;
-					$avg['week'] = 7.19;
+					$avg['occasion'] = 3;
+					$avg['week'] = 3.5;
 				}
 				elseif ($this->data['01_age'] > 20 && $this->data['01_age'] <= 25) {
-					$avg['occasion'] = 3.09;
-					$avg['week'] = 8.46;
+					$avg['occasion'] = 3;
+					$avg['week'] = 5.6;
 				}
 				else {
-					$avg['occasion'] = 4.26;
-					$avg['week'] = 13.24;
+					$avg['occasion'] = 3;
+					$avg['week'] = 5.6;
 				}
 			}
 			else {
 				if ($this->data['01_age'] <= 20) {
-					$avg['occasion'] = 3.9;
-					$avg['week'] = 7.19;
+					$avg['occasion'] = 3;
+					$avg['week'] = 3.5;
 				}
-				elseif ($this->data['01_age'] > 20 && $this->data['01_age'] <= 24) {
-					$avg['occasion'] = 3.09;
-					$avg['week'] = 8.46;
+				elseif ($this->data['01_age'] > 20 && $this->data['01_age'] <= 25) {
+					$avg['occasion'] = 3;
+					$avg['week'] = 5.6;
 				}
 				else {
-					$avg['occasion'] = 4.26;
-					$avg['week'] = 13.24;
+					$avg['occasion'] = 3;
+					$avg['week'] = 5.6;
 				}
 			}
 
