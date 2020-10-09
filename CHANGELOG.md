@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+
+## [anchors_1.4.2] - 2020-10-09
+### Changed
+- change encoding of skip for tobacco init and freq to -1 (Kyle Chesney)
+- prevent stages 6-8 from appearing or exporting (Kyle Chesney)
+- update reported avg drinking habits (Kyle Chesney)
+- add skip as output in ReportsController.php to fix export crash (Kyle Chesney)
+- Read CODE_VERSION from VERSION file in Makefile (Philip Chase)
+- Explicitly declare the /vagrant synced_folder (Philip Chase)
+- Include the VERSION file in the package (Philip Chase)
+
+### Added
+- Add 5 'Effects of Drinking' questions to survey stage 5 (Kyle Chesney)
+- add explicit 'skip' options to stage 2 db (Kyle Chesney)
+
+## Removed
+- Remove drinks per day headers @jrpence correct missing data fields (Kyle Chesney)
+
+
 ## [anchors_1.3.2] - 2020-09-01
 ### Added
 - added "skip" to db for stage 2 questions (Kyle Chesney)
