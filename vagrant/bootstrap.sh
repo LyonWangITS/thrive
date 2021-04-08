@@ -5,10 +5,11 @@ export DEBIAN_FRONTEND=noninteractive
 # Exit on first error
 set -e
 
-# At some point in February 2021 this workaround began to be needed
-# Perhaps vagrant's default entrypoint changed?
-echo "Creating and populating /vagrant"
-cp -r /var/www/web_app/vagrant /
+# At some point in February 2021 this workaround began to be needed as
+# vagrant's entrypoint became the system root rather than the webroot.
+# In April 2021 it caused a breakage of the VM, possibly tied to different versions of macOS
+#echo "Creating and populating /vagrant"
+#cp -r /var/www/web_app/vagrant /
 
 echo "Import environment variables from /vagrant/.env"
 . /vagrant/.env
