@@ -362,6 +362,8 @@ class ReportsController extends AppController {
 			);
 		}
 
+		$headers[] = 'Final page section engagement';
+
 		fputcsv( $fp, $headers );
 
 		$days = array_keys($days);
@@ -428,6 +430,7 @@ class ReportsController extends AppController {
 				$row[] = $entry['Entry'][$question];
 			}
 
+			$row[] = $entry['Entry']['final_page_section_timestamps'];
 			fputcsv( $fp, $row );
 		}
 
