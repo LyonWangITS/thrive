@@ -1,4 +1,5 @@
-let debugging = true;
+let token = getParameterByName( 't' );
+let debugging = false;
 let lastScrollTop = window.pageYOffset;
 let scrollingDown = false;
 let interactedContent = [];
@@ -64,7 +65,15 @@ var captureSectionsInView = function () {
                     (getFormattedDate() + " - " + sectionTitle.replaceAll('"', ""))
                 );
                 // send AJAX
-                console.log(JSON.stringify(interactedContent));
+                $.ajax({
+                    type: "POST",
+                    url: "ajax_final_page.php",
+                    dataType: "html",
+                    data: { t: token, data: interactedContent},
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus, errorThrown);
+                    }
+                });
             }
         } else {
             if (containElement(inViewContent, sectionTitle)) {
