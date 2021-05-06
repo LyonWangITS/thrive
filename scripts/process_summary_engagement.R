@@ -2,6 +2,7 @@ library(tidyverse)
 library(jsonlite)
 
 input_file <- file.choose()
+orig_filename <- tools::file_path_sans_ext(input_file)
 
 df <- read_csv(input_file)
 
@@ -26,7 +27,7 @@ tall_engagement_df <-
   # remove whitespace
   mutate(section = trimws(section), ts = trimws(ts))
 
-write_csv(tall_engagement_df, file = paste0("complete_final_page_stats-", input_file))
+write_csv(tall_engagement_df, file = paste0(orig_filename, "-complete_final_page_stats", ".csv"))
 
 # move "time" and "section" rows into columns for each section
 # retaining only the first occurence of each section view
@@ -47,4 +48,4 @@ joined_df <- df %>%
   # remove the dense JSON column
   select(-"Final page section engagement")
 
-write_csv(joined_df, file = paste0("processed_", input_file))
+write_csv(joined_df, file = paste0(orig_filename, "-processed", ".csv"))
