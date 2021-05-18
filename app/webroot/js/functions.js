@@ -109,7 +109,7 @@ function init_stage_form( form_stage ){
 		$.each(weekdays, function(i, value) {
 			buildSlider({
 				id		: 'standard-drinks-slider_' + value,
-				from	: ($('.stage-form input#past_4wk_drinks_'+ value + '-1').prop('checked') || $('.stage-form input#past_4wk_drinks_' + value + '-1').prop('checked')) ? -1 : 1,
+				from	: $('.stage-form input#past_4wk_drinks_'+ value + '-1').prop('checked') ? -1 : 1,
 				from_label: '1',
 				to		: 25,
 				to_label: '25+',
