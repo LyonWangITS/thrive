@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [standard_1.5.0] - 2021-05-20
+### Added
+- Capture viewing of sections on feedback page of survey with time spent on page (mbentz, Kyle Chesney)
+
+### Changed
+- Remove 0 from drinks consumed slider range for drinks per day of week (mbentz)
+- Fix and update virtual machine used for local testing (Kyle Chesney)
+
+
 ## [standard_1.4.1] - 2020-09-16
 ### Changed
 - Move VM to std.thrive.test and *216 for IP and port numbers (Philip Chase)
