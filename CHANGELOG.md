@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [standard_1.5.1] - 2021-09-03
+### Changed
+- Erase cached models during deployment (Philip Chase)
+- Include the VERSION file in the package (Philip Chase)
+- Fix missing version number on packaged file (Philip Chase)
+
+
 ## [standard_1.5.0] - 2021-05-20
 ### Added
 - Capture viewing of sections on feedback page of survey with time spent on page (mbentz, Kyle Chesney)
