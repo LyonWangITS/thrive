@@ -84,10 +84,8 @@ BUILD_DIR=/tmp/$(PROJECT_ID)
 REPO_DIR=$(BUILD_DIR)/$(PROJECT_ID)
 COMPOSER_INSTALLED=app/Vendor/composer/installed.json
 COMPOSER=$(REPO_DIR)/$(COMPOSER_INSTALLED)
-PACKAGE_FILE=/tmp/$(PACKAGE).zip
+PACKAGE_FILE=/tmp/PACKAGE.zip
 $(eval SCRATCH = $(shell mktemp -d))
-BUILD_CODE_VERSION=$(CODE_VERSION)
-PACKAGE=$(PROJECT_ID)-$(BUILD_CODE_VERSION)
 
 check_commit:
 ifndef COMMIT
@@ -166,9 +164,12 @@ $(PACKAGE_FILE): pull
 	$(PROJECT_ID)/index.php \
 	$(PROJECT_ID)/.htaccess \
 	$(PROJECT_ID)/deploy.sh \
+	$(PROJECT_ID)/VERSION \
 	$(PROJECT_ID)/CHANGELOG.md
-	ls -ltrh $(PACKAGE_FILE)
-	cp $(PACKAGE_FILE) /vagrant/
+	$(eval BUILD_CODE_VERSION = $(shell cat $(BUILD_DIR)/$(PROJECT_ID)/VERSION))
+	$(eval PACKAGE=$(PROJECT_ID)-$(BUILD_CODE_VERSION))
+	cp $(PACKAGE_FILE) /vagrant/$(PACKAGE).zip
+	ls -ltrh /vagrant/$(PACKAGE).zip
 
 # Here's a local deployment we probably don't need, but it works
 install: package
