@@ -352,6 +352,8 @@ class ReportsController extends AppController {
 			);
 		}
 
+        $headers[] = 'Final page section engagement';
+
 		fputcsv( $fp, $headers );
 
 		foreach ( $data as $entry ) {
@@ -408,6 +410,7 @@ class ReportsController extends AppController {
 				}
 			}
 
+            $row[] = $entry['Entry']['final_page_section_timestamps'];
 			foreach ($feedback_questions as $question) {
 				$row[] = $entry['Entry'][$question];
 			}
