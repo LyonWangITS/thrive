@@ -19,10 +19,11 @@ echo "Import helper functions from: bootstrap_functions.sh"
 #. /vagrant/idmd_functions.sh
 
 # Pick a fast mirror...or at least one that works
-log "Picking a fast mirror in the US..."
-apt-get install -y netselect-apt
-cd /etc/apt/
-netselect-apt -c US > ~/netselect-apt.log 2>&1
+# log "Picking a fast mirror in the US..."
+# netselect appears to be empty now
+# apt-get install -y netselect-apt
+# cd /etc/apt/
+# netselect-apt -c US > ~/netselect-apt.log 2>&1
 
 # Setting debian repository
 echo "deb http://deb.debian.org/debian stretch main contrib" > /etc/apt/sources.list
