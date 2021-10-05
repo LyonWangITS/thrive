@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [anchors_1.5.1] - 2020-10-05
+### Added
+- Port final page scroll timer to anchors (Kyle Chesney)
+
+### Changed
+- Fix missing version number on packaged filename and include VERSION file (Philip Chase)
+- Erase cached models during deployment (Philip Chase)
+- Replace unmaintained debian9 box, mysql server, Stop using netselect, disable vbguest update to avoid mount failure (Kyle Chesney)
+
+
 ## [anchors_1.4.2] - 2020-10-09
 ### Changed
 - change encoding of skip for tobacco init and freq to -1 (Kyle Chesney)
