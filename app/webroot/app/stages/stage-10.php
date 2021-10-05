@@ -1,4 +1,5 @@
 <?php $the_audit_score = ifne( $page_meta, 'audit_score' ); ?>
+<script type="text/javascript" src="<?php echo BASE_URL; ?>js/final_page_scroll_detect.js" defer></script>
 
 <section class="summary">
 
