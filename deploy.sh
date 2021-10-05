@@ -100,6 +100,9 @@ function deploy_software_to_temp () {
     #chmods for temp dir
     chmod -R 777 $MYTEMP/app/tmp
 
+    # Clear cached content
+    rm -f $MYTEMP/app/tmp/cache/models/*
+    rm -f $MYTEMP/app/tmp/cache/persistent/myapp_cake_core_method_cache
 }
 
 function deploy_new_software () {
