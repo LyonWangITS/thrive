@@ -25,3 +25,14 @@ You can generate new `schema.sql`, `data_minimal.sql`, and `data_testing.sql` fi
 
 To use the new `schema.sql`, `data_minimal.sql`, and `data_testing.sql` files as a new database epoch, create a folder `./schema/N.M.O` and copy the three files into it. Then revise `./.env` to reference `N.M.O` for the `DB_EPOCH_VERSION`. Then rebuild the VM to test the new DB EPOCH.
 
+
+## Generating docs for the data processing script
+
+This repo includes a script to transform a downloaded THRIVE dataset into forms that expose the last page timers. The last page timers are stored as a JSON object in a single column. The README for this script is included as [Processing Timestamps](scripts/README_processing.md). To share this document, convert it to an html file with these commands:
+
+```sh
+cd scripts
+pandoc -s -o README.html README_processing.md
+```
+
+Share the resulting [`README.html`](scripts/README.html) and [`process_summary_engagement.R`](scripts/process_summary_engagement.R) with Dr. Leeman and his team.
