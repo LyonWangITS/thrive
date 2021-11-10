@@ -16,11 +16,11 @@ Open `process_summary_engagement.R` in RStudio and click "Source" to run the pro
 
 ![Source option is in the upper right of the RStudio window](rstudio_source.png)
 
-You will be prompted to select a file, choose the `.csv` file that was exported from the THRIVE report. Upon completion, 2 new files will appear in the same directory as your input file; assuming your input file was named `ORIGINAL.csv`:
+You will be prompted to select a file, choose the `.csv` file that was exported from the THRIVE report. Upon completion, 2 new files will appear in the same directory as your input file; assuming your input file was named `UF_THRIVE_data.csv`:
 
-- `ORIGINAL-processed.csv`: Contains the original output with the **Final page section engagement** column "unrolled" into one column for each section of the feedback page, the value in this column is the time (in **milliseconds**) since the page loaded that the corresponding section _first appeared_ on the survey respondent's screen.
+- `UF_THRIVE_data-processed.csv`: Contains the original output with the **Final page section engagement** column "unrolled" into multiple columns. This file adds one column for each section of the feedback page. The values in these columns are the time (in **milliseconds**) since the page loaded that the corresponding section _first appeared_ on the survey respondent's screen.
 
-- `ORIGINAL-complete_final_page_stats.csv`: The "Partner ID" and "Participant ID", the time (in milliseconds) that each section appeared on the users screen, and the section the timestamp corresponds to. This file contains _every time_ that section appeared on the respondent's screen, i.e. if they scrolled back up to reread a section. The following example represents a respondent viewing "Slowing down" 145 seconds after the page loaded, and then scrolling back up to reread the section roughly 197 seconds after page load.
+- `UF_THRIVE_data-complete_final_page_stats.csv`: The "Partner ID" and "Participant ID", the time (in milliseconds) that each section appeared on the users screen, and the section the timestamp corresponds to. This file contains _every time_ that section appeared on the respondent's screen. If they scrolled back up to reread a section, the times at which the preceeding sections are re-exposed also appear in the data. The following example represents a respondent viewing "Slowing down" 145 seconds after the page loaded, and then scrolling back up to reread the section roughly 197 seconds after page load at which "Can I buy you a drink?", "Be yourself", and "Slowing down" are re-exposed.
 
 | partner_id | participant_id | ts     | section                |
 |------------|----------------|--------|------------------------|
