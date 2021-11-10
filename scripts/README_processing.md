@@ -2,19 +2,20 @@
 
 ## First time setup
 
-You will need to install the [R programming language](https://cloud.r-project.org/) to your computer. It is also _highly_ recommended to install the [RStudio IDE](https://www.rstudio.com/products/rstudio/download/).
+You will need to install the [R programming language](https://cloud.r-project.org/) to your computer. It is also _highly_ recommended to install the [RStudio IDE](https://www.rstudio.com/products/rstudio/download/). The free version of "RStudio Desktop" works very well.
 
-Open RStudio, in an the "console" pane, paste the following command and hit enter to install the required libraries:
+Open RStudio, in the "console" pane, paste the following command and hit enter to install the required libraries:
 
 ```R
 install.packages(c("tidyverse", "jsonlite", "janitor"))
 ```
 
+![Source option is in the upper right of the RStudio window](rstudio_source.png)
+
+
 ## Using the provided script
 
 Open `process_summary_engagement.R` in RStudio and click "Source" to run the program.
-
-![Source option is in the upper right of the RStudio window](rstudio_source.png)
 
 You will be prompted to select a file, choose the `.csv` file that was exported from the THRIVE report. Upon completion, 2 new files will appear in the same directory as your input file; assuming your input file was named `UF_THRIVE_data.csv`:
 

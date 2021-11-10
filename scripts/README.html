@@ -215,14 +215,14 @@
 <body>
 <h1 id="processing-timestamps">Processing Timestamps</h1>
 <h2 id="first-time-setup">First time setup</h2>
-<p>You will need to install the <a href="https://cloud.r-project.org/">R programming language</a> to your computer. It is also <em>highly</em> recommended to install the <a href="https://www.rstudio.com/products/rstudio/download/">RStudio IDE</a>.</p>
-<p>Open RStudio, in an the “console” pane, paste the following command and hit enter to install the required libraries:</p>
+<p>You will need to install the <a href="https://cloud.r-project.org/">R programming language</a> to your computer. It is also <em>highly</em> recommended to install the <a href="https://www.rstudio.com/products/rstudio/download/">RStudio IDE</a>. The free version of “RStudio Desktop” works very well.</p>
+<p>Open RStudio, in the “console” pane, paste the following command and hit enter to install the required libraries:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;jsonlite&quot;</span>, <span class="st">&quot;janitor&quot;</span>))</span></code></pre></div>
-<h2 id="using-the-provided-script">Using the provided script</h2>
-<p>Open <code>process_summary_engagement.R</code> in RStudio and click “Source” to run the program.</p>
 <figure>
 <img src="rstudio_source.png" alt="Source option is in the upper right of the RStudio window" /><figcaption aria-hidden="true">Source option is in the upper right of the RStudio window</figcaption>
 </figure>
+<h2 id="using-the-provided-script">Using the provided script</h2>
+<p>Open <code>process_summary_engagement.R</code> in RStudio and click “Source” to run the program.</p>
 <p>You will be prompted to select a file, choose the <code>.csv</code> file that was exported from the THRIVE report. Upon completion, 2 new files will appear in the same directory as your input file; assuming your input file was named <code>UF_THRIVE_data.csv</code>:</p>
 <ul>
 <li><p><code>UF_THRIVE_data-processed.csv</code>: Contains the original output with the <strong>Final page section engagement</strong> column “unrolled” into multiple columns. This file adds one column for each section of the feedback page. The values in these columns are the time (in <strong>milliseconds</strong>) since the page loaded that the corresponding section <em>first appeared</em> on the survey respondent’s screen.</p></li>
