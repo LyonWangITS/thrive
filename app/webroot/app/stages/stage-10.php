@@ -3,7 +3,7 @@
 
 <section class="summary">
 
-	<p>Some of the questions you answered regarding your drinking come from the Alcohol Use Disorders Identification Test, a questionnaire developed by the World Health Organisation to determine whether a person's drinking might be becoming problematic. Your answers to these questions provivided the following result.</p>
+	<p>Some of the questions you answered regarding your drinking come from the Alcohol Use Disorders Identification Test, a questionnaire developed by the World Health Organisation to determine whether a person's drinking might be becoming problematic. Your answers to these questions provided the following result.</p>
 
 </section>
 
