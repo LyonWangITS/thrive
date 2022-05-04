@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [anchors_1.5.2] - 2022-05-03
+### Changed
+- Update old phone number shown on final page, update VERSION to use correct schema (Kyle Chesney)
+- correct typo, provivided -> provided (Kyle Chesney)
+
+
 ## [anchors_1.5.1] - 2020-10-05
 ### Added
 - Port final page scroll timer to anchors (Kyle Chesney)
