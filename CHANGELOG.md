@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [standard_1.5.2] - 2022-05-06
+### Added
+- Add process_summary_engagement.R and end-user docs (Kyle Chesney, Philip Chase)
+
+### Changed
+- Update old phone number shown on final page, update VERSION to use correct schema (Kyle Chesney)
+- correct typo, provivided -> provided (Kyle Chesney)
+
+
 ## [standard_1.5.1] - 2021-09-03
 ### Changed
 - Erase cached models during deployment (Philip Chase)
