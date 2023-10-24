@@ -64,11 +64,12 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'admin',
+		'host' => 'mysql',
+		'login' => 'root',
 		'password' => 'password',
-		'database' => 'app_database',
+		'database' => 'app_database_standard',
 		'prefix' => '',
+		'port' => '3306'
 		//'encoding' => 'utf8',
 	);
 }

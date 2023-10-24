@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  webapp:
+    build: .
+    image: thrive-standard
+    ports:
+      - "80:80"
+    depends_on:
+      - mysql
+    environment:
+      - DATABASE_HOST=mysql
+    volumes:
+      - ./tests:/var/www/tests
+
+  mysql:
+    image: mysql:5
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: app_database_standard
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+    ports:
+      - "3314:3306"
+      # MySQL container will still listen on its default port of 3306, 
+      # but from host machine, it would connect to it using port 3314.
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
