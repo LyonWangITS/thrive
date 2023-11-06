@@ -255,13 +255,13 @@
 					}
 				}
 
-				$page_vars = get_stage_vars(6);
-				foreach (array_keys($page_vars['tabular']['rows']) as $field) {
-					if ( ifne( $this->data, '06_' . $field, null ) === null ) {
-						$stage_6_passed = false;
-						break;
-					}
-				}
+				// $page_vars = get_stage_vars(6);
+				// foreach (array_keys($page_vars['tabular']['rows']) as $field) {
+				// 	if ( ifne( $this->data, '06_' . $field, null ) === null ) {
+				// 		$stage_6_passed = false;
+				// 		break;
+				// 	}
+				// }
 
 				foreach( $stage_4_keys as $key ){
 					if ( ifne( $this->data, $key, null ) === null ) {
@@ -271,22 +271,22 @@
 				}
 
 				$stage_7_passed = true;
-				$page_vars = get_stage_vars(7);
-				foreach (array_keys($page_vars['tabular']['rows']) as $field) {
-					if ( ifne( $this->data, '07_' . $field, null ) === null ) {
-						$stage_7_passed = false;
-						break;
-					}
-				}
+				// $page_vars = get_stage_vars(7);
+				// foreach (array_keys($page_vars['tabular']['rows']) as $field) {
+				// 	if ( ifne( $this->data, '07_' . $field, null ) === null ) {
+				// 		$stage_7_passed = false;
+				// 		break;
+				// 	}
+				// }
 
 				$stage_8_passed = true;
-				$page_vars = get_stage_vars(8);
-				foreach (array_keys($page_vars['tabular']['rows']) as $field) {
-					if ( ifne( $this->data, '08_' . $field, null ) === null ) {
-						$stage_8_passed = false;
-						break;
-					}
-				}
+				// $page_vars = get_stage_vars(8);
+				// foreach (array_keys($page_vars['tabular']['rows']) as $field) {
+				// 	if ( ifne( $this->data, '08_' . $field, null ) === null ) {
+				// 		$stage_8_passed = false;
+				// 		break;
+				// 	}
+				// }
 
 				$stage_9_keys = array(
 					'09_tobacco_use',
